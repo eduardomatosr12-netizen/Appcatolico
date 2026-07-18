@@ -7,6 +7,12 @@ import { MobileNav } from "@/components/navigation/mobile-nav";
 export const metadata: Metadata = {
   title: "Lumen — App Católico",
   description: "Liturgia Diária, Orações, Terço e mais",
+  manifest: "/manifest.json",
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "black-translucent",
+    title: "Lumen",
+  },
 };
 
 export const viewport: Viewport = {
@@ -19,6 +25,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="pt-BR" className="h-full dark">
       <body className="h-full bg-[#0B0B0E] text-gray-100 antialiased overflow-x-hidden font-sans">
+        <script dangerouslySetInnerHTML={{ __html: `
+          if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+              navigator.serviceWorker.register('/sw.js');
+            });
+          }
+        `}} />
         <ThemeProvider>
           <div className="flex min-h-screen w-full bg-[#0B0B0E] text-gray-100 overflow-x-hidden relative font-sans">
             <DesktopSidebar />
