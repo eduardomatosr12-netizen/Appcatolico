@@ -17,7 +17,7 @@ interface PillTabBarProps {
 
 export function PillTabBar({ tabs, activeKey, onSelect, className }: PillTabBarProps) {
   return (
-    <div className={cn('inline-flex items-center rounded-full bg-[#16161A] p-1 border border-[rgba(197,160,89,0.08)]', className)}>
+    <div className={cn('flex items-center overflow-x-auto rounded-full bg-[#16161A] p-1 border border-[rgba(197,160,89,0.08)] scrollbar-none', className)} style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
       {tabs.map((tab) => {
         const isActive = tab.key === activeKey;
         return (
@@ -25,7 +25,7 @@ export function PillTabBar({ tabs, activeKey, onSelect, className }: PillTabBarP
             key={tab.key}
             onClick={() => onSelect(tab.key)}
             className={cn(
-              'flex items-center gap-1.5 rounded-full px-5 py-2 text-xs font-medium transition-all duration-300',
+              'flex items-center gap-1.5 rounded-full px-4 sm:px-5 py-2 text-xs font-medium transition-all duration-300 shrink-0 whitespace-nowrap',
               isActive ? 'bg-[#5C0F1B] text-white shadow-sm' : 'text-[#8A8A8E] hover:text-[#F0F0F0]'
             )}
           >

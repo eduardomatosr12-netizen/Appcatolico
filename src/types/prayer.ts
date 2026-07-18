@@ -24,7 +24,7 @@ export interface PsalmEntry {
 }
 
 export interface LiturgyOfHours {
-  hour: 'laudes' | 'terca' | 'sexta' | 'noa' | 'vesperas' | 'completas' | 'oficio_leituras';
+  hour: 'laudes' | 'tercia' | 'sexta' | 'noa' | 'vesperas' | 'completas' | 'oficio_leituras';
   title: string;
   invocation: LiturgicalLine[];
   hymn: string;
