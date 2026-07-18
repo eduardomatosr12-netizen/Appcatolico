@@ -1,26 +1,76 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --bg-primary: #0B0B0E;
+  --bg-surface: #16161A;
+  --bg-surface-alt: #1E1E24;
+  --bg-gradient-start: #3D0A11;
+  --bg-gradient-end: #1A0508;
+  --color-vinho: #5C0F1B;
+  --color-vinho-light: #7A1A28;
+  --color-gold: #C5A059;
+  --color-gold-light: #D4B87A;
+  --color-text: #F0F0F0;
+  --color-text-muted: #8A8A8E;
+  --color-border: #2A2A2E;
+  --border-glass: rgba(197, 160, 89, 0.12);
+  --border-glass-hover: rgba(197, 160, 89, 0.25);
+  --radius-pill: 9999px;
+  --radius-card: 24px;
+  --radius-card-sm: 16px;
+  --radius-button: 14px;
+  --font-serif: 'Cinzel', 'Cormorant Garamond', Georgia, serif;
+  --font-sans: 'Inter', 'Segoe UI', -apple-system, sans-serif;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--bg-primary);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: rgba(197, 160, 89, 0.25);
+  color: #fff;
+}
+
+::-webkit-scrollbar {
+  width: 3px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 999px;
+}
+
+input, textarea, button {
+  font-family: inherit;
+}
+
+@layer components {
+  .sacred-text-body {
+    @apply text-base md:text-xl leading-[1.8] md:leading-[2.0] tracking-wide text-gray-200/95 font-normal space-y-5 block mb-4;
+  }
+
+  .sacred-text-title {
+    @apply font-serif text-sm md:text-lg tracking-[0.2em] uppercase text-[#C5A059] font-semibold mb-2;
+  }
+
+  .sacred-text-subtitle {
+    @apply text-xs md:text-sm font-mono tracking-wide text-gray-400;
+  }
 }
