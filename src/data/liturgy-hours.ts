@@ -99,8 +99,8 @@ export const liturgyHoursData: Record<string, LiturgyOfHours> = {
     concludingPrayer: 'Ó Deus, que fizestes cair sobre a terra a luz da vossa verdade, concedei que, confessando o nome do vosso Filho unigênito, sejamos sempre fiéis na sua doutrina e perseverantes nas suas obras. Por Nosso Senhor Jesus Cristo, vosso Filho, na unidade do Espírito Santo. Amém.',
   },
 
-  terca: {
-    hour: 'terca',
+  tercia: {
+    hour: 'tercia',
     title: 'Tércia',
     invocation: [
       { speaker: 'assembleia', text: 'Deus, vinde em nosso auxílio.' },
