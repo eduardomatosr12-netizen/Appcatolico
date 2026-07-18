@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect, useRef, useCallback } from 'react';
+import { playAlarmSound, stopAlarmSound } from '@/lib/utils/alarm-sound';
 
 function formatTime(totalSeconds: number): string {
   const h = Math.floor(totalSeconds / 3600);
@@ -30,6 +31,7 @@ export function MeditationTimer() {
             intervalRef.current = null;
             setIsRunning(false);
             setIsFinished(true);
+            playAlarmSound();
             return 0;
           }
           return prev - 1;
@@ -50,6 +52,7 @@ export function MeditationTimer() {
     setRemaining(computedTotal);
     setIsRunning(true);
     setIsFinished(false);
+    stopAlarmSound();
   }, [computedTotal]);
 
   const handlePause = useCallback(() => {
@@ -65,6 +68,7 @@ export function MeditationTimer() {
     setRemaining(0);
     setTotalSeconds(0);
     setIsFinished(false);
+    stopAlarmSound();
   }, []);
 
   const progress = totalSeconds > 0 ? remaining / totalSeconds : 0;

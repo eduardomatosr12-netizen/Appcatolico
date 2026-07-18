@@ -1,7 +1,8 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { SacredCard, SacredCardContent, SacredCardTitle } from '@/components/ui/sacred-card';
+import { playAlarmSound, stopAlarmSound } from '@/lib/utils/alarm-sound';
 import type { PrayerAlarm } from '@/types/productivity';
 
 const STORAGE_KEY = 'lumen-alarms';
@@ -19,8 +20,40 @@ function load(): PrayerAlarm[] { try { return JSON.parse(localStorage.getItem(ST
 
 export function PrayerAlarms() {
   const [alarms, setAlarms] = useState<PrayerAlarm[]>([]);
+  const [triggeredAlarm, setTriggeredAlarm] = useState<string | null>(null);
+  const checkedRef = useRef<Set<string>>(new Set());
+
   useEffect(() => { setAlarms(load()); }, []);
   useEffect(() => { if (alarms.length) localStorage.setItem(STORAGE_KEY, JSON.stringify(alarms)); }, [alarms]);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const now = new Date();
+      const currentDay = now.getDay();
+      const currentHour = now.getHours();
+      const currentMinute = now.getMinutes();
+
+      alarms.forEach((alarm) => {
+        if (!alarm.enabled) return;
+        if (!alarm.daysOfWeek.includes(currentDay)) return;
+        if (alarm.hour !== currentHour || alarm.minute !== currentMinute) return;
+
+        const key = `${alarm.id}-${currentDay}-${currentHour}-${currentMinute}`;
+        if (checkedRef.current.has(key)) return;
+
+        checkedRef.current.add(key);
+        setTriggeredAlarm(alarm.id);
+        playAlarmSound();
+      });
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, [alarms]);
+
+  const dismissAlarm = () => {
+    stopAlarmSound();
+    setTriggeredAlarm(null);
+  };
 
   const toggle = (id: string) => setAlarms((prev) => prev.map((a) => a.id === id ? { ...a, enabled: !a.enabled } : a));
   const toggleDay = (alarmId: string, day: number) => setAlarms((prev) => prev.map((a) => {
@@ -29,8 +62,25 @@ export function PrayerAlarms() {
     return { ...a, daysOfWeek: days };
   }));
 
+  const activeAlarm = triggeredAlarm ? alarms.find((a) => a.id === triggeredAlarm) : null;
+
   return (
     <SacredCard><SacredCardTitle>Alarmes das Horas Litúrgicas</SacredCardTitle>
+
+      {activeAlarm && (
+        <div className="mx-4 mt-3 rounded-2xl bg-gradient-to-br from-[#5C0F1B] to-[#3D0A11] border border-[#C5A059]/30 p-5 flex flex-col items-center gap-3 text-center animate-pulse">
+          <svg className="w-8 h-8 text-[#C5A059]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
+            <path d="M13.73 21a2 2 0 0 1-3.46 0" />
+          </svg>
+          <p className="text-sm font-semibold text-[#C5A059]">{activeAlarm.title}</p>
+          <p className="text-xs text-gray-300">Hora da oração!</p>
+          <button onClick={dismissAlarm} className="mt-1 rounded-full bg-[#C5A059] px-6 py-2 text-xs font-bold text-[#0B0B0E] tracking-wider uppercase transition-all hover:bg-[#D4B87A]">
+            Dispensar
+          </button>
+        </div>
+      )}
+
       <SacredCardContent className="space-y-3 mt-3">
         {alarms.map((alarm) => (
           <div key={alarm.id} className={`rounded-[20px] border p-4 transition-all ${alarm.enabled ? 'border-[#C5A059]/20 bg-[#C5A059]/5' : 'border-white/5 opacity-50'}`}>
