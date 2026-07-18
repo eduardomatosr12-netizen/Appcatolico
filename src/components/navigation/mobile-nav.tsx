@@ -62,9 +62,9 @@ export function MobileNav() {
   const pathname = usePathname();
 
   return (
-    <nav className="flex md:hidden fixed bottom-0 left-0 right-0 z-50 bg-[#0B0B0E]/90 backdrop-blur-xl border-t border-[rgba(197,160,89,0.06)]">
-      <div className="w-full px-1 py-1.5">
-        <div className="flex items-center justify-around">
+    <nav className="flex md:hidden fixed bottom-0 left-0 right-0 z-50 bg-[#0B0B0E]/95 backdrop-blur-xl border-t border-[rgba(197,160,89,0.06)]" style={{ paddingBottom: 'env(safe-area-inset-bottom)' }}>
+      <div className="w-full px-0 py-1.5">
+        <div className="flex items-center justify-evenly">
           {navItems.map((item) => {
             const isActive = pathname === item.href;
             return (
@@ -72,7 +72,7 @@ export function MobileNav() {
                 key={item.href}
                 href={item.href}
                 className={cn(
-                  'flex flex-col items-center gap-0.5 py-1.5 px-2 rounded-xl transition-all duration-300 min-w-0',
+                  'flex flex-col items-center gap-0.5 py-1.5 px-1.5 sm:px-2 rounded-xl transition-all duration-300 flex-1 max-w-[72px]',
                   isActive ? 'bg-[#5C0F1B]/30' : '',
                 )}
               >

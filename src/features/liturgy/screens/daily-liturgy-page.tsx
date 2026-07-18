@@ -25,19 +25,19 @@ function ReadingCard({
 
   return (
     <article
-      className={`w-full rounded-[24px] p-6 md:p-10 border shadow-[0_12px_40px_rgba(0,0,0,0.5)] flex flex-col gap-5 transition-all hover:border-white/[0.06] ${
+      className={`w-full rounded-[24px] p-5 md:p-10 border shadow-[0_12px_40px_rgba(0,0,0,0.5)] flex flex-col gap-5 transition-all hover:border-white/[0.06] overflow-hidden ${
         isGospel
           ? 'bg-gradient-to-br from-[#3D0A11] to-[#1A0508] border-[rgba(197,160,89,0.15)] hover:border-[rgba(197,160,89,0.25)]'
           : 'bg-[#16161A] border-white/[0.03]'
       }`}
     >
-      <div className="flex items-start justify-between gap-3">
-        <div className="flex flex-col gap-1 border-l-2 border-[#C5A059] pl-4">
-          <h2 className="font-serif text-sm md:text-lg tracking-[0.2em] uppercase text-[#C5A059] font-semibold">
+      <div className="flex items-start justify-between gap-3 min-w-0">
+        <div className="flex flex-col gap-1 border-l-2 border-[#C5A059] pl-4 min-w-0">
+          <h2 className="font-serif text-xs sm:text-sm md:text-lg tracking-[0.2em] uppercase text-[#C5A059] font-semibold break-words">
             {title}
           </h2>
           {reference && (
-            <span className={`text-xs font-mono tracking-wide ${
+            <span className={`text-[11px] sm:text-xs font-mono tracking-wide break-words ${
               isGospel ? 'text-[#C5A059]/50' : 'text-gray-400'
             }`}>
               {reference}
@@ -46,7 +46,7 @@ function ReadingCard({
         </div>
         {adornment}
       </div>
-      <div className="text-base md:text-xl leading-[1.8] md:leading-[2.0] tracking-wide text-gray-200/95 font-normal space-y-5 whitespace-pre-line pt-2 px-2">
+      <div className="text-sm sm:text-base md:text-xl leading-[1.8] md:leading-[2.0] tracking-wide text-gray-200/95 font-normal space-y-5 whitespace-pre-line break-words pt-2 px-1 sm:px-2">
         {text}
       </div>
     </article>
@@ -65,23 +65,23 @@ function PsalmCard({
   response?: string;
 }) {
   return (
-    <article className="w-full bg-[#16161A] rounded-[24px] p-6 md:p-10 border border-white/[0.03] shadow-[0_12px_40px_rgba(0,0,0,0.5)] flex flex-col gap-5 transition-all hover:border-white/[0.06]">
-      <div className="flex flex-col gap-1 border-l-2 border-[#C5A059] pl-4">
-        <h2 className="font-serif text-sm md:text-lg tracking-[0.2em] uppercase text-[#C5A059] font-semibold">
+    <article className="w-full bg-[#16161A] rounded-[24px] p-5 md:p-10 border border-white/[0.03] shadow-[0_12px_40px_rgba(0,0,0,0.5)] flex flex-col gap-5 transition-all hover:border-white/[0.06] overflow-hidden">
+      <div className="flex flex-col gap-1 border-l-2 border-[#C5A059] pl-4 min-w-0">
+        <h2 className="font-serif text-xs sm:text-sm md:text-lg tracking-[0.2em] uppercase text-[#C5A059] font-semibold break-words">
           {title}
         </h2>
         {reference && (
-          <span className="text-xs text-gray-400 font-mono tracking-wide">
+          <span className="text-[11px] sm:text-xs text-gray-400 font-mono tracking-wide break-words">
             {reference}
           </span>
         )}
       </div>
       {response && (
-        <span className="inline-block w-fit rounded-full bg-[#C5A059]/10 border border-[#C5A059]/20 px-5 py-2 text-xs text-[#C5A059] italic font-semibold tracking-wide">
+        <span className="inline-block w-fit rounded-full bg-[#C5A059]/10 border border-[#C5A059]/20 px-4 sm:px-5 py-2 text-[11px] sm:text-xs text-[#C5A059] italic font-semibold tracking-wide">
           R: {response}
         </span>
       )}
-      <div className="text-base md:text-xl leading-[1.8] md:leading-[2.0] tracking-wide text-gray-200/95 font-normal space-y-5 whitespace-pre-line pt-2 px-2">
+      <div className="text-sm sm:text-base md:text-xl leading-[1.8] md:leading-[2.0] tracking-wide text-gray-200/95 font-normal space-y-5 whitespace-pre-line break-words pt-2 px-1 sm:px-2">
         {text}
       </div>
     </article>

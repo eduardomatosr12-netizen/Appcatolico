@@ -33,11 +33,11 @@ export function HorizontalDatePicker({ selectedDate, onSelect }: HorizontalDateP
   const isSelected = (d: Date) => dateToStr(d) === selectedStr;
 
   return (
-    <div className="relative">
+    <div className="relative -mx-4 px-4">
       <div
         ref={scrollRef}
-        className="flex gap-2 overflow-x-auto pb-1 scrollbar-thin scrollbar-thumb-white/5 scrollbar-track-transparent"
-        style={{ scrollbarWidth: 'thin', msOverflowStyle: 'none' }}
+        className="flex gap-2 overflow-x-auto pb-1 snap-x snap-mandatory scrollbar-thin scrollbar-thumb-white/5 scrollbar-track-transparent"
+        style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
       >
         {days.map((date) => {
           const selected = isSelected(date);
@@ -48,7 +48,7 @@ export function HorizontalDatePicker({ selectedDate, onSelect }: HorizontalDateP
               key={dateToStr(date)}
               onClick={() => onSelect(new Date(date))}
               className={cn(
-                'flex flex-col items-center gap-1 rounded-2xl px-4 py-3 min-w-[64px] transition-all duration-300 shrink-0',
+                'flex flex-col items-center gap-1 rounded-2xl px-4 py-3 min-w-[64px] snap-center transition-all duration-300 shrink-0',
                 selected
                   ? 'bg-gradient-to-b from-[#3D0A11] to-[#5C0F1B] shadow-md shadow-[#5C0F1B]/30'
                   : 'bg-[#16161A] hover:bg-[#1E1E24] border border-white/[0.03]',
@@ -76,6 +76,7 @@ export function HorizontalDatePicker({ selectedDate, onSelect }: HorizontalDateP
           );
         })}
       </div>
+      <div className="absolute left-0 top-0 bottom-1 w-4 bg-gradient-to-r from-[#0B0B0E] to-transparent pointer-events-none" />
       <div className="absolute right-0 top-0 bottom-1 w-8 bg-gradient-to-l from-[#0B0B0E] to-transparent pointer-events-none" />
     </div>
   );
