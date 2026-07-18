@@ -46,7 +46,10 @@ function ReadingCard({
         </div>
         {adornment}
       </div>
-      <div className="text-sm sm:text-base md:text-xl leading-[1.8] md:leading-[2.0] tracking-wide text-gray-200/95 font-normal space-y-5 whitespace-pre-line break-words pt-2 px-1 sm:px-2">
+      <div
+        className="text-sm sm:text-base md:text-xl leading-[1.8] md:leading-[2.0] tracking-wide text-gray-200/95 font-normal space-y-5 pt-2 px-4"
+        style={{ wordBreak: 'break-word', whiteSpace: 'normal', overflowWrap: 'break-word' }}
+      >
         {text}
       </div>
     </article>
@@ -81,7 +84,10 @@ function PsalmCard({
           R: {response}
         </span>
       )}
-      <div className="text-sm sm:text-base md:text-xl leading-[1.8] md:leading-[2.0] tracking-wide text-gray-200/95 font-normal space-y-5 whitespace-pre-line break-words pt-2 px-1 sm:px-2">
+      <div
+        className="text-sm sm:text-base md:text-xl leading-[1.8] md:leading-[2.0] tracking-wide text-gray-200/95 font-normal space-y-5 pt-2 px-4"
+        style={{ wordBreak: 'break-word', whiteSpace: 'normal', overflowWrap: 'break-word' }}
+      >
         {text}
       </div>
     </article>

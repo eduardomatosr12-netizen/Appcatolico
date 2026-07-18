@@ -14,17 +14,23 @@ export function Header() {
   });
 
   return (
-    <header className="flex flex-col items-center gap-2 border-b border-white/[0.05] pb-4 text-center">
-      <div className="flex flex-col items-center gap-2">
+    <header className="flex flex-col items-center gap-3 border-b border-white/[0.05] pb-4 text-center w-full">
+      <div className="md:hidden">
+        <Link href="/" className="font-serif text-lg font-bold text-[#C5A059] tracking-[0.2em]">
+          LUMEN
+        </Link>
+      </div>
+
+      <div className="flex flex-col items-center gap-2 w-full">
         <span className="font-serif text-xs tracking-widest text-[#C5A059] uppercase font-medium">
           Liturgia Diária
         </span>
-        <h1 className="text-lg sm:text-xl md:text-3xl font-bold tracking-tight text-white font-serif">
+        <h1 className="text-lg sm:text-xl md:text-3xl font-bold tracking-tight text-white font-serif w-full text-center">
           {currentDate}
         </h1>
       </div>
 
-      <div className="flex items-center gap-3">
+      <div className="flex items-center justify-center gap-3">
         <div className="hidden md:flex items-center gap-1.5 text-[10px] text-[#6A6A6E] border border-white/[0.04] rounded-full px-3 py-1.5">
           <span className="w-1.5 h-1.5 rounded-full bg-emerald-500/60 animate-pulse" />
           Ao vivo
@@ -39,12 +45,6 @@ export function Header() {
             <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
           </svg>
         </button>
-      </div>
-
-      <div className="md:hidden">
-        <Link href="/" className="font-serif text-lg font-bold text-[#C5A059] tracking-[0.2em]">
-          LUMEN
-        </Link>
       </div>
     </header>
   );
