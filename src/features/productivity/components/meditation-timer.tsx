@@ -83,7 +83,7 @@ export function MeditationTimer() {
 
       <div className="text-center">
         <h2 className="font-serif text-sm md:text-lg tracking-[0.2em] uppercase text-[#C5A059] font-semibold">
-          Cronômetro de Adoração
+          Cronômetro
         </h2>
         <p className="text-xs text-gray-400 mt-2 tracking-wide">
           Defina o tempo e silencie seu coração diante de Deus
@@ -183,10 +183,10 @@ export function MeditationTimer() {
                     <polyline points="22 4 12 14.01 9 11.01" />
                   </svg>
                   <p className="font-serif text-sm text-green-400 font-semibold tracking-wide text-center px-4">
-                    Adoração Concluída.
+                    Concluído!
                   </p>
                   <p className="text-xs text-[#C5A059]/70 italic">
-                    Louvado seja Deus!
+                    Tempo finalizado!
                   </p>
                 </div>
               ) : (
@@ -242,7 +242,7 @@ export function MeditationTimer() {
               onClick={handleReset}
               className="flex items-center gap-2 rounded-full bg-[#16161A] border border-white/[0.05] px-6 py-2.5 text-xs text-gray-400 hover:text-white transition-all tracking-wider uppercase"
             >
-              Nova Adoração
+              Novo Cronômetro
             </button>
           )}
         </div>
