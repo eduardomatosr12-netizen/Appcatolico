@@ -1,6 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
 @import "tailwindcss";
 
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 :root {
   --bg-primary: #0B0B0E;
   --bg-surface: #16161A;
@@ -24,6 +30,12 @@
   --font-sans: 'Inter', 'Segoe UI', -apple-system, sans-serif;
 }
 
+html {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
 html, body {
   height: 100%;
   margin: 0;
@@ -31,12 +43,15 @@ html, body {
 }
 
 body {
+  width: 100%;
+  max-width: 100%;
   background: var(--bg-primary);
   color: var(--color-text);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
 }
 
 ::selection {
@@ -64,13 +79,18 @@ input, textarea, button {
 @layer components {
   .sacred-text-body {
     @apply text-base md:text-xl leading-[1.8] md:leading-[2.0] tracking-wide text-gray-200/95 font-normal space-y-5 block mb-4;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    line-height: 1.6;
   }
 
   .sacred-text-title {
     @apply font-serif text-sm md:text-lg tracking-[0.2em] uppercase text-[#C5A059] font-semibold mb-2;
+    word-break: break-word;
   }
 
   .sacred-text-subtitle {
     @apply text-xs md:text-sm font-mono tracking-wide text-gray-400;
+    word-break: break-word;
   }
 }

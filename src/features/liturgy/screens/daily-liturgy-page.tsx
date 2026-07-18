@@ -25,14 +25,15 @@ function ReadingCard({
 
   return (
     <article
-      className={`w-full rounded-[24px] p-5 md:p-10 border shadow-[0_12px_40px_rgba(0,0,0,0.5)] flex flex-col gap-5 transition-all hover:border-white/[0.06] overflow-hidden ${
+      className={`w-full rounded-[24px] p-4 sm:p-5 md:p-10 border shadow-[0_12px_40px_rgba(0,0,0,0.5)] flex flex-col gap-4 sm:gap-5 transition-all hover:border-white/[0.06] overflow-hidden ${
         isGospel
           ? 'bg-gradient-to-br from-[#3D0A11] to-[#1A0508] border-[rgba(197,160,89,0.15)] hover:border-[rgba(197,160,89,0.25)]'
           : 'bg-[#16161A] border-white/[0.03]'
       }`}
+      style={{ width: '100%', maxWidth: '100%' }}
     >
       <div className="flex items-start justify-between gap-3 min-w-0">
-        <div className="flex flex-col gap-1 border-l-2 border-[#C5A059] pl-4 min-w-0">
+        <div className="flex flex-col gap-1 border-l-2 border-[#C5A059] pl-3 sm:pl-4 min-w-0">
           <h2 className="font-serif text-xs sm:text-sm md:text-lg tracking-[0.2em] uppercase text-[#C5A059] font-semibold break-words">
             {title}
           </h2>
@@ -47,8 +48,14 @@ function ReadingCard({
         {adornment}
       </div>
       <div
-        className="text-sm sm:text-base md:text-xl leading-[1.8] md:leading-[2.0] tracking-wide text-gray-200/95 font-normal space-y-5 pt-2 px-4"
-        style={{ wordBreak: 'break-word', whiteSpace: 'normal', overflowWrap: 'break-word' }}
+        className="text-sm sm:text-base md:text-xl font-normal space-y-5 pt-1 sm:pt-2"
+        style={{
+          wordBreak: 'break-word',
+          overflowWrap: 'break-word',
+          whiteSpace: 'normal',
+          lineHeight: '1.6',
+          padding: '4px 0',
+        }}
       >
         {text}
       </div>
@@ -68,8 +75,8 @@ function PsalmCard({
   response?: string;
 }) {
   return (
-    <article className="w-full bg-[#16161A] rounded-[24px] p-5 md:p-10 border border-white/[0.03] shadow-[0_12px_40px_rgba(0,0,0,0.5)] flex flex-col gap-5 transition-all hover:border-white/[0.06] overflow-hidden">
-      <div className="flex flex-col gap-1 border-l-2 border-[#C5A059] pl-4 min-w-0">
+    <article className="w-full bg-[#16161A] rounded-[24px] p-4 sm:p-5 md:p-10 border border-white/[0.03] shadow-[0_12px_40px_rgba(0,0,0,0.5)] flex flex-col gap-4 sm:gap-5 transition-all hover:border-white/[0.06] overflow-hidden" style={{ width: '100%', maxWidth: '100%' }}>
+      <div className="flex flex-col gap-1 border-l-2 border-[#C5A059] pl-3 sm:pl-4 min-w-0">
         <h2 className="font-serif text-xs sm:text-sm md:text-lg tracking-[0.2em] uppercase text-[#C5A059] font-semibold break-words">
           {title}
         </h2>
@@ -80,13 +87,19 @@ function PsalmCard({
         )}
       </div>
       {response && (
-        <span className="inline-block w-fit rounded-full bg-[#C5A059]/10 border border-[#C5A059]/20 px-4 sm:px-5 py-2 text-[11px] sm:text-xs text-[#C5A059] italic font-semibold tracking-wide">
+        <span className="inline-block w-fit rounded-full bg-[#C5A059]/10 border border-[#C5A059]/20 px-3 sm:px-5 py-1.5 sm:py-2 text-[10px] sm:text-xs text-[#C5A059] italic font-semibold tracking-wide">
           R: {response}
         </span>
       )}
       <div
-        className="text-sm sm:text-base md:text-xl leading-[1.8] md:leading-[2.0] tracking-wide text-gray-200/95 font-normal space-y-5 pt-2 px-4"
-        style={{ wordBreak: 'break-word', whiteSpace: 'normal', overflowWrap: 'break-word' }}
+        className="text-sm sm:text-base md:text-xl font-normal space-y-5 pt-1 sm:pt-2"
+        style={{
+          wordBreak: 'break-word',
+          overflowWrap: 'break-word',
+          whiteSpace: 'normal',
+          lineHeight: '1.6',
+          padding: '4px 0',
+        }}
       >
         {text}
       </div>
