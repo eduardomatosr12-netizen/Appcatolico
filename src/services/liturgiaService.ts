@@ -20,17 +20,19 @@ function buildDateParams(date: Date) {
  */
 export async function fetchLiturgy(date: Date): Promise<DailyLiturgy> {
   const params = buildDateParams(date);
-  const url = `${BASE_URL}?${new URLSearchParams(params as any).toString()}`;
+  const url = `${BASE_URL}?${new URLSearchParams({ dia: String(params.dia), mes: String(params.mes), ano: String(params.ano) }).toString()}`;
 
-  const stored = localStorage.getItem(`liturgia-etag-${params.ano}-${pad(params.mes)}-${pad(params.dia)}`);
   const headers: Record<string, string> = {};
-  if (stored) {
-    headers['If-None-Match'] = stored;
+  if (typeof window !== 'undefined') {
+    const stored = localStorage.getItem(`liturgia-etag-${params.ano}-${pad(params.mes)}-${pad(params.dia)}`);
+    if (stored) {
+      headers['If-None-Match'] = stored;
+    }
   }
 
   const res = await fetch(url, { headers });
 
-  if (res.status === 304) {
+  if (res.status === 304 && typeof window !== 'undefined') {
     const cached = localStorage.getItem(`liturgia-data-${params.ano}-${pad(params.mes)}-${pad(params.dia)}`);
     if (cached) {
       return parseLiturgyApiResponse(JSON.parse(cached) as LiturgyApiResponse);
@@ -48,7 +50,7 @@ export async function fetchLiturgy(date: Date): Promise<DailyLiturgy> {
     throw new Error('Nenhum dado litúrgico encontrado para esta data.');
   }
 
-  if (etag) {
+  if (etag && typeof window !== 'undefined') {
     localStorage.setItem(`liturgia-etag-${params.ano}-${pad(params.mes)}-${pad(params.dia)}`, etag);
     localStorage.setItem(`liturgia-data-${params.ano}-${pad(params.mes)}-${pad(params.dia)}`, JSON.stringify(data[0]));
   }
@@ -61,6 +63,7 @@ export async function fetchLiturgy(date: Date): Promise<DailyLiturgy> {
  */
 export function getCachedLiturgy(date: Date): DailyLiturgy | null {
   const params = buildDateParams(date);
+  if (typeof window === 'undefined') return null;
   const cached = localStorage.getItem(`liturgia-data-${params.ano}-${pad(params.mes)}-${pad(params.dia)}`);
   if (cached) {
     try {

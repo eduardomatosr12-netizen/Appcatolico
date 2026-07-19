@@ -9,7 +9,7 @@ import {
   mysteryLabels,
   mysteryDayLabels,
 } from '@/data/rosary-mysteries';
-import type { RosaryMystery, Mystery } from '@/types/rosary';
+import type { RosaryMystery } from '@/types/rosary';
 
 const prayers = {
   credo: 'Creio em Deus Pai todo-poderoso, criador do céu e da terra...',

@@ -19,35 +19,52 @@ const dayNames = ['Dom','Seg','Ter','Qua','Qui','Sex','Sáb'];
 function load(): PrayerAlarm[] { try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || 'null') || defaults; } catch { return defaults; } }
 
 export function PrayerAlarms() {
-  const [alarms, setAlarms] = useState<PrayerAlarm[]>([]);
+  const [alarms, setAlarms] = useState<PrayerAlarm[]>(() => load());
   const [triggeredAlarm, setTriggeredAlarm] = useState<string | null>(null);
   const checkedRef = useRef<Set<string>>(new Set());
-
-  useEffect(() => { setAlarms(load()); }, []);
+  const lastMinuteRef = useRef<string>('');
   useEffect(() => { if (alarms.length) localStorage.setItem(STORAGE_KEY, JSON.stringify(alarms)); }, [alarms]);
 
   useEffect(() => {
-    const interval = setInterval(() => {
+    const tick = () => {
       const now = new Date();
       const currentDay = now.getDay();
       const currentHour = now.getHours();
       const currentMinute = now.getMinutes();
+      const minuteKey = `${currentDay}-${currentHour}-${currentMinute}`;
+
+      if (minuteKey === lastMinuteRef.current) return;
+      lastMinuteRef.current = minuteKey;
 
       alarms.forEach((alarm) => {
         if (!alarm.enabled) return;
         if (!alarm.daysOfWeek.includes(currentDay)) return;
         if (alarm.hour !== currentHour || alarm.minute !== currentMinute) return;
 
-        const key = `${alarm.id}-${currentDay}-${currentHour}-${currentMinute}`;
+        const key = `${alarm.id}-${minuteKey}`;
         if (checkedRef.current.has(key)) return;
 
         checkedRef.current.add(key);
         setTriggeredAlarm(alarm.id);
         playAlarmSound();
       });
-    }, 1000);
+    };
 
-    return () => clearInterval(interval);
+    tick();
+    const interval = setInterval(tick, 10000);
+
+    const handleVisibility = () => {
+      if (document.visibilityState === 'visible') {
+        lastMinuteRef.current = '';
+        tick();
+      }
+    };
+    document.addEventListener('visibilitychange', handleVisibility);
+
+    return () => {
+      clearInterval(interval);
+      document.removeEventListener('visibilitychange', handleVisibility);
+    };
   }, [alarms]);
 
   const dismissAlarm = () => {

@@ -20,9 +20,8 @@ const defaults: Purpose[] = [
 function load(): Purpose[] { try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || 'null') || defaults; } catch { return defaults; } }
 
 export function PurposeChecklist() {
-  const [purposes, setPurposes] = useState<Purpose[]>([]);
+  const [purposes, setPurposes] = useState<Purpose[]>(() => load());
   const [newPurpose, setNewPurpose] = useState('');
-  useEffect(() => { setPurposes(load()); }, []);
   useEffect(() => { if (purposes.length) localStorage.setItem(STORAGE_KEY, JSON.stringify(purposes)); }, [purposes]);
 
   const toggle = (id: string) => setPurposes((prev) => prev.map((p) => p.id === id ? { ...p, completed: !p.completed, date: !p.completed ? new Date().toISOString() : '' } : p));
