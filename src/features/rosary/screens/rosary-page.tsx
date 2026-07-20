@@ -1,12 +1,16 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useCallback, useEffect, useRef } from 'react';
 import { SacredCard, SacredCardContent, SacredCardTitle } from '@/components/ui/sacred-card';
 import { Button } from '@/components/ui/button';
 import { RosarySelector } from '../components/rosary-selector';
+import { AudioControls } from '../components/audio-controls';
+import { useSpeechSynthesis } from '@/hooks/use-speech-synthesis';
 import { rosaries } from '@/data/rosaries';
 import { mysteriesByType, getTodayMysteryType, mysteryLabels, mysteryDayLabels } from '@/data/rosary-mysteries';
 import type { RosaryType, RosaryMystery } from '@/types/rosary';
+
+const GLORIA_PRAYER = 'Glória ao Pai, ao Filho e ao Espírito Santo, como era no princípio, agora e sempre, por todos os séculos dos séculos. Amém.';
 
 function buildMarianoRosary(mysteryType: RosaryMystery): RosaryType {
   const label = mysteryLabels[mysteryType];
@@ -17,7 +21,7 @@ function buildMarianoRosary(mysteryType: RosaryMystery): RosaryType {
     'Ave Maria, cheia de graça, o Senhor é convosco; bendita sois vós entre as mulheres, e bendito é o fruto do vosso ventre, Jesus. Santa Maria, Mãe de Deus, rogai por nós pobres pecadores, agora e na hora da nossa morte. Amém.',
     'Ave Maria, cheia de graça, o Senhor é convosco; bendita sois vós entre as mulheres, e bendito é o fruto do vosso ventre, Jesus. Santa Maria, Mãe de Deus, rogai por nós pobres pecadores, agora e na hora da nossa morte. Amém.',
     'Ave Maria, cheia de graça, o Senhor é convosco; bendita sois vós entre as mulheres, e bendito é o fruto do vosso ventre, Jesus. Santa Maria, Mãe de Deus, rogai por nós pobres pecadores, agora e na hora da nossa morte. Amém.',
-    'Glória ao Pai, ao Filho e ao Espírito Santo, como era no princípio, agora e sempre, por todos os séculos dos séculos. Amém.',
+    GLORIA_PRAYER,
   ];
 
   return {
@@ -52,11 +56,47 @@ function getInitialRosary(): RosaryType {
   return buildMarianoRosary(todayType);
 }
 
+function getCurrentPrayer(
+  rosary: RosaryType,
+  decadeIndex: number,
+  beadIndex: number,
+  isComplete: boolean
+): string {
+  if (isComplete) {
+    return rosary.closingPrayers.join('. ');
+  }
+
+  const isLastBeadOfDecade = beadIndex === rosary.decades[decadeIndex].beadCount - 1;
+  const isLastDecade = decadeIndex === rosary.decades.length - 1;
+
+  if (decadeIndex === 0 && beadIndex === 0) {
+    return rosary.openingPrayers[0];
+  }
+
+  if (beadIndex === 0 && rosary.openingPrayers[decadeIndex]) {
+    return rosary.openingPrayers[decadeIndex];
+  }
+
+  if (isLastBeadOfDecade && isLastDecade) {
+    return rosary.decades[decadeIndex].prayerPerBead + '. ' + GLORIA_PRAYER;
+  }
+
+  if (isLastBeadOfDecade) {
+    return rosary.decades[decadeIndex].prayerPerBead + '. ' + GLORIA_PRAYER;
+  }
+
+  return rosary.decades[decadeIndex].prayerPerBead;
+}
+
 export function RosaryPage() {
   const [selectedRosary, setSelectedRosary] = useState<RosaryType>(getInitialRosary);
   const [currentDecadeIndex, setCurrentDecadeIndex] = useState(0);
   const [currentBead, setCurrentBead] = useState(0);
   const [isComplete, setIsComplete] = useState(false);
+  const [audioEnabled, setAudioEnabled] = useState(false);
+
+  const speech = useSpeechSynthesis();
+  const prevPosRef = useRef<string>('');
 
   const currentDecade = selectedRosary.decades[currentDecadeIndex];
   const dayName = mysteryDayLabels[new Date().getDay()];
@@ -64,6 +104,22 @@ export function RosaryPage() {
   const completedBeads = selectedRosary.decades
     .slice(0, currentDecadeIndex)
     .reduce((sum, d) => sum + d.beadCount, 0) + currentBead;
+
+  const currentPrayer = getCurrentPrayer(selectedRosary, currentDecadeIndex, currentBead, isComplete);
+
+  const speakCurrent = useCallback(() => {
+    if (audioEnabled && speech.supported) {
+      speech.speak(currentPrayer);
+    }
+  }, [audioEnabled, speech, currentPrayer]);
+
+  const posKey = `${currentDecadeIndex}-${currentBead}-${isComplete}`;
+  useEffect(() => {
+    if (audioEnabled && prevPosRef.current !== '' && prevPosRef.current !== posKey && speech.supported) {
+      speech.speak(currentPrayer);
+    }
+    prevPosRef.current = posKey;
+  }, [posKey, audioEnabled, speech, currentPrayer]);
 
   const handleNext = () => {
     if (currentBead < currentDecade.beadCount - 1) {
@@ -77,6 +133,7 @@ export function RosaryPage() {
   };
 
   const handlePrev = () => {
+    speech.stop();
     if (currentBead > 0) {
       setCurrentBead(currentBead - 1);
     } else if (currentDecadeIndex > 0) {
@@ -86,14 +143,26 @@ export function RosaryPage() {
   };
 
   const reset = () => {
+    speech.stop();
     setCurrentDecadeIndex(0);
     setCurrentBead(0);
     setIsComplete(false);
+    prevPosRef.current = '';
   };
 
   const handleSelectRosary = (rosary: RosaryType) => {
+    speech.stop();
     setSelectedRosary(rosary);
     reset();
+  };
+
+  const handleToggleAudio = () => {
+    if (audioEnabled) {
+      speech.stop();
+      setAudioEnabled(false);
+    } else {
+      setAudioEnabled(true);
+    }
   };
 
   if (isComplete) {
@@ -106,7 +175,12 @@ export function RosaryPage() {
             {selectedRosary.closingPrayers.map((prayer, i) => (
               <p key={i} className="text-gray-400 italic text-sm">{prayer}</p>
             ))}
-            <Button onClick={reset}>Rezar novamente</Button>
+            <div className="flex justify-center gap-3">
+              {audioEnabled && speech.supported && (
+                <Button variant="ghost" onClick={speakCurrent}>🔊 Ouvir encerramento</Button>
+              )}
+              <Button onClick={reset}>Rezar novamente</Button>
+            </div>
           </SacredCardContent>
         </SacredCard>
       </div>
@@ -128,6 +202,20 @@ export function RosaryPage() {
         rosaries={allRosaries}
         selectedId={selectedRosary.id}
         onSelect={handleSelectRosary}
+      />
+
+      <AudioControls
+        supported={speech.supported}
+        speaking={speech.speaking}
+        paused={speech.paused}
+        enabled={audioEnabled}
+        rate={speech.rate}
+        onToggle={handleToggleAudio}
+        onPlay={speakCurrent}
+        onPause={speech.pause}
+        onResume={speech.resume}
+        onStop={speech.stop}
+        onRateChange={speech.setRate}
       />
 
       <SacredCard variant="gradient">
@@ -173,11 +261,7 @@ export function RosaryPage() {
       <SacredCard>
         <SacredCardContent>
           <p className="italic text-center text-sm leading-relaxed">
-            {currentDecadeIndex === 0 && currentBead === 0
-              ? selectedRosary.openingPrayers[0]
-              : currentBead === 0
-                ? selectedRosary.openingPrayers[Math.min(currentDecadeIndex, selectedRosary.openingPrayers.length - 1)] || currentDecade.prayerPerBead
-                : currentDecade.prayerPerBead}
+            {currentPrayer}
           </p>
         </SacredCardContent>
       </SacredCard>

@@ -1,12 +1,16 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useCallback, useEffect, useRef } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { RosarySelector } from './rosary-selector';
+import { AudioControls } from './audio-controls';
+import { useSpeechSynthesis } from '@/hooks/use-speech-synthesis';
 import { rosaries } from '@/data/rosaries';
 import { mysteriesByType, getTodayMysteryType, mysteryLabels, mysteryDayLabels } from '@/data/rosary-mysteries';
 import type { RosaryType, RosaryMystery } from '@/types/rosary';
+
+const GLORIA_PRAYER = 'Glória ao Pai, ao Filho e ao Espírito Santo, como era no princípio, agora e sempre, por todos os séculos dos séculos. Amém.';
 
 function buildMarianoRosary(mysteryType: RosaryMystery): RosaryType {
   const label = mysteryLabels[mysteryType];
@@ -18,16 +22,20 @@ function buildMarianoRosary(mysteryType: RosaryMystery): RosaryType {
     icon: mysteryType === 'joyful' ? '🌅' : mysteryType === 'sorrowful' ? '✝️' : mysteryType === 'glorious' ? '👑' : '✨',
     category: 'mariano',
     openingPrayers: [
-      'Creio em Deus Pai todo-poderoso, criador do céu e da terra...',
-      'Pai Nosso que estais nos céus, santificado seja o vosso Nome...',
+      'Creio em Deus Pai todo-poderoso, criador do céu e da terra, e em Jesus Cristo, seu único Filho, nosso Senhor, que foi concebido pelo poder do Espírito Santo, nasceu da Virgem Maria, padeceu sob Pôncio Pilatos, foi crucificado, morto e sepultado, desceu à mansão dos mortos, ressuscitou ao terceiro dia, subiu aos céus, está sentado à direita de Deus Pai todo-poderoso, donde há de vir a julgar os vivos e os mortos. Creio no Espírito Santo, na Santa Igreja Católica, na comunhão dos santos, na remissão dos pecados, na ressurreição da carne, na vida eterna. Amém.',
+      'Pai Nosso que estais nos céus, santificado seja o vosso Nome, venha a nós o vosso Reino, seja feita a vossa vontade, assim na terra como no céu. O pão nosso de cada dia nos dai hoje. Perdoai-nos as nossas ofensas, assim como nós perdoamos a quem nos tem ofendido. E não nos deixeis cair em tentação, mas livrai-nos do mal. Amém.',
+      'Ave Maria, cheia de graça, o Senhor é convosco; bendita sois vós entre as mulheres, e bendito é o fruto do vosso ventre, Jesus. Santa Maria, Mãe de Deus, rogai por nós pobres pecadores, agora e na hora da nossa morte. Amém.',
+      'Ave Maria, cheia de graça, o Senhor é convosco; bendita sois vós entre as mulheres, e bendito é o fruto do vosso ventre, Jesus. Santa Maria, Mãe de Deus, rogai por nós pobres pecadores, agora e na hora da nossa morte. Amém.',
+      'Ave Maria, cheia de graça, o Senhor é convosco; bendita sois vós entre as mulheres, e bendito é o fruto do vosso ventre, Jesus. Santa Maria, Mãe de Deus, rogai por nós pobres pecadores, agora e na hora da nossa morte. Amém.',
+      GLORIA_PRAYER,
     ],
     decades: mysteries.map((m) => ({
       title: `${m.number}º — ${m.title}`,
       reflection: m.fruit,
-      prayerPerBead: 'Ave Maria, cheia de graça, o Senhor é convosco...',
+      prayerPerBead: 'Ave Maria, cheia de graça, o Senhor é convosco; bendita sois vós entre as mulheres, e bendito é o fruto do vosso ventre, Jesus. Santa Maria, Mãe de Deus, rogai por nós pobres pecadores, agora e na hora da nossa morte. Amém.',
       beadCount: 10,
     })),
-    closingPrayers: ['Salve Rainha, Mãe de misericórdia...'],
+    closingPrayers: ['Salve Rainha, Mãe de misericórdia, vida, doçura e esperança nossa, salve! A vós chamamos, os desterrados filhos de Eva. A vós suspiramos, gemendo e chorando neste vale de lágrimas. Eia, pois, advogada nossa, tornai para nós os vossos olhos misericordiosos, e depois desto desterro, mostrai-nos Jesus, bendito fruto do vosso ventre. Ó clemente, ó piedosa, ó doce Virgem Maria. Orai por nós, Santa Mãe de Deus, para que sejamos dignos das promessas de Cristo. Amém.'],
   };
 }
 
@@ -44,14 +52,58 @@ function getInitialRosary(): RosaryType {
   return buildMarianoRosary(todayType);
 }
 
+function getCurrentPrayer(
+  rosary: RosaryType,
+  decadeIndex: number,
+  beadIndex: number,
+  isComplete: boolean
+): string {
+  if (isComplete) {
+    return rosary.closingPrayers.join('. ');
+  }
+
+  if (decadeIndex === 0 && beadIndex === 0) {
+    return rosary.openingPrayers[0];
+  }
+
+  if (beadIndex === 0 && rosary.openingPrayers[decadeIndex]) {
+    return rosary.openingPrayers[decadeIndex];
+  }
+
+  if (beadIndex === rosary.decades[decadeIndex].beadCount - 1) {
+    return rosary.decades[decadeIndex].prayerPerBead + '. ' + GLORIA_PRAYER;
+  }
+
+  return rosary.decades[decadeIndex].prayerPerBead;
+}
+
 export function RosaryCounter() {
   const [selectedRosary, setSelectedRosary] = useState<RosaryType>(getInitialRosary);
   const [currentDecadeIndex, setCurrentDecadeIndex] = useState(0);
   const [currentBead, setCurrentBead] = useState(0);
   const [isComplete, setIsComplete] = useState(false);
+  const [audioEnabled, setAudioEnabled] = useState(false);
+
+  const speech = useSpeechSynthesis();
+  const prevPosRef = useRef<string>('');
 
   const currentDecade = selectedRosary.decades[currentDecadeIndex];
   const dayName = mysteryDayLabels[new Date().getDay()];
+  const currentPrayer = getCurrentPrayer(selectedRosary, currentDecadeIndex, currentBead, isComplete);
+
+  const speakCurrent = useCallback(() => {
+    if (audioEnabled && speech.supported) {
+      speech.speak(currentPrayer);
+    }
+  }, [audioEnabled, speech, currentPrayer]);
+
+  const posKey = `${currentDecadeIndex}-${currentBead}-${isComplete}`;
+  useEffect(() => {
+    if (audioEnabled && prevPosRef.current !== '' && prevPosRef.current !== posKey && speech.supported) {
+      speech.speak(currentPrayer);
+    }
+    prevPosRef.current = posKey;
+  }, [posKey, audioEnabled, speech, currentPrayer]);
 
   const handleNextAve = () => {
     if (currentBead < currentDecade.beadCount - 1) {
@@ -65,6 +117,7 @@ export function RosaryCounter() {
   };
 
   const handlePreviousAve = () => {
+    speech.stop();
     if (currentBead > 0) {
       setCurrentBead(currentBead - 1);
     } else if (currentDecadeIndex > 0) {
@@ -74,14 +127,26 @@ export function RosaryCounter() {
   };
 
   const reset = () => {
+    speech.stop();
     setCurrentDecadeIndex(0);
     setCurrentBead(0);
     setIsComplete(false);
+    prevPosRef.current = '';
   };
 
   const handleSelectRosary = (rosary: RosaryType) => {
+    speech.stop();
     setSelectedRosary(rosary);
     reset();
+  };
+
+  const handleToggleAudio = () => {
+    if (audioEnabled) {
+      speech.stop();
+      setAudioEnabled(false);
+    } else {
+      setAudioEnabled(true);
+    }
   };
 
   if (isComplete) {
@@ -98,7 +163,12 @@ export function RosaryCounter() {
             {selectedRosary.closingPrayers.map((prayer, i) => (
               <p key={i} className="text-textMuted italic text-sm">{prayer}</p>
             ))}
-            <Button onClick={reset}>Rezar novamente</Button>
+            <div className="flex justify-center gap-3">
+              {audioEnabled && speech.supported && (
+                <Button variant="ghost" onClick={speakCurrent}>🔊 Ouvir encerramento</Button>
+              )}
+              <Button onClick={reset}>Rezar novamente</Button>
+            </div>
           </CardContent>
         </Card>
       </div>
@@ -118,6 +188,20 @@ export function RosaryCounter() {
         rosaries={allRosaries}
         selectedId={selectedRosary.id}
         onSelect={handleSelectRosary}
+      />
+
+      <AudioControls
+        supported={speech.supported}
+        speaking={speech.speaking}
+        paused={speech.paused}
+        enabled={audioEnabled}
+        rate={speech.rate}
+        onToggle={handleToggleAudio}
+        onPlay={speakCurrent}
+        onPause={speech.pause}
+        onResume={speech.resume}
+        onStop={speech.stop}
+        onRateChange={speech.setRate}
       />
 
       <Card>
@@ -173,11 +257,7 @@ export function RosaryCounter() {
 
       <div className="text-center space-y-3">
         <p className="text-xs text-textMuted italic leading-relaxed px-4">
-          {currentDecadeIndex === 0 && currentBead === 0
-            ? selectedRosary.openingPrayers[0]
-            : currentBead === 0
-              ? selectedRosary.openingPrayers[Math.min(currentDecadeIndex, selectedRosary.openingPrayers.length - 1)] || currentDecade.prayerPerBead
-              : currentDecade.prayerPerBead}
+          {currentPrayer}
         </p>
       </div>
 
