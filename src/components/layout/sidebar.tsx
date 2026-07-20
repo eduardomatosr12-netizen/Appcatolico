@@ -5,7 +5,7 @@ import { usePathname } from 'next/navigation';
 import { cn } from '@/lib/utils/cn';
 
 const navItems = [
-  { href: '/', label: 'Liturgia Diária', icon: '📖' },
+  { href: '/liturgia', label: 'Liturgia Diária', icon: '📖' },
   { href: '/liturgia-horas', label: 'Liturgia das Horas', icon: '🕯️' },
   { href: '/oracoes', label: 'Orações Eucarísticas', icon: '🙏' },
   { href: '/rosario', label: 'Santo Terço', icon: '📿' },
