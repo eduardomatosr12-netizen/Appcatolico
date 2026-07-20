@@ -3,59 +3,85 @@
 import { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import {
-  mysteriesByType,
-  getTodayMysteryType,
-  mysteryLabels,
-  mysteryDayLabels,
-} from '@/data/rosary-mysteries';
-import type { RosaryMystery } from '@/types/rosary';
+import { RosarySelector } from './rosary-selector';
+import { rosaries } from '@/data/rosaries';
+import { mysteriesByType, getTodayMysteryType, mysteryLabels, mysteryDayLabels } from '@/data/rosary-mysteries';
+import type { RosaryType, RosaryMystery } from '@/types/rosary';
 
-const prayers = {
-  credo: 'Creio em Deus Pai todo-poderoso, criador do céu e da terra...',
-  paiNosso: 'Pai Nosso que estais nos céus, santificado seja o vosso Nome...',
-  aveMaria: 'Ave Maria, cheia de graça, o Senhor é convosco...',
-  gloria: 'Glória ao Pai, ao Filho e ao Espírito Santo...',
-  salveRainha: 'Salve Rainha, Mãe de misericórdia, vida, doçura e esperança nossa...',
-};
+function buildMarianoRosary(mysteryType: RosaryMystery): RosaryType {
+  const label = mysteryLabels[mysteryType];
+  const mysteries = mysteriesByType[mysteryType];
+  return {
+    id: `mariano-${mysteryType}`,
+    name: `Terço Mariano — ${label.replace('Mistérios ', '')}`,
+    description: label,
+    icon: mysteryType === 'joyful' ? '🌅' : mysteryType === 'sorrowful' ? '✝️' : mysteryType === 'glorious' ? '👑' : '✨',
+    category: 'mariano',
+    openingPrayers: [
+      'Creio em Deus Pai todo-poderoso, criador do céu e da terra...',
+      'Pai Nosso que estais nos céus, santificado seja o vosso Nome...',
+    ],
+    decades: mysteries.map((m) => ({
+      title: `${m.number}º — ${m.title}`,
+      reflection: m.fruit,
+      prayerPerBead: 'Ave Maria, cheia de graça, o Senhor é convosco...',
+      beadCount: 10,
+    })),
+    closingPrayers: ['Salve Rainha, Mãe de misericórdia...'],
+  };
+}
 
-const totalHailMarys = 10;
+const allRosaries: RosaryType[] = [
+  buildMarianoRosary('joyful'),
+  buildMarianoRosary('sorrowful'),
+  buildMarianoRosary('glorious'),
+  buildMarianoRosary('luminous'),
+  ...rosaries,
+];
+
+function getInitialRosary(): RosaryType {
+  const todayType = getTodayMysteryType();
+  return buildMarianoRosary(todayType);
+}
 
 export function RosaryCounter() {
-  const todayType = getTodayMysteryType();
-  const [selectedType, setSelectedType] = useState<RosaryMystery>(todayType);
-  const [currentMysteryIndex, setCurrentMysteryIndex] = useState(0);
-  const [currentAve, setCurrentAve] = useState(0);
+  const [selectedRosary, setSelectedRosary] = useState<RosaryType>(getInitialRosary);
+  const [currentDecadeIndex, setCurrentDecadeIndex] = useState(0);
+  const [currentBead, setCurrentBead] = useState(0);
   const [isComplete, setIsComplete] = useState(false);
 
-  const mysteries = mysteriesByType[selectedType];
-  const currentMystery = mysteries[currentMysteryIndex];
+  const currentDecade = selectedRosary.decades[currentDecadeIndex];
   const dayName = mysteryDayLabels[new Date().getDay()];
 
   const handleNextAve = () => {
-    if (currentAve < totalHailMarys - 1) {
-      setCurrentAve(currentAve + 1);
-    } else if (currentMysteryIndex < mysteries.length - 1) {
-      setCurrentMysteryIndex(currentMysteryIndex + 1);
-      setCurrentAve(0);
+    if (currentBead < currentDecade.beadCount - 1) {
+      setCurrentBead(currentBead + 1);
+    } else if (currentDecadeIndex < selectedRosary.decades.length - 1) {
+      setCurrentDecadeIndex(currentDecadeIndex + 1);
+      setCurrentBead(0);
     } else {
       setIsComplete(true);
     }
   };
 
   const handlePreviousAve = () => {
-    if (currentAve > 0) {
-      setCurrentAve(currentAve - 1);
-    } else if (currentMysteryIndex > 0) {
-      setCurrentMysteryIndex(currentMysteryIndex - 1);
-      setCurrentAve(totalHailMarys - 1);
+    if (currentBead > 0) {
+      setCurrentBead(currentBead - 1);
+    } else if (currentDecadeIndex > 0) {
+      setCurrentDecadeIndex(currentDecadeIndex - 1);
+      setCurrentBead(selectedRosary.decades[currentDecadeIndex - 1].beadCount - 1);
     }
   };
 
   const reset = () => {
-    setCurrentMysteryIndex(0);
-    setCurrentAve(0);
+    setCurrentDecadeIndex(0);
+    setCurrentBead(0);
     setIsComplete(false);
+  };
+
+  const handleSelectRosary = (rosary: RosaryType) => {
+    setSelectedRosary(rosary);
+    reset();
   };
 
   if (isComplete) {
@@ -67,9 +93,11 @@ export function RosaryCounter() {
           </CardHeader>
           <CardContent className="space-y-4">
             <p className="text-lg text-primary font-medium">
-              {mysteryLabels[selectedType]} - {mysteries.length} mistérios rezados
+              {selectedRosary.name} - {selectedRosary.decades.length} décadas rezadas
             </p>
-            <p className="text-textMuted italic">{prayers.salveRainha}</p>
+            {selectedRosary.closingPrayers.map((prayer, i) => (
+              <p key={i} className="text-textMuted italic text-sm">{prayer}</p>
+            ))}
             <Button onClick={reset}>Rezar novamente</Button>
           </CardContent>
         </Card>
@@ -86,49 +114,38 @@ export function RosaryCounter() {
         <p className="text-xs text-textMuted">{dayName}</p>
       </div>
 
-      <div className="flex flex-wrap gap-2 justify-center">
-        {(Object.keys(mysteriesByType) as RosaryMystery[]).map((type) => (
-          <button
-            key={type}
-            onClick={() => {
-              setSelectedType(type);
-              reset();
-            }}
-            className={`rounded-full px-3 py-1.5 text-xs font-medium transition-colors ${
-              type === selectedType
-                ? 'bg-primary text-white'
-                : 'border border-border text-textMuted hover:bg-surfaceAlt'
-            }`}
-          >
-            {mysteryLabels[type].replace('Mistérios ', '')}
-          </button>
-        ))}
-      </div>
+      <RosarySelector
+        rosaries={allRosaries}
+        selectedId={selectedRosary.id}
+        onSelect={handleSelectRosary}
+      />
 
       <Card>
         <CardHeader>
           <CardTitle>
-            {currentMysteryIndex + 1}º Mistério: {currentMystery.title}
+            {currentDecade.title}
           </CardTitle>
-          <p className="text-xs text-textMuted">
-            Fruto: {currentMystery.fruit}
-          </p>
+          {currentDecade.reflection && (
+            <p className="text-xs text-textMuted">
+              {currentDecade.reflection}
+            </p>
+          )}
         </CardHeader>
         <CardContent className="space-y-4">
           <div className="flex items-center justify-center gap-2">
-            <span className="text-xs text-textMuted">Ave-Maria</span>
+            <span className="text-xs text-textMuted">Conta</span>
             <span className="font-serif text-4xl font-bold text-primary">
-              {currentAve + 1}
+              {currentBead + 1}
             </span>
-            <span className="text-xs text-textMuted">/ {totalHailMarys}</span>
+            <span className="text-xs text-textMuted">/ {currentDecade.beadCount}</span>
           </div>
 
           <div className="grid grid-cols-5 gap-1.5">
-            {Array.from({ length: totalHailMarys }).map((_, i) => (
+            {Array.from({ length: currentDecade.beadCount }).map((_, i) => (
               <div
                 key={i}
                 className={`h-8 w-full rounded-full transition-colors ${
-                  i <= currentAve
+                  i <= currentBead
                     ? 'bg-primary'
                     : 'bg-primaryLight/30 border border-primary/20'
                 }`}
@@ -141,12 +158,12 @@ export function RosaryCounter() {
               ← Anterior
             </Button>
             <div className="flex items-center gap-1 text-xs text-textMuted">
-              <span className="font-medium">{currentMysteryIndex + 1}</span>
-              <span>/ {mysteries.length} mistérios</span>
+              <span className="font-medium">{currentDecadeIndex + 1}</span>
+              <span>/ {selectedRosary.decades.length} décadas</span>
             </div>
             <Button size="sm" onClick={handleNextAve}>
-              {currentAve === totalHailMarys - 1 &&
-              currentMysteryIndex === mysteries.length - 1
+              {currentBead === currentDecade.beadCount - 1 &&
+              currentDecadeIndex === selectedRosary.decades.length - 1
                 ? 'Finalizar'
                 : 'Próxima →'}
             </Button>
@@ -156,20 +173,19 @@ export function RosaryCounter() {
 
       <div className="text-center space-y-3">
         <p className="text-xs text-textMuted italic leading-relaxed px-4">
-          {currentMysteryIndex === 0 && currentAve === 0
-            ? prayers.credo
-            : currentAve === 0
-              ? prayers.paiNosso
-              : prayers.aveMaria}
+          {currentDecadeIndex === 0 && currentBead === 0
+            ? selectedRosary.openingPrayers[0]
+            : currentBead === 0
+              ? selectedRosary.openingPrayers[Math.min(currentDecadeIndex, selectedRosary.openingPrayers.length - 1)] || currentDecade.prayerPerBead
+              : currentDecade.prayerPerBead}
         </p>
       </div>
 
-      {currentMysteryIndex < mysteries.length - 1 && (
+      {currentDecadeIndex < selectedRosary.decades.length - 1 && (
         <div className="text-xs text-textMuted text-center space-y-1">
-          <p>Próximo mistério:</p>
+          <p>Próxima década:</p>
           <p className="font-medium text-text">
-            {mysteries[currentMysteryIndex + 1].number}º{' '}
-            {mysteries[currentMysteryIndex + 1].title}
+            {selectedRosary.decades[currentDecadeIndex + 1].title}
           </p>
         </div>
       )}

@@ -6,3 +6,21 @@ export interface Mystery {
   title: string;
   fruit?: string;
 }
+
+export interface RosaryDecade {
+  title: string;
+  reflection?: string;
+  prayerPerBead: string;
+  beadCount: number;
+}
+
+export interface RosaryType {
+  id: string;
+  name: string;
+  description: string;
+  icon: string;
+  openingPrayers: string[];
+  decades: RosaryDecade[];
+  closingPrayers: string[];
+  category: 'mariano' | 'misericordia' | 'batalha' | 'providencia' | 'sao_jose' | 'diversos';
+}
