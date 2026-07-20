@@ -1,5 +1,5 @@
-import { DailyLiturgyPage } from '@/features/liturgy/screens/daily-liturgy-page';
+import { redirect } from 'next/navigation';
 
 export default function Home() {
-  return <DailyLiturgyPage />;
+  redirect('/produtividade');
 }
