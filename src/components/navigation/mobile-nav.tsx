@@ -7,10 +7,10 @@ import { cn } from '@/lib/utils/cn';
 const navItems = [
   { href: '/', label: 'Liturgia', icon: 'book' },
   { href: '/liturgia-horas', label: 'Horas', icon: 'clock' },
+  { href: '/produtividade', label: 'Mais', icon: 'check' },
   { href: '/oracoes', label: 'Orações', icon: 'pray' },
   { href: '/rosario', label: 'Terço', icon: 'circle' },
   { href: '/exame', label: 'Exame', icon: 'sparkles' },
-  { href: '/produtividade', label: 'Mais', icon: 'check' },
 ];
 
 function NavIcon({ icon, isActive }: { icon: string; isActive: boolean }) {
