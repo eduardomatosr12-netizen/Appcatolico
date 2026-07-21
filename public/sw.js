@@ -1,4 +1,4 @@
-const CACHE_NAME = "lumen-v3";
+const CACHE_NAME = "lumen-v4";
 const urlsToCache = ["/", "/liturgia", "/biblia", "/rosario", "/oracoes", "/confissao", "/produtividade"];
 
 self.addEventListener("install", (event) => {
