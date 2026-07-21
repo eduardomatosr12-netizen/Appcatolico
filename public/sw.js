@@ -1,5 +1,5 @@
-const CACHE_NAME = "lumen-v2";
-const urlsToCache = ["/", "/liturgia-horas", "/rosario", "/oracoes", "/exame", "/produtividade"];
+const CACHE_NAME = "lumen-v3";
+const urlsToCache = ["/", "/liturgia", "/biblia", "/rosario", "/oracoes", "/confissao", "/produtividade"];
 
 self.addEventListener("install", (event) => {
   event.waitUntil(

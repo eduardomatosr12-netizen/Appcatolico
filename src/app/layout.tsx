@@ -6,7 +6,7 @@ import { MobileNav } from "@/components/navigation/mobile-nav";
 
 export const metadata: Metadata = {
   title: "Lumen — App Católico",
-  description: "Liturgia Diária, Orações, Terço e mais",
+  description: "Liturgia, Bíblia, Orações, Terço, Confissão e mais",
   manifest: "/manifest.json",
   appleWebApp: {
     capable: true,
