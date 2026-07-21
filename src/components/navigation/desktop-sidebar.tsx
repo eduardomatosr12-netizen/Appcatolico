@@ -5,9 +5,8 @@ import { usePathname } from 'next/navigation';
 import { cn } from '@/lib/utils/cn';
 
 const navItems = [
-  { href: '/liturgia', label: 'Liturgia Diária', icon: 'book' },
+  { href: '/liturgia', label: 'Liturgia', icon: 'book' },
   { href: '/biblia', label: 'Bíblia', icon: 'bible' },
-  { href: '/liturgia-horas', label: 'Liturgia das Horas', icon: 'clock' },
   { href: '/oracoes', label: 'Orações Eucarísticas', icon: 'pray' },
   { href: '/rosario', label: 'Santo Terço', icon: 'circle' },
   { href: '/exame', label: 'Exame de Consciência', icon: 'sparkles' },

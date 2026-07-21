@@ -1,5 +1,5 @@
-import { DailyLiturgyPage } from '@/features/liturgy/screens/daily-liturgy-page';
+import { LiturgyPage } from '@/features/liturgy/screens/liturgy-page';
 
-export default function LiturgiaPage() {
-  return <DailyLiturgyPage />;
+export default function Page() {
+  return <LiturgyPage />;
 }
