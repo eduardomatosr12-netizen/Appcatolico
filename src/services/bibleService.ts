@@ -149,10 +149,6 @@ export async function fetchBibleChapter(
   return fetchMidvashChapter(versionId, book.midvashSlug, chapter);
 }
 
-export function isBookAvailableForVersion(versionId: string, bookId: string): boolean {
-  if (versionId === 'ave-maria') return true;
-  const book = BIBLE_BOOKS_MAP.get(bookId);
-  if (!book) return false;
-  if (book.deuterocanonical) return false;
-  return !!book.midvashSlug;
+export function isBookAvailableForVersion(_versionId: string, _bookId: string): boolean {
+  return true;
 }

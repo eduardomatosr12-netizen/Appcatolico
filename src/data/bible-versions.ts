@@ -10,33 +10,6 @@ export const BIBLE_VERSIONS: BibleVersion[] = [
     category: 'catolica',
     description: 'Edição católica brasileira, aprovada pela CNBB',
   },
-  {
-    id: 'dra',
-    name: 'Douay-Rheims',
-    shortName: 'DRA',
-    language: 'en',
-    source: 'midvash',
-    category: 'catolica',
-    description: 'Tradução católica inglesa clássica (domínio público)',
-  },
-  {
-    id: 'clem',
-    name: 'Vulgata Clementina',
-    shortName: 'VULGATA',
-    language: 'la',
-    source: 'midvash',
-    category: 'catolica',
-    description: 'Bíblia Latina oficial da Igreja Católica',
-  },
-  {
-    id: 'nvl',
-    name: 'Nova Vulgata',
-    shortName: 'NVL',
-    language: 'la',
-    source: 'midvash',
-    category: 'catolica',
-    description: 'Revisão moderna da Vulgata, usada na liturgia',
-  },
 ];
 
 export const BIBLE_BOOKS: BibleBook[] = [
@@ -75,7 +48,7 @@ export const BIBLE_BOOKS: BibleBook[] = [
   { id: 'ISA', name: 'Isaías', abbrev: 'Is', testament: 'AT', chapters: 66, midvashSlug: 'isaias' },
   { id: 'JER', name: 'Jeremias', abbrev: 'Jr', testament: 'AT', chapters: 52, midvashSlug: 'jeremias' },
   { id: 'LAM', name: 'Lamentações', abbrev: 'Lm', testament: 'AT', chapters: 5, midvashSlug: 'lamentacoes' },
-  { id: 'BAR', name: 'Baruc', abbrev: 'Br', testament: 'AT', chapters: 6, deuterocanonical: true },
+  { id: 'BAR', name: 'Baruc', abbrev: 'Br', testament: 'AT', chapters: 6, midvashSlug: 'baruc', deuterocanonical: true },
   { id: 'EZK', name: 'Ezequiel', abbrev: 'Ez', testament: 'AT', chapters: 48, midvashSlug: 'ezequiel' },
   { id: 'DAN', name: 'Daniel', abbrev: 'Dn', testament: 'AT', chapters: 12, midvashSlug: 'daniel' },
   { id: 'HOS', name: 'Oséias', abbrev: 'Os', testament: 'AT', chapters: 14, midvashSlug: 'oseias' },
