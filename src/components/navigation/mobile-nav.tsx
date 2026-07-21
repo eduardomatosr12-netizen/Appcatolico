@@ -9,7 +9,7 @@ const navItems = [
   { href: '/biblia', label: 'Bíblia', icon: 'bible' },
   { href: '/oracoes', label: 'Orações', icon: 'pray' },
   { href: '/rosario', label: 'Terço', icon: 'circle' },
-  { href: '/exame', label: 'Exame', icon: 'sparkles' },
+  { href: '/confissao', label: 'Confissão', icon: 'sparkles' },
   { href: '/produtividade', label: 'Produtividade', icon: 'check' },
 ];
 
