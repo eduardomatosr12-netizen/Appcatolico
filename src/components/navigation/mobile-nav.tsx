@@ -10,6 +10,7 @@ const navItems = [
   { href: '/oracoes', label: 'Orações', icon: 'pray' },
   { href: '/rosario', label: 'Terço', icon: 'circle' },
   { href: '/exame', label: 'Exame', icon: 'sparkles' },
+  { href: '/produtividade', label: 'Produtividade', icon: 'check' },
 ];
 
 function NavIcon({ icon, isActive }: { icon: string; isActive: boolean }) {
