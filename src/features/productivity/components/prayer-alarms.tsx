@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react';
 import { SacredCard, SacredCardContent, SacredCardTitle } from '@/components/ui/sacred-card';
-import { playAlarmSound, stopAlarmSound } from '@/lib/utils/alarm-sound';
+import { playAlarmSound, stopAlarmSound, testAlarmSound } from '@/lib/utils/alarm-sound';
 import type { PrayerAlarm } from '@/types/productivity';
 
 const STORAGE_KEY = 'lumen-alarms';
@@ -83,6 +83,11 @@ export function PrayerAlarms() {
 
   return (
     <SacredCard><SacredCardTitle>Alarmes das Horas Litúrgicas</SacredCardTitle>
+      <div className="flex justify-end mt-2">
+        <button onClick={testAlarmSound} className="text-[10px] text-[#C5A059]/60 hover:text-[#C5A059] transition-colors underline underline-offset-2">
+          Testar som
+        </button>
+      </div>
 
       {activeAlarm && (
         <div className="mx-4 mt-3 rounded-2xl bg-gradient-to-br from-[#5C0F1B] to-[#3D0A11] border border-[#C5A059]/30 p-5 flex flex-col items-center gap-3 text-center animate-pulse">

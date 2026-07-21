@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect, useRef, useCallback } from 'react';
-import { playAlarmSound, stopAlarmSound } from '@/lib/utils/alarm-sound';
+import { playAlarmSound, stopAlarmSound, testAlarmSound } from '@/lib/utils/alarm-sound';
 
 function formatTime(totalSeconds: number): string {
   const h = Math.floor(totalSeconds / 3600);
@@ -143,6 +143,10 @@ export function MeditationTimer() {
               <polygon points="5 3 19 12 5 21 5 3" />
             </svg>
             Iniciar
+          </button>
+
+          <button onClick={testAlarmSound} className="text-[10px] text-[#C5A059]/50 hover:text-[#C5A059] transition-colors underline underline-offset-2">
+            Testar som do alarme
           </button>
         </div>
       )}

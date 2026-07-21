@@ -1,6 +1,7 @@
 let audioCtx: AudioContext | null = null;
+let userGestureFired = false;
 
-function getAudioContext(): AudioContext {
+function ensureAudioContext(): AudioContext {
   if (!audioCtx) {
     audioCtx = new AudioContext();
   }
@@ -10,8 +11,25 @@ function getAudioContext(): AudioContext {
   return audioCtx;
 }
 
+if (typeof window !== 'undefined') {
+  const onGesture = () => {
+    userGestureFired = true;
+    ensureAudioContext();
+    document.removeEventListener('click', onGesture);
+    document.removeEventListener('keydown', onGesture);
+    document.removeEventListener('touchstart', onGesture);
+  };
+  document.addEventListener('click', onGesture, { once: true });
+  document.addEventListener('keydown', onGesture, { once: true });
+  document.addEventListener('touchstart', onGesture, { once: true });
+}
+
 export function playAlarmSound() {
-  const ctx = getAudioContext();
+  const ctx = ensureAudioContext();
+
+  if (ctx.state === 'suspended' && !userGestureFired) {
+    return;
+  }
 
   const playBeep = (startTime: number, frequency: number, duration: number) => {
     const oscillator = ctx.createOscillator();
@@ -34,7 +52,6 @@ export function playAlarmSound() {
 
   const now = ctx.currentTime;
 
-  // 3 burst sequences, each with 3 rapid beeps
   for (let seq = 0; seq < 3; seq++) {
     const seqStart = now + seq * 0.8;
     for (let i = 0; i < 3; i++) {
@@ -48,4 +65,10 @@ export function stopAlarmSound() {
     audioCtx.close();
     audioCtx = null;
   }
+}
+
+export function testAlarmSound() {
+  ensureAudioContext();
+  userGestureFired = true;
+  playAlarmSound();
 }
