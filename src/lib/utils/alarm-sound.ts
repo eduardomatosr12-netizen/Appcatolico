@@ -1,8 +1,8 @@
 let audioCtx: AudioContext | null = null;
-let userGestureFired = false;
+let activeOscillators: OscillatorNode[] = [];
 
-function ensureAudioContext(): AudioContext {
-  if (!audioCtx) {
+function getCtx(): AudioContext {
+  if (!audioCtx || audioCtx.state === 'closed') {
     audioCtx = new AudioContext();
   }
   if (audioCtx.state === 'suspended') {
@@ -12,24 +12,20 @@ function ensureAudioContext(): AudioContext {
 }
 
 if (typeof window !== 'undefined') {
-  const onGesture = () => {
-    userGestureFired = true;
-    ensureAudioContext();
-    document.removeEventListener('click', onGesture);
-    document.removeEventListener('keydown', onGesture);
-    document.removeEventListener('touchstart', onGesture);
+  const unlock = () => {
+    getCtx();
+    document.removeEventListener('click', unlock);
+    document.removeEventListener('keydown', unlock);
+    document.removeEventListener('touchstart', unlock);
   };
-  document.addEventListener('click', onGesture, { once: true });
-  document.addEventListener('keydown', onGesture, { once: true });
-  document.addEventListener('touchstart', onGesture, { once: true });
+  document.addEventListener('click', unlock, { once: true });
+  document.addEventListener('keydown', unlock, { once: true });
+  document.addEventListener('touchstart', unlock, { once: true });
 }
 
 export function playAlarmSound() {
-  const ctx = ensureAudioContext();
-
-  if (ctx.state === 'suspended' && !userGestureFired) {
-    return;
-  }
+  const ctx = getCtx();
+  if (ctx.state !== 'running') return;
 
   const playBeep = (startTime: number, frequency: number, duration: number) => {
     const oscillator = ctx.createOscillator();
@@ -48,6 +44,10 @@ export function playAlarmSound() {
 
     oscillator.start(startTime);
     oscillator.stop(startTime + duration);
+    activeOscillators.push(oscillator);
+    oscillator.onended = () => {
+      activeOscillators = activeOscillators.filter((o) => o !== oscillator);
+    };
   };
 
   const now = ctx.currentTime;
@@ -61,14 +61,16 @@ export function playAlarmSound() {
 }
 
 export function stopAlarmSound() {
-  if (audioCtx) {
-    audioCtx.close();
-    audioCtx = null;
-  }
+  activeOscillators.forEach((osc) => {
+    try { osc.stop(); } catch { /* already stopped */ }
+  });
+  activeOscillators = [];
 }
 
 export function testAlarmSound() {
-  ensureAudioContext();
-  userGestureFired = true;
+  const ctx = getCtx();
+  if (ctx.state === 'suspended') {
+    ctx.resume();
+  }
   playAlarmSound();
 }
