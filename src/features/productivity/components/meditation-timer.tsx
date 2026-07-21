@@ -145,8 +145,8 @@ export function MeditationTimer() {
             Iniciar
           </button>
 
-          <button onClick={testAlarmSound} className="text-[10px] text-[#C5A059]/50 hover:text-[#C5A059] transition-colors underline underline-offset-2">
-            Testar som do alarme
+          <button onClick={testAlarmSound} className="rounded-xl bg-[#16161A] border border-white/10 px-6 py-2.5 text-xs font-medium text-[#C5A059] hover:bg-white/5 active:bg-white/10 transition-colors">
+            🔊 Testar som do alarme
           </button>
         </div>
       )}

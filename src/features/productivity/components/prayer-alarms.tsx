@@ -83,11 +83,9 @@ export function PrayerAlarms() {
 
   return (
     <SacredCard><SacredCardTitle>Alarmes das Horas Litúrgicas</SacredCardTitle>
-      <div className="flex justify-end mt-2">
-        <button onClick={testAlarmSound} className="text-[10px] text-[#C5A059]/60 hover:text-[#C5A059] transition-colors underline underline-offset-2">
-          Testar som
-        </button>
-      </div>
+      <button onClick={testAlarmSound} className="w-full mt-3 rounded-xl bg-[#16161A] border border-white/10 px-4 py-3 text-xs font-medium text-[#C5A059] hover:bg-white/5 active:bg-white/10 transition-colors">
+        🔊 Testar som
+      </button>
 
       {activeAlarm && (
         <div className="mx-4 mt-3 rounded-2xl bg-gradient-to-br from-[#5C0F1B] to-[#3D0A11] border border-[#C5A059]/30 p-5 flex flex-col items-center gap-3 text-center animate-pulse">

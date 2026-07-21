@@ -1,4 +1,4 @@
-const CACHE_NAME = "lumen-v7";
+const CACHE_NAME = "lumen-v8";
 
 self.addEventListener("install", () => {
   self.skipWaiting();
@@ -7,15 +7,13 @@ self.addEventListener("install", () => {
 self.addEventListener("activate", (event) => {
   event.waitUntil(
     caches.keys().then((names) =>
-      Promise.all(names.map((n) => caches.delete(n)))
-    )
+      Promise.all(names.filter((n) => n !== CACHE_NAME).map((n) => caches.delete(n)))
+    ).then(() => self.clients.claim())
   );
-  self.clients.claim();
 });
 
 self.addEventListener("fetch", (event) => {
   if (event.request.method !== "GET") return;
-  if (event.request.url.includes("/api/")) return;
 
   event.respondWith(
     fetch(event.request)
