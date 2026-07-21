@@ -23,7 +23,7 @@ export function Header() {
 
       <div className="flex flex-col items-center gap-2 w-full">
         <span className="font-serif text-xs tracking-widest text-[#C5A059] uppercase font-medium">
-          Liturgia Diária
+          LUMEN
         </span>
         <h1 className="text-lg sm:text-xl md:text-3xl font-bold tracking-tight text-white font-serif w-full text-center">
           {currentDate}

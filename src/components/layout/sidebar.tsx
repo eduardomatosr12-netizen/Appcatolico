@@ -5,11 +5,11 @@ import { usePathname } from 'next/navigation';
 import { cn } from '@/lib/utils/cn';
 
 const navItems = [
-  { href: '/liturgia', label: 'Liturgia Diária', icon: '📖' },
-  { href: '/liturgia-horas', label: 'Liturgia das Horas', icon: '🕯️' },
+  { href: '/liturgia', label: 'Liturgia', icon: '📖' },
+  { href: '/biblia', label: 'Bíblia', icon: '✝️' },
   { href: '/oracoes', label: 'Orações Eucarísticas', icon: '🙏' },
   { href: '/rosario', label: 'Santo Terço', icon: '📿' },
-  { href: '/exame', label: 'Exame de Consciência', icon: '✨' },
+  { href: '/confissao', label: 'Confissão', icon: '✨' },
   { href: '/produtividade', label: 'Produtividade', icon: '⏱️' },
 ];
 
