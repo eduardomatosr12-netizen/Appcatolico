@@ -1,13 +1,23 @@
-const CACHE_NAME = "lumen-v8";
+const CACHE_NAME = "lumen-v9";
 
-self.addEventListener("install", () => {
-  self.skipWaiting();
+self.addEventListener("message", (event) => {
+  if (event.data && event.data.type === "SKIP_WAITING") {
+    self.skipWaiting();
+  }
+});
+
+self.addEventListener("install", (event) => {
+  event.waitUntil(
+    caches.keys().then((names) =>
+      Promise.all(names.map((n) => caches.delete(n)))
+    ).then(() => self.skipWaiting())
+  );
 });
 
 self.addEventListener("activate", (event) => {
   event.waitUntil(
     caches.keys().then((names) =>
-      Promise.all(names.filter((n) => n !== CACHE_NAME).map((n) => caches.delete(n)))
+      Promise.all(names.map((n) => caches.delete(n)))
     ).then(() => self.clients.claim())
   );
 });
