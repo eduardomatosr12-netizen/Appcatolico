@@ -9,35 +9,49 @@ function getCtx(): AudioContext {
   return audioCtx;
 }
 
-function unlockCtx(ctx: AudioContext) {
+function playSilentBuffer(ctx: AudioContext) {
+  try {
+    const buffer = ctx.createBuffer(1, 1, 22050);
+    const source = ctx.createBufferSource();
+    source.buffer = buffer;
+    source.connect(ctx.destination);
+    source.start(0);
+  } catch { /* ignore */ }
+}
+
+function unlock() {
+  if (isUnlocked) return;
+  const ctx = getCtx();
   if (ctx.state === 'suspended') {
-    ctx.resume();
+    ctx.resume().then(() => {
+      playSilentBuffer(ctx);
+      isUnlocked = true;
+    });
+  } else {
+    playSilentBuffer(ctx);
+    isUnlocked = true;
   }
-  // iOS precisa tocar um buffer silencioso para destravar
-  const buffer = ctx.createBuffer(1, 1, 22050);
-  const source = ctx.createBufferSource();
-  source.buffer = buffer;
-  source.connect(ctx.destination);
-  source.start(0);
-  isUnlocked = true;
 }
 
 if (typeof window !== 'undefined') {
-  const onUnlock = () => {
-    if (isUnlocked) return;
-    const ctx = getCtx();
-    unlockCtx(ctx);
-    document.removeEventListener('click', onUnlock);
-    document.removeEventListener('keydown', onUnlock);
-    document.removeEventListener('touchstart', onUnlock);
+  const handler = () => {
+    unlock();
+    if (isUnlocked) {
+      document.removeEventListener('pointerdown', handler);
+      document.removeEventListener('click', handler);
+      document.removeEventListener('keydown', handler);
+      document.removeEventListener('touchstart', handler);
+    }
   };
-  document.addEventListener('click', onUnlock);
-  document.addEventListener('keydown', onUnlock);
-  document.addEventListener('touchstart', onUnlock);
+  document.addEventListener('pointerdown', handler);
+  document.addEventListener('click', handler);
+  document.addEventListener('keydown', handler);
+  document.addEventListener('touchstart', handler);
 }
 
 export function playAlarmSound() {
   const ctx = getCtx();
+
   if (ctx.state !== 'running') {
     if (isUnlocked) {
       ctx.resume();
@@ -88,6 +102,15 @@ export function stopAlarmSound() {
 
 export function testAlarmSound() {
   const ctx = getCtx();
-  unlockCtx(ctx);
-  playAlarmSound();
+  if (ctx.state === 'suspended') {
+    ctx.resume().then(() => {
+      playSilentBuffer(ctx);
+      isUnlocked = true;
+      playAlarmSound();
+    });
+  } else {
+    playSilentBuffer(ctx);
+    isUnlocked = true;
+    playAlarmSound();
+  }
 }
