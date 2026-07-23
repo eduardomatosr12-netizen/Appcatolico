@@ -1,5 +1,23 @@
 import type { ExamenItem } from '@/types/examen';
 
+export const churchCommandments: ExamenItem[] = [
+  { id: 'ci1', commandment: '1º Mandamento da Igreja: Ouvir Missa inteira aos domingos e festas de guarda',
+    questions: ['Deixei de ir à Missa dominical sem motivo grave?', 'Sai antes da Missa terminar?', 'Cheguei muito atrasado sem necessidade?'],
+    reflection: 'A participação na Santa Missa é o primeiro dever do cristão. O domingo é o dia do Senhor, reservado para o culto público e a Eucaristia.' },
+  { id: 'ci2', commandment: '2º Mandamento da Igreja: Jejuar e abstir-se de carne quando a Igreja manda',
+    questions: ['Obedeci aos jejuns e abstinências da Igreja (Quaresma, Sexta-feira)?', 'Busquei dispensa quando necessário, ou simplesmente ignorei?'],
+    reflection: 'O jejum e a abstinência nos ajudam a dominar a carne e a unir-nos à paixão de Cristo. A Igreja nos chama à penitência como caminho de conversão.' },
+  { id: 'ci3', commandment: '3º Mandamento da Igreja: Confessar-se ao menos uma vez por ano',
+    questions: ['Me confessei ao menos uma vez no último ano?', 'Escondi pecados graves na confissão?', 'Evitei a confissão por vergonha ou preguiça?'],
+    reflection: 'A Confissão é dom de misericórdia de Deus. A Igreja determina ao menos uma confissão anual, mas é recomendável confessar-se mais frequentemente.' },
+  { id: 'ci4', commandment: '4º Mandamento da Igreja: Comungar ao menos pela Páscoa',
+    questions: ['Recebi a Eucaristia ao menos na Páscoa?', 'Me preparei adequadamente para a comunhão?', 'Recebi a comunhão em estado de graça?'],
+    reflection: 'A Comunhão é o pão da vida eterna. A Igreja manda que todos os fiéis recebam a Eucaristia ao menos uma vez por ano, durante o tempo da Páscoa.' },
+  { id: 'ci5', commandment: '5º Mandamento da Igreja: Pagar o dízimo à Igreja',
+    questions: ['Contribuo para o sustento da Igreja e das obras de caridade?', 'Sou generoso com as ofertas ou dou apenas o mínimo?', 'Apoio as necessidades materiais da comunidade paroquial?'],
+    reflection: 'O dízimo é um ato de justiça e caridade. Contribuir para a Igreja é ajudar na manutenção do culto divino e na assistência aos necessitados.' },
+];
+
 export const examenItems: ExamenItem[] = [
   { id: '1', commandment: '1º Mandamento: Amar a Deus acima de todas as coisas',
     questions: ['Coloquei algo ou alguém acima de Deus? (dinheiro, trabalho, prazeres)', 'Tive fé em superstições, horóscopos ou simpatias?', 'Deixei de rezar por preguiça ou falta de tempo?', 'Blasfemei contra Deus ou contra os santos?', 'Deixei de participar da Missa aos domingos?'],

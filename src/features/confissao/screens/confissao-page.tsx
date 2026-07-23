@@ -5,7 +5,7 @@ import { Header } from '@/components/layout/header';
 import { PillTabBar } from '@/components/ui/pill-tab-bar';
 import { SacredCard, SacredCardContent, SacredCardTitle } from '@/components/ui/sacred-card';
 import { Button } from '@/components/ui/button';
-import { examenItems, conclusionPrayer } from '@/data/examen';
+import { examenItems, conclusionPrayer, churchCommandments } from '@/data/examen';
 
 interface ConfessionRecord {
   id: string;
@@ -113,6 +113,7 @@ export function ConfissaoPage() {
         <PillTabBar
           tabs={[
             { key: 'exame', label: 'Exame' },
+            { key: 'igreja', label: 'Mand. Igreja' },
             { key: 'contricao', label: 'Atos de Contrição' },
             { key: 'historico', label: 'Minhas Confissões' },
           ]}
@@ -134,6 +135,54 @@ export function ConfissaoPage() {
           onSetResponses={setResponses}
           onHandleResponse={handleResponse}
         />
+      )}
+
+      {activeTab === 'igreja' && (
+        <div className="space-y-4">
+          <div className="text-center space-y-2">
+            <div className="flex items-center justify-center gap-2">
+              <span className="h-px w-6 bg-[rgba(197,160,89,0.2)]" />
+              <span className="text-[10px] uppercase tracking-[0.15em] text-[#8A8A8E]">Igreja</span>
+              <span className="h-px w-6 bg-[rgba(197,160,89,0.2)]" />
+            </div>
+            <h2 className="font-serif text-lg font-bold text-[#C5A059]">Mandamentos da Igreja</h2>
+            <p className="text-xs text-[#8A8A8E]">Leis da Igreja que ajudam a viver a fé com disciplina e amor</p>
+          </div>
+
+          <div className="space-y-3">
+            {churchCommandments.map((item) => {
+              const isExpanded = expandedId === item.id;
+              return (
+                <SacredCard
+                  key={item.id}
+                  onClick={() => setExpandedId(isExpanded ? null : item.id)}
+                  className="cursor-pointer"
+                >
+                  <div className="flex items-center justify-between">
+                    <SacredCardTitle className="text-sm flex-1 pr-2">
+                      {item.commandment}
+                    </SacredCardTitle>
+                    <span className={`text-[#8A8A8E] text-xs transition-transform ${isExpanded ? 'rotate-180' : ''}`}>
+                      ▼
+                    </span>
+                  </div>
+                  {isExpanded && (
+                    <SacredCardContent className="space-y-3 mt-3">
+                      <div className="space-y-2">
+                        {item.questions.map((question, i) => (
+                          <p key={i} className="text-gray-200 text-sm leading-relaxed">• {question}</p>
+                        ))}
+                      </div>
+                      <div className="rounded-xl bg-[rgba(197,160,89,0.08)] p-3 border border-[rgba(197,160,89,0.1)]">
+                        <p className="text-xs text-[#C5A059] italic leading-relaxed">{item.reflection}</p>
+                      </div>
+                    </SacredCardContent>
+                  )}
+                </SacredCard>
+              );
+            })}
+          </div>
+        </div>
       )}
 
       {activeTab === 'contricao' && (
