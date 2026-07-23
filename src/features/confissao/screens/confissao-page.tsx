@@ -31,6 +31,10 @@ function saveConfessions(records: ConfessionRecord[]) {
 
 const actsOfContrition = [
   {
+    title: 'Ato de Contrição (Tradicional)',
+    text: `Senhor meu, Jesus Cristo, Deus e homem verdadeiro, Criador e Redentor meu, por serdes Vós quem sois, sumamente bom e digno de ser amado sobre todas as coisas, e porque Vos amo e Vos estimo, pesa-me, Senhor, de vos ter ofendido; e proponho firmemente, ajudado com os auxílios de Vossa divina graça, emendar-me e nunca mais tornar a Vos ofender; espero alcançar de Vossa infinita misericórdia o perdão de minhas culpas. Amém.`,
+  },
+  {
     title: 'Ato de Contrição (Padrão)',
     text: `Meu Deus, eu me arrependo de todo o meu coração de ter-Vos ofendido. Detesto todos os meus pecados porque, pecando, mereci vossos castigos e ofendi a Vós, sumo bem e digno de ser amado sobre todas as coisas. Proponho firmemente, com o auxílio da vossa graça, confessar-me, fazer penitência e não mais pecar. Amém.`,
   },
