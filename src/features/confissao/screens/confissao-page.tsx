@@ -35,16 +35,16 @@ const actsOfContrition = [
     text: `Senhor meu, Jesus Cristo, Deus e homem verdadeiro, Criador e Redentor meu, por serdes Vós quem sois, sumamente bom e digno de ser amado sobre todas as coisas, e porque Vos amo e Vos estimo, pesa-me, Senhor, de vos ter ofendido; e proponho firmemente, ajudado com os auxílios de Vossa divina graça, emendar-me e nunca mais tornar a Vos ofender; espero alcançar de Vossa infinita misericórdia o perdão de minhas culpas. Amém.`,
   },
   {
-    title: 'Ato de Contrição (Padrão)',
-    text: `Meu Deus, eu me arrependo de todo o meu coração de ter-Vos ofendido. Detesto todos os meus pecados porque, pecando, mereci vossos castigos e ofendi a Vós, sumo bem e digno de ser amado sobre todas as coisas. Proponho firmemente, com o auxílio da vossa graça, confessar-me, fazer penitência e não mais pecar. Amém.`,
+    title: 'Ato de Contrição 2',
+    text: `Senhor, eu me arrependo sinceramente de todo mal que pratiquei e do bem que deixei de fazer. Pecando, eu Vos ofendi, meu Deus e Sumo Bem, digno de ser amado sobre todas as coisas. Prometo firmemente, ajudado com a Vossa graça, fazer penitência e fugir às ocasiões de pecar. Senhor, tende piedade de mim pelos méritos da Paixão, Morte e Ressurreição de Jesus Cristo, nosso Salvador. Amém!`,
   },
   {
-    title: 'Ato de Contrição de São Pedro',
-    text: `Senhor, tenho pena de mim mesmo por ter-Vos negado. Vós sabeis que eu Vos amo. Meu Deus, tende misericórdia de mim, pecador. Amém.`,
+    title: 'Ato de Contrição 3',
+    text: `Senhor, me arrependo de todo o coração de vos ter ofendido, porque sois bom e amável. Prometo, com ajuda da vossa graça, esforçar-me para não mais pecar.`,
   },
   {
-    title: 'Ato de Contrição de Santo Agostinho',
-    text: `Amor antigo, memória sempre presente, doçura sempre antiga, sempre nova, sempre cheia de safátya. Eu Vos amei tarde,beleza tão antiga e tão nova, tarde Vos amei! Vós estáveis dentro de mim, e eu lá fora, e ali Vos buscava. A vossa palma me chamava, e eu cansava por achar-Vos. Vós estais comigo, e não estou convosco. Longe de Vós, corro atrás do que é belo. Mas o que é belo está dentro de mim. Amém.`,
+    title: 'Ato de Contrição 4',
+    text: `Meu Jesus, crucificado por minha culpa! Estou arrependido de ter feito pecado, pois ofendi a Vós, que sois tão bom, e mereço ser castigado neste mundo e no outro. Mas perdoai-me, Senhor, não quero mais pecar. Amém.`,
   },
   {
     title: 'Ato de Contrição (Breve)',
