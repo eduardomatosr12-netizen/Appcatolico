@@ -4,27 +4,41 @@ import { BIBLE_BOOKS_MAP } from '@/data/bible-versions';
 const MIDVASH_BASE = 'https://api.midvash.com/v1';
 const AVE_MARIA_URL = 'https://raw.githubusercontent.com/fidalgobr/bibliaAveMariaJSON/main/bibliaAveMaria.json';
 
-let aveMariaData: Record<string, Record<string, Record<string, string>>> | null = null;
+interface AveMariaBook {
+  nome: string;
+  capitulos: { capitulo: number; versiculos: { versiculo: number; texto: string }[] }[];
+}
 
-async function loadAveMariaData(): Promise<typeof aveMariaData> {
+interface AveMariaData {
+  antigoTestamento: AveMariaBook[];
+  novoTestamento: AveMariaBook[];
+}
+
+let aveMariaData: AveMariaData | null = null;
+
+async function loadAveMariaData(): Promise<AveMariaData> {
   if (aveMariaData) return aveMariaData;
 
   if (typeof window !== 'undefined') {
     const cached = localStorage.getItem('bible-ave-maria');
     if (cached) {
       try {
-        aveMariaData = JSON.parse(cached);
-        return aveMariaData;
+        const parsed = JSON.parse(cached) as AveMariaData;
+        if (parsed.antigoTestamento && parsed.novoTestamento) {
+          aveMariaData = parsed;
+          return aveMariaData;
+        }
       } catch {
         // ignore parse error
       }
+      localStorage.removeItem('bible-ave-maria');
     }
   }
 
   const res = await fetch(AVE_MARIA_URL);
   if (!res.ok) throw new Error('Erro ao carregar Bíblia Ave Maria');
 
-  const data = await res.json();
+  const data: AveMariaData = await res.json();
   aveMariaData = data;
 
   if (typeof window !== 'undefined') {
@@ -104,18 +118,18 @@ async function fetchAveMariaChapter(
   const book = BIBLE_BOOKS_MAP.get(bookId);
   if (!book) throw new Error(`Livro ${bookId} não encontrado`);
 
-  const bookData = data[bookId] ?? data[book.name] ?? data[book.abbrev];
+  const allBooks = [...data.antigoTestamento, ...data.novoTestamento];
+  const bookData = allBooks.find((b) => b.nome === book.name);
+
   if (!bookData) throw new Error(`Livro ${book.name} não disponível na Bíblia Ave Maria`);
 
-  const chapterData = bookData[String(chapter)];
+  const chapterData = bookData.capitulos.find((c) => c.capitulo === chapter);
   if (!chapterData) throw new Error(`Capítulo ${chapter} não disponível`);
 
-  const verses: BibleVerse[] = Object.entries(chapterData)
-    .map(([num, text]) => ({
-      number: parseInt(num, 10),
-      text: String(text),
-    }))
-    .sort((a, b) => a.number - b.number);
+  const verses: BibleVerse[] = chapterData.versiculos.map((v) => ({
+    number: v.versiculo,
+    text: v.texto,
+  }));
 
   const result: BibleChapter = {
     version: 'ave-maria',
