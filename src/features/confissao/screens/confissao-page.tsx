@@ -280,16 +280,15 @@ function ExameTab({
     return acc + answeredCount;
   }, 0);
   const currentTotal = currentItems.reduce((acc, item) => acc + item.questions.length, 0);
-  const isInteractive = theme !== 'church';
 
   return (
     <div className="space-y-5">
       <div className="flex items-center justify-center gap-2 text-xs">
-        <span className="text-[#8A8A8E]">{isInteractive ? currentAnswered : currentItems.length}/{isInteractive ? currentTotal : currentItems.length}</span>
+        <span className="text-[#8A8A8E]">{currentAnswered}/{currentTotal}</span>
         <div className="h-1.5 w-24 rounded-full bg-white/10 overflow-hidden">
           <div
             className="h-full rounded-full bg-[#C5A059] transition-all"
-            style={{ width: `${isInteractive ? (currentAnswered / currentTotal) * 100 : 100}%` }}
+            style={{ width: `${(currentAnswered / currentTotal) * 100}%` }}
           />
         </div>
       </div>
@@ -326,7 +325,7 @@ function ExameTab({
       <div className="space-y-3">
         {currentItems.map((item) => {
           const isExpanded = expandedId === item.id;
-          const allAnswered = isInteractive && item.questions.every((_, i) => responses[`${item.id}-q${i}`] !== undefined);
+          const allAnswered = item.questions.every((_, i) => responses[`${item.id}-q${i}`] !== undefined);
 
           return (
             <SacredCard
@@ -339,7 +338,7 @@ function ExameTab({
                   {item.commandment}
                 </SacredCardTitle>
                 <div className="flex items-center gap-2 shrink-0">
-                  {isInteractive && allAnswered && !isExpanded && (
+                  {allAnswered && !isExpanded && (
                     <span className="text-[10px] text-green-400">✓</span>
                   )}
                   <span className={`text-[#8A8A8E] text-xs transition-transform ${isExpanded ? 'rotate-180' : ''}`}>
@@ -352,11 +351,6 @@ function ExameTab({
                   <div className="space-y-3">
                     {item.questions.map((question, i) => {
                       const qid = `${item.id}-q${i}`;
-                      if (!isInteractive) {
-                        return (
-                          <p key={i} className="text-gray-200 text-sm leading-relaxed">• {question}</p>
-                        );
-                      }
                       const value = responses[qid];
                       return (
                         <div key={qid} className="space-y-1.5">
@@ -397,7 +391,7 @@ function ExameTab({
         })}
       </div>
 
-      {isInteractive && currentAnswered === currentTotal && (
+      {currentAnswered === currentTotal && (
         <Button
           size="lg"
           className="mx-auto"
