@@ -51,6 +51,8 @@ export const examenItems: ExamenItem[] = [
     reflection: 'Acumulai para vós tesouros no céu. Felizes os pobres em espírito, porque deles é o Reino dos Céus.' },
 ];
 
+export const preparatoryPrayer = `Meu bom Deus e Salvador, Pai de misericórdia, eis-me aqui prostrado aos vossos pés, cheio de confusão e de remorsos, qual outro filho pródigo que volta arrependido à casa paterna. Não mereço perdão, porque desgostei demasiadamente a vossa bondade infinita. Mas sei que não olhais para os meus pecados senão para perdoá-los, como Pai misericordioso que sois. Pelos méritos inefáveis do vosso Filho, crucificado e morto por meu amor, pelos méritos do seu Preciosíssimo Sangue, pelas suas lágrimas e agonia, tende piedade de mim. Dai-me luz para conhecer os meus pecados; sincero arrependimento para os aborrecer; firme propósito para nunca mais os cometer; ânimo para os acusar e para cumprir com a devida penitência. Amém.`;
+
 export const conclusionPrayer = `Senhor Jesus Cristo, que dissestes aos vossos apóstolos: "A paz vos deixo, a minha paz vos dou", não olheis para os meus pecados, mas para a fé da vossa Igreja; dai-me a paz e a unidade conforme a vossa vontade. Amém.
 
 Ato de Contrição: Meu Deus, eu me arrependo de todo o coração de ter-vos ofendido. Detesto meus pecados porque, pecando, mereci vossos castigos e ofendi a Vós, sumo bem e digno de ser amado sobre todas as coisas. Proponho firmemente, com o auxílio da vossa graça, confessar-me, fazer penitência e não mais pecar. Amém.`;

@@ -5,7 +5,7 @@ import { Header } from '@/components/layout/header';
 import { PillTabBar } from '@/components/ui/pill-tab-bar';
 import { SacredCard, SacredCardContent, SacredCardTitle } from '@/components/ui/sacred-card';
 import { Button } from '@/components/ui/button';
-import { examenItems, conclusionPrayer, churchCommandments } from '@/data/examen';
+import { examenItems, conclusionPrayer, churchCommandments, preparatoryPrayer } from '@/data/examen';
 
 interface ConfessionRecord {
   id: string;
@@ -299,6 +299,13 @@ function ExameTab({
           />
         </div>
       </div>
+
+      <SacredCard variant="gradient">
+        <SacredCardTitle className="text-sm">Oração Preparatória</SacredCardTitle>
+        <SacredCardContent>
+          <p className="text-gray-200 text-sm leading-relaxed whitespace-pre-line">{preparatoryPrayer}</p>
+        </SacredCardContent>
+      </SacredCard>
 
       <div className="space-y-3">
         {examenItems.map((item) => {
