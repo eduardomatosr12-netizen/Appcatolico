@@ -303,7 +303,11 @@ function ExameTab({
       <div className="text-center space-y-1">
         <p className="text-[10px] uppercase tracking-[0.15em] text-[#8A8A8E]">Oração Preparatória</p>
       </div>
-      <p className="text-gray-200 text-sm leading-relaxed text-center italic">{preparatoryPrayer}</p>
+      <SacredCard variant="gradient">
+        <SacredCardContent>
+          <p className="text-gray-200 text-sm leading-relaxed whitespace-pre-line">{preparatoryPrayer}</p>
+        </SacredCardContent>
+      </SacredCard>
 
       <div className="space-y-3">
         {examenItems.map((item) => {
