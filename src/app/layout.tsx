@@ -3,6 +3,8 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/layout/theme-provider";
 import { DesktopSidebar } from "@/components/navigation/desktop-sidebar";
 import { MobileNav } from "@/components/navigation/mobile-nav";
+import { NotificationToast } from "@/components/ui/notification-toast";
+import { NotificationPanel } from "@/components/ui/notification-panel";
 
 export const metadata: Metadata = {
   title: "Lumen — App Católico",
@@ -64,6 +66,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <MobileNav />
           </div>
         </ThemeProvider>
+        <NotificationToast />
+        <NotificationPanel />
       </body>
     </html>
   );

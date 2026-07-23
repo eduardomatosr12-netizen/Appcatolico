@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { SacredCard, SacredCardContent, SacredCardTitle } from '@/components/ui/sacred-card';
 import { playAlarmSound, stopAlarmSound, testAlarmSound } from '@/lib/utils/alarm-sound';
+import { useNotificationStore } from '@/lib/stores/notification-store';
 import type { PrayerAlarm } from '@/types/productivity';
 
 const STORAGE_KEY = 'lumen-alarms';
@@ -23,6 +24,7 @@ export function PrayerAlarms() {
   const [triggeredAlarm, setTriggeredAlarm] = useState<string | null>(null);
   const checkedRef = useRef<Set<string>>(new Set());
   const lastMinuteRef = useRef<string>('');
+  const addNotification = useNotificationStore((s) => s.addNotification);
   useEffect(() => { if (alarms.length) localStorage.setItem(STORAGE_KEY, JSON.stringify(alarms)); }, [alarms]);
 
   useEffect(() => {
@@ -47,6 +49,11 @@ export function PrayerAlarms() {
         checkedRef.current.add(key);
         setTriggeredAlarm(alarm.id);
         playAlarmSound();
+        addNotification({
+          type: 'alarm',
+          title: alarm.title,
+          body: `Hora da oração — ${alarm.title}!`,
+        });
       });
     };
 
@@ -65,7 +72,7 @@ export function PrayerAlarms() {
       clearInterval(interval);
       document.removeEventListener('visibilitychange', handleVisibility);
     };
-  }, [alarms]);
+  }, [alarms, addNotification]);
 
   const dismissAlarm = () => {
     stopAlarmSound();
@@ -115,7 +122,7 @@ export function PrayerAlarms() {
             ))}</div>
           </div>
         ))}
-        <p className="text-center text-[10px] text-gray-600 pt-2">* Para notificações reais, configure service workers.</p>
+        <p className="text-center text-[10px] text-gray-600 pt-2">Ative as notificações no sino do header para alertas em segundo plano.</p>
       </SacredCardContent>
     </SacredCard>
   );

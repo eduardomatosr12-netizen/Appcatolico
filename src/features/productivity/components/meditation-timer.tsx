@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { playAlarmSound, stopAlarmSound, testAlarmSound } from '@/lib/utils/alarm-sound';
+import { useNotificationStore } from '@/lib/stores/notification-store';
 
 function formatTime(totalSeconds: number): string {
   const h = Math.floor(totalSeconds / 3600);
@@ -19,6 +20,7 @@ export function MeditationTimer() {
   const [isRunning, setIsRunning] = useState(false);
   const [isFinished, setIsFinished] = useState(false);
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const addNotification = useNotificationStore((s) => s.addNotification);
 
   const computedTotal = hours * 3600 + minutes * 60 + seconds;
 
@@ -32,6 +34,11 @@ export function MeditationTimer() {
             setIsRunning(false);
             setIsFinished(true);
             playAlarmSound();
+            addNotification({
+              type: 'timer',
+              title: 'Cronômetro concluído',
+              body: 'Seu tempo de meditação finalizou. Volte em paz!',
+            });
             return 0;
           }
           return prev - 1;
@@ -44,7 +51,7 @@ export function MeditationTimer() {
         intervalRef.current = null;
       }
     };
-  }, [isRunning]);
+  }, [isRunning, addNotification]);
 
   const handleStart = useCallback(() => {
     if (computedTotal <= 0) return;

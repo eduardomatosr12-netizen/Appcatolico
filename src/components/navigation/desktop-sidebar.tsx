@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { cn } from '@/lib/utils/cn';
+import { useNotificationStore } from '@/lib/stores/notification-store';
 
 const navItems = [
   { href: '/liturgia', label: 'Liturgia', icon: 'book' },
@@ -69,14 +70,31 @@ function NavIcon({ icon, isActive }: { icon: string; isActive: boolean }) {
 
 export function DesktopSidebar() {
   const pathname = usePathname();
+  const { togglePanel, notifications } = useNotificationStore();
+  const unreadCount = notifications.filter((n) => !n.read).length;
 
   return (
     <aside className="w-64 h-screen fixed left-0 top-0 bg-[#16161A] border-r border-white/[0.05] z-50 flex flex-col justify-between py-6 px-4 max-md:hidden">
       <div className="flex flex-col gap-8">
-        <div className="flex items-center gap-3 px-2">
+        <div className="flex items-center justify-between px-2">
           <span className="font-serif text-xl md:text-2xl tracking-[0.25em] font-bold text-[#C5A059]">
             LUMEN
           </span>
+          <button
+            onClick={togglePanel}
+            className="relative flex h-9 w-9 items-center justify-center rounded-full text-[#8A8A8E] hover:text-white hover:bg-white/[0.05] transition-all"
+            aria-label="Notificações"
+          >
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
+              <path d="M13.73 21a2 2 0 0 1-3.46 0" />
+            </svg>
+            {unreadCount > 0 && (
+              <span className="absolute -top-0.5 -right-0.5 h-4 min-w-4 flex items-center justify-center rounded-full bg-[#5C0F1B] text-[9px] font-bold text-[#C5A059] px-1">
+                {unreadCount > 9 ? '9+' : unreadCount}
+              </span>
+            )}
+          </button>
         </div>
 
         <nav className="flex flex-col gap-1">
