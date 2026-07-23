@@ -4,6 +4,89 @@ import { BIBLE_BOOKS_MAP } from '@/data/bible-versions';
 const MIDVASH_BASE = 'https://api.midvash.com/v1';
 const AVE_MARIA_URL = 'https://raw.githubusercontent.com/fidalgobr/bibliaAveMariaJSON/main/bibliaAveMaria.json';
 
+const BOOK_ID_TO_AVEMARIA_NAME: Record<string, string> = {
+  // AT - Pentateuco
+  GEN: 'Gênesis',
+  EXO: 'Êxodo',
+  LEV: 'Levítico',
+  NUM: 'Números',
+  DEU: 'Deuteronômio',
+  // AT - Históricos
+  JOS: 'Josué',
+  JDG: 'Juízes',
+  RUT: 'Rute',
+  '1SA': 'I Samuel',
+  '2SA': 'II Samuel',
+  '1KI': 'I Reis',
+  '2KI': 'II Reis',
+  '1CH': 'I Crônicas',
+  '2CH': 'II Crônicas',
+  EZR: 'Esdras',
+  NEH: 'Neemias',
+  TOB: 'Tobias',
+  JDT: 'Judite',
+  EST: 'Ester',
+  '1MA': 'I Macabeus',
+  '2MA': 'II Macabeus',
+  // AT - Poéticos
+  JOB: 'Jó',
+  PSA: 'Salmos',
+  PRO: 'Provérbios',
+  ECC: 'Eclesiastes',
+  SOL: 'Cântico dos Cânticos',
+  WIS: 'Sabedoria',
+  SIR: 'Eclesiástico',
+  // AT - Profetas
+  ISA: 'Isaías',
+  JER: 'Jeremias',
+  LAM: 'Lamentações',
+  BAR: 'Baruc',
+  EZK: 'Ezequiel',
+  DAN: 'Daniel',
+  HOS: 'Oséias',
+  JOL: 'Joel',
+  AMO: 'Amós',
+  OBA: 'Abdias',
+  JON: 'Jonas',
+  MIC: 'Miquéias',
+  NAM: 'Naum',
+  HAB: 'Habacuc',
+  ZEP: 'Sofonias',
+  HAG: 'Ageu',
+  ZEC: 'Zacarias',
+  MAL: 'Malaquias',
+  // NT - Evangelhos
+  MAT: 'São Mateus',
+  MRK: 'São Marcos',
+  LUK: 'São Lucas',
+  JHN: 'São João',
+  // NT - Atos e Epístolas
+  ACT: 'Atos dos Apóstolos',
+  ROM: 'Romanos',
+  '1CO': 'I Coríntios',
+  '2CO': 'II Coríntios',
+  GAL: 'Gálatas',
+  EPH: 'Efésios',
+  PHP: 'Filipenses',
+  COL: 'Colossenses',
+  '1TH': 'I Tessalonicenses',
+  '2TH': 'II Tessalonicenses',
+  '1TI': 'I Timóteo',
+  '2TI': 'II Timóteo',
+  TIT: 'Tito',
+  PHM: 'Filêmon',
+  HEB: 'Hebreus',
+  JAS: 'São Tiago',
+  '1PE': 'I São Pedro',
+  '2PE': 'II São Pedro',
+  '1JN': 'I São João',
+  '2JN': 'II São João',
+  '3JN': 'III São João',
+  JDE: 'São Judas',
+  // NT - Apocalipse
+  REV: 'Apocalipse',
+};
+
 interface AveMariaBook {
   nome: string;
   capitulos: { capitulo: number; versiculos: { versiculo: number; texto: string }[] }[];
@@ -119,9 +202,12 @@ async function fetchAveMariaChapter(
   if (!book) throw new Error(`Livro ${bookId} não encontrado`);
 
   const allBooks = [...data.antigoTestamento, ...data.novoTestamento];
-  const bookData = allBooks.find((b) => b.nome === book.name);
+  const aveMariaName = BOOK_ID_TO_AVEMARIA_NAME[bookId];
+  if (!aveMariaName) throw new Error(`Livro ${bookId} não possui mapeamento para a Bíblia Ave Maria`);
 
-  if (!bookData) throw new Error(`Livro ${book.name} não disponível na Bíblia Ave Maria`);
+  const bookData = allBooks.find((b) => b.nome === aveMariaName);
+
+  if (!bookData) throw new Error(`Livro "${aveMariaName}" não disponível na Bíblia Ave Maria`);
 
   const chapterData = bookData.capitulos.find((c) => c.capitulo === chapter);
   if (!chapterData) throw new Error(`Capítulo ${chapter} não disponível`);
