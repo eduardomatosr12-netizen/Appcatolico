@@ -46,14 +46,6 @@ const actsOfContrition = [
     title: 'Ato de Contrição 4',
     text: `Meu Jesus, crucificado por minha culpa! Estou arrependido de ter feito pecado, pois ofendi a Vós, que sois tão bom, e mereço ser castigado neste mundo e no outro. Mas perdoai-me, Senhor, não quero mais pecar. Amém.`,
   },
-  {
-    title: 'Ato de Contrição (Breve)',
-    text: `Senhor Jesus, tende compaixão de mim, pecador. Amém.`,
-  },
-  {
-    title: 'Ato de Contrição de São Francisco de Assis',
-    text: `Altíssimo, onipotente e bom Senhor, vossos são o louvor, a glória e o honra e todas as bênçãos. A nenhum homem convém louvar-Vos, mas a Vós, ó Altíssimo; pois sobre todos os vossos santos, sobre todos os vossos louvores. Bendito sejais, ó Senhor, sobre todas as vossas criaturas. Amém.`,
-  },
 ];
 
 export function ConfissaoPage() {
