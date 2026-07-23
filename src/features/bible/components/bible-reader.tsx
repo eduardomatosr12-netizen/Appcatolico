@@ -1,9 +1,28 @@
 'use client';
 
-import { useEffect, useReducer } from 'react';
+import { useEffect, useReducer, useState } from 'react';
 import { fetchBibleChapter } from '@/services/bibleService';
 import { BIBLE_BOOKS_MAP } from '@/data/bible-versions';
 import type { BibleChapter } from '@/types/bible';
+
+const HIGHLIGHTS_KEY = 'lumen_bible_highlights';
+
+function loadHighlights(): Record<string, boolean> {
+  if (typeof window === 'undefined') return {};
+  try {
+    return JSON.parse(localStorage.getItem(HIGHLIGHTS_KEY) || '{}');
+  } catch {
+    return {};
+  }
+}
+
+function saveHighlights(highlights: Record<string, boolean>) {
+  localStorage.setItem(HIGHLIGHTS_KEY, JSON.stringify(highlights));
+}
+
+function verseKey(bookId: string, chapter: number, verse: number) {
+  return `${bookId}-${chapter}-${verse}`;
+}
 
 interface BibleReaderProps {
   versionId: string;
@@ -33,6 +52,7 @@ function reducer(_state: State, action: Action): State {
 
 export function BibleReader({ versionId, bookId, chapter, onBack, onChapterChange }: BibleReaderProps) {
   const [state, dispatch] = useReducer(reducer, { status: 'loading' });
+  const [highlights, setHighlights] = useState<Record<string, boolean>>(() => loadHighlights());
 
   const book = BIBLE_BOOKS_MAP.get(bookId);
 
@@ -52,6 +72,20 @@ export function BibleReader({ versionId, bookId, chapter, onBack, onChapterChang
 
     return () => { cancelled = true; };
   }, [versionId, bookId, chapter]);
+
+  function toggleHighlight(verseNumber: number) {
+    const key = verseKey(bookId, chapter, verseNumber);
+    setHighlights((prev) => {
+      const next = { ...prev };
+      if (next[key]) {
+        delete next[key];
+      } else {
+        next[key] = true;
+      }
+      saveHighlights(next);
+      return next;
+    });
+  }
 
   if (state.status === 'loading') {
     return (
@@ -94,17 +128,35 @@ export function BibleReader({ versionId, bookId, chapter, onBack, onChapterChang
       </div>
 
       <div className="bg-[#16161A] rounded-[24px] p-5 sm:p-8 md:p-10 border border-white/[0.03] shadow-[0_12px_40px_rgba(0,0,0,0.5)]">
-        <div className="flex flex-col gap-6">
-          {data.verses.map((verse) => (
-            <div key={verse.number} className="flex gap-3">
-              <span className="text-[#C5A059]/60 text-sm font-mono font-semibold mt-0.5 shrink-0 w-6 text-right">
-                {verse.number}
-              </span>
-              <p className="text-sm sm:text-base leading-relaxed text-gray-200" style={{ lineHeight: '1.7' }}>
-                {verse.text}
-              </p>
-            </div>
-          ))}
+        <div className="flex flex-col gap-4">
+          {data.verses.map((verse) => {
+            const isHighlighted = !!highlights[verseKey(bookId, chapter, verse.number)];
+            return (
+              <div
+                key={verse.number}
+                onClick={() => toggleHighlight(verse.number)}
+                className={`flex gap-3 rounded-xl px-3 py-2 -mx-3 cursor-pointer transition-all duration-200 ${
+                  isHighlighted
+                    ? 'bg-[#C5A059]/10 border border-[#C5A059]/20'
+                    : 'hover:bg-white/[0.02] border border-transparent'
+                }`}
+              >
+                <span className={`text-sm font-mono font-semibold mt-0.5 shrink-0 w-6 text-right ${
+                  isHighlighted ? 'text-[#C5A059]' : 'text-[#C5A059]/60'
+                }`}>
+                  {verse.number}
+                </span>
+                <p className="text-sm sm:text-base leading-relaxed text-gray-200 flex-1" style={{ lineHeight: '1.7' }}>
+                  {verse.text}
+                </p>
+                {isHighlighted && (
+                  <svg className="w-4 h-4 text-[#C5A059] shrink-0 mt-1" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                  </svg>
+                )}
+              </div>
+            );
+          })}
         </div>
       </div>
 
