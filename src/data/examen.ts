@@ -51,6 +51,30 @@ export const examenItems: ExamenItem[] = [
     reflection: 'Acumulai para vós tesouros no céu. Felizes os pobres em espírito, porque deles é o Reino dos Céus.' },
 ];
 
+export const deadlySins: ExamenItem[] = [
+  { id: 's1', commandment: 'Soberba — O orgulho de se considerar superior',
+    questions: ['Julguei os outros ou me senti superior a eles?', 'Desobedecei por orgulho, achando que sabia mais?', 'Recebi elogios com vaidade e me comparei para me sentir melhor?', 'Recusei admitir meus erros ou pedir desculpas?'],
+    reflection: 'Deus resiste aos soberbos, mas dá graça aos humildes. A soberba é a raiz de todos os pecados, pois nos faz colocar a nós mesmos acima de Deus e do próximo.' },
+  { id: 's2', commandment: 'Avareza — O apego desordenado aos bens materiais',
+    questions: ['Acorrei bens ou dinheiro de forma excessiva?', 'Fui ganancioso e não compartilhei com quem tem necessidade?', 'Preferi o dinheiro à relação com Deus e com o próximo?', 'Deixe de ser generoso com a Igreja e com os pobres?'],
+    reflection: 'Ninguém pode servir a Deus e ao dinheiro. Acumulai para vós tesouros no céu, onde a traça e o ferrugem não corroem.' },
+  { id: 's3', commandment: 'Luxúria — O desejo sexual desordenado',
+    questions: ['Tive pensamentos ou desejos impuros voluntários?', 'Assisti a conteúdos pornográficos ou sensuais?', 'Tive relações sexuais fora do casamento?', 'Fui desleal ao cônjuge em pensamentos ou atos?'],
+    reflection: 'Bem-aventurados os puros de coração, porque verão a Deus. O corpo é templo do Espírito Santo e deve ser tratado com dignidade.' },
+  { id: 's4', commandment: 'Inveja — O descontentamento com o bem alheio',
+    questions: ['Invejei o sucesso, a beleza ou os bens de outra pessoa?', 'Senti rancor ou ressentimento quando alguém prosperou?', 'Fiquei feliz com o fracasso de alguém?', 'Comparei-me constantemente aos outros com amargura?'],
+    reflection: 'A inveja é tristeza pelo bem alheio. Cada pessoa recebeu dons únicos de Deus; celebrar o bem do próximo é ato de amor e fé.' },
+  { id: 's5', commandment: 'Gula — O excesso na comida, bebida ou prazeres',
+    questions: ['Comi ou bebi em excesso, sem necessidade?', 'Desperdicei alimentos enquanto outros passam fome?', 'Usei substâncias que prejudicaram minha saúde ou juízo?', 'Perdi tempo excessivo em prazeres vazios?'],
+    reflection: 'Não vos preocupees com o que haveis de comer ou beber. A temperança é virtude que nos ensina a usar os bens com moderação e gratidão.' },
+  { id: 's6', commandment: 'Ira — A raiva descontrolada e o desejo de vingança',
+    questions: ['Perdi a paciência e gritei com alguém?', 'Alimentei ódio, rancor ou desejo de vingança?', 'Maldissei ou desejei mal a alguém?', 'Fui agressivo em palavras ou atos, mesmo sem tocar fisicamente?'],
+    reflection: 'Se não perdoardes aos homens, também o vosso Pai não perdoará as vossas ofensas. A irra destrói a paz do coração e afasta de Deus.' },
+  { id: 's7', commandment: 'Preguiça — A preguiça espiritual e a omissão do bem',
+    questions: ['Deixei de rezar por preguiça ou desinteresse?', 'Evitei ir à Missa ou participar de atividades da paróquia?', 'Omiti-me de fazer o bem quando podia ajudar?', 'Vivi entediado, sem buscar crescer na fé?'],
+    reflection: 'A preguiça espiritual é a negligência nas coisas de Deus. Busquem primeiro o Reino de Deus e a sua justiça, e todas as coisas vos serão acrescentadas.' },
+];
+
 export const preparatoryPrayer = `Meu bom Deus e Salvador, Pai de misericórdia, eis-me aqui prostrado aos vossos pés, cheio de confusão e de remorsos, qual outro filho pródigo que volta arrependido à casa paterna. Não mereço perdão, porque desgostei demasiadamente a vossa bondade infinita. Mas sei que não olhais para os meus pecados senão para perdoá-los, como Pai misericordioso que sois. Pelos méritos inefáveis do vosso Filho, crucificado e morto por meu amor, pelos méritos do seu Preciosíssimo Sangue, pelas suas lágrimas e agonia, tende piedade de mim. Dai-me luz para conhecer os meus pecados; sincero arrependimento para os aborrecer; firme propósito para nunca mais os cometer; ânimo para os acusar e para cumprir com a devida penitência. Amém.`;
 
 export const conclusionPrayer = `Senhor Jesus Cristo, que dissestes aos vossos apóstolos: "A paz vos deixo, a minha paz vos dou", não olheis para os meus pecados, mas para a fé da vossa Igreja; dai-me a paz e a unidade conforme a vossa vontade. Amém.

@@ -5,7 +5,7 @@ import { Header } from '@/components/layout/header';
 import { PillTabBar } from '@/components/ui/pill-tab-bar';
 import { SacredCard, SacredCardContent, SacredCardTitle } from '@/components/ui/sacred-card';
 import { Button } from '@/components/ui/button';
-import { examenItems, conclusionPrayer, churchCommandments, preparatoryPrayer } from '@/data/examen';
+import { examenItems, conclusionPrayer, churchCommandments, preparatoryPrayer, deadlySins } from '@/data/examen';
 
 interface ConfessionRecord {
   id: string;
@@ -61,8 +61,6 @@ export function ConfissaoPage() {
   const [showForm, setShowForm] = useState(false);
 
   const handleResponse = (questionId: string, value: boolean) => setResponses((prev) => ({ ...prev, [questionId]: value }));
-  const total = examenItems.reduce((acc, item) => acc + item.questions.length, 0);
-  const answered = Object.keys(responses).length;
 
   function addConfession() {
     if (!newDate) return;
@@ -123,8 +121,6 @@ export function ConfissaoPage() {
           responses={responses}
           expandedId={expandedId}
           showConclusion={showConclusion}
-          answered={answered}
-          total={total}
           onToggleExpand={setExpandedId}
           onSetShowConclusion={setShowConclusion}
           onSetResponses={setResponses}
@@ -233,8 +229,6 @@ function ExameTab({
   responses,
   expandedId,
   showConclusion,
-  answered,
-  total,
   onToggleExpand,
   onSetShowConclusion,
   onSetResponses,
@@ -243,13 +237,13 @@ function ExameTab({
   responses: Record<string, boolean>;
   expandedId: string | null;
   showConclusion: boolean;
-  answered: number;
-  total: number;
   onToggleExpand: (id: string | null) => void;
   onSetShowConclusion: (v: boolean) => void;
   onSetResponses: (r: Record<string, boolean> | ((prev: Record<string, boolean>) => Record<string, boolean>)) => void;
   onHandleResponse: (questionId: string, value: boolean) => void;
 }) {
+  const [theme, setTheme] = useState<'decalog' | 'church' | 'sins'>('decalog');
+
   if (showConclusion) {
     return (
       <div className="space-y-5">
@@ -280,14 +274,22 @@ function ExameTab({
     );
   }
 
+  const currentItems = theme === 'decalog' ? examenItems : theme === 'sins' ? deadlySins : churchCommandments;
+  const currentAnswered = currentItems.reduce((acc, item) => {
+    const answeredCount = item.questions.filter((_, i) => responses[`${item.id}-q${i}`] !== undefined).length;
+    return acc + answeredCount;
+  }, 0);
+  const currentTotal = currentItems.reduce((acc, item) => acc + item.questions.length, 0);
+  const isInteractive = theme !== 'church';
+
   return (
     <div className="space-y-5">
       <div className="flex items-center justify-center gap-2 text-xs">
-        <span className="text-[#8A8A8E]">{answered}/{total}</span>
+        <span className="text-[#8A8A8E]">{isInteractive ? currentAnswered : currentItems.length}/{isInteractive ? currentTotal : currentItems.length}</span>
         <div className="h-1.5 w-24 rounded-full bg-white/10 overflow-hidden">
           <div
             className="h-full rounded-full bg-[#C5A059] transition-all"
-            style={{ width: `${(answered / total) * 100}%` }}
+            style={{ width: `${isInteractive ? (currentAnswered / currentTotal) * 100 : 100}%` }}
           />
         </div>
       </div>
@@ -301,10 +303,30 @@ function ExameTab({
         </SacredCardContent>
       </SacredCard>
 
+      <div className="flex gap-2 justify-center">
+        {([
+          { key: 'decalog' as const, label: '10 Mandamentos' },
+          { key: 'church' as const, label: 'Mand. Igreja' },
+          { key: 'sins' as const, label: '7 Pecados Capitais' },
+        ]).map((t) => (
+          <button
+            key={t.key}
+            onClick={() => { setTheme(t.key); onToggleExpand(null); }}
+            className={`px-3 py-1.5 rounded-full text-[11px] font-medium transition-all ${
+              theme === t.key
+                ? 'bg-[#C5A059] text-[#0B0B0E]'
+                : 'bg-white/5 text-[#8A8A8E] hover:bg-white/10 border border-white/10'
+            }`}
+          >
+            {t.label}
+          </button>
+        ))}
+      </div>
+
       <div className="space-y-3">
-        {examenItems.map((item) => {
+        {currentItems.map((item) => {
           const isExpanded = expandedId === item.id;
-          const allAnswered = item.questions.every((_, i) => responses[`${item.id}-q${i}`] !== undefined);
+          const allAnswered = isInteractive && item.questions.every((_, i) => responses[`${item.id}-q${i}`] !== undefined);
 
           return (
             <SacredCard
@@ -317,7 +339,7 @@ function ExameTab({
                   {item.commandment}
                 </SacredCardTitle>
                 <div className="flex items-center gap-2 shrink-0">
-                  {allAnswered && !isExpanded && (
+                  {isInteractive && allAnswered && !isExpanded && (
                     <span className="text-[10px] text-green-400">✓</span>
                   )}
                   <span className={`text-[#8A8A8E] text-xs transition-transform ${isExpanded ? 'rotate-180' : ''}`}>
@@ -330,6 +352,11 @@ function ExameTab({
                   <div className="space-y-3">
                     {item.questions.map((question, i) => {
                       const qid = `${item.id}-q${i}`;
+                      if (!isInteractive) {
+                        return (
+                          <p key={i} className="text-gray-200 text-sm leading-relaxed">• {question}</p>
+                        );
+                      }
                       const value = responses[qid];
                       return (
                         <div key={qid} className="space-y-1.5">
@@ -370,46 +397,7 @@ function ExameTab({
         })}
       </div>
 
-      <div className="space-y-3 pt-2">
-        <div className="flex items-center gap-3">
-          <span className="flex-1 h-px bg-[rgba(197,160,89,0.15)]" />
-          <span className="text-[10px] uppercase tracking-[0.15em] text-[#8A8A8E]">Mandamentos da Igreja</span>
-          <span className="flex-1 h-px bg-[rgba(197,160,89,0.15)]" />
-        </div>
-        {churchCommandments.map((item) => {
-          const isExpanded = expandedId === item.id;
-          return (
-            <SacredCard
-              key={item.id}
-              onClick={() => onToggleExpand(isExpanded ? null : item.id)}
-              className="cursor-pointer"
-            >
-              <div className="flex items-center justify-between">
-                <SacredCardTitle className="text-sm flex-1 pr-2">
-                  {item.commandment}
-                </SacredCardTitle>
-                <span className={`text-[#8A8A8E] text-xs transition-transform ${isExpanded ? 'rotate-180' : ''}`}>
-                  ▼
-                </span>
-              </div>
-              {isExpanded && (
-                <SacredCardContent className="space-y-3 mt-3">
-                  <div className="space-y-2">
-                    {item.questions.map((question, i) => (
-                      <p key={i} className="text-gray-200 text-sm leading-relaxed">• {question}</p>
-                    ))}
-                  </div>
-                  <div className="rounded-xl bg-[rgba(197,160,89,0.08)] p-3 border border-[rgba(197,160,89,0.1)]">
-                    <p className="text-xs text-[#C5A059] italic leading-relaxed">{item.reflection}</p>
-                  </div>
-                </SacredCardContent>
-              )}
-            </SacredCard>
-          );
-        })}
-      </div>
-
-      {answered === total && (
+      {isInteractive && currentAnswered === currentTotal && (
         <Button
           size="lg"
           className="mx-auto"
