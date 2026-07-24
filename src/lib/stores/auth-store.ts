@@ -100,8 +100,20 @@ export const useAuthStore = create<AuthState>((set) => ({
     try {
       await signInWithEmailAndPassword(getAuthInstance(), email, password);
     } catch (error) {
-      console.error('Firebase signIn error:', error instanceof FirebaseError ? error.code : 'unknown', error instanceof Error ? error.message : error);
+      const code = error instanceof FirebaseError ? error.code : 'unknown';
       const message = error instanceof Error ? error.message : 'Erro ao entrar';
+
+      console.error('Firebase signIn error:', code, message);
+
+      if (code === 'auth/configuration-not-found') {
+        console.error(
+          '[Lumen] O método de login Email/Senha NÃO está ativado no Firebase Console.\n' +
+          'Acesse: https://console.firebase.google.com → Build → Authentication → Sign-in method → Ative "Email/Password".'
+        );
+        set({ authError: 'Serviço de autenticação indisponível. Ative o login por email/senha no painel do Firebase.' });
+        return;
+      }
+
       set({ authError: translateAuthError(message) });
       throw error;
     }
@@ -115,8 +127,20 @@ export const useAuthStore = create<AuthState>((set) => ({
         await updateProfile(cred.user, { displayName });
       }
     } catch (error) {
-      console.error('Firebase signUp error:', error instanceof FirebaseError ? error.code : 'unknown', error instanceof Error ? error.message : error);
+      const code = error instanceof FirebaseError ? error.code : 'unknown';
       const message = error instanceof Error ? error.message : 'Erro ao criar conta';
+
+      console.error('Firebase signUp error:', code, message);
+
+      if (code === 'auth/configuration-not-found') {
+        console.error(
+          '[Lumen] O método de login Email/Senha NÃO está ativado no Firebase Console.\n' +
+          'Acesse: https://console.firebase.google.com → Build → Authentication → Sign-in method → Ative "Email/Password".'
+        );
+        set({ authError: 'Serviço de autenticação indisponível. Ative o login por email/senha no painel do Firebase.' });
+        return;
+      }
+
       set({ authError: translateAuthError(message) });
       throw error;
     }
@@ -136,8 +160,20 @@ export const useAuthStore = create<AuthState>((set) => ({
     try {
       await signInWithEmailAndPassword(getAuthInstance(), email, password);
     } catch (error) {
-      console.error('Firebase switchProfile error:', error instanceof FirebaseError ? error.code : 'unknown', error instanceof Error ? error.message : error);
+      const code = error instanceof FirebaseError ? error.code : 'unknown';
       const message = error instanceof Error ? error.message : 'Erro ao trocar perfil';
+
+      console.error('Firebase switchProfile error:', code, message);
+
+      if (code === 'auth/configuration-not-found') {
+        console.error(
+          '[Lumen] O método de login Email/Senha NÃO está ativado no Firebase Console.\n' +
+          'Acesse: https://console.firebase.google.com → Build → Authentication → Sign-in method → Ative "Email/Password".'
+        );
+        set({ authError: 'Serviço de autenticação indisponível. Ative o login por email/senha no painel do Firebase.' });
+        return;
+      }
+
       set({ authError: translateAuthError(message) });
       throw error;
     }
@@ -166,6 +202,9 @@ function translateAuthError(message: string): string {
   }
   if (message.includes('auth/invalid-email')) {
     return 'Email inválido';
+  }
+  if (message.includes('auth/configuration-not-found')) {
+    return 'Serviço de autenticação indisponível. Ative o login por email/senha no painel do Firebase.';
   }
   return 'Ocorreu um erro. Tente novamente.';
 }
