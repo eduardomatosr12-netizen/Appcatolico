@@ -1,8 +1,5 @@
 {
   "projects": {
-    "npm run dev": "catolico-77369",
     "default": "catolico-77369"
-  },
-  "targets": {},
-  "etags": {}
+  }
 }
