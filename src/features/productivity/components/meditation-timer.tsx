@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect, useRef, useCallback } from 'react';
-import { playAlarmSound, stopAlarmSound, testAlarmSound } from '@/lib/utils/alarm-sound';
+import { playAlarmSound, stopAlarmSound, testAlarmSound, ensureAudioReady } from '@/lib/utils/alarm-sound';
 import { useNotificationStore } from '@/lib/stores/notification-store';
 
 function formatTime(totalSeconds: number): string {
@@ -55,6 +55,7 @@ export function MeditationTimer() {
 
   const handleStart = useCallback(() => {
     if (computedTotal <= 0) return;
+    ensureAudioReady();
     setTotalSeconds(computedTotal);
     setRemaining(computedTotal);
     setIsRunning(true);
@@ -152,7 +153,7 @@ export function MeditationTimer() {
             Iniciar
           </button>
 
-          <button onClick={testAlarmSound} className="rounded-xl bg-[#16161A] border border-white/10 px-6 py-2.5 text-xs font-medium text-[#C5A059] hover:bg-white/5 active:bg-white/10 transition-colors">
+          <button onClick={() => { ensureAudioReady(); testAlarmSound(); }} className="rounded-xl bg-[#16161A] border border-white/10 px-6 py-2.5 text-xs font-medium text-[#C5A059] hover:bg-white/5 active:bg-white/10 transition-colors">
             🔊 Testar som do alarme
           </button>
         </div>

@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react';
 import { SacredCard, SacredCardContent, SacredCardTitle } from '@/components/ui/sacred-card';
-import { playAlarmSound, stopAlarmSound, testAlarmSound } from '@/lib/utils/alarm-sound';
+import { playAlarmSound, stopAlarmSound, testAlarmSound, ensureAudioReady } from '@/lib/utils/alarm-sound';
 import { useNotificationStore } from '@/lib/stores/notification-store';
 import { useAuthStore } from '@/lib/stores/auth-store';
 import { useSyncedCollection } from '@/lib/services/sync-service';
@@ -145,10 +145,10 @@ export function PrayerAlarms() {
   return (
     <SacredCard><SacredCardTitle>Alarmes</SacredCardTitle>
       <div className="flex gap-2 mt-3">
-        <button onClick={testAlarmSound} className="flex-1 rounded-xl bg-[#16161A] border border-white/10 px-4 py-3 text-xs font-medium text-[#C5A059] hover:bg-white/5 active:bg-white/10 transition-colors">
+        <button onClick={() => { ensureAudioReady(); testAlarmSound(); }} className="flex-1 rounded-xl bg-[#16161A] border border-white/10 px-4 py-3 text-xs font-medium text-[#C5A059] hover:bg-white/5 active:bg-white/10 transition-colors">
           🔊 Testar som
         </button>
-        <button onClick={() => setShowForm(!showForm)} className="flex-1 rounded-xl bg-[#C5A059] px-4 py-3 text-xs font-bold text-[#0B0B0E] hover:bg-[#D4B87A] active:bg-[#B8943F] transition-colors">
+        <button onClick={() => { ensureAudioReady(); setShowForm(!showForm); }} className="flex-1 rounded-xl bg-[#C5A059] px-4 py-3 text-xs font-bold text-[#0B0B0E] hover:bg-[#D4B87A] active:bg-[#B8943F] transition-colors">
           {showForm ? 'Cancelar' : '+ Novo alarme'}
         </button>
       </div>
