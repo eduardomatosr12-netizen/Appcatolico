@@ -7,7 +7,7 @@ import { cn } from '@/lib/utils/cn';
 const navItems = [
   { href: '/liturgia', label: 'Liturgia', icon: '📖' },
   { href: '/biblia', label: 'Bíblia', icon: '✝️' },
-  { href: '/oracoes', label: 'Orações Eucarísticas', icon: '🙏' },
+  { href: '/oracoes', label: 'Orações', icon: '🙏' },
   { href: '/rosario', label: 'Santo Terço', icon: '📿' },
   { href: '/confissao', label: 'Confissão', icon: '✨' },
   { href: '/produtividade', label: 'Produtividade', icon: '⏱️' },

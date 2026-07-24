@@ -4,7 +4,8 @@ import { useState } from 'react';
 import { SacredCard } from '@/components/ui/sacred-card';
 import { PillTabBar } from '@/components/ui/pill-tab-bar';
 import { eucharisticPrayers } from '@/data/eucharistic-prayers';
-import type { LiturgicalSpeaker } from '@/types/prayer';
+import { novenas } from '@/data/novenas';
+import type { LiturgicalSpeaker, NovenasPrayer } from '@/types/prayer';
 
 const speakerStyles: Record<LiturgicalSpeaker, string> = {
   sacerdote:
@@ -40,25 +41,19 @@ function LiturgicalLine({
   );
 }
 
-export function PrayersPage() {
+const categories = [
+  { key: 'eucharistic', label: 'Orações Eucarísticas' },
+  { key: 'novenas', label: 'Novenas' },
+] as const;
+
+type CategoryKey = (typeof categories)[number]['key'];
+
+function EucharisticView() {
   const [activeIndex, setActiveIndex] = useState(0);
   const prayer = eucharisticPrayers[activeIndex];
 
   return (
     <div className="space-y-5">
-      <div className="text-center space-y-2">
-        <div className="flex items-center justify-center gap-2">
-          <span className="h-px w-6 bg-[rgba(197,160,89,0.2)]" />
-          <span className="text-[10px] uppercase tracking-[0.15em] text-[#8A8A8E]">
-            Eucaristia
-          </span>
-          <span className="h-px w-6 bg-[rgba(197,160,89,0.2)]" />
-        </div>
-        <h1 className="font-serif text-2xl font-bold text-[#C5A059]">
-          Orações Eucarísticas
-        </h1>
-      </div>
-
       <PillTabBar
         tabs={eucharisticPrayers.map((p, i) => ({
           key: String(i),
@@ -98,6 +93,108 @@ export function PrayersPage() {
           </SacredCard>
         ))}
       </div>
+    </div>
+  );
+}
+
+function NovenasView() {
+  const [selectedNovenas, setSelectedNovenas] = useState<NovenasPrayer | null>(null);
+  const [activeDay, setActiveDay] = useState(0);
+
+  if (selectedNovenas) {
+    const day = selectedNovenas.days[activeDay];
+
+    return (
+      <div className="space-y-5">
+        <button
+          onClick={() => { setSelectedNovenas(null); setActiveDay(0); }}
+          className="flex items-center gap-2 text-sm text-[#C5A059] hover:text-[#D4B87A] transition-colors"
+        >
+          <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <path d="M19 12H5M12 19l-7-7 7-7" />
+          </svg>
+          Voltar
+        </button>
+
+        <div className="text-center space-y-2">
+          <h2 className="font-serif text-xl font-bold text-[#C5A059]">
+            {selectedNovenas.title}
+          </h2>
+          <p className="text-xs text-[#8A8A8E]">{selectedNovenas.subtitle}</p>
+        </div>
+
+        <PillTabBar
+          tabs={selectedNovenas.days.map((d) => ({
+            key: String(d.day - 1),
+            label: `Dia ${d.day}`,
+          }))}
+          activeKey={String(activeDay)}
+          onSelect={(key) => setActiveDay(Number(key))}
+          className="mx-auto"
+        />
+
+        <SacredCard variant="accent">
+          <div className="mb-3">
+            <h3 className="font-serif text-sm md:text-base font-semibold text-[#C5A059]">
+              {day.title}
+            </h3>
+          </div>
+          <p className="text-base md:text-lg leading-relaxed text-gray-300">
+            {day.text}
+          </p>
+        </SacredCard>
+      </div>
+    );
+  }
+
+  return (
+    <div className="space-y-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        {novenas.map((n) => (
+          <SacredCard
+            key={n.id}
+            variant="default"
+            className="cursor-pointer hover:border-[#C5A059]/30 transition-colors"
+            onClick={() => { setSelectedNovenas(n); setActiveDay(0); }}
+          >
+            <h3 className="font-serif text-sm font-semibold text-[#C5A059] mb-1">
+              {n.title}
+            </h3>
+            <p className="text-xs text-[#8A8A8E]">{n.subtitle}</p>
+          </SacredCard>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+export function PrayersPage() {
+  const [activeCategory, setActiveCategory] = useState<CategoryKey>('eucharistic');
+
+  return (
+    <div className="space-y-5">
+      <div className="text-center space-y-2">
+        <div className="flex items-center justify-center gap-2">
+          <span className="h-px w-6 bg-[rgba(197,160,89,0.2)]" />
+          <span className="text-[10px] uppercase tracking-[0.15em] text-[#8A8A8E]">
+            Fé
+          </span>
+          <span className="h-px w-6 bg-[rgba(197,160,89,0.2)]" />
+        </div>
+        <h1 className="font-serif text-2xl font-bold text-[#C5A059]">
+          Orações
+        </h1>
+      </div>
+
+      <PillTabBar
+        tabs={categories.map((c) => ({ key: c.key, label: c.label }))}
+        activeKey={activeCategory}
+        onSelect={(key) => setActiveCategory(key as CategoryKey)}
+        className="mx-auto"
+      />
+
+      {activeCategory === 'eucharistic' && <EucharisticView />}
+      {activeCategory === 'novenas' && <NovenasView />}
     </div>
   );
 }

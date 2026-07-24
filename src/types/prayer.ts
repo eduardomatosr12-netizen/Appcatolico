@@ -17,6 +17,17 @@ export interface EucharisticPrayer {
   sections: LiturgicalSection[];
 }
 
+export interface NovenasPrayer {
+  id: string;
+  title: string;
+  subtitle: string;
+  days: {
+    day: number;
+    title: string;
+    text: string;
+  }[];
+}
+
 export interface PsalmEntry {
   reference: string;
   antiphon: string;

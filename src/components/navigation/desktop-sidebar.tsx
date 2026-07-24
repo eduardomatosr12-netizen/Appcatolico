@@ -8,7 +8,7 @@ import { useNotificationStore } from '@/lib/stores/notification-store';
 const navItems = [
   { href: '/liturgia', label: 'Liturgia', icon: 'book' },
   { href: '/biblia', label: 'Bíblia', icon: 'bible' },
-  { href: '/oracoes', label: 'Orações Eucarísticas', icon: 'pray' },
+  { href: '/oracoes', label: 'Orações', icon: 'pray' },
   { href: '/rosario', label: 'Santo Terço', icon: 'circle' },
   { href: '/confissao', label: 'Confissão', icon: 'sparkles' },
   { href: '/produtividade', label: 'Produtividade', icon: 'check' },
