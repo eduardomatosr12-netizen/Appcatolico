@@ -11,6 +11,10 @@ export const metadata: Metadata = {
   title: "Lumen — App Católico",
   description: "Liturgia, Bíblia, Orações, Terço, Confissão e mais",
   manifest: "/manifest.json",
+  icons: {
+    icon: "/icon.svg",
+    apple: "/icon-192.png",
+  },
   appleWebApp: {
     capable: true,
     statusBarStyle: "black-translucent",
