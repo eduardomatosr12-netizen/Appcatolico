@@ -1,5 +1,11 @@
 import { initializeApp, type FirebaseApp } from "firebase/app";
-import { getFirestore, type Firestore } from "firebase/firestore";
+import {
+  initializeFirestore,
+  persistentLocalCache,
+  persistentMultipleTabManager,
+  type Firestore,
+} from "firebase/firestore";
+import { getAuth, type Auth } from "firebase/auth";
 
 const firebaseConfig = {
   apiKey: "AIzaSyBEqhAeXJZfaAUts-QKVjhULr-czTKPTjM",
@@ -13,6 +19,7 @@ const firebaseConfig = {
 
 let app: FirebaseApp;
 let db: Firestore;
+let authInstance: Auth;
 
 function getClientApp(): FirebaseApp {
   if (!app) {
@@ -23,9 +30,20 @@ function getClientApp(): FirebaseApp {
 
 export function getDb(): Firestore {
   if (!db) {
-    db = getFirestore(getClientApp());
+    db = initializeFirestore(getClientApp(), {
+      localCache: persistentLocalCache({
+        tabManager: persistentMultipleTabManager(),
+      }),
+    });
   }
   return db;
+}
+
+export function getAuthInstance(): Auth {
+  if (!authInstance) {
+    authInstance = getAuth(getClientApp());
+  }
+  return authInstance;
 }
 
 let analyticsInstance: ReturnType<typeof import("firebase/analytics")["getAnalytics"]> | null = null;

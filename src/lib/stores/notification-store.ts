@@ -1,6 +1,15 @@
 'use client';
 
 import { create } from 'zustand';
+import {
+  collection,
+  doc,
+  onSnapshot,
+  setDoc,
+  deleteDoc,
+  writeBatch,
+} from 'firebase/firestore';
+import { getDb } from '@/lib/firebase';
 import type { AppNotification, NotificationPermission } from '@/types/notification';
 
 const STORAGE_KEY = 'lumen-notifications';
@@ -27,8 +36,11 @@ interface NotificationState {
   permission: NotificationPermission;
   panelOpen: boolean;
   toastQueue: AppNotification[];
+  userId: string | null;
+  unsubscribe: (() => void) | null;
 
   initialize: () => void;
+  setUserId: (uid: string | null) => void;
   addNotification: (n: Omit<AppNotification, 'id' | 'timestamp' | 'read'>) => void;
   markAsRead: (id: string) => void;
   markAllAsRead: () => void;
@@ -46,6 +58,8 @@ export const useNotificationStore = create<NotificationState>((set, get) => ({
   permission: 'default',
   panelOpen: false,
   toastQueue: [],
+  userId: null,
+  unsubscribe: null,
 
   initialize: () => {
     const notifications = loadNotifications();
@@ -54,6 +68,36 @@ export const useNotificationStore = create<NotificationState>((set, get) => ({
       permission = Notification.permission as NotificationPermission;
     }
     set({ notifications, permission });
+  },
+
+  setUserId: (uid) => {
+    const { unsubscribe: prevUnsub } = get();
+    if (prevUnsub) {
+      prevUnsub();
+    }
+
+    set({ userId: uid, unsubscribe: null });
+
+    if (!uid) {
+      const notifications = loadNotifications();
+      set({ notifications });
+      return;
+    }
+
+    const colRef = collection(getDb(), 'users', uid, 'notifications');
+
+    const unsub = onSnapshot(colRef, (snapshot) => {
+      const notifications: AppNotification[] = [];
+      snapshot.forEach((docSnap) => {
+        notifications.push({ id: docSnap.id, ...docSnap.data() } as AppNotification);
+      });
+      notifications.sort((a, b) => b.timestamp - a.timestamp);
+      const capped = notifications.slice(0, MAX_NOTIFICATIONS);
+      set({ notifications: capped });
+      saveNotifications(capped);
+    });
+
+    set({ unsubscribe: unsub });
   },
 
   addNotification: (n) => {
@@ -67,6 +111,14 @@ export const useNotificationStore = create<NotificationState>((set, get) => ({
     set((state) => {
       const notifications = [notification, ...state.notifications].slice(0, MAX_NOTIFICATIONS);
       saveNotifications(notifications);
+
+      if (state.userId) {
+        const docRef = doc(getDb(), 'users', state.userId, 'notifications', notification.id);
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        const { id: _notifId, ...data } = notification;
+        setDoc(docRef, data).catch(() => {});
+      }
+
       return { notifications, toastQueue: [...state.toastQueue, notification] };
     });
 
@@ -87,6 +139,12 @@ export const useNotificationStore = create<NotificationState>((set, get) => ({
     set((state) => {
       const notifications = state.notifications.map((n) => (n.id === id ? { ...n, read: true } : n));
       saveNotifications(notifications);
+
+      if (state.userId) {
+        const docRef = doc(getDb(), 'users', state.userId, 'notifications', id);
+        setDoc(docRef, { read: true }, { merge: true }).catch(() => {});
+      }
+
       return { notifications };
     }),
 
@@ -94,6 +152,16 @@ export const useNotificationStore = create<NotificationState>((set, get) => ({
     set((state) => {
       const notifications = state.notifications.map((n) => ({ ...n, read: true }));
       saveNotifications(notifications);
+
+      if (state.userId) {
+        const batch = writeBatch(getDb());
+        for (const n of notifications) {
+          const docRef = doc(getDb(), 'users', state.userId, 'notifications', n.id);
+          batch.update(docRef, { read: true });
+        }
+        batch.commit().catch(() => {});
+      }
+
       return { notifications };
     }),
 
@@ -101,11 +169,28 @@ export const useNotificationStore = create<NotificationState>((set, get) => ({
     set((state) => {
       const notifications = state.notifications.filter((n) => n.id !== id);
       saveNotifications(notifications);
+
+      if (state.userId) {
+        const docRef = doc(getDb(), 'users', state.userId, 'notifications', id);
+        deleteDoc(docRef).catch(() => {});
+      }
+
       return { notifications };
     }),
 
   clearAll: () => {
+    const { userId, notifications } = get();
     saveNotifications([]);
+
+    if (userId) {
+      const batch = writeBatch(getDb());
+      for (const n of notifications) {
+        const docRef = doc(getDb(), 'users', userId, 'notifications', n.id);
+        batch.delete(docRef);
+      }
+      batch.commit().catch(() => {});
+    }
+
     set({ notifications: [] });
   },
 

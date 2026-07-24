@@ -1,23 +1,16 @@
 'use client';
 
-import { useEffect, useReducer, useState } from 'react';
+import { useEffect, useReducer } from 'react';
 import { fetchBibleChapter } from '@/services/bibleService';
 import { BIBLE_BOOKS_MAP } from '@/data/bible-versions';
+import { useAuthStore } from '@/lib/stores/auth-store';
+import { useSyncedSingleDoc } from '@/lib/services/sync-service';
 import type { BibleChapter } from '@/types/bible';
 
 const HIGHLIGHTS_KEY = 'lumen_bible_highlights';
 
-function loadHighlights(): Record<string, boolean> {
-  if (typeof window === 'undefined') return {};
-  try {
-    return JSON.parse(localStorage.getItem(HIGHLIGHTS_KEY) || '{}');
-  } catch {
-    return {};
-  }
-}
-
-function saveHighlights(highlights: Record<string, boolean>) {
-  localStorage.setItem(HIGHLIGHTS_KEY, JSON.stringify(highlights));
+interface HighlightsData {
+  verseKeys: Record<string, boolean>;
 }
 
 function verseKey(bookId: string, chapter: number, verse: number) {
@@ -52,7 +45,15 @@ function reducer(_state: State, action: Action): State {
 
 export function BibleReader({ versionId, bookId, chapter, onBack, onChapterChange }: BibleReaderProps) {
   const [state, dispatch] = useReducer(reducer, { status: 'loading' });
-  const [highlights, setHighlights] = useState<Record<string, boolean>>(() => loadHighlights());
+  const user = useAuthStore((s) => s.user);
+  const userId = user?.uid ?? null;
+
+  const { data: highlightsData, save: saveHighlights } = useSyncedSingleDoc<HighlightsData>(
+    'bibleHighlights/single',
+    userId,
+    HIGHLIGHTS_KEY,
+    { verseKeys: {} }
+  );
 
   const book = BIBLE_BOOKS_MAP.get(bookId);
 
@@ -75,16 +76,13 @@ export function BibleReader({ versionId, bookId, chapter, onBack, onChapterChang
 
   function toggleHighlight(verseNumber: number) {
     const key = verseKey(bookId, chapter, verseNumber);
-    setHighlights((prev) => {
-      const next = { ...prev };
-      if (next[key]) {
-        delete next[key];
-      } else {
-        next[key] = true;
-      }
-      saveHighlights(next);
-      return next;
-    });
+    const next = { ...highlightsData.verseKeys };
+    if (next[key]) {
+      delete next[key];
+    } else {
+      next[key] = true;
+    }
+    saveHighlights({ verseKeys: next });
   }
 
   if (state.status === 'loading') {
@@ -130,7 +128,7 @@ export function BibleReader({ versionId, bookId, chapter, onBack, onChapterChang
       <div className="bg-[#16161A] rounded-[24px] p-5 sm:p-8 md:p-10 border border-white/[0.03] shadow-[0_12px_40px_rgba(0,0,0,0.5)]">
         <div className="flex flex-col gap-4">
           {data.verses.map((verse) => {
-            const isHighlighted = !!highlights[verseKey(bookId, chapter, verse.number)];
+            const isHighlighted = !!highlightsData.verseKeys[verseKey(bookId, chapter, verse.number)];
             return (
               <div
                 key={verse.number}

@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { ThemeProvider } from "@/components/layout/theme-provider";
+import { AuthProvider } from "@/components/auth/auth-provider";
 import { DesktopSidebar } from "@/components/navigation/desktop-sidebar";
 import { MobileNav } from "@/components/navigation/mobile-nav";
 import { NotificationToast } from "@/components/ui/notification-toast";
@@ -53,19 +54,21 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             });
           }
         `}} />
-        <ThemeProvider>
-          <div className="flex min-h-screen w-full max-w-full bg-[#0B0B0E] text-gray-100 overflow-x-hidden relative font-sans">
-            <DesktopSidebar />
+        <AuthProvider>
+          <ThemeProvider>
+            <div className="flex min-h-screen w-full max-w-full bg-[#0B0B0E] text-gray-100 overflow-x-hidden relative font-sans">
+              <DesktopSidebar />
 
-            <main className="flex-1 min-h-screen flex flex-col bg-[#0B0B0E] md:ml-64 w-full max-w-full overflow-x-hidden">
-              <div className="w-full max-w-3xl mx-auto px-4 md:px-8 lg:px-12 py-6 md:py-8 pb-24 md:pb-8 flex flex-col gap-6 md:gap-8 overflow-x-hidden">
-                {children}
-              </div>
-            </main>
+              <main className="flex-1 min-h-screen flex flex-col bg-[#0B0B0E] md:ml-64 w-full max-w-full overflow-x-hidden">
+                <div className="w-full max-w-3xl mx-auto px-4 md:px-8 lg:px-12 py-6 md:py-8 pb-24 md:pb-8 flex flex-col gap-6 md:gap-8 overflow-x-hidden">
+                  {children}
+                </div>
+              </main>
 
-            <MobileNav />
-          </div>
-        </ThemeProvider>
+              <MobileNav />
+            </div>
+          </ThemeProvider>
+        </AuthProvider>
         <NotificationToast />
         <NotificationPanel />
       </body>

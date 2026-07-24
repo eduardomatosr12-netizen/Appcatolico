@@ -4,6 +4,8 @@ import { useState, useEffect, useRef } from 'react';
 import { SacredCard, SacredCardContent, SacredCardTitle } from '@/components/ui/sacred-card';
 import { playAlarmSound, stopAlarmSound, testAlarmSound } from '@/lib/utils/alarm-sound';
 import { useNotificationStore } from '@/lib/stores/notification-store';
+import { useAuthStore } from '@/lib/stores/auth-store';
+import { useSyncedCollection } from '@/lib/services/sync-service';
 import type { PrayerAlarm } from '@/types/productivity';
 
 const STORAGE_KEY = 'lumen-alarms';
@@ -17,15 +19,22 @@ const defaults: PrayerAlarm[] = [
 ];
 const dayNames = ['Dom','Seg','Ter','Qua','Qui','Sex','Sáb'];
 
-function load(): PrayerAlarm[] { try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || 'null') || defaults; } catch { return defaults; } }
-
 export function PrayerAlarms() {
-  const [alarms, setAlarms] = useState<PrayerAlarm[]>(() => load());
+  const user = useAuthStore((s) => s.user);
+  const userId = user?.uid ?? null;
+
+  const { data: alarms, update } = useSyncedCollection<PrayerAlarm>(
+    'alarms',
+    userId,
+    STORAGE_KEY
+  );
+
   const [triggeredAlarm, setTriggeredAlarm] = useState<string | null>(null);
   const checkedRef = useRef<Set<string>>(new Set());
   const lastMinuteRef = useRef<string>('');
   const addNotification = useNotificationStore((s) => s.addNotification);
-  useEffect(() => { if (alarms.length) localStorage.setItem(STORAGE_KEY, JSON.stringify(alarms)); }, [alarms]);
+
+  const effectiveAlarms = alarms.length > 0 ? alarms : defaults;
 
   useEffect(() => {
     const tick = () => {
@@ -38,7 +47,7 @@ export function PrayerAlarms() {
       if (minuteKey === lastMinuteRef.current) return;
       lastMinuteRef.current = minuteKey;
 
-      alarms.forEach((alarm) => {
+      effectiveAlarms.forEach((alarm) => {
         if (!alarm.enabled) return;
         if (!alarm.daysOfWeek.includes(currentDay)) return;
         if (alarm.hour !== currentHour || alarm.minute !== currentMinute) return;
@@ -72,21 +81,31 @@ export function PrayerAlarms() {
       clearInterval(interval);
       document.removeEventListener('visibilitychange', handleVisibility);
     };
-  }, [alarms, addNotification]);
+  }, [effectiveAlarms, addNotification]);
 
   const dismissAlarm = () => {
     stopAlarmSound();
     setTriggeredAlarm(null);
   };
 
-  const toggle = (id: string) => setAlarms((prev) => prev.map((a) => a.id === id ? { ...a, enabled: !a.enabled } : a));
-  const toggleDay = (alarmId: string, day: number) => setAlarms((prev) => prev.map((a) => {
-    if (a.id !== alarmId) return a;
-    const days = a.daysOfWeek.includes(day) ? a.daysOfWeek.filter((d) => d !== day) : [...a.daysOfWeek, day].sort();
-    return { ...a, daysOfWeek: days };
-  }));
+  const toggle = (id: string) => {
+    const alarm = effectiveAlarms.find((a) => a.id === id);
+    if (alarm) {
+      update({ ...alarm, enabled: !alarm.enabled });
+    }
+  };
 
-  const activeAlarm = triggeredAlarm ? alarms.find((a) => a.id === triggeredAlarm) : null;
+  const toggleDay = (alarmId: string, day: number) => {
+    const alarm = effectiveAlarms.find((a) => a.id === alarmId);
+    if (alarm) {
+      const days = alarm.daysOfWeek.includes(day)
+        ? alarm.daysOfWeek.filter((d) => d !== day)
+        : [...alarm.daysOfWeek, day].sort();
+      update({ ...alarm, daysOfWeek: days });
+    }
+  };
+
+  const activeAlarm = triggeredAlarm ? effectiveAlarms.find((a) => a.id === triggeredAlarm) : null;
 
   return (
     <SacredCard><SacredCardTitle>Alarmes das Horas Litúrgicas</SacredCardTitle>
@@ -109,7 +128,7 @@ export function PrayerAlarms() {
       )}
 
       <SacredCardContent className="space-y-3 mt-3">
-        {alarms.map((alarm) => (
+        {effectiveAlarms.map((alarm) => (
           <div key={alarm.id} className={`rounded-[20px] border p-4 transition-all ${alarm.enabled ? 'border-[#C5A059]/20 bg-[#C5A059]/5' : 'border-white/5 opacity-50'}`}>
             <div className="flex items-center justify-between mb-2">
               <div><p className="text-sm font-medium text-gray-200">{alarm.title}</p><p className="text-xs text-[#8A8A8E]">{String(alarm.hour).padStart(2,'0')}:{String(alarm.minute).padStart(2,'0')}</p></div>

@@ -6,6 +6,8 @@ import { PillTabBar } from '@/components/ui/pill-tab-bar';
 import { SacredCard, SacredCardContent, SacredCardTitle } from '@/components/ui/sacred-card';
 import { Button } from '@/components/ui/button';
 import { examenItems, conclusionPrayer, churchCommandments, preparatoryPrayer, deadlySins } from '@/data/examen';
+import { useAuthStore } from '@/lib/stores/auth-store';
+import { useSyncedCollection } from '@/lib/services/sync-service';
 
 interface ConfessionRecord {
   id: string;
@@ -14,20 +16,6 @@ interface ConfessionRecord {
 }
 
 const CONFESSIONS_KEY = 'lumen_confession_history';
-
-function loadConfessions(): ConfessionRecord[] {
-  if (typeof window === 'undefined') return [];
-  try {
-    const raw = localStorage.getItem(CONFESSIONS_KEY);
-    return raw ? JSON.parse(raw) : [];
-  } catch {
-    return [];
-  }
-}
-
-function saveConfessions(records: ConfessionRecord[]) {
-  localStorage.setItem(CONFESSIONS_KEY, JSON.stringify(records));
-}
 
 const actsOfContrition = [
   {
@@ -49,13 +37,21 @@ const actsOfContrition = [
 ];
 
 export function ConfissaoPage() {
+  const user = useAuthStore((s) => s.user);
+  const userId = user?.uid ?? null;
+
+  const { data: confessions, add, remove } = useSyncedCollection<ConfessionRecord>(
+    'confessions',
+    userId,
+    CONFESSIONS_KEY
+  );
+
   const [activeTab, setActiveTab] = useState('exame');
 
   const [responses, setResponses] = useState<Record<string, boolean>>({});
   const [expandedId, setExpandedId] = useState<string | null>(null);
   const [showConclusion, setShowConclusion] = useState(false);
 
-  const [confessions, setConfessions] = useState<ConfessionRecord[]>(() => loadConfessions());
   const [newDate, setNewDate] = useState('');
   const [newNotes, setNewNotes] = useState('');
   const [showForm, setShowForm] = useState(false);
@@ -69,24 +65,22 @@ export function ConfissaoPage() {
       date: newDate,
       notes: newNotes.trim(),
     };
-    const updated = [...confessions, record].sort((a, b) => b.date.localeCompare(a.date));
-    setConfessions(updated);
-    saveConfessions(updated);
+    add(record);
     setNewDate('');
     setNewNotes('');
     setShowForm(false);
   }
 
   function removeConfession(id: string) {
-    const updated = confessions.filter((c) => c.id !== id);
-    setConfessions(updated);
-    saveConfessions(updated);
+    remove(id);
   }
 
   function formatDate(dateStr: string) {
     const d = new Date(dateStr + 'T00:00:00');
     return d.toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit', year: 'numeric' });
   }
+
+  const sortedConfessions = [...confessions].sort((a, b) => b.date.localeCompare(a.date));
 
   return (
     <>
@@ -196,7 +190,7 @@ export function ConfissaoPage() {
             </SacredCard>
           )}
 
-          {confessions.map((c) => (
+          {sortedConfessions.map((c) => (
             <SacredCard key={c.id}>
               <div className="flex items-start justify-between gap-3">
                 <div className="space-y-1">
