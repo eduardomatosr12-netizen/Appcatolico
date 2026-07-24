@@ -10,6 +10,8 @@ export function AuthScreen() {
   const [password, setPassword] = useState('');
   const [displayName, setDisplayName] = useState('');
   const [loading, setLoading] = useState(false);
+  const [switchingProfile, setSwitchingProfile] = useState<string | null>(null);
+  const [switchPassword, setSwitchPassword] = useState('');
 
   const { signIn, signUp, continueAsGuest, recentProfiles, switchProfile, removeProfile, authError, clearError } = useAuthStore();
 
@@ -31,13 +33,20 @@ export function AuthScreen() {
   }
 
   async function handleProfileSwitch(profile: { email: string }) {
+    setSwitchingProfile(profile.email);
+    setSwitchPassword('');
+    clearError();
+  }
+
+  async function handleProfileSwitchConfirm(e: React.FormEvent) {
+    e.preventDefault();
+    if (!switchingProfile) return;
     setLoading(true);
     clearError();
     try {
-      const profileData = recentProfiles.find((p) => p.email === profile.email);
-      if (profileData) {
-        await switchProfile(profile.email, '');
-      }
+      await switchProfile(switchingProfile, switchPassword);
+      setSwitchingProfile(null);
+      setSwitchPassword('');
     } catch {
       // Error handled by store
     } finally {
@@ -55,7 +64,7 @@ export function AuthScreen() {
           <p className="text-xs text-[#8A8A8E]">App Católico</p>
         </div>
 
-        {recentProfiles.length > 0 && (
+        {recentProfiles.length > 0 && !switchingProfile && (
           <div className="w-full space-y-3">
             <p className="text-[10px] uppercase tracking-wider text-[#6A6A6E] text-center">
               Perfis salvos
@@ -100,6 +109,54 @@ export function AuthScreen() {
               <div className="flex-1 h-px bg-white/5" />
             </div>
           </div>
+        )}
+
+        {switchingProfile && (
+          <SacredCard className="w-full">
+            <form onSubmit={handleProfileSwitchConfirm} className="space-y-4">
+              <div className="text-center">
+                <h2 className="font-serif text-lg font-bold text-white">Entrar como</h2>
+                <p className="text-xs text-[#8A8A8E] mt-1">{switchingProfile}</p>
+              </div>
+
+              <div>
+                <label className="text-[10px] uppercase tracking-wider text-[#8A8A8E] font-semibold block mb-1.5">
+                  Senha
+                </label>
+                <input
+                  type="password"
+                  value={switchPassword}
+                  onChange={(e) => setSwitchPassword(e.target.value)}
+                  placeholder="Sua senha"
+                  required
+                  autoComplete="current-password"
+                  className="w-full rounded-xl bg-[#0B0B0E] border border-white/10 px-4 py-2.5 text-sm text-white placeholder:text-gray-600 focus:outline-none focus:border-[#C5A059]/40"
+                />
+              </div>
+
+              {authError && (
+                <p className="text-xs text-red-400 text-center bg-red-400/10 rounded-xl px-3 py-2">
+                  {authError}
+                </p>
+              )}
+
+              <button
+                type="submit"
+                disabled={loading}
+                className="w-full rounded-xl bg-[#C5A059] px-4 py-3 text-sm font-bold text-[#0B0B0E] hover:bg-[#D4B87A] active:bg-[#B8943F] transition-colors disabled:opacity-50"
+              >
+                {loading ? 'Entrando...' : 'Entrar'}
+              </button>
+
+              <button
+                type="button"
+                onClick={() => { setSwitchingProfile(null); setSwitchPassword(''); clearError(); }}
+                className="w-full text-center text-xs text-[#6A6A6E] hover:text-[#8A8A8E] transition-colors"
+              >
+                Cancelar
+              </button>
+            </form>
+          </SacredCard>
         )}
 
         <SacredCard className="w-full">
