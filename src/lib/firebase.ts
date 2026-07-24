@@ -8,25 +8,14 @@ import {
 import { getAuth, type Auth } from "firebase/auth";
 
 const firebaseConfig = {
-  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
-  authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
-  projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
-  storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
-  appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
-  measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID,
+  apiKey: "AIzaSyBEqhAeXJZfaAUts-QKVjhULr-czTKPTjM",
+  authDomain: "catolico-77369.firebaseapp.com",
+  projectId: "catolico-77369",
+  storageBucket: "catolico-77369.firebasestorage.app",
+  messagingSenderId: "836974565993",
+  appId: "1:836974565993:web:c1a97660ebe211444960f8",
+  measurementId: "G-D8VVB8T9YB",
 };
-
-const requiredKeys = ["apiKey", "authDomain", "projectId", "appId"] as const;
-
-for (const key of requiredKeys) {
-  if (!firebaseConfig[key]) {
-    console.warn(
-      `[Lumen] Variável de ambiente NEXT_PUBLIC_FIREBASE_${key.toUpperCase()} não definida. ` +
-      `Verifique seu arquivo .env.local.`
-    );
-  }
-}
 
 let app: FirebaseApp;
 let db: Firestore;
