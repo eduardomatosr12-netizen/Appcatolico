@@ -277,17 +277,55 @@ export const novenas: NovenasPrayer[] = [
   {
     id: 'sao-jose-operario',
     title: 'São José Operário',
-    subtitle: '9 dias de oração ao protetor do trabalho',
+    subtitle: 'Novena ao protetor do trabalho',
+    initialPrayer: 'Apresente sua intenção\n\nEm nome do Pai, do Filho e do Espírito Santo.\n\nGlorioso São José, modelo de todos os que se dedicam ao trabalho, obtende-me a graça de trabalhar com espírito de penitência para expiação de meus numerosos pecados;\n\nDe trabalhar com consciência, pondo o culto do dever acima de minhas inclinações;\n\nDe trabalhar com recolhimento e alegria, olhando como uma honra empregar e desenvolver pelo trabalho os dons recebidos de Deus;\n\nDe trabalhar com ordem, paz, moderação e paciência, sem nunca recuar perante o cansaço e as dificuldades;\n\nDe trabalhar, sobretudo com pureza de intenção e com desapego de mim mesmo, tendo sempre diante dos olhos a morte e a conta que deverei dar do tempo perdido, dos talentos inutilizados, do bem omitido e da vã complacência nos sucessos, tão funesta à obra de Deus!\n\nTudo por Jesus, tudo por Maria, tudo à vossa imitação, oh! Patriarca São José! Tal será a minha divisa na vida e na morte. Amém.',
+    finalPrayer: 'Glorioso São José, que fostes exaltado pelo Eterno Pai, obedecido pelo Verbo Encarnado, favorecido pelo Espírito Santo e amado pela Virgem Maria; louvo e bendigo a Santíssima Trindade pelos privilégios e méritos com que vos enriqueceu. Sois poderosíssimo e jamais se ouviu dizer que alguém tenha recorrido a vós e fosse por vós desamparado. Sois o consolador dos aflitos, o amparo dos míseros e o advogado dos pecadores. Acolhei, pois, com bondade paternal a quem vos invoca com filial confiança e alcançai-me as graças que vos peço nesta novena. Eu vos escolho por meu especial protetor. Sede, depois de Jesus e Maria, minha consolação nesta terra, meu refúgio nas desgraças, meu guia nas incertezas, meu conforto nas tribulações, meu pai solícito em todas as necessidades. Obtende-me, finalmente, como coroa dos vossos favores, uma boa e santa morte na graça de Nosso Senhor. Amém.',
     days: [
-      { day: 1, title: 'Primeiro Dia', text: 'Ó São José Operário, que trabalhais com as mãos para sustentar a Sagrada Família, dai-nos a graça de valorizarmos o trabalho como participation na obra criadora de Deus. Que, imitando vossa dedicação, trabalhemos sempre com retidão, honestidade e amor. Amém.' },
-      { day: 2, title: 'Segundo Dia', text: 'Ó São José, que em Nazaré vivestes uma vida de trabalho humilde e digno, dai-nos a coragem de aceitarmos os trabalhos humildes e de termos paciência nas dificuldades. Que, como vós, encontremos dignidade em toda forma de trabalho honesto. Amém.' },
-      { day: 3, title: 'Terceiro Dia', text: 'Ó São José Operário, que fostes um mestre para Jesus nos primeiros anos de sua vida, dai-nos a graça de sermos bons mestres e educadores para as novas gerações. Que, imitando vossa sabedoria prática, ensinemos com paciência e amor. Amém.' },
-      { day: 4, title: 'Quarto Dia', text: 'Ó São José, que no dia 1º de maio a Igreja celebra vossa festa litúrgica, dai-nos a graça de celebrarmos este dia com fé e alegria. Que a festa dos trabalhadores seja um lembrete da dignidade de todo trabalho e da importância do descanso dominical. Amém.' },
-      { day: 5, title: 'Quinto Dia', text: 'Ó São José Operário, que fostes um exemplo de silêncio e de contemplação em meio ao trabalho, dai-nos a graça de encontrarmos momentos de oração e de silêncio em meio à rotina diária. Que nossa vida inteira seja uma oração contínua a Deus. Amém.' },
-      { day: 6, title: 'Sexto Dia', text: 'Ó São José, que trabalhais com madeira para construir instrumentos de uso diário, dai-nos a graça de sermos criativos e inventivos em nossos trabalhos. Que, imitando vossa arte, contribuamos para a construção de um mundo mais justo e mais humano. Amém.' },
-      { day: 7, title: 'Sétimo Dia', text: 'Ó São José Operário, que em vossa vida terrena fostes um exemplo de fidelidade e de perseverança, dai-nos a coragem de perseverarmos em meio às dificuldades do trabalho. Que, imitando vossa firmeza, não desistamos diante dos obstáculos. Amém.' },
-      { day: 8, title: 'Oitavo Dia', text: 'Ó São José, que a Igreja invoca como patrono dos trabalhadores, dai-nos a graça de sermos solidários com todos que trabalham e de promovermos condições de trabalho dignas para todos. Que, imitando vossa justiça, construamos uma sociedade mais fraterna. Amém.' },
-      { day: 9, title: 'Nono Dia', text: 'Ó São José Operário, neste último dia da novena, renovamos nossa consagração a vós e nossa confiança em vossa intercessão. Dai-nos a graça de sermos sempre fiéis à vontade de Deus em nosso trabalho, trabalhando sempre com retidão, honestidade e amor. Que vossa vida seja sempre nosso modelo e nossa inspiração. Amém.' },
+      {
+        day: 1,
+        title: 'Primeiro Dia - São José, Pai Nutrício de Jesus',
+        text: 'Amabilíssimo São José, que tivestes a honra de alimentar, educar e abraçar o Messias, a quem tantos profetas e reis desejaram ver e não viram, obtende-me, com o perdão das minhas culpas, a graça da oração humilde e confiante que tudo alcança de Deus. Acolhei com bondade paternal os pedidos que vos faço nesta novena e apresentai-os a Jesus, que se dignou obedecer-vos na terra. Amém.\n\nV/. Rogai por nós, São José, pai nutrício de Jesus.\nR/. Para que sejamos dignos das promessas de Cristo.\n\nOração Final e ladainha em honra a São José.'
+      },
+      {
+        day: 2,
+        title: 'Segundo Dia - São José, Esposo da Virgem Maria',
+        text: 'São José, castíssimo Esposo da Mãe de Deus e guarda fiel da sua virgindade, obtende-me, por Maria, a pureza do corpo e da alma e a vitória em todas as tentações e dificuldades. Recomendo-vos também os esposos cristãos, para que, unidos com sincero amor e fortalecidos pela graça, amparem-se mutuamente nos sofrimentos e tribulações da vida. Amém.\n\nV/. Rogai por nós, São José, esposo da Mãe de Deus.\nR/. Para que sejamos dignos das promessas de Cristo.\n\nOração Final e ladainha em honra a São José.'
+      },
+      {
+        day: 3,
+        title: 'Terceiro Dia - São José, Chefe da Sagrada Família',
+        text: 'Glorioso São José, que gozastes durante tantos anos da presença e filial afeição de Jesus, a quem tivestes a dita de alimentar e vestir, juntamente com vossa Santíssima Esposa, eu vos suplico me alcanceis o dom inefável de sempre viver em união com Deus pela graça santificante. Obtende também para os pais cristãos a graça do fiel cumprimento de seus graves deveres de educadores e, aos filhos, o respeito e a obediência, segundo o exemplo do Menino Jesus. Amém.\n\nV/. Rogai por nós, São José, chefe da Sagrada Família.\nR/. Para que sejamos dignos das promessas de Cristo.\n\nOração Final e ladainha em honra a São José.'
+      },
+      {
+        day: 4,
+        title: 'Quarto Dia - São José, Exemplo de Fidelidade',
+        text: 'Fidelíssimo São José, que nos destes tão belo exemplo no fiel cumprimento de vossos deveres de protetor da Santíssima Virgem e de pai nutrício do Redentor, rogo-vos, me obtenhais a graça de imitar o vosso exemplo na fidelidade a todos os deveres do meu estado de vida. Ajudai-me a ser fiel nas coisas pequenas, para o ser também nas grandes. Alcançai essa mesma graça para todos os que me são caros nesta vida, a fim de chegarmos a gozar no céu o prêmio prometido aos que forem fiéis até a morte. Amém.\n\nV/. Rogai por nós, São José, exemplo de fidelidade.\nR/. Para que sejamos dignos das promessas de Cristo.\n\nOração Final e ladainha em honra a São José.'
+      },
+      {
+        day: 5,
+        title: 'Quinto Dia - São José, Espelho de Paciência',
+        text: 'Bondoso São José, que suportastes com heroica paciência as provações e adversidades na viagem a Belém, na fuga para o Egito durante a vida oculta em Nazaré e me destes o exemplo de admirável conformidade com a vontade de Deus, obtende-me a virtude da paciência nas dificuldades de cada dia. Alcançai também invencível paciência a todos os que suportam pesadas cruzes, a fim de que se unam sempre mais a Jesus, divino modelo de mansidão e paciência. Amém.\n\nV/. Rogai por nós, São José, espelho de paciência.\nR/. Para que sejamos dignos das promessas de Cristo.\n\nOração Final e ladainha em honra a São José.'
+      },
+      {
+        day: 6,
+        title: 'Sexto Dia - São José, Modelo dos Operários',
+        text: 'Humilde São José, que vivendo em pobreza dignificastes a vossa profissão pelo trabalho constante e vos sentistes feliz em servir a Jesus e a Maria com o fruto de vossos suores, alcançai-me amor ao trabalho, que me foi imposto como dever de estado, procurando cumprir nisso sempre a vontade de Deus. Protegei os lares dos trabalhadores do Brasil contra as influências nefastas dos inimigos de Cristo e da Santa Igreja. Obtende-lhes a graça de santificarem o seu trabalho, pela reta intenção, em tudo conformados com os desígnios da Divina Providência. Amém.\n\nV/. Rogai por nós, São José, modelo dos operários.\nR/. Para que sejamos dignos das promessas de Cristo.\n\nOração Final e ladainha em honra a São José.'
+      },
+      {
+        day: 7,
+        title: 'Sétimo Dia - São José, Protetor da Santa Igreja',
+        text: 'Glorioso Patriarca São José, Protetor e Padroeiro da Igreja Universal, obtende-me a graça de amar a Igreja como Mãe e de a honrar como verdadeiro discípulo de Cristo. Rogo-vos que veleis sobre o seu Corpo Místico, como outrora velastes sobre Jesus e Maria. Protegei o Santo Padre e os Bispos, os Sacerdotes e os Religiosos. Alcançai-lhes santidade de vida e eficácia no apostolado. Guardai a inocência da infância, a castidade da juventude, a honestidade do lar, a ordem e a paz da sociedade. Amém.\n\nV/. Rogai por nós, São José, protetor da Santa Igreja.\nR/. Para que sejamos dignos das promessas de Cristo.\n\nOração Final e ladainha em honra a São José.'
+      },
+      {
+        day: 8,
+        title: 'Oitavo Dia - São José, Consolo dos Enfermos',
+        text: 'Compassivo São José, esperança dos doentes e necessitados, valei-me em todas as enfermidades e tribulações, alcançando-me plena conformidade com os admiráveis desígnios de Deus. Obtende-me também para mim e para todos pelos quais rezo nesta novena, a cura das enfermidades espirituais, que são as paixões desordenadas, fraquezas, faltas e pecados, e protegei-nos contra as tentações do inimigo da nossa salvação. Amém.\n\nV/. Rogai por nós, São José, consolo dos enfermos.\nR/. Para que sejamos dignos das promessas de Cristo.\n\nOração Final e ladainha em honra a São José.'
+      },
+      {
+        day: 9,
+        title: 'Nono Dia - São José, Padroeiro dos Moribundos',
+        text: 'Ditoso São José, que morrendo nos braços de Jesus e Maria, partistes deste mundo ornado de virtudes e enriquecido de méritos, assisti-me na hora suprema e decisiva da minha vida contra os ataques do poder infernal. Obtende-me a graça de morrer confortado com os Santos Sacramentos, necessários para a minha salvação. Tende compaixão de todos os agonizantes, alcançando-lhes a graça da salvação por intermédio de Maria, vossa Santíssima Esposa. Amém.\n\nV/. Rogai por nós, São José, padroeiro dos moribundos.\nR/. Para que sejamos dignos das promessas de Cristo.\n\nOração Final e ladainha em honra a São José.'
+      },
     ],
   },
   {
