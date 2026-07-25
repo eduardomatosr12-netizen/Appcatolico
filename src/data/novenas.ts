@@ -493,17 +493,55 @@ export const novenas: NovenasPrayer[] = [
   {
     id: 'sao-maximiliano-kolbe',
     title: 'São Maximiliano Kolbe',
-    subtitle: '9 dias de oração ao mártir de Auschwitz',
+    subtitle: 'Novena ao mártir de Auschwitz',
+    initialPrayer: 'Senhor, vinde ao nosso encontro neste dia, em que estamos aqui reunidos para rememorar a vida do Fr. Maximiliano Maria Kolbe e as obras que ele fez em vosso nome aqui na Terra, e pedir a sua intercessão. Fazei de nós servidores do reino, pescadores de homens e amantes de vossa Santíssima Mãe.\n\nÓ Maria, rogai por nós, para que esta novena transforme nossos corações, melhore nossas atitudes, aumente nossa fé e nos torne felizes.',
+    finalPrayer: 'Enviai-nos em missão, Senhor, para que até o próximo encontro estejamos firmes em vosso caminho e dispostos a dar a vida pelo irmão, amando e perdoando sem medida. Que, assim como São Maximiliano testemunhou a Cristo, consigamos também nós dar os mesmos passos e frutos. Fazei de nós vosso instrumento. Cuidai de nós concedendo a vossa bênção de cada dia.\n\nÓ Maria, concebida sem pecado, rogai por nós que recorremos a vós e por todos quantos não recorrem, especialmente pelos inimigos da Santa Igreja e por todos quantos são a vós recomendados.\n\nPai Nosso; Ave-Maria; Glória ao Pai.',
     days: [
-      { day: 1, title: 'Primeiro Dia', text: 'Ó São Maximiliano Kolbe, mártir de Auschwitz, que morrestes num campo de concentração nazista por oferecer vossa vida em lugar de um pai de família, intercedei por nós. Dai-nos a graça de sermos generosos ao ponto de dar nossa vida pelos irmãos. Pai Maximiliano,保佑-nos em todas as nossas necessidades. Amém.' },
-      { day: 2, title: 'Segundo Dia', text: 'Ó São Maximiliano, que fundastes a Milícia da Imaculada para combater os erros do modernismo, dai-nos a graça de sermos fiéis à Virgem Maria e de combatermos os erros do nosso tempo. Que, imitando vossa coragem, defendamos a fé com firmeza e amor. Amém.' },
-      { day: 3, title: 'Terceiro Dia', text: 'Ó São Maximiliano Kolbe, que criastes a cidade de Niepokalanów como um centro de evangelização pela mídia, dai-nos a graça de utilizarmos os meios de comunicação para difundir a fé e o amor a Cristo. Que, imitando vossa iniciativa, sejamos apóstolos da mídia no mundo contemporâneo. Amém.' },
-      { day: 4, title: 'Quarto Dia', text: 'Ó São Maximiliano, que fostes um exemplo de amor à Virgem Maria, dai-nos a graça de sermos devotos de Nossa Senhora. Que, imitando vossa devoção mariana, recorramos sempre a vossa proteção em todas as necessidades. Amém.' },
-      { day: 5, title: 'Quinto Dia', text: 'Ó São Maximiliano Kolbe, que fostes canonizado pelo Papa João Paulo II em 1982 como mártir da caridade, dai-nos a graça de sermos mártires do amor no dia a dia. Que, imitando vossa generosidade, ofereçamos nossa vida pelo próximo. Amém.' },
-      { day: 6, title: 'Sexto Dia', text: 'Ó São Maximiliano, que em Auschwitz oferecestes vossa vida em lugar do pai de família Franciszek Gajowniczek, dai-nos a graça de sermos generosos ao ponto de dar nossa vida pelos irmãos. Que, imitando vossa caridade, amemos até o extremo. Amém.' },
-      { day: 7, title: 'Sétimo Dia', text: 'Ó São Maximiliano Kolbe, que foste um modelo de perseverança nas tribulações, dai-nos a coragem de perseverarmos em meio às dificuldades da vida. Que, imitando vossa firmeza na fé, não desistamos diante dos obstáculos. Amém.' },
-      { day: 8, title: 'Oitavo Dia', text: 'Ó São Maximiliano, que foste um apóstolo da imprensa católica, dai-nos a graça de sermos fiéis à leitura da Palavra de Deus e à formação da fé. Que, imitando vossa dedicação, cultivemos sempre a fé através da leitura e do estudo. Amém.' },
-      { day: 9, title: 'Nono Dia', text: 'Ó São Maximiliano Kolbe, neste último dia da novena, renovamos nossa confiança em vossa intercessão. Dai-nos a graça de sermos sempre fiéis a Cristo, de amarmos a Virgem Maria e de daremos nossa vida pelos irmãos. Que vossa vida seja sempre nosso modelo e nossa inspiração. Amém.' },
+      {
+        day: 1,
+        title: '1º Dia - "Deixemos que a Imaculada nos conduza."',
+        text: 'São Maximiliano Kolbe, padroeiro dos nossos difíceis tempos, ensinai-nos a confiar tudo e sempre à Maria Imaculada, nossa Mãe. Ensinai-nos a conquistar os nossos irmãos pela bondade. Ensinai-nos a vencer o mal com o bem. Ensinai-nos a buscar, em todas as coisas, o lado mais otimista, que nos faz generosos e alegres, que nos faz instrumentos da paz. Amém.'
+      },
+      {
+        day: 2,
+        title: '2º Dia - "Só o amor constrói."',
+        text: 'São Maximiliano Kolbe, vós, que vencestes a Segunda Guerra Mundial com a força do amor, mostrai a todos que só o amor constrói. Dizei ao mundo que o poder é o amor, e não mísseis, bombas biológicas ou atômicas. São Maximiliano, ajudai-nos a perdoar e a pedir perdão. Amém.'
+      },
+      {
+        day: 3,
+        title: '3º Dia - "Deixemos a Divina Providência agir em nós."',
+        text: 'São Maximiliano Kolbe, vós, que sabíeis permitir ao Espírito Santo agir em cada momento de vossa vida, mostrai a todos nós que o caminho certo é este: deixar tudo à Providência Divina. Queremos vos agradecer por ser um exemplo de consagração plena à Imaculada, tendo a fé de que ela fará tudo melhor. Nós vos pedimos: intercedei por nós, para que possamos ser instrumentos nas mãos da Imaculada, levando a outros a felicidade de também nela confiar. Amém.'
+      },
+      {
+        day: 4,
+        title: '4º Dia - "Entreguemos tudo à Imaculada a fim de que faça o que quiser."',
+        text: 'São Maximiliano, nós também desejamos renovar o nosso amor à Maria Imaculada. Necessitamos do acompanhamento da Mãe de Jesus. Ajudai-nos a lembrar sempre que ao nosso lado está presente a Imaculada, nossa Mãe. Amém.'
+      },
+      {
+        day: 5,
+        title: '5º Dia - "O amor de Deus nos constrange."',
+        text: 'São Maximiliano, vós, que cumpristes o novo mandamento do amor até o fim oferecendo-vos pelo irmão, ensinai-nos a contemplar o mistério do amor. Ajudai-nos a amar o amor e a crescer na caridade. Convencei-nos da necessidade de nos converter novamente. Dizei-nos que podemos mais, que devemos ser santos, porque Deus nos ama. Pedi a Imaculada por nós, para que tenhamos vontade de servir. Amém.'
+      },
+      {
+        day: 6,
+        title: '6º Dia - "O Espírito Santo age pela Imaculada, sua Esposa."',
+        text: 'São Maximiliano Kolbe, servo humilde da Imaculada, vós descobristes o segredo de renovar a face da Terra, de transformar e santificar tudo no Espírito Santo pela Imaculada. Nós vos pedimos: velai por nós. Conduzi-nos pelos caminhos justos, para que saibamos escutar a Palavra de Deus e conservá-la em nosso coração. Ensinai-nos onde está a verdade. Mostrai-nos o exemplo da Imaculada — cheia do Espírito Santo — para que nós produzamos dia a dia os frutos do amor, da paz, da alegria, da paciência, da bondade, da fidelidade e da liberdade. Amém.'
+      },
+      {
+        day: 7,
+        title: '7º Dia - "O ódio divide, separa e destrói, enquanto o amor une, edifica, dá paz."',
+        text: 'São Maximiliano Kolbe, zeloso missionário do Evangelho e filho predileto da Igreja, dai coragem aos católicos para anunciar a Boa-Nova da salvação até os confins da Terra. Inspirai-nos, para que cada um de nós edifique a Igreja com o testemunho da própria vida na fé e no amor. Ajudai-nos a renovar a nossa fidelidade ao Papa e a empenhar-nos no seu serviço, para que todos os cristãos sejam unidos, tornando-se um só corpo ao redor do único Mestre e Pastor Jesus Cristo, que é o caminho, a verdade e a vida. Amém.'
+      },
+      {
+        day: 8,
+        title: '8º Dia - "Esforçai-vos por suportar os defeitos uns dos outros, porque este é o amor maior."',
+        text: 'São Maximiliano Kolbe, vós, que doastes a vida por um pai de família, renovai as nossas famílias. Padroeiro dos casais e das famílias, fazei com que os casais se amem reciprocamente, que vivam na fidelidade até a morte, que os maridos respeitem a dignidade das esposas. Dizei aos nossos casais que a verdadeira felicidade se encontra na caridade recíproca, e que não procurem os interesses próprios no divórcio, no adultério, no aborto, na liberdade sexual, no prazer e no dinheiro. Ensinai que todos sejam generosos e perseverantes na oração, que observem os mandamentos e vivam na graça santificante. Amém.'
+      },
+      {
+        day: 9,
+        title: '9º Dia - "Na base de cada boa ação há esforço e sacrifício."',
+        text: 'São Maximiliano Kolbe, vós, que consolastes e servistes, como sacerdote, aos prisioneiros, e vos consumastes no martírio por amor ao próximo, transformai os homens de hoje no mundo inteiro. Admirando a vossa coragem, força, fé e caridade, sejam capazes de doação, dedicação, disposição, generosidade, sinceridade, solidariedade, justiça e respeito mútuo. Infundi em todos nós o desejo de empenhar-nos na construção do reino de Deus, usando todos os meios acessíveis, e até doar a nossa própria vida. São Maximiliano, mártir pelo amor e pela fé, rogai por nós. Amém.'
+      },
     ],
   },
   {
