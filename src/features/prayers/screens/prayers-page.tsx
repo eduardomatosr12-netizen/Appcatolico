@@ -136,7 +136,7 @@ function NovenasView() {
         {selectedNovenas.initialPrayer && (
           <SacredCard variant="accent">
             <h3 className="font-serif text-sm md:text-base font-semibold text-[#C5A059] mb-3">
-              Oração inicial para todos os dias
+              Oração inicial (rezar todos os dias)
             </h3>
             <p className="text-base md:text-lg leading-relaxed text-gray-300 whitespace-pre-line">
               {selectedNovenas.initialPrayer}
@@ -169,7 +169,7 @@ function NovenasView() {
         {selectedNovenas.finalPrayer && (
           <SacredCard variant="accent">
             <h3 className="font-serif text-sm md:text-base font-semibold text-[#C5A059] mb-3">
-              Oração final
+              Oração final (rezar todos os dias)
             </h3>
             <p className="text-base md:text-lg leading-relaxed text-gray-300 whitespace-pre-line">
               {selectedNovenas.finalPrayer}
