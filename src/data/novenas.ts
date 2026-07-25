@@ -671,17 +671,55 @@ export const novenas: NovenasPrayer[] = [
   {
     id: 'sagrada-familia',
     title: 'Sagrada Família',
-    subtitle: '9 dias de oração à Família de Nazaré',
+    subtitle: 'Novena à Família de Nazaré',
+    initialPrayer: 'Ó Deus, Pai e Criador de todas as coisas, que preparastes para vosso Filho e Senhor nosso uma família que lhe fosse digna, concedei-nos, pelos méritos desta novena que vamos rezar, os dons necessários para minha família e eu vivermos na paz e no amor. Jesus Cristo, ensinai-me a construir uma família feliz. Espírito Santo paráclito, infundi em mim o dom da compreensão, para conviver em união com os que me destes. Vós que sois um só Deus, eterno e santo. Amém.',
+    finalPrayer: 'Pai-Nosso, Ave-Maria, Glória.',
     days: [
-      { day: 1, title: 'Primeiro Dia', text: 'Ó Sagrada Família de Nazaré, Jesus, Maria e José, intercedei por nossas famílias. Dai-nos a graça de sermos unidos em amor e em fé, imitando a harmonia que reinava em vosso lar. Sagrada Família,保ogue nossas casas com vossa presença e vossa paz. Amém.' },
-      { day: 2, title: 'Segundo Dia', text: 'Ó Sagrada Família, que fostes um modelo de vida simples e humilde, dai-nos a graça de valorizarmos as coisas simples da vida. Que, imitando vossa simplicidade, vivamos com alegria e gratidão pelas bênçãos de Deus. Amém.' },
-      { day: 3, title: 'Terceiro Dia', text: 'Ó Sagrada Família, que Jesus cresceu em sabedoria e em graça sob a guide de Maria e José, dai-nos a graça de sermos bons pais e mães, guias e protetores de nossos filhos. Que, imitando vossa dedicação, formemos nossos filhos na fé. Amém.' },
-      { day: 4, title: 'Quarto Dia', text: 'Ó Sagrada Família, que em vossa vida houve momentos de alegria e de sofrimento, dai-nos a graça de aceitarmos todas as circunstâncias da vida com fé e esperança. Que, imitando vossa fortaleza, não desistamos diante das dificuldades. Amém.' },
-      { day: 5, title: 'Quinto Dia', text: 'Ó Sagrada Família, que a Igreja celebra vossa festa litúrgica no domingo dentro da octava do Natal, dai-nos a graça de celebrarmos esta festa com fé e alegria. Que a vossa festa seja um momento de renovação de nosso compromisso com a família. Amém.' },
-      { day: 6, title: 'Sexto Dia', text: 'Ó Sagrada Família, que fostes um modelo de obediência à vontade de Deus, dai-nos a graça de sermos obediens à vontade de Deus em nossas vidas. Que, imitando vossa obediência, aceitemos sempre o que Deus nos prepara. Amém.' },
-      { day: 7, title: 'Sétimo Dia', text: 'Ó Sagrada Família, que fostes um modelo de trabalho e de oração, dai-nos a graça de santificarmos nosso trabalho e nossa oração. Que, imitando vossa dedicação, vivamos sempre com espírito de oração em meio ao mundo. Amém.' },
-      { day: 8, title: 'Oitavo Dia', text: 'Ó Sagrada Família, que fostes um modelo de caridade e de serviço aos outros, dai-nos a graça de sermos generosos com os necessitados. Que, imitando vossa bondade, estendamos as mãos a todos que sofrem em nosso caminho. Amém.' },
-      { day: 9, title: 'Nono Dia', text: 'Ó Sagrada Família, neste último dia da novena, renovamos nossa consagração a vós e nossa confiança em vossa intercessão. Dai-nos a graça de sermos sempre fiéis à vontade de Deus, de vivermos em união e de caminharmos com fé e esperança para o encontro convosco. Que vossa vida seja sempre nosso modelo e nossa inspiração. Amém.' },
+      {
+        day: 1,
+        title: '1º Dia - Sagrada Família, exemplo de amor',
+        text: 'Reflexão:\nAo entrarmos na casa de Nazaré, encontramos uma família muito unida. Jesus, Maria e José sabiam que o amor que os unia vinha de Deus. José, na carpintaria, deixava transparecer toda a dedicação à sua família no trabalho que desempenhava construindo objetos primorosos. Maria solidificava um lar feliz, sabendo que a harmonia da família passava por suas mãos no pão que preparava e no carinho que dedicava a Jesus e José. O Menino Jesus, entre a carpintaria e a sua casa, amava com dedicação a seus pais. Esse amor foi formado nas dificuldades e na confiança em Deus. Quantos obstáculos foram ultrapassados, quantas situações foram vencidas, porque entre os três reinava o pleno amor divino, pois Deus fazia parte dessa família.\n\nOração final:\nSagrada Família, exemplo de amor, concedei à minha família o dom do divino amor, amor mútuo e verdadeiro, amor do coração do próprio Deus, livrando-nos de toda divisão. Amém.'
+      },
+      {
+        day: 2,
+        title: '2º Dia - Sagrada Família, exemplo de fé',
+        text: 'Reflexão:\nMaria teve fé no anjo Gabriel, que lhe trouxera a Palavra de Deus, comunicando-lhe que seria a mãe do Salvador. José viveu uma experiência de fé ao ouvir de um anjo, em sonho, o que devia fazer. Ambos foram com o Menino Jesus ao Templo e ouviram as promessas que Deus anunciara a Simeão e a Ana. Esta família viveu uma fé sincera e confiante em Deus, em todos os momentos e em todas as circunstâncias. Amém.\n\nOração final:\nSagrada Família, exemplo de fé, ensinai-me a viver a experiência da fé verdadeira e confiante, que abre a minha vida à ação de Deus. Amém.'
+      },
+      {
+        day: 3,
+        title: '3º Dia - Sagrada Família, exemplo de confiança',
+        text: 'Reflexão:\nConfiando em Deus, Maria disse "sim" ao Senhor e José a aceitou como esposa. Confiando em Deus, ambos foram de Nazaré a Belém, acolheram com alegria Jesus na manjedoura, fugiram para o Egito e retornaram a Nazaré. Confiando em Deus, Jesus, Maria e José seguiram para Jerusalém, perderam-se e reencontraram-se. Confiar em Deus não é apenas acreditar, mas agir e caminhar na força dessa fé.\n\nOração final:\nSagrada Família, exemplo de confiança, ajudai-me a vencer o medo e a confiar em Deus, que age em nossa vida protegendo-nos do mal. Amém.'
+      },
+      {
+        day: 4,
+        title: '4º Dia - Sagrada Família, exemplo de simplicidade',
+        text: 'Reflexão:\nO Rei dos reis e Senhor dos senhores nasceu na simplicidade. Modestos também eram a vida e os hábitos da Sagrada Família. Podemos dizer que José, Maria e Jesus viviam, trabalhavam, oravam e eram muito felizes em sua simplicidade. Tiveram a alegria de não conhecer as complicações da vida moderna e, na humilde casa de Nazaré, José e Maria formaram o Salvador da humanidade.\n\nOração final:\nSagrada Família, exemplo de simplicidade, ajudai-nos a descobrir nas coisas simples as maravilhas que existem em nossa vida. Amém.'
+      },
+      {
+        day: 5,
+        title: '5º Dia - Sagrada Família, exemplo de virtude',
+        text: 'Reflexão:\nMaria de Nazaré era a Virgem; e José, o carpinteiro, era o Justo. Jesus, nesta família, crescia em sabedoria, estatura e graça diante de Deus e dos homens. Por isso, podemos hoje olhar essa família e chamá-la de sagrada ou santa. Que alegria sentiam Jesus, Maria e José ao olharem sua família, que trilhava no caminho da santidade!\n\nOração final:\nSagrada Família, exemplo de virtude, ajudai-nos a viver a alegria de estarmos no caminho da santidade e do bem. Amém.'
+      },
+      {
+        day: 6,
+        title: '6º Dia - Sagrada Família, exemplo de disponibilidade',
+        text: 'Reflexão:\nCom que tranquilidade o bom Deus pôde confiar missão tão importante à família de Nazaré! Com o "sim" de Maria e a obediência de José, Jesus teve um lar em que a disponibilidade ao serviço do Senhor e dos irmãos era a regra. Jesus realizou sua primeira missão no ventre de sua mãe, quando Nossa Senhora, momentos após o anúncio do anjo, foi servir Isabel.\n\nOração final:\nSagrada Família, exemplo de disponibilidade, inspirai, por vosso exemplo, o espírito de serviço em minha família. Que possamos ajudar-nos mutuamente e auxiliar nossos irmãos mais necessitados. Amém.'
+      },
+      {
+        day: 7,
+        title: '7º Dia - Sagrada Família, exemplo de alegria',
+        text: 'Reflexão:\nA alegria forma os santos. Só podemos imaginar o lar de Nazaré como um lar alegre e feliz. Vivendo na simplicidade e tendo como única meta ser fiel a Deus, que outro sentimento poderia imperar em tal família? Confiando plenamente em Deus, Jesus, Maria e José estavam distantes da angústia causadas pelas incertezas. Sentindo-se uma comunidade reunida em torno do amor, podiam alegrar-se em sua confiança em Deus.\n\nOração final:\nSagrada Família, exemplo de alegria, auxiliai-nos a descobrir que somos felizes por sermos somente filhos de Deus. Afastai-nos da tentação de só valorizar os fatos tristes e esquecermos o amor de Deus para conosco. Amém.'
+      },
+      {
+        day: 8,
+        title: '8º Dia - Sagrada Família, exemplo de oração',
+        text: 'Reflexão:\nOnde, senão na Sagrada família, Jesus aprendeu a orar tanto e tão bem? Vemos Jesus, em muitos momentos de sua vida pública, dedicar-se à oração, mesmo sozinho ou em comunidade. Aprendera dos pais da Terra a estar com o Pai do Céu. Podemos até imaginar Maria dizendo: "Deus é teu Pai, fala com ele, Filho!".\n\nOração final:\nSagrada Família, exemplo de oração, abri nosso coração ao diálogo com Deus. Ensinai-nos que se, não falamos com Deus, não falamos também com ninguém, e dai-nos o dom de saber orar com Jesus. Amém.'
+      },
+      {
+        day: 9,
+        title: '9º Dia - Sagrada Família, exemplo de união',
+        text: 'Reflexão:\n"Filho, teu pai e eu estávamos angustiados à tua procura!", diz a Virgem Mãe ao encontrar Jesus no Templo de Jerusalém. Estas palavras resumem bem o espírito de união que reinava na Sagrada Família de Nazaré. Para onde iam, iam juntos, desde o exílio no Egito até a Páscoa em Jerusalém. Unidos pelos laços de amor, de fé e de esperança em Deus.\n\nOração final:\nSagrada Família, exemplo de união, concedei este dom à minha família, às vezes tão dividida por tantas circunstâncias. Afastai-nos do poder daquele que divide, guardai-nos unidos para a vinda do Reino de Deus. Amém.'
+      },
     ],
   },
   {
