@@ -59,17 +59,55 @@ export const novenas: NovenasPrayer[] = [
   {
     id: 'nossa-senhora-aparecida',
     title: 'Nossa Senhora Aparecida',
-    subtitle: '9 dias de oração à Padroeira do Brasil',
+    subtitle: 'Novena à Padroeira do Brasil',
+    initialPrayer: '℣. Fazei-me digno de vos louvar, Ó Virgem Imaculada.\n℟. Dai-me força, defendei-me contra os vossos inimigos.\n\nGlória ao Pai, ao Filho e ao Espírito Santo. Assim como era no princípio, agora, e sempre e por todos os séculos dos séculos. Amém.\n\nVirgem puríssima, concebida sem pecado, e desde aquele primeiro instante toda bela e sem mancha, gloriosa Maria, cheia de graça, Mãe de meu Deus, Rainha dos anjos e dos homens, Senhora da Conceição Aparecida padroeira Nossa.\n\nEu vos saúdo humildemente como Mãe do meu Salvador, que com aquela estima, respeito e submissão, com que vos tratava, me ensinou quais sejam as honras e a veneração que eu devo prestar-vos; dignai-vos, eu vo-lo rogo, de receber as que nesta Novena vos consagro.\n\nVós sois o seguro asilo dos pecadores penitentes, e assim tenho razão para recorrer a vós; sois Mãe de misericórdia, e por este título não podeis deixar de enternecer-vos à vista das minhas misérias.\n\nSois depois de Jesus Cristo toda a minha esperança, e por esta razão não podereis deixar de reconhecer a terna confiança que tenho em vós; fazei-me digno de chamar-me vosso filho, para que possa confiadamente dizer-vos: mostrai que sois nossa Mãe.\n\nAtendei-me desde vosso Augusto Santuário, naquela insigne imagem pela qual já nos trouxestes inúmeras bênção e Benefícios. Mostrai que sois a Senhora destas terras e deste povo; confirmai o vosso Padroado sobre nós, nos alcançando as graças e os auxílios que tanto necessitamos.',
+    finalPrayer: '℣. A Vossa Imaculada Conceição, ó Virgem Mãe de Deus.\n℟. Anunciou a alegria ao mundo inteiro.\n\nÓ Maria Santíssima, que em vossa imagem milagrosa de Aparecida, espalhais inúmeros benefícios sobre todo o Brasil.\n\nEu, embora indigno de pertencer ao número de vossos filhos, mas cheio do desejo de participar dos benefícios de vossa misericórdia, prostrado a vossos pés, consagro-vos o entendimento, para que sempre pense no amor que mereceis; consagro-vos a língua para que sempre vos louve e propague a vossa devoção; consagro-vos o coração, para que, depois de Deus, vos ame sobre todas as coisas. Recebei-nos, ó Rainha incomparável, no ditoso número de vossos filhos; acolhei-nos debaixo de vossa proteção; socorrei-nos em todas as nossas necessidades, espirituais e temporais, sobretudo na hora de nossa morte. Abençoai-nos, ó Mãe celestial, e com vossa poderosa intercessão, fortalecei-nos em nossas fraquezas, a fim de que, servindo-vos fielmente nesta vida, possamos louvar-vos, amar-vos e dar-vos graças no céu, por toda eternidade.\n\nÓ Senhora da Conceição Aparecida, mostrai que sois a padroeira da nossa pátria e a mãe querida do povo brasileiro! Abençoai, defendei, salvai o vosso querido Brasil. Amém.\n\n℣. Ó Maria Concebida Sem Pecado\n℟. Rogai por nós que recorremos a Vós.\n℣. Nossa Senhora da Conceição Aparecida\n℟. Rogai por nós.\n℣. Bendita seja a Santa e Imaculada Conceição da Bem-Aventurada Virgem Mãe de Deus, por todos os séculos dos séculos.\n℟. Amém.\n℣. Senhora Aparecida, guiai a nossa sorte.\n℟. Ó doce Mãe querida, na vida e na morte.',
     days: [
-      { day: 1, title: 'Primeiro Dia', text: 'Ó Nossa Senhora Aparecida, Padroeira do Brasil, que numa tarde de outubro de 1717, numa rede de pescadores, revelastes vossa presença aos irmãos Pedro e João, intercedei por nós junto a vosso Filho Jesus. Dai-nos a graça de sermos fiéis a Cristo e à Igreja. Rainha do Brasil, protegei nossa nação e conduzi-nos ao caminho da salvação eterna. Amém.' },
-      { day: 2, title: 'Segundo Dia', text: 'Ó Mãe Santíssima de Aparecida, que com vossa intercessão multiplicastes o peixe na rede dos pescadores, multiplicai em nós a fé, a esperança e a caridade. Que nossa vida seja uma rede de amor e de serviço aos irmãos, especialmente aos mais necessitados. Amém.' },
-      { day: 3, title: 'Terceiro Dia', text: 'Ó Nossa Senhora Aparecida, vós que fostes encontrada como negra e humilde, dai-nos a graça de reconhecermos a dignidade de todo ser humano, independentemente de cor, raça ou condição social. Que sejamos instrumentos de justiça e de paz em nossa sociedade. Amém.' },
-      { day: 4, title: 'Quarto Dia', text: 'Ó Padroeira do Brasil, que no ano do bicentenário da vossa descoberta, fomos confiados ao vosso Coração Imaculado por Dom Pedro I, fortalecei nossa fé em tempos de dúvida. Que a vossa presença maternal nos reconforte e nos guie sempre para Jesus. Amém.' },
-      { day: 5, title: 'Quinto Dia', text: 'Ó Nossa Senhora de Aparecida, que em 1930 foste coroada pelo Papa Pio XI como Padroeira do Brasil, intercedei pelas famílias brasileiras. Protegei os lares, os casamentos, os jovens e as crianças. Que o vosso amor maternal encha todos os corações de alegria e de paz. Amém.' },
-      { day: 6, title: 'Sexto Dia', text: 'Ó Mãe de Aparecida, vós que sempre cuidais de vossos filhos, cuidai também de nós. Em nossas dores, consolai-nos; em nossas dúvidas, iluminai-nos; em nossas quedas, levantai-nos. Que a vossa proteção nos acompanhe todos os dias de nossa vida. Amém.' },
-      { day: 7, title: 'Sétimo Dia', text: 'Ó Nossa Senhora Aparecida, que a Basílica de Aparecida é o maior santuário mariano do Brasil, dai-nos a graça de visitarmos este sagrado lugar pelo menos uma vez na vida. Que toda peregrinação seja um encontro transformador com vosso Filho Jesus. Amém.' },
-      { day: 8, title: 'Oitavo Dia', text: 'Ó Rainha do Brasil, que vossa festa litúrgica no dia 12 de outubro é um momento de união nacional, dai-nos a graça de sermos um povo unido em fé e em amor. Que a vossa intercessão transforme nossa nação em um lugar mais justo, mais fraterno e mais cristão. Amém.' },
-      { day: 9, title: 'Nono Dia', text: 'Ó Nossa Senhora Aparecida, neste último dia da novena, renovamos nossa consagração ao vosso Coração Imaculado. Aceitai-nos como vossos filhos devotados, guiai-nos pelos caminhos da fé, e apresentai-nos um dia ao vosso Filho Jesus, para que vivamos eternamente no céu. Amém.' },
+      {
+        day: 1,
+        title: 'Primeiro Dia',
+        text: 'Eis-me aqui aos vossos santíssimos pés, ó Virgem Imaculada! Convosco me alegro sumamente, porque desde a eternidade fostes eleita Mãe do Verbo eterno e preservada da culpa original. Eu bendigo e dou graças à Santíssima Trindade, que vos enriqueceu com este privilégio em vossa Conceição, e humildemente vos suplicamos que alcanceis a graça de vencer os tristes efeitos que em mim produziu o pecado.\n\nAh! Senhor, fazei que eu os vença e jamais deixe de amar a meu Deus.\n\nReza-se: Pai Nosso, Ave-Maria e Glória ao Pai.'
+      },
+      {
+        day: 2,
+        title: 'Segundo Dia',
+        text: 'Ó Maria, lírio imaculado de pureza, eu me congratulo convosco, porque desde o primeiro instante da vossa Conceição fostes cheia de graça e além disto vos foi conferido o perfeito uso da razão. Dou graças e adoro a Santíssima Trindade, que vos concedeu tão sublimes dons; e me confundo totalmente na vossa presença ao ver-me tão pobre de graça.\n\nVós, que de graça celeste fostes tão copiosamente enriquecida, reparti-a com a minha alma e fazei-me participante dos tesouros que começastes a possuir em vossa imaculada Conceição.\n\nReza-se: Pai Nosso, Ave-Maria e Glória ao Pai.'
+      },
+      {
+        day: 3,
+        title: 'Terceiro Dia',
+        text: 'Ó Maria, mística rosa de pureza, eu me alegro convosco, que gloriosamente triunfastes da infernal serpente, na vossa imaculada Conceição.\n\nE que fostes concebida sem mácula de pecado. Dou graças e louvo a Santíssima Trindade, que tal privilégio vos concedeu e vos suplico que me alcanceis força para superar todas as tentações do inimigo, e para não manchar minha alma com o pecado.\n\nAh! Senhora, ajudai-me sempre, e fazei quem com a vossa proteção, sempre triunfe de todos os inimigos de nossa eterna salvação.\n\nReza-se: Pai Nosso, Ave-Maria e Glória ao Pai.'
+      },
+      {
+        day: 4,
+        title: 'Quarto Dia',
+        text: 'Ó espelho de pureza, Imaculada Virgem Maria, eu me encho de sumo gozo ao ver que desde a vossa Conceição, foram em vós infundidas as mais sublimes virtudes e, ao mesmo tempo, todos os dons do Espírito Santo.\n\nDou graças e louvo a Santíssima Trindade que com estes privilégios vos favoreceu. E suplico-vos, ó benigna Mãe, que me alcanceis a prática das virtudes, e me façais também digno e receber os dons do Espírito Santo.\n\nReza-se: Pai Nosso, Ave-Maria e Glória ao Pai.'
+      },
+      {
+        day: 5,
+        title: 'Quinto Dia',
+        text: 'Ó Maria, refulgente lua de pureza, eu me congratulo convosco, porque o mistério de vossa Imaculada Conceição foi o princípio da salvação de todo o mundo.\n\nDou graças e bendigo à Santíssima Trindade, que assim magnificou e glorificou vossa pessoa, e vos suplico me alcanceis a graça de saber aproveitar-me da Paixão e Morte do vosso Jesus, e que não seja para mim inútil o seu sangue derramado na cruz, mas que viva santamente e salve a minha alma.\n\nReza-se: Pai Nosso, Ave-Maria e Glória ao Pai.'
+      },
+      {
+        day: 6,
+        title: 'Sexto Dia',
+        text: 'Ó estrela resplandecente de pureza, Imaculada Conceição causaste um imenso gozo a todos os anjos do paraíso.\n\nDou graças e bendigo à Santíssima Trindade, que vos enriqueceu com tão belo privilégio.\n\nAh! Senhora, fazei que eu um dia tenha parte nessa alegria e que possa em companhia dos anjos, louvar-vos e bendizer-vos eternamente.\n\nReza-se: Pai Nosso, Ave-Maria e Glória ao Pai.'
+      },
+      {
+        day: 7,
+        title: 'Sétimo Dia',
+        text: 'Ó aurora nascente e pura, Imaculada Maria, eu me alegro e exulto convosco porque no mesmo instante da vossa Conceição, fostes confirmada em graça e tornada impecável. Dou graças e exalto a Santíssima Trindade, que somente a vós distinguiu com esse especial privilégio.\n\nAh! Virgem Santa, alcançai-me um total e contínuo aborrecimento do pecado sobre todos os outros males, e que antes morra do que torne a cometê-lo.\n\nReza-se: Pai Nosso, Ave-Maria e Glória ao Pai.'
+      },
+      {
+        day: 8,
+        title: 'Oitavo Dia',
+        text: 'Ó sol sem mácula, Virgem Maria, eu me congratulo convosco e me alegro de que em vossa Conceição vos fosse conferida por Deus uma graça maior e mais copiosa do que tiveram todos os Anjos e todos os Santos no auge de seus merecimentos. Dou graças e admiro a suma bondade da Santíssima Trindade, que vos enriqueceu com tal privilégio.\n\nAh! Senhora, fazei que eu corresponda à graça divina, e não torne a abusar dela; mudai-me o coração, e fazei que desde agora comece o meu arrependimento.\n\nReza-se: Pai Nosso, Ave-Maria e Glória ao Pai.'
+      },
+      {
+        day: 9,
+        title: 'Nono Dia',
+        text: 'Ó viva luz de santidade e exemplo de pureza, Virgem e Mãe, Maria Santíssima, vós, apenas concebida, adorastes profundamente a Deus e lhe destes graças, porque, por meio de vós, levantada a antiga maldição, desceu uma grande bênção sobre os filhos de Adão.\n\nAh! Senhora, fazei que esta bênção acenda no meu coração um grande amor para com Deus; inflamai-o, para que, constantemente ame o mesmo Senhor, e depois goze eternamente no Paraíso, onde possa dar-lhe as mais vivas graças pelos singulares privilégios a vós concedidos e possa também ver-vos coroada de tamanha vitória.\n\nReza-se: Pai Nosso, Ave-Maria e Glória ao Pai.'
+      },
     ],
   },
   {
