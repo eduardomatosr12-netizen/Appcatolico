@@ -227,6 +227,42 @@ export function LiturgyPage() {
   const [error, setError] = useState<string | null>(null);
   const [offline, setOffline] = useState(false);
   const [fontSize, setFontSize] = useState(100);
+  const [isSpeaking, setIsSpeaking] = useState(false);
+
+  const handlePlay = useCallback(() => {
+    if (!liturgy) return;
+    const synth = window.speechSynthesis;
+    if (isSpeaking) {
+      synth.cancel();
+      setIsSpeaking(false);
+      return;
+    }
+    const parts: string[] = [];
+    if (liturgy.firstReading) parts.push(`${liturgy.firstReading.title}. ${liturgy.firstReading.reference}. ${liturgy.firstReading.text}`);
+    if (liturgy.psalm) parts.push(`${liturgy.psalm.title}. ${liturgy.psalm.reference}. ${liturgy.psalm.text}`);
+    if (liturgy.secondReading) parts.push(`${liturgy.secondReading.title}. ${liturgy.secondReading.reference}. ${liturgy.secondReading.text}`);
+    if (liturgy.gospel) parts.push(`${liturgy.gospel.title}. ${liturgy.gospel.reference}. ${liturgy.gospel.text}`);
+    const utter = new SpeechSynthesisUtterance(parts.join('.\n\n'));
+    utter.lang = 'pt-BR';
+    utter.rate = 0.9;
+    utter.onend = () => setIsSpeaking(false);
+    utter.onerror = () => setIsSpeaking(false);
+    synth.speak(utter);
+    setIsSpeaking(true);
+  }, [liturgy, isSpeaking]);
+
+  const handleShare = useCallback(async () => {
+    if (!liturgy) return;
+    const text = `${liturgy.celebrationName}\n\n` +
+      (liturgy.firstReading ? `${liturgy.firstReading.title}\n${liturgy.firstReading.reference}\n\n` : '') +
+      (liturgy.psalm ? `${liturgy.psalm.title}\n${liturgy.psalm.reference}\n\n` : '') +
+      (liturgy.gospel ? `${liturgy.gospel.title}\n${liturgy.gospel.reference}\n\n${liturgy.gospel.text}` : '');
+    if (navigator.share) {
+      await navigator.share({ title: liturgy.celebrationName, text });
+    } else {
+      await navigator.clipboard.writeText(text);
+    }
+  }, [liturgy]);
 
   const loadLiturgy = useCallback(async (date: Date) => {
     setLoading(true);
@@ -289,6 +325,9 @@ export function LiturgyPage() {
               fontSize={fontSize}
               onFontIncrease={() => setFontSize((s) => Math.min(150, s + 10))}
               onFontDecrease={() => setFontSize((s) => Math.max(80, s - 10))}
+              onPlay={handlePlay}
+              onShare={handleShare}
+              isSpeaking={isSpeaking}
             />
           </div>
         </>
@@ -541,6 +580,9 @@ export function LiturgyPage() {
             fontSize={fontSize}
             onFontIncrease={() => setFontSize((s) => Math.min(150, s + 10))}
             onFontDecrease={() => setFontSize((s) => Math.max(80, s - 10))}
+            onPlay={handlePlay}
+            onShare={handleShare}
+            isSpeaking={isSpeaking}
           />
         </div>
       )}

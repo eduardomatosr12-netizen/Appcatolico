@@ -8,11 +8,12 @@ interface FloatingToolbarProps {
   onFontIncrease?: () => void;
   onShare?: () => void;
   fontSize?: number;
+  isSpeaking?: boolean;
   className?: string;
 }
 
 export function FloatingToolbar({
-  onPlay, onFontDecrease, onFontIncrease, onShare, fontSize = 100, className,
+  onPlay, onFontDecrease, onFontIncrease, onShare, fontSize = 100, isSpeaking = false, className,
 }: FloatingToolbarProps) {
   return (
     <div className={cn(
@@ -21,8 +22,12 @@ export function FloatingToolbar({
     )}>
       <button onClick={onPlay}
         className="flex items-center gap-1.5 rounded-full bg-[#5C0F1B] px-4 py-2 text-xs font-medium text-white hover:bg-[#7A1A28] transition-all">
-        <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-        Ouvir
+        {isSpeaking ? (
+          <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+        ) : (
+          <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+        )}
+        {isSpeaking ? 'Parar' : 'Ouvir'}
       </button>
 
       <span className="w-px h-5 bg-white/[0.06]" />
