@@ -776,4 +776,58 @@ export const novenas: NovenasPrayer[] = [
       },
     ],
   },
+  {
+    id: 'sao-joao-paulo-2',
+    title: 'São João Paulo II',
+    subtitle: 'Novena ao Papa da Misericórdia',
+    initialPrayer: 'Deus, nosso Pai, a fim de voltarmos para vós, devemos encontrar vossa misericórdia, vosso paciente amor que em Vós não conhece limites. Infinita é a vossa prontidão em perdoar os nossos pecados assim como inefável é o sacrifício de vosso Filho. Com confiança pedimos, pela intercessão de São João Paulo II, que nos concedais esta graça por Cristo, Nosso Senhor. Amém.\n\nPai Nosso, Ave Maria e Glória.',
+    finalPrayer: 'Ladainha de São João Paulo II\n\nSenhor, tende piedade de nós.\nCristo, tende piedade de nós.\nSenhor, tende piedade de nós.\n\nJesus Cristo, ouvi-nos.\nJesus Cristo, atendei-nos.\n\nDeus, Pai dos céus, tende piedade de nós.\nDeus Filho, Redentor do mundo, tende…\nDeus Espírito Santo, tende…\nSantíssima Trindade, que sois um só Deus, tende…\n\nSanta Maria, Mãe de Deus, rogai por nós.\n\nSão João Paulo II, rogai por nós!\nPerfeito discípulo de Cristo,\nGenerosamente dotado com os dons do Espírito Santo,\nGrande apóstolo da Divina Misericórdia,\nFiel filho de Maria,\nTotalmente dedicado à Mãe de Deus,\nPerseverante pregador do Evangelho,\nPapa peregrino,\nPapa do milênio,\nModelo de diligência,\nModelo dos sacerdotes,\nQue extraístes forças da Eucaristia,\nHomem incansável da oração,\nAmante do Rosário,\nForça dos que duvidam de sua fé,\nQue desejastes unir todos aqueles que creem em Cristo,\nConversor dos pecadores,\nDefensor da dignidade de toda pessoa,\nDefensor da vida desde a concepção até à morte natural,\nQue rogastes pelo dom da paternidade para o infértil,\nAmigo das crianças,\nLíder da juventude,\nIntercessor das famílias,\nConsolador dos sofredores,\nQue valorosamente suportastes vossa dor,\nSemeador de divina alegria,\nGrande intercessor pela paz,\nOrgulho da nação polonesa,\nBrilho da Santa Igreja,\n\nPara que possamos ser fiéis imitadores de Cristo,\nPara que possamos ser fortes com o poder do Espírito Santo,\nPara que possamos ter confiança na Mãe de Deus,\nPara que possamos crescer em nossa fé, esperança e caridade,\nPara que possamos viver em paz em nossas famílias,\nPara que possamos saber perdoar,\nPara que possamos saber suportar o sofrimento,\nPara que não sucumbamos à cultura da morte,\nPara que não tenhamos medo e corajosamente combatamos as várias tentações,\nPara que intercedais e nos obtenhais a graça de uma morte feliz, rogai por nós!\n\nCordeiro de Deus, que tirais o pecado do mundo, perdoai-nos, Senhor.\nCordeiro de Deus, que tirais o pecado do mundo, ouvi-nos, Senhor.\nCordeiro de Deus, que tirais o pecado do mundo, tende piedade de nós!\n\nRogai por nós, São João Paulo II,\nPara que sejamos dignos das promessas de Cristo.',
+    days: [
+      {
+        day: 1,
+        title: '1º Dia - O Amor',
+        text: '"Tenha a coragem de viver por amor. A grandeza de uma pessoa não está em suas posses, mas em quem é, não naquilo que possui, mas no que compartilha com os outros."\n\nEsta mensagem sobre a pureza do coração torna-se hoje muito atual. A civilização da morte quer destruir a pureza do coração. Um dos seus métodos de agir é pôr intencionalmente em dúvida o valor da castidade.\n\nUma civilização que fere ou aniquila uma relação correta entre os homens, é uma civilização da morte, porque o homem não pode viver sem o verdadeiro amor. Anunciai ao mundo a "Boa Nova" da pureza do coração e, com o exemplo da vossa vida, transmiti a mensagem da civilização do amor.\n\nNão tenhais medo de viver contra as opiniões da moda e as propostas em contraste com a lei de Deus. A coragem da fé tem um preço muito elevado, mas vós não podeis perder o amor!\n\nNão permitais que alguém vos torne escravos! Não vos deixeis seduzir pelas ilusões da felicidade, pelas quais deveríeis pagar um preço demasiado elevado, o preço de feridas por vezes incuráveis ou até duma vida despedaçada!\n\nSão João Paulo II, Homilia, Sandomierz, 12 de junho de 1999.'
+      },
+      {
+        day: 2,
+        title: '2º Dia - A Verdade',
+        text: '"A verdade vence por seu próprio poder. Impor seus próprios pontos de vista torna as relações interpessoais piores, dando origem a disputas e tensões."\n\nA verdade é a luz da inteligência humana. A fome de verdade é a sua aspiração e expressão fundamental. Cristo diz: "Conhecereis a verdade e a verdade vos libertará". Das palavras do Evangelho, estas certamente estão entre as mais importantes.\n\nSer verdadeiramente livre não significa fazer tudo aquilo que me agrada. A liberdade traz consigo o critério da verdade, a disciplina da verdade. Ser verdadeiramente livre significa usar a própria liberdade para aquilo que é verdadeiramente bom, para ser um homem de reta consciência, ser responsável, ser um homem "para os outros".\n\nCarta Apostólica do Papa São João Paulo II aos jovens do mundo, 1985.'
+      },
+      {
+        day: 3,
+        title: '3º Dia - A Pessoa',
+        text: '"O homem não pode viver sem amor. Ele permanece para si próprio um ser incompreensível e a sua vida é destituída de sentido, se não lhe for revelado o amor, se ele não se encontra com o amor, se o não experimenta e se o não torna algo seu próprio."\n\nO homem que quiser compreender-se a si mesmo profundamente deve aproximar-se de Cristo. Ele deve, por assim dizer, entrar nele com tudo o que é em si mesmo, deve "apropriar-se" e assimilar toda a realidade da Encarnação e da Redenção, para se encontrar a si mesmo.\n\nSe no homem houver este processo profundo, então ele produz frutos, não somente de adoração de Deus, mas também de profunda maravilha perante si próprio. Que grande valor deve ter o homem aos olhos do Criador, se "mereceu ter um tal e tão grande Redentor"!\n\nSão João Paulo II, Encíclica Redemptor Hominis, 1979.'
+      },
+      {
+        day: 4,
+        title: '4º Dia - A Família',
+        text: '"Uma família que tira a sua força de Deus torna-se a força do homem e de uma nação inteira."\n\nA família tem a sua origem naquele mesmo amor com que o Criador abraça o mundo criado. Uma suprema confirmação disso mesmo, no-la oferece Jesus no Evangelho: "Deus amou de tal modo o mundo que lhe deu o seu Filho unigênito".\n\nO Filho unigênito entrou na história dos homens através da família: "Pela sua encarnação, Ele, o Filho de Deus, uniu-se de certo modo a cada homem. Trabalhou com mãos humanas, amou com um coração humano. Nascido da Virgem Maria, tornou-se verdadeiramente um de nós."\n\nSe é certo que Cristo "revela plenamente o homem a si mesmo", fá-lo a começar da família onde Ele escolheu nascer e crescer. Esta sua "obediência" filial não é já a primeira manifestação daquela obediência ao Pai "até à morte", por meio da qual redimiu o mundo?\n\nSão João Paulo II, Carta às Famílias Gratissimam Sane, 1994.'
+      },
+      {
+        day: 5,
+        title: '5º Dia - A Juventude',
+        text: '"Você deve fazer exigências a partir de si mesmo, mesmo que os outros não exijam de você. Só fazendo exigências de si mesmo você pode perceber outros desafios: escolher "ser mais" em vez de "ter mais". O "ser mais" de um jovem hoje é a coragem de permanecer cheio de iniciativa, fiel a um testemunho dinâmico de fé e esperança."\n\nJovens amigos, sede benditos! Sim, sede benditos junto com Maria, que acreditou no cumprimento das palavras que lhe disse o Senhor. Que o sinal da mulher vestida de sol caminhe convosco, ao longo de todos os caminhos da vida.\n\nDeixai-vos conduzir pelo Espírito! Deixai que o Espírito de sabedoria e inteligência, de conselho e fortaleza, de conhecimento, piedade e temor do Senhor penetre em vossos corações e vossas vidas e, por meio de vós, transforme a face da Terra.\n\nSão João Paulo II, Homilia, Częstochowa, 15 de agosto de 1991.'
+      },
+      {
+        day: 6,
+        title: '6º Dia - O Pecado',
+        text: '"O maior sofrimento da humanidade e de cada indivíduo é o pecado. Não há maior dor que se possa infligir a uma alma do que mergulhá-la em estado de pecado mortal."\n\nO pecado não termina nos limites da consciência humana, não se encerra nela. Por definição intrínseca, implica uma referência: a referência a Deus. Mas mesmo quando meu pecado é contra Deus, Deus não está contra mim. No momento da tensão interior da consciência humana, Deus não proclama sua sentença. Não condena. Deus espera que eu me volte para Ele como à justiça amorosa, como ao Pai, da forma que mostra a parábola do filho pródigo.\n\nJoão Paulo II, Angelus, Roma, 23 de fevereiro de 1986.'
+      },
+      {
+        day: 7,
+        title: '7º Dia - A Misericórdia',
+        text: '"O mundo clama por misericórdia. Nada é mais necessário para o homem do que a misericórdia de Deus, esse amor gentil, simpático, elevando o homem acima de suas fraquezas em direção às alturas eternas da santidade de Deus."\n\nO homem – cada um dos homens – é este filho pródigo: fascinado pela tentação de se separar do Pai; caído na tentação; desiludido do nada que, como miragem, o tinha deslumbrado. Sozinho, desonrado e explorado; atormentado, mesmo no mais profundo da própria miséria, pelo desejo de voltar à comunhão com o Pai.\n\nComo o pai da parábola, Deus fica à espreita do regresso do filho, abraça-o à sua chegada e põe a mesa para o banquete do novo encontro, com que se festeja a reconciliação.\n\nJoão Paulo II, Exortação Apostólica Reconciliatio et Paenitentia, 1984.'
+      },
+      {
+        day: 8,
+        title: '8º Dia - Virgem Maria',
+        text: '"Mãe da Igreja! Mais uma vez me consagro a ti "na tua materna escravidão de amor": Totus Tuus! Sou todo teu! Consagro-te toda a Igreja – em toda a parte até aos extremos confins da Terra! Oh, consagro-te a humanidade! Eu te consagro todos os homens, meus irmãos."\n\nTodos os povos e nações. Consagro-te a Europa e todos os continentes. Consagro-te Roma e a Polônia juntas, através do teu servo, por um novo vínculo de amor. Mãe, aceita! Oh Mãe, não nos abandones! Querida Mãe, guia-nos tu!\n\nPerdoa, pois, Mãe da Igreja e Rainha da Polônia, que todos nós te agradeçamos só com o silêncio dos nossos corações, que te cantemos, com este silêncio, o nosso "prefácio" de despedida!\n\nJoão Paulo II, Primeira Peregrinação Apostólica à Polônia, Częstochowa, 6 de junho de 1979.'
+      },
+      {
+        day: 9,
+        title: '9º Dia - A Eucaristia',
+        text: '"A Igreja vive da Eucaristia. Esta verdade não exprime apenas uma experiência diária de fé, mas contém em síntese o próprio núcleo do mistério da Igreja."\n\nA Igreja recebeu a Eucaristia de Cristo seu Senhor, não como um dom, embora precioso, entre muitos outros, mas como o dom por excelência, porque é dom dele mesmo, da sua Pessoa na humanidade sagrada, e também da sua obra de salvação.\n\nÉ esta verdade que desejo recordar mais uma vez: mistério grande, mistério de misericórdia. Que mais poderia Jesus ter feito por nós? Verdadeiramente, na Eucaristia demonstra-nos um amor levado até "ao extremo", um amor sem medida.\n\nJoão Paulo II, Carta Encíclica Ecclesia de Eucharistia, 2003.'
+      },
+    ],
+  },
 ];
