@@ -1045,4 +1045,58 @@ export const novenas: NovenasPrayer[] = [
       },
     ],
   },
+  {
+    id: 'fulton-sheen',
+    title: 'Venerável Fulton Sheen',
+    subtitle: 'Novena ao Servo de Deus',
+    initialPrayer: '"Não sei como Deus julgará minha vida, mas confio que Ele me verá com misericórdia e compaixão. Só tenho certeza de que haverá três surpresas no Céu. Em primeiro lugar, verei algumas pessoas que nunca esperei ver. Em segundo lugar, haverá várias pessoas que esperava que estivessem, mas que não estarão. E – mesmo confiando na misericórdia de Deus – a maior surpresa de todas pode ser o fato de eu estar lá. Quando é realizado o registro de qualquer vida humana, há três pares de olhos que a veem sob uma luz diferente: 1. Como eu a vejo. 2. Como os outros a veem. 3. Como Deus a vê."\n\n(Fulton J. Sheen)\n\nOração:\nSenhor, ajudai-nos a nos concentrar em Vós, como fez Fulton Sheen, para que sejamos humildes quando olharmos para nós mesmos, para que os outros vejam a Vós quando nos olharem e para que possamos ver nossa vida como a vedes Vós.',
+    finalPrayer: 'Oração para a canonização do Venerável Fulton Sheen:\n\nPai Celestial, fonte de toda santidade, Vós suscitais na Igreja, em todas as épocas, homens e mulheres que servem com dedicação e amor heroicos. Vós abençoastes a Igreja por meio da vida e do ministério de vosso fiel servo, o Arcebispo Fulton J. Sheen. Ele escreveu e falou muito bem a respeito de vosso Divino Filho, Jesus Cristo, e foi um verdadeiro instrumento do Espírito Santo para tocar o coração de inúmeras pessoas. Se estiver de acordo com a vossa vontade, pela honra e glória da Santíssima Trindade e pela salvação das almas, pedimos que façais com que a Igreja o proclame santo. Fazemos esta prece por Jesus Cristo, Nosso Senhor. Amém.\n\nPai Nosso, Ave Maria e Glória ao Pai.',
+    days: [
+      {
+        day: 1,
+        title: '1º Dia - As Três Surpresas no Céu',
+        text: '"Não sei como Deus julgará minha vida, mas confio que Ele me verá com misericórdia e compaixão. Só tenho certeza de que haverá três surpresas no Céu. Em primeiro lugar, verei algumas pessoas que nunca esperei ver. Em segundo lugar, haverá várias pessoas que esperava que estivessem, mas que não estarão. E – mesmo confiando na misericórdia de Deus – a maior surpresa de todas pode ser o fato de eu estar lá."\n\n(Fulton J. Sheen)\n\nOração:\nSenhor, ajudai-nos a nos concentrar em Vós, como fez Fulton Sheen, para que sejamos humildes quando olharmos para nós mesmos, para que os outros vejam a Vós quando nos olharem e para que possamos ver nossa vida como a vedes Vós.\n\nPai Nosso, Ave Maria e Glória ao Pai.'
+      },
+      {
+        day: 2,
+        title: '2º Dia - Unidade em Deus',
+        text: '"Protestantes, judeus e católicos têm Deus, moralidade e religião em comum. Em nome de Deus, faremos nós judeus, protestantes e católicos – duas coisas: 1. Perceber que um ataque a um é um ataque a todos, já que somos todos um em Deus; não precisamos de tolerância, mas de caridade; não de indulgência, mas de amor. 2. Começar a fazer algo em relação à religião, e o mínimo que podemos fazer é rezar nossas orações; implorar as bênçãos de Deus sobre o mundo e nosso país; agradecer a Ele por suas bênçãos; e ser iluminados na plenitude de sua verdade. Fala-se demais sobre religião, e não se age o suficiente."\n\n(Fulton J. Sheen)\n\nOração:\nSenhor, Fulton Sheen alcançou pessoas de todas as religiões. Ajudai-nos a nos concentrarmos no que temos em comum, em vez de em nossas diferenças.\n\nPai Nosso, Ave Maria e Glória ao Pai.'
+      },
+      {
+        day: 3,
+        title: '3º Dia - Amizade Espiritual',
+        text: '"Em toda amizade, os corações crescem e se entrelaçam, de modo que os dois corações parecem formar apenas um coração com apenas um pensamento em comum. É por isso que a separação é tão dolorosa; não se trata tanto de dois corações se separando, mas de um só sendo despedaçado."\n\n(Fulton J. Sheen)\n\nOração:\nSenhor, ajudai-me a construir amizades espirituais em minha vida para que eu possa me tornar um com meus irmãos, assim como todos nós seremos um no Céu. Acima de tudo, ajudai-me a perceber que separar-me de Vós significa um coração vazio para mim.\n\nPai Nosso, Ave Maria e Glória ao Pai.'
+      },
+      {
+        day: 4,
+        title: '4º Dia - A Paz do Perdão',
+        text: '"A grande tragédia da vida não é tanto o que os homens sofreram, mas o que eles perderam. E que tragédia maior existe do que perder a paz do pecado perdoado? Não há um homem vivo que, caso o queira, não possa desfrutar do alimento e da bebida espirituais que Deus serve a todos que pedem."\n\n(Fulton J. Sheen)\n\nOração:\nSenhor, Fulton Sheen conduziu tantas pessoas à paz da alma, dando-lhes a conhecer o vosso perdão. Ajudai-nos a compartilhar vossa dádiva de paz com outras pessoas, dando-lhes a conhecer o vosso verdadeiro e amoroso perdão e apresentando-lhes a dádiva da confissão.\n\nPai Nosso, Ave Maria e Glória ao Pai.'
+      },
+      {
+        day: 5,
+        title: '5º Dia - Escolher a Deus',
+        text: '"Todo amor nesta terra envolve escolhas. Quando, por exemplo, um rapaz expressa seu amor por uma jovem e pede que ela se torne sua esposa, ele não está apenas fazendo uma declaração de amor; ele também está negando esse amor a qualquer outra pessoa. Naquele único ato pelo qual a escolhe, rejeita tudo o que não é ela. Não há outra maneira real de provar que amamos uma coisa a não ser escolhendo-a em preferência a outra coisa. Palavras e sinais de amor podem ser, e muitas vezes são expressões de egoísmo ou paixão; mas atos são provas de amor. Podemos provar que amamos nosso Senhor somente se o escolhermos em preferência a qualquer outra coisa."\n\n(Fulton J. Sheen)\n\nOração:\nSenhor, Fulton Sheen vos amava acima de todas as coisas. Ajudai-nos a escolher colocar-vos em primeiro lugar em nossas vidas, a fim de que possamos aprender o que é o verdadeiro amor.\n\nPai Nosso, Ave Maria e Glória ao Pai.'
+      },
+      {
+        day: 6,
+        title: '6º Dia - Consumir-se por Deus',
+        text: '"Queimar a vela nas duas pontas por causa de Deus pode ser tolice para o mundo, mas é um proveitoso exercício cristão para uma luz muito melhor! Apenas uma coisa importa na vida: ser considerado digno da Luz do Mundo na hora de sua visitação. Não devemos ter nenhum temor indevido por nossa saúde se trabalhamos arduamente pelo Reino de Deus: o Senhor cuidará de nossa saúde se cuidarmos de sua causa. De qualquer forma, é melhor se consumir do que se enferrujar."\n\n(Fulton J. Sheen)\n\nOração:\nSenhor, mesmo cansado e doente, Fulton Sheen trabalhou incessantemente pelo vosso Reino. Ajudai-nos a aprender a trabalhar incansavelmente para Vós por meio de seu exemplo. Ajudai-nos a saber que não há descanso até que descansemos em Vós.\n\nPai Nosso, Ave Maria e Glória ao Pai.'
+      },
+      {
+        day: 7,
+        title: '7º Dia - Maria, Nossa Mãe',
+        text: '"Maria não é apenas mãe de nosso Senhor e Salvador, Jesus Cristo, mas também é nossa mãe. Isso não é por um título de cortesia, por ficção legal ou por uma mera figura de linguagem, mas pelo direito de nos ter concebido em sofrimento ao pé da cruz… Maria, por sacrifício e obediência, recuperou para nós o título de Mãe dos vivos. Que destino ter a Mãe de Deus como minha mãe e Jesus como meu irmão!"\n\n(Fulton J. Sheen)\n\nOração:\nSenhor, Fulton Sheen aprendeu a obediência na escola de Maria. Ele tinha um relacionamento tão bom com ela que sabia que, quando estivesse diante do tribunal de Cristo, Vós diríeis: "Ouvi minha Mãe falar de ti". Ajudai-nos a conhecer melhor Maria, a fim de que possamos ter o discernimento de tão grande obediência, amor, fé e esperança.\n\nPai Nosso, Ave Maria e Glória ao Pai.'
+      },
+      {
+        day: 8,
+        title: '8º Dia - Praticar o que se Prega',
+        text: '"Se seguíssemos para a saúde as mesmas regras que seguimos na religião, todos estaríamos acamados. Não basta falar sobre a necessidade da saúde; precisamos fazer algo prático a respeito – por exemplo, comer, fazer exercícios e descansar. O mesmo acontece com a religião. Devemos nos alimentar com as verdades de Deus, exercitar nossos músculos espirituais em oração, mortificar-nos das coisas que são prejudiciais à alma e ser tão escrupulosos em evitar o mal moral quanto somos em evitar o mal físico."\n\n(Fulton J. Sheen)\n\nOração:\nSenhor, Fulton Sheen não pediu aos outros que se confessassem ou que visitassem o Senhor uma hora por dia sem fazer isso ele mesmo. Ele praticava o que pregava. Protegei-nos da hipocrisia e ajudai-nos a levar outras pessoas a Vós por meio de nossas ações.\n\nPai Nosso, Ave Maria e Glória ao Pai.'
+      },
+      {
+        day: 9,
+        title: '9º Dia - A Bondade Inconsciente',
+        text: '"Quanto melhor nos tornamos, menos conscientes estamos de nossa bondade. Se alguém afirmar ser um santo, está mais próximo de ser um demônio. Jean Jacques Rousseau acreditava que, de todos os homens, ele era o mais perfeito; mas tinha tantas rachaduras em sua alma que abandonou seus filhos após o nascimento. Quanto mais santos nos tornamos, menos conscientes estamos de sermos santos. Uma criança é meiga enquanto não sabe que é meiga. Assim que pensa que é, torna-se impudente. A verdadeira bondade é inconsciente."\n\n(Fulton J. Sheen)\n\nOração:\nSenhor, Fulton Sheen sempre se considerou um servo indigno e nunca se considerou um santo. Ajudai-nos a ser humildes em nosso serviço e a perceber, como Fulton Sheen percebeu, que todas as boas obras vêm de Vós.\n\nPai Nosso, Ave Maria e Glória ao Pai.'
+      },
+    ],
+  },
 ];
