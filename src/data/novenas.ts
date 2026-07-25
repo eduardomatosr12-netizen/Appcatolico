@@ -168,17 +168,55 @@ export const novenas: NovenasPrayer[] = [
   {
     id: 'nossa-senhora-das-gracas',
     title: 'Nossa Senhora das Graças',
-    subtitle: '9 dias de oração à Mãe das Graças',
+    subtitle: 'Novena à Medalha Milagrosa',
+    initialPrayer: 'Ato de contrição\n\nSenhor, meu Jesus Cristo, Deus e Homem verdadeiro, Criador e Redentor meu. Por serdes Vós quem sois, sumamente bom e digno de ser amado sobre todas as coisas, e porque vos amo e vos estimo, pesa-me Senhor por vos ter ofendido, pesa-me também por ter perdido o Céu e merecido o inferno. Mas proponho firmemente, com o auxílio de vossa divina graça, e pela poderosa intercessão de vossa Mãe Santíssima, emendar-me e nunca mais vos tornar a ofender. Espero alcançar o perdão de minhas culpas, por vossa infinita misericórdia. Assim seja.',
+    finalPrayer: 'Ó Imaculada Virgem Maria, Mãe de Deus e nossa mãe, com a mais viva confiança em vossa poderosa intercessão, tantas vezes manifestada por meio da vossa Medalha, nós vos suplicamos humildemente que nos obtenha as graças que vos pedimos nesta novena.\n\nDignai-vos de apresentá-las ao Vosso Divino Filho e de as atender se elas forem conformes à Vontade Divina e úteis às nossas almas.\n\nE, depois de ter elevado a Deus vossas mãos suplicantes, dirigi-as para nós e envolvei-nos nos raios da vossa graça, iluminando nossos espíritos e purificando nossos corações, a fim de que, conduzidos por vós, cheguemos um dia à bem-aventurança eterna. Amém.',
     days: [
-      { day: 1, title: 'Primeiro Dia', text: 'Ó Nossa Senhora das Graças, Mãe bondosa de Jesus, que vossa vida inteira foi um reflexo da graça de Deus, intercedei por nós. Dai-nos a graça de sermos receptivos às graças que Deus nos oferece todos os dias, especialmente nos sacramentos da Igreja. Amém.' },
-      { day: 2, title: 'Segundo Dia', text: 'Ó Mãe das Graças, que em vossa Anunciação recebestes a graça da Encarnação do Filho de Deus em vosso ventre, dai-nos a graça de sermos dóceis aoEspírito Santo em nossas vidas. Que, como vós, digamos "sim" a Deus em todas as circunstâncias. Amém.' },
-      { day: 3, title: 'Terceiro Dia', text: 'Ó Nossa Senhora das Graças, que no Pentecostes recebestes juntamente com os apóstolos a plenitude do Espírito Santo, intercedei por nós para que recebamos os dons do Espírito e vivamos segundo seus frutos. Dai-nos sabedoria, fortaleza, paciência e caridade. Amém.' },
-      { day: 4, title: 'Quarto Dia', text: 'Ó Mãe das Graças, que sempre distribuís graças a vossos filhos devotos, dai-nos a graça de sermos generosos na partilha dos bens espirituais e materiais que Deus nos confiou. Que nossa vida seja uma fonte de bênçãos para os irmãos. Amém.' },
-      { day: 5, title: 'Quinto Dia', text: 'Ó Nossa Senhora das Graças, vós que sois a Medianeira de todas as graças entre Deus e os homens, intercedei por nós junto ao trono de Deus. Que por vossa intercessão, recebamos as graças necessárias para vivermos santamente e alcançarmos a salvação eterna. Amém.' },
-      { day: 6, title: 'Sexto Dia', text: 'Ó Mãe das Graças, que em Caná de Galileia, interveio junto a Jesus para transformar a água em vinho, dai-nos a graça de recorrermos a vós em todas as necessidades da vida. Que vossa intercessão sempre nos traga as graças de que precisamos. Amém.' },
-      { day: 7, title: 'Sétimo Dia', text: 'Ó Nossa Senhora das Graças, que em vossa Assunção ao céu fostes coroada Rainha dos Céus, dai-nos a graça de caminharmos sempre no caminho da santidade, que vós mesma trilhastes. Que vossa glória seja um incentivo para nossa perseverança na fé. Amém.' },
-      { day: 8, title: 'Oitavo Dia', text: 'Ó Mãe das Graças, que a Igreja invoca em todas as suas preces, dai-nos a graça de sermos sempre fiéis à oração e à vida litúrgica. Que a Sagrada Escritura seja nossa luz e nossa orientação em todos os dias de nossa vida. Amém.' },
-      { day: 9, title: 'Nono Dia', text: 'Ó Nossa Senhora das Graças, neste último dia da novena, renovamos nossa consagração a vós e nossa confiança em vossa intercessão. Dai-nos a graça de vivermos sempre sob vossa proteção, caminhando com fé e esperança para o encontro com vosso Filho Jesus. Amém.' },
+      {
+        day: 1,
+        title: 'Primeiro Dia',
+        text: 'Contemplemos a Virgem Imaculada em sua primeira aparição a Santa Catarina Labouré. A piedosa noviça, guiada por seu Anjo da Guarda, é apresentada à Imaculada Senhora. Consideremos sua inefável alegria. Seremos também felizes como Santa Catarina se trabalharmos com ardor na nossa santificação. Gozaremos as delícias do Paraíso se nos privarmos dos gozos terrenos.\n\nRezar: 3 Ave-marias, seguidas cada uma da invocação: "Ó Maria, concebida sem pecado, rogai por nós que recorremos a Vós!"'
+      },
+      {
+        day: 2,
+        title: 'Segundo Dia',
+        text: 'Contemplemos Maria chorando sobre as calamidades que viriam sobre o mundo, pensando que o Coração de seu filho seria ultrajado, a cruz escarnecida e seus filhos prediletos perseguidos. Confiemos na Virgem compassiva e também participaremos do fruto de suas lágrimas.\n\nRezar: 3 Ave-marias, seguidas cada uma da invocação: "Ó Maria, concebida sem pecado, rogai por nós que recorremos a Vós!"'
+      },
+      {
+        day: 3,
+        title: 'Terceiro Dia',
+        text: 'Contemplemos nossa Imaculada Mãe dizendo em suas aparições a Santa Catarina: "Eu mesma estarei convosco: não vos perco de vista e vos concederei abundantes graças." Sede para mim, Virgem Imaculada, o escudo e a defesa em todas as necessidades.\n\nRezar: 3 Ave-marias, seguidas cada uma da invocação: "Ó Maria, concebida sem pecado, rogai por nós que recorremos a Vós!"'
+      },
+      {
+        day: 4,
+        title: 'Quarto Dia',
+        text: 'Estando Santa Catarina Labouré em oração, a 27 de novembro de 1830, apareceu-lhe a Virgem Maria, formosíssima, esmagando a cabeça da serpente infernal. Nessa aparição se vê seu desejo imenso de nos proteger sempre contra o inimigo de nossa salvação. Invoquemos a Imaculada Mãe com confiança e amor!\n\nRezar: 3 Ave-marias, seguidas cada uma da invocação: "Ó Maria, concebida sem pecado, rogai por nós que recorremos a Vós!"'
+      },
+      {
+        day: 5,
+        title: 'Quinto Dia',
+        text: 'Contemplemos hoje Maria desprendendo de suas mãos raios luminosos. Estes raios, disse Ela, são a figura das graças que derramo sobre todos aqueles que mais pedem e aos que trazem com fé a minha medalha. Não desperdicemos tantas graças! Peçamos com fervor, humildade e perseverança e Maria Imaculada no-las alcançará.\n\nRezar: 3 Ave-marias, seguidas cada uma da invocação: "Ó Maria, concebida sem pecado, rogai por nós que recorremos a Vós!"'
+      },
+      {
+        day: 6,
+        title: 'Sexto Dia',
+        text: 'Contemplemos Maria aparecendo a Santa Catarina, radiante de luz, cheia de bondade, rodeada de estrelas, mandando cunhar uma medalha e prometendo muitas graças a todos que a trouxerem com devoção e amor. Guardemos fervorosamente a Santa Medalha, e como um escudo nos protegerá dos perigos.\n\nRezar: 3 Ave-marias, seguidas cada uma da invocação: "Ó Maria, concebida sem pecado, rogai por nós que recorremos a Vós!"'
+      },
+      {
+        day: 7,
+        title: 'Sétimo Dia',
+        text: 'Ó Virgem Milagrosa, Rainha excelsa, Imaculada Senhora, sede minha advogada, meu refúgio e asilo nesta terra, minha fortaleza e defesa na vida e na morte, meu consolo e minha glória no Céu.\n\nRezar: 3 Ave-marias, seguidas cada uma da invocação: "Ó Maria, concebida sem pecado, rogai por nós que recorremos a Vós!"'
+      },
+      {
+        day: 8,
+        title: 'Oitavo Dia',
+        text: 'Ó Virgem Imaculada da Medalha Milagrosa, fazei com que esses raios luminosos que irradiam de vossas mãos virginais iluminem minha inteligência para melhor conhecer o bem e abram em meu coração vivos sentimentos de fé, esperança e caridade.\n\nRezar: 3 Ave-marias, seguidas cada uma da invocação: "Ó Maria, concebida sem pecado, rogai por nós que recorremos a Vós!"'
+      },
+      {
+        day: 9,
+        title: 'Nono Dia',
+        text: 'Ó Mãe Imaculada, fazei que a cruz de vossa Medalha brilhe sempre diante de meus olhos, suavize as penas da vida presente e me conduza à vida eterna.\n\nRezar: 3 Ave-marias, seguidas cada uma da invocação: "Ó Maria, concebida sem pecado, rogai por nós que recorremos a Vós!"'
+      },
     ],
   },
   {
