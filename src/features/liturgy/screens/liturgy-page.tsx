@@ -141,12 +141,12 @@ function ReadingCard({
     >
       <div className="flex items-start justify-between gap-3 min-w-0">
         <div className="flex flex-col gap-1 border-l-2 border-[#C5A059] pl-3 sm:pl-4 min-w-0">
-          <h2 className="font-serif text-xs sm:text-sm md:text-lg tracking-[0.2em] uppercase text-[#C5A059] font-semibold break-words">
+          <h2 className="font-serif text-[10px] sm:text-xs md:text-sm tracking-[0.15em] uppercase text-[#C5A059]/80 font-medium break-words">
             {title}
           </h2>
           {reference && (
-            <span className={`text-[11px] sm:text-xs font-mono tracking-wide break-words ${
-              isGospel ? 'text-[#C5A059]/50' : 'text-gray-400'
+            <span className={`text-sm sm:text-base md:text-lg font-mono font-semibold tracking-wide break-words ${
+              isGospel ? 'text-[#C5A059]' : 'text-gray-300'
             }`}>
               {reference}
             </span>
@@ -184,11 +184,11 @@ function PsalmCard({
   return (
     <article className="w-full bg-[#16161A] rounded-[24px] p-4 sm:p-5 md:p-10 border border-white/[0.03] shadow-[0_12px_40px_rgba(0,0,0,0.5)] flex flex-col gap-4 sm:gap-5 transition-all hover:border-white/[0.06] overflow-hidden" style={{ width: '100%', maxWidth: '100%' }}>
       <div className="flex flex-col gap-1 border-l-2 border-[#C5A059] pl-3 sm:pl-4 min-w-0">
-        <h2 className="font-serif text-xs sm:text-sm md:text-lg tracking-[0.2em] uppercase text-[#C5A059] font-semibold break-words">
+        <h2 className="font-serif text-[10px] sm:text-xs md:text-sm tracking-[0.15em] uppercase text-[#C5A059]/80 font-medium break-words">
           {title}
         </h2>
         {reference && (
-          <span className="text-[11px] sm:text-xs text-gray-400 font-mono tracking-wide break-words">
+          <span className="text-sm sm:text-base md:text-lg text-gray-300 font-mono font-semibold tracking-wide break-words">
             {reference}
           </span>
         )}
