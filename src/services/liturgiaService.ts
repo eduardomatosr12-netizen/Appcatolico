@@ -1,6 +1,6 @@
-import type { LiturgyApiResponse, DailyLiturgy } from '@/types/liturgy';
+import type { RailwayLiturgyResponse, DailyLiturgy } from '@/types/liturgy';
 
-const BASE_URL = 'https://liturgia.cloudhub.ia.br/v1/liturgia';
+const BASE_URL = 'https://liturgia.up.railway.app/v2/';
 
 function pad(n: number): string {
   return n.toString().padStart(2, '0');
@@ -15,12 +15,12 @@ function buildDateParams(date: Date) {
 }
 
 /**
- * Busca a liturgia diária da API pública CNBB.
+ * Busca a liturgia diária da API pública de liturgia católica.
  * Usa `If-None-Match` via ETag se disponível em localStorage.
  */
 export async function fetchLiturgy(date: Date): Promise<DailyLiturgy> {
   const params = buildDateParams(date);
-  const url = `${BASE_URL}?${new URLSearchParams({ dia: String(params.dia), mes: String(params.mes), ano: String(params.ano) }).toString()}`;
+  const url = `${BASE_URL}?${new URLSearchParams({ dia: String(params.dia), mes: pad(params.mes), ano: String(params.ano) }).toString()}`;
 
   const headers: Record<string, string> = {};
   if (typeof window !== 'undefined') {
@@ -35,7 +35,7 @@ export async function fetchLiturgy(date: Date): Promise<DailyLiturgy> {
   if (res.status === 304 && typeof window !== 'undefined') {
     const cached = localStorage.getItem(`liturgia-data-${params.ano}-${pad(params.mes)}-${pad(params.dia)}`);
     if (cached) {
-      return parseLiturgyApiResponse(JSON.parse(cached) as LiturgyApiResponse);
+      return parseLiturgyResponse(JSON.parse(cached) as RailwayLiturgyResponse);
     }
   }
 
@@ -44,18 +44,18 @@ export async function fetchLiturgy(date: Date): Promise<DailyLiturgy> {
   }
 
   const etag = res.headers.get('ETag');
-  const data: LiturgyApiResponse[] = await res.json();
+  const data: RailwayLiturgyResponse = await res.json();
 
-  if (!data || data.length === 0) {
+  if (!data || !data.data) {
     throw new Error('Nenhum dado litúrgico encontrado para esta data.');
   }
 
   if (etag && typeof window !== 'undefined') {
     localStorage.setItem(`liturgia-etag-${params.ano}-${pad(params.mes)}-${pad(params.dia)}`, etag);
-    localStorage.setItem(`liturgia-data-${params.ano}-${pad(params.mes)}-${pad(params.dia)}`, JSON.stringify(data[0]));
+    localStorage.setItem(`liturgia-data-${params.ano}-${pad(params.mes)}-${pad(params.dia)}`, JSON.stringify(data));
   }
 
-  return parseLiturgyApiResponse(data[0]);
+  return parseLiturgyResponse(data);
 }
 
 /**
@@ -67,7 +67,7 @@ export function getCachedLiturgy(date: Date): DailyLiturgy | null {
   const cached = localStorage.getItem(`liturgia-data-${params.ano}-${pad(params.mes)}-${pad(params.dia)}`);
   if (cached) {
     try {
-      return parseLiturgyApiResponse(JSON.parse(cached) as LiturgyApiResponse);
+      return parseLiturgyResponse(JSON.parse(cached) as RailwayLiturgyResponse);
     } catch {
       return null;
     }
@@ -75,9 +75,7 @@ export function getCachedLiturgy(date: Date): DailyLiturgy | null {
   return null;
 }
 
-function parseLiturgyApiResponse(api: LiturgyApiResponse): DailyLiturgy {
-  const celebr = api.celebracoes.find((c) => c.principal) ?? api.celebracoes[0];
-
+function parseLiturgyResponse(api: RailwayLiturgyResponse): DailyLiturgy {
   const dateObj = parseDateBR(api.data);
   const dateStr = dateObj
     ? dateObj.toLocaleDateString('pt-BR', { day: 'numeric', month: 'long', year: 'numeric' })
@@ -91,44 +89,48 @@ function parseLiturgyApiResponse(api: LiturgyApiResponse): DailyLiturgy {
     rosa: 'Rosa',
   };
 
-  function findReading(tipo: string) {
-    const reading = celebr.leituras.find((l) => l.tipo === tipo);
-    if (!reading || !reading.opcoes[0]) return undefined;
-    return {
-      title: reading.rotulo,
-      text: reading.opcoes[0].texto,
-      reference: reading.opcoes[0].referencia,
-    };
-  }
-
-  const firstReading = findReading('leitura');
-
-  const psalmReading = celebr.leituras.find((l) => l.tipo === 'salmo');
-  const psalm = psalmReading?.opcoes[0]
+  const firstReadingRaw = api.leituras.primeiraLeitura?.[0];
+  const firstReading = firstReadingRaw
     ? {
-        title: psalmReading.rotulo,
-        text: psalmReading.opcoes[0].texto,
-        reference: psalmReading.opcoes[0].referencia,
-        response: psalmReading.refrao ?? '',
+        title: firstReadingRaw.titulo ?? 'Primeira Leitura',
+        text: firstReadingRaw.texto,
+        reference: firstReadingRaw.referencia,
       }
     : undefined;
 
-  const allReadings = celebr.leituras.filter((l) => l.tipo === 'leitura');
-  const secondReading = allReadings.length >= 2 && allReadings[1].opcoes[0]
+  const psalmRaw = api.leituras.salmo?.[0];
+  const psalm = psalmRaw
     ? {
-        title: allReadings[1].rotulo,
-        text: allReadings[1].opcoes[0].texto,
-        reference: allReadings[1].opcoes[0].referencia,
+        title: 'Salmo Responsorial',
+        text: psalmRaw.texto,
+        reference: psalmRaw.referencia,
+        response: psalmRaw.refrao ?? '',
       }
     : undefined;
 
-  const gospel = findReading('evangelho');
+  const secondReadingRaw = api.leituras.segundaLeitura?.[0];
+  const secondReading = secondReadingRaw
+    ? {
+        title: secondReadingRaw.titulo ?? 'Segunda Leitura',
+        text: secondReadingRaw.texto,
+        reference: secondReadingRaw.referencia,
+      }
+    : undefined;
+
+  const gospelRaw = api.leituras.evangelho?.[0];
+  const gospel = gospelRaw
+    ? {
+        title: gospelRaw.titulo ?? 'Evangelho',
+        text: gospelRaw.texto,
+        reference: gospelRaw.referencia,
+      }
+    : undefined;
 
   return {
     date: dateStr,
-    liturgicalSeason: api.nome,
-    liturgicalColor: colorMap[celebr.cor.toLowerCase()] ?? celebr.cor,
-    celebrationName: celebr.liturgia,
+    liturgicalSeason: api.liturgia,
+    liturgicalColor: colorMap[api.cor.toLowerCase()] ?? api.cor,
+    celebrationName: api.liturgia,
     firstReading,
     psalm,
     secondReading,

@@ -1,45 +1,33 @@
-export interface LiturgyReadingOption {
+export interface RailwayReading {
   referencia: string;
   titulo?: string;
   texto: string;
-}
-
-export interface LiturgyReading {
-  ordem: number;
-  tipo: string;
-  rotulo: string;
-  opcoes: LiturgyReadingOption[];
   refrao?: string;
 }
 
-export interface LiturgyCelebration {
-  id: string;
+export interface RailwayPrayers {
+  coleta: string;
+  oferendas: string;
+  comunhao: string;
+  extras: Array<{ titulo: string; texto: string }>;
+}
+
+export interface RailwayLiturgyResponse {
+  data: string;
   liturgia: string;
   cor: string;
-  principal: boolean;
-  oracoes: {
-    coleta: string;
-    oferendas: string;
-    comunhao: string;
-    extras: string[];
+  oracoes: RailwayPrayers;
+  leituras: {
+    primeiraLeitura: RailwayReading[];
+    salmo: RailwayReading[];
+    segundaLeitura: RailwayReading[];
+    evangelho: RailwayReading[];
+    extras: RailwayReading[];
   };
   antifonas: {
     entrada: string;
     comunhao: string;
   };
-  leituras: LiturgyReading[];
-}
-
-export interface LiturgyApiResponse {
-  data: string;
-  nome: string;
-  tempo: string;
-  rank: string;
-  semana: number;
-  dia_semana: string;
-  ciclo_dominical: string;
-  ciclo_ferial: string;
-  celebracoes: LiturgyCelebration[];
 }
 
 export interface DailyLiturgy {
