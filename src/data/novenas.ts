@@ -331,17 +331,55 @@ export const novenas: NovenasPrayer[] = [
   {
     id: 'sao-carlo-acutis',
     title: 'São Carlo Acutis',
-    subtitle: '9 dias de oração ao jovem beato',
+    subtitle: 'Novena ao Anjo da Juventude',
+    initialPrayer: 'Santíssima Trindade, Pai, Filho e Espírito Santo, eu vos agradeço por todos os favores e todas as graças com que enriquecestes a alma de São Carlo Acutis durante os 15 anos que passou nesta Terra e, pelos méritos deste tão querido Anjo da Juventude, vos suplico que me concedais a graça que ardentemente vos peço.',
+    finalPrayer: 'Deus Pai de Misericórdia, que elevastes à glória dos altares este vosso servo Carlo Acutis, a fim de que, por ele, vós fôsseis mais glorificado, concedei-nos, pelos méritos dele — que em tudo viveu a vossa vontade —, a graça que ardentemente desejo. Amém.',
     days: [
-      { day: 1, title: 'Primeiro Dia', text: 'Ó São Carlo Acutis, jovem beato da Igreja, que com apenas 15 anos de idade foste chamado por Deus à glória dos céus, intercedei por nós. Dai-nos a graça de sermos fiéis a Cristo desde a juventude, de amarmos a Eucaristia e de utilizarmos a tecnologia para evangelizar. Amém.' },
-      { day: 2, title: 'Segundo Dia', text: 'Ó São Carlo, que dissestes: "Todos nascemos originais, mas muitos morrem como cópias", dai-nos a graça de sermos autênticos na fé e na vida. Que, imitando vossa coragem, vivamos sempre segundo o Evangelho, sem medo de ser diferentes do mundo. Amém.' },
-      { day: 3, title: 'Terceiro Dia', text: 'Ó São Carlo Acutis, que criastes um site sobre os milagres eucarísticos do mundo, dai-nos a graça de utilizarmos a tecnologia para difundir a fé e o amor a Cristo. Que, imitando vossa iniciativa, sejamos apóstolos digitais no mundo contemporâneo. Amém.' },
-      { day: 4, title: 'Quarto Dia', text: 'Ó São Carlo, que fostes proclamado beato em 2020 e Santo em 2024 pelo Papa Francisco, dai-nos a graça de sermos santos no século XXI. Que vossa vida seja um modelo de santidade para os jovens de todo o mundo. Amém.' },
-      { day: 5, title: 'Quinto Dia', text: 'Ó São Carlo Acutis, que vivestes uma vida de fé intensa em meio à vida cotidiana, dai-nos a graça de encontrarmos a Deus no dia a dia. Que, imitando vossa espiritualidade, vivamos cada momento como uma oportunidade de amar a Deus e ao próximo. Amém.' },
-      { day: 6, title: 'Sexto Dia', text: 'Ó São Carlo, que fostes um modelo de caridade e de serviço aos pobres, dai-nos a graça de sermos generosos com os necessitados. Que, imitando vossa bondade, estendamos as mãos a todos que sofrem em nosso caminho. Amém.' },
-      { day: 7, title: 'Sétimo Dia', text: 'Ó São Carlo Acutis, que em vossa curta vida demonstrastes um amor profundo à Virgem Maria, dai-nos a graça de sermos devotos de Nossa Senhora. Que, imitando vossa devoção mariana, recorramos sempre a vossa proteção em todas as necessidades. Amém.' },
-      { day: 8, title: 'Oitavo Dia', text: 'Ó São Carlo, que fostes enterrado na Basílica de São Francisco de Assis em Spoleto, dai-nos a graça de sermos pobres de espírito e de colocarmos a Deus acima de todas as coisas. Que, imitando vossa simplicidade, vivamos com alegria e esperança. Amém.' },
-      { day: 9, title: 'Nono Dia', text: 'Ó São Carlo Acutis, neste último dia da novena, renovamos nossa confiança em vossa intercessão. Dai-nos a graça de sermos sempre fiéis a Cristo, de amarmos a Eucaristia e de utilizarmos nossos talentos para a glória de Deus. Que vossa vida seja sempre nosso modelo e nossa inspiração. Amém.' },
+      {
+        day: 1,
+        title: 'Primeiro Dia',
+        text: 'Meditação: "Não eu, mas Deus"\n\nSão Carlo Acutis, que fizeste de tua vida uma contínua renúncia e aniquilamento, dá-me a graça de buscar as coisas do Céu e desprezar as que passam. Amém.\n\n5 Pai-Nossos, 5 Ave-Marias e 5 Glórios ao Pai, em honra dos 15 anos de vida do servo de Deus nesta Terra.'
+      },
+      {
+        day: 2,
+        title: 'Segundo Dia',
+        text: 'Meditação: "Estar sempre junto com Jesus: este é o meu plano de vida"\n\nSão Carlo Acutis, que viveste imerso no Coração de Jesus, dá-me a graça de realizar, em tudo, este teu plano de amor. Amém.\n\n5 Pai-Nossos, 5 Ave-Marias e 5 Glórios ao Pai, em honra dos 15 anos de vida do servo de Deus nesta Terra.'
+      },
+      {
+        day: 3,
+        title: 'Terceiro Dia',
+        text: 'Meditação: "Peça ao seu Anjo da Guarda para ajudá-lo continuamente, de modo que ele se torne seu melhor amigo."\n\nSão Carlo Acutis, que buscaste, já neste mundo, a companhia dos santos anjos, dá-me a graça de viver na retidão que o meu santo anjo deseja. Amém.\n\n5 Pai-Nossos, 5 Ave-Marias e 5 Glórios ao Pai, em honra dos 15 anos de vida do servo de Deus nesta Terra.'
+      },
+      {
+        day: 4,
+        title: 'Quarto Dia',
+        text: 'Meditação: "Nossa alma é como um balão… Se por acaso existe um pecado mortal, a alma cai sobre a Terra e a confissão será como fogo… É preciso confessar-se frequentemente."\n\nSão Carlo Acutis, que tão bem viveste o sacramento da reconciliação, dá-me a graça de buscá-lo sempre com uma contrição profunda. Amém.\n\n5 Pai-Nossos, 5 Ave-Marias e 5 Glórios ao Pai, em honra dos 15 anos de vida do servo de Deus nesta Terra.'
+      },
+      {
+        day: 5,
+        title: 'Quinto Dia',
+        text: 'Meditação: "A tristeza é a visão voltada para si; a felicidade é seu olhar para Deus."\n\nSão Carlo Acutis, que jamais desviaste o teu olhar de Jesus, teu grande amor, dá-me a graça de viver já neste mundo esta verdadeira felicidade. Amém.\n\n5 Pai-Nossos, 5 Ave-Marias e 5 Glórios ao Pai, em honra dos 15 anos de vida do servo de Deus nesta Terra.'
+      },
+      {
+        day: 6,
+        title: 'Sexto Dia',
+        text: 'Meditação: "A única coisa que nós temos que pedir a Deus na oração é a vontade de ser santos"\n\nSão Carlo Acutis, que soubeste sempre pedir a Deus o essencial, dá-me a graça de um profundo desejo do Céu. Amém.\n\n5 Pai-Nossos, 5 Ave-Marias e 5 Glórios ao Pai, em honra dos 15 anos de vida do servo de Deus nesta Terra.'
+      },
+      {
+        day: 7,
+        title: 'Sétimo Dia',
+        text: 'Meditação: "A Virgem Maria é a única mulher da minha vida"\n\nSão Carlo Acutis, que amaste a Virgem Maria mais que tudo, dá-me a graça de corresponder ao amor desta tão terna e boa mãe. Amém.\n\n5 Pai-Nossos, 5 Ave-Marias e 5 Glórios ao Pai, em honra dos 15 anos de vida do servo de Deus nesta Terra.'
+      },
+      {
+        day: 8,
+        title: 'Oitavo Dia',
+        text: 'Meditação: "A Eucaristia é a minha estrada para o Céu"\n\nSão Carlo Acutis, que buscavas sempre teu Jesus escondido no sacrário, dá-me a graça de um profundo ardor eucarístico. Amém.\n\n5 Pai-Nossos, 5 Ave-Marias e 5 Glórios ao Pai, em honra dos 15 anos de vida do servo de Deus nesta Terra.'
+      },
+      {
+        day: 9,
+        title: 'Nono Dia',
+        text: 'Meditação: "Eu estou feliz de morrer, porque vivi a minha vida sem perder nenhum minuto em coisas que não agradam a Deus"\n\nSão Carlo Acutis, dá-me a graça das graças, que é a perseverança final e uma morte santa. Amém.\n\n5 Pai-Nossos, 5 Ave-Marias e 5 Glórios ao Pai, em honra dos 15 anos de vida do servo de Deus nesta Terra.'
+      },
     ],
   },
   {
