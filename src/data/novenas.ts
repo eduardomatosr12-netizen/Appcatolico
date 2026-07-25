@@ -617,17 +617,55 @@ export const novenas: NovenasPrayer[] = [
   {
     id: 'sagrado-coracao-de-jesus',
     title: 'Sagrado Coração de Jesus',
-    subtitle: '9 dias de oração ao Coração de Jesus',
+    subtitle: 'Novena ao Coração de Jesus',
+    initialPrayer: 'Oh, Coração amável de Jesus, Coração puríssimo e santíssimo, todo cheio de amor, Coração onde reinam todas as perfeições e virtudes, Vós mereceis o amor de todos os corações. Destruí, no meu coração, todas as afeições que me impedem de ser todo Vosso. Eu Vos amo, oh, meu Jesus, e não quero amar senão a Vós.',
+    finalPrayer: 'Ó Deus, que no Coração do Vosso Filho, ferido por nossos pecados, dignais-Vos prodigalizar-nos os infinitos tesouros do amor, nós Vos rogamos que, rendendo-Lhe o preito de nossa devoção e piedade, também cumpramos dignamente para com Ele o dever de reparação. Pelo mesmo Cristo, Senhor nosso. Amém!',
     days: [
-      { day: 1, title: 'Primeiro Dia', text: 'Ó Sagrado Coração de Jesus, fonte de todo amor e de toda misericórdia, intercedei por nós. Dai-nos a graça de termos um coração como o vosso: misericordioso, paciente e cheio de amor por todos os irmãos. Coração de Jesus, fazei que vos amemos cada vez mais. Amém.' },
-      { day: 2, title: 'Segundo Dia', text: 'Ó Sagrado Coração de Jesus, que sois paciente e bondoso com os pecadores, dai-nos a graça de sermos patientes com as fragilidades dos irmãos. Que, imitando vossa misericórdia, perdoemos sempre, como Deus nos perdoa. Amém.' },
-      { day: 3, title: 'Terceiro Dia', text: 'Ó Sagrado Coração de Jesus, que vossa chaga aberta no lado direito é fonte de graças para o mundo inteiro, dai-nos a graça de frequentarmosregularmente os sacramentos, especialmente a Eucaristia e a Reconciliação. Que, alimentando-nos com vosso Corpo e vosso Sangue, cresçamos na santidade. Amém.' },
-      { day: 4, title: 'Quarto Dia', text: 'Ó Sagrado Coração de Jesus, que sois o refúgio dos pecadores e a esperança dos desesperados, dai-nos a graça de nunca desesperarmos diante de nossos pecados. Que, confiando em vossa misericórdia, busquemos sempre o perdão de Deus. Amém.' },
-      { day: 5, title: 'Quinto Dia', text: 'Ó Sagrado Coração de Jesus, que a Igreja celebra vossa festa litúrgica na terceira sexta-feira depois de Corpus Christi, dai-nos a graça de celebrarmos esta festa com fé e alegria. Que a devoção ao vosso Sagrado Coração seja sempre uma fonte de graças para nós e para o mundo. Amém.' },
-      { day: 6, title: 'Sexto Dia', text: 'Ó Sagrado Coração de Jesus, que reinai sobre todas as nações do mundo, dai-nos a graça de vivermos sempre sob vosso reinado. Que, imitando vossa soberania, coloquemos sempre a Deus acima de todas as coisas. Amém.' },
-      { day: 7, title: 'Sétimo Dia', text: 'Ó Sagrado Coração de Jesus, que sois o modelo de amor perfeito, dai-nos a graça de amarmos a Deus e ao próximo com todo o nosso coração. Que, imitando vossa caridade, vivamos sempre no amor. Amém.' },
-      { day: 8, title: 'Oitavo Dia', text: 'Ó Sagrado Coração de Jesus, que sois a esperança do mundo inteiro, dai-nos a graça de sermos portadores de esperança em meio às trevas do pecado e da morte. Que, imitando vossa luz, iluminemos o caminho dos irmãos. Amém.' },
-      { day: 9, title: 'Nono Dia', text: 'Ó Sagrado Coração de Jesus, neste último dia da novena, renovamos nossa consagração ao vosso Sagrado Coração. Aceitai-nos como vossos devotados, dai-nos a graça de vivermos sempre sob vosso reinado e de caminharmos com fé e esperança para o encontro convosco. Amém.' },
+      {
+        day: 1,
+        title: '1º Dia - Coração de Jesus, templo da Santíssima Trindade',
+        text: 'Meditação:\nUm só ato de adoração e de amor ou de outra qualquer virtude que saísse do Coração de Cristo, pela Sua missão à Pessoa do Verbo Divino, era para Deus infinitamente mais valioso do que os atos de todas as pessoas deste mundo, ainda as mais santas.\n\nNós também devemos ser templos vivos de Deus pela graça. Peçamos ao Sagrado Coração que faça o nosso coração semelhante ao d\'Ele.\n\nRecitatório:\n"Sagrado Coração de meu Jesus, fazei que Vos ame cada vez mais!"\n\nPai Nosso, Ave-Maria e Glória.'
+      },
+      {
+        day: 2,
+        title: '2º Dia - Ó Coração de Jesus, artífice da Eucaristia',
+        text: 'Oração preparatória:\nOh, Coração de Jesus, Coração inflamado de amor para com os homens, por que eles correspondem tão mal e só com desprezo Vos tratam? Eu também fui do número desses ingratos que não Vos sabem amar. Não permitais que, para o futuro, viva ainda esquecido do Vosso amor.\n\nMeditação:\nA Eucaristia é o maior presente do Coração de Cristo. Fonte e coroa de toda a vida da Igreja, a Eucaristia, Sacrifício da Missa, renova no altar a Obra da Redenção, a Eucaristia-Sacramento é vida, Eucaristia-Presença real é o amor vivo de Cristo na nossa caminhada para o Pai.\n\nRecitatório:\n"Sagrado Coração de meu Jesus, fazei que Vos ame cada vez mais!"\n\nPai Nosso, Ave-Maria e Glória.'
+      },
+      {
+        day: 3,
+        title: '3º Dia - Ó Coração de Cristo, sarça de penetrantes espinhos',
+        text: 'Oração preparatória:\nOh, Coração de Jesus, desejoso de ser amado, Coração que achais vossas delícias em ser amado pelos homens, eu merecia, pelos meus pecados, viver privado da Vossa graça, mas vejo que ainda continuais a pedir-me o meu amor. Fazei que muito Vos ame um pecador, que muito vos tem ofendido.\n\nMeditação:\nToda a vida de Cristo até a Sua gloriosa Ressurreição, foi Cruz e martírio, porque, desde o primeiro instante, Cristo aceitou o preço da redenção marcado pelo Pai. A visão dos Seus sofrimentos redentores foi tão viva que, no Jardim das Oliveiras, Lhe fez suar sangue. Saibamos transformar os nossos sofrimentos em prova de amor.\n\nRecitatório:\n"Sagrado Coração de meu Jesus, fazei que Vos ame cada vez mais!"\n\nPai Nosso, Ave-Maria e Glória.'
+      },
+      {
+        day: 4,
+        title: '4º Dia - Ó Coração de Jesus, fornalha ardente de caridade',
+        text: 'Oração preparatória:\nOh, Coração aflito de Jesus, detesto o que vos desagrada. Dai-me tal horror ao pecado, que eu tenha medo até das mais leves faltas, unicamente porque desgostam a Vós que sois digno de amor infinito. Concedei-me a graça, meu amável Salvador, de sempre me dirigir a Vós com esta súplica: Oh, meu Jesus, dai-me o Vosso amor.\n\nMeditação:\nSó Deus pode medir o amor de Cristo para com o Pai e para com os homens. Ele o demonstrou cumprindo de modo fidelíssimo a vontade do Pai, e entregando-se inteiramente pela salvação dos homens. Como nós procuramos imitar esse amor e corresponder-Lhe na nossa vida diária?\n\nRecitatório:\n"Sagrado Coração de meu Jesus, fazei que Vos ame cada vez mais!"\n\nPai Nosso, Ave-Maria e Glória.'
+      },
+      {
+        day: 5,
+        title: '5º Dia - Ó Coração de Jesus, paraíso de delícias celestes',
+        text: 'Oração preparatória:\nOh, Coração Misericordioso de Jesus, quando me achava na desgraça, Vossa bondade me iluminou e me ofereceu o perdão. Concedei-me a graça de chorar os meus pecados e de desejar o Vosso amor. Não deixeis, ó meu Jesus, de ter piedade de mim. A misericórdia que Vos peço é que me comuniqueis luz e força para que nunca mais Vos seja ingrato.\n\nMeditação:\nO Coração de Cristo é um oceano para onde fluem todos os rios da caridade do Pai e de onde saem todos os rios de graças que santificam as almas, porque n\'Ele se encerram todas as riquezas do amor divino. Esses tesouros infinitos de amor e de vida estão sempre a nossa disposição.\n\nRecitatório:\n"Sagrado Coração de meu Jesus, fazei que Vos ame cada vez mais!"\n\nPai Nosso, Ave-Maria e Glória.'
+      },
+      {
+        day: 6,
+        title: '6º Dia - Ó Coração generoso de Jesus',
+        text: 'Oração preparatória:\nÓ Coração generoso de Jesus, está no Vosso poder tornar o meu coração inteiramente Vosso. De mim mesmo nada tenho e nada posso; mas Vós me destes um coração que pode e deseja amar-Vos. Fazei pois, ó meu Jesus, que de hoje em diante a Vossa santa vontade seja a única orientação de todos os meus pensamentos, desejos e ações.\n\nMeditação:\nRenovo o inquebrantável propósito de oferecer-Vos cada manhã ao levantar-me, e por intermédio da Santíssima Virgem, as obras e trabalhos do dia a dia, e de trabalhar com empenho e constância para engrandecer-Vos e alcançar em recompensa o céu.\n\nRecitatório:\n"Sagrado Coração de meu Jesus, fazei que Vos ame cada vez mais!"\n\nPai Nosso, Ave-Maria e Glória.'
+      },
+      {
+        day: 7,
+        title: '7º Dia - Ó Coração de Jesus, abismo de Misericórdia',
+        text: 'Oração preparatória:\nOh, Coração reconhecido de Jesus, tenho-me mostrado sempre reconhecido às criaturas, ao passo que só Convosco tenho sido um ingrato. Amável Jesus, quero, agora, amar-Vos sobre todas as coisas, mais do que a mim mesmo. O resto da minha vida, quero empregá-la unicamente em Vos amar, ó Bem Supremo da minha alma. Fazei que conheça a Vossa santa vontade e pronto estarei para tudo, com o socorro de Vossa graça.\n\nMeditação:\nBasta lembrar como Cristo acolhia e tratava os pecadores: os publicanos, o paralítico, Madalena, a adúltera, o bom ladrão e tantos outros. Ele mesmo afirmou: "Eu vim a este mundo para salvar os pecadores". Essa atitude de Cristo nos inspira confiança e nos ensina de que maneira devemos tratar os pecadores.\n\nRecitatório:\n"Sagrado Coração de meu Jesus, fazei que Vos ame cada vez mais!"\n\nPai Nosso, Ave-Maria e Glória.'
+      },
+      {
+        day: 8,
+        title: '8º Dia - Ó Coração de Jesus, atrativo dos nossos corações',
+        text: 'Oração preparatória:\nOh, coração desprezado de Jesus, abismo de Misericórdia e de amor, não permitais que para mim as dores sejam como que perdidas. Lembrai-vos, ó meu Jesus, das lágrimas e do sangue que derramastes por amor e perdoai-me. Fazei que eu morra para mim mesmo, afim de viver unicamente para Vós uma vida fervorosa no Vosso santo amor.\n\nMeditação:\nNo Calvário, do lado aberto de Cristo, jorraram sangue e água. Sangue e água que simbolizam a Igreja e os sacramentos. A Igreja é o caminho normal para Cristo, os sacramentos são canais que nos comunicam as graças da redenção. Cristo nos atrai, continuamente, para Si, pela Igreja e pelos sacramentos. Apreciamos, suficientemente, o tesouro espiritual que temos na Igreja e nos sacramentos?\n\nRecitatório:\n"Sagrado Coração de meu Jesus, fazei que Vos ame cada vez mais!"\n\nPai Nosso, Ave-Maria e Glória.'
+      },
+      {
+        day: 9,
+        title: '9º Dia - Ó Coração de Jesus, penhor da vida eterna',
+        text: 'Oração preparatória:\nOh, coração de Jesus, fiel com aqueles que chamais ao Vosso amor, quantas vezes, depois de ter prometido ser todo Vosso, neguei-Vos o meu amor! Reconheço a minha ingratidão e penitencio-me sinceramente. Inflamai meu pobre coração no fogo daquele amor em que o Vosso está abrasado por mim. Ó Maria, Mãe do belo amor, ajudai-me a amar Vosso Filho Jesus.\n\nMeditação:\nAssim como o coração humano é o motor da nossa vida física, também a caridade é motor da nossa vida sobrenatural e eterna. Quem vive no amor não pode se condenar, porque o amor é a vida de todos os que são realmente filhos de Deus, em Cristo e no Espírito Santo. Somos herdeiros de Deus e co-herdeiros de Cristo. Amém. Aleluia.\n\nRecitatório:\n"Sagrado Coração de meu Jesus, fazei que Vos ame cada vez mais!"\n\nPai Nosso, Ave-Maria e Glória.'
+      },
     ],
   },
   {
