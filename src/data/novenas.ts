@@ -385,17 +385,55 @@ export const novenas: NovenasPrayer[] = [
   {
     id: 'sao-padre-pio',
     title: 'São Padre Pio',
-    subtitle: '9 dias de oração ao estigmatizado',
+    subtitle: 'Novena ao estigmatizado de Pietrelcina',
+    initialPrayer: 'Santíssima Trindade, Pai, Filho e Espírito Santo, eu vos agradeço por todos os favores e todas as graças com que enriquecestes a alma de São Padre Pio durante sua vida neste Terra e, pelos méritos deste tão querido sacerdote, vos suplico que me concedais a graça que ardentemente vos peço.',
+    finalPrayer: 'Ó meu Jesus, que dissestes: "Pedi, e vos será dado; buscai, e achareis; batei, e a vós se abrirá", eu bato, procuro e peço a graça que desejo.\n\nPai-Nosso, Ave-Maria, Glória ao Pai.\nSagrado Coração de Jesus, confio e espero em vós.\n\nÓ meu Jesus, que ao Vosso Pai dissestes: "Em verdade, em verdade vos digo que, se pedirdes a meu Pai alguma coisa em meu nome, ele vo-la dará", em Vosso nome peço a graça que desejo.\n\nPai-Nosso, Ave-Maria, Glória ao Pai.\nSagrado Coração de Jesus, confio e espero em vós.\n\nÓ meu Jesus, que dissestes: "O Céu e a Terra passarão, mas as minhas palavras não passarão", apoiado na infalibilidade de Vossas palavras, peço a graça que desejo.\n\nPai-Nosso, Ave-Maria, Glória ao Pai.\nSagrado Coração de Jesus, confio e espero em vós.\n\nÓ Sagrado Coração de Jesus, a quem é impossível não ter compaixão dos infelizes, tende piedade de nós, pobres pecadores, e concedei-nos as graças que Vos pedimos por meio do Imaculado Coração de Maria, vossa e nossa terna Mãe.\n\nSão José, pai putativo do Sagrado Coração de Jesus, rogai por nós.\n\nSalve Rainha.',
     days: [
-      { day: 1, title: 'Primeiro Dia', text: 'Ó São Padre Pio, estigmatizado de Pietrelcina, que carregais em vosso corpo as chagas de Cristo, intercedei por nós. Dai-nos a graça de unirmos nossos sofrimentos aos de Jesus para a salvação das almas. Pai Pio,保佑-nos em todas as nossas necessidades espirituais e materiais. Amém.' },
-      { day: 2, title: 'Segundo Dia', text: 'Ó São Padre Pio, que fostes um apóstolo do confessionário, ouvindo confissões por horas e horas, dai-nos a graça de frequentarmosregularmente o sacramento da Reconciliação. Que, imitando vossa paciência e vossa bondade, nos arrependamos sinceramente de nossos pecados. Amém.' },
-      { day: 3, title: 'Terceiro Dia', text: 'Ó São Padre Pio, que vivestes uma vida de oração intensa, rezando o Rosário dezenas de vezes ao dia, dai-nos a graça de sermos homens e mulheres de oração. Que, imitando vossa perseverança, não desistamos de rezar, mesmo quando a oração pareça difícil. Amém.' },
-      { day: 4, title: 'Quarto Dia', text: 'Ó São Padre Pio, que fostes um exemplo de obediência à Igreja, mesmo quando acusado injustamente, dai-nos a graça de sermos obedientes à hierarquia da Igreja. Que, imitando vossa humildade, aceitemos as orientações dos nossos pastores com docilidade. Amém.' },
-      { day: 5, title: 'Quinto Dia', text: 'Ó São Padre Pio, que fostes um instrumento de muitos milagres e curas, intercedei por nós em nossas doenças e em nossas necessidades. Dai-nos a graça de aceitarmos as cruzes que Deus nos envia, com fé e esperança na vida eterna. Amém.' },
-      { day: 6, title: 'Sexto Dia', text: 'Ó São Padre Pio, que em 1918 recebestes os estigmas de Cristo, dai-nos a graça de carregarmos nossas cruzes com amor e paciência. Que, imitando vossa generosidade, ofereçamos nossos sofrimentos pela conversão dos pecadores e pela paz do mundo. Amém.' },
-      { day: 7, title: 'Sétimo Dia', text: 'Ó São Padre Pio, que fostes um defensor da Eucaristia, celebrando a Missa com profundidade e reverência, dai-nos a graça de valorizarmos a Sagrada Eucaristia. Que, imitando vossa fé eucarística, participemos da Missa com devoção e alegria. Amém.' },
-      { day: 8, title: 'Oitavo Dia', text: 'Ó São Padre Pio, que fostes canonizado pelo Papa João Paulo II em 2002, dai-nos a graça de sermos santos no século XXI. Que vossa vida seja um modelo de santidade para os fiéis de todo o mundo. Amém.' },
-      { day: 9, title: 'Nono Dia', text: 'Ó São Padre Pio, neste último dia da novena, renovamos nossa confiança em vossa intercessão. Dai-nos a graça de sermos sempre fiéis a Cristo, de frequentarmos os sacramentos e de vivermos sempre em estado de graça. Que vossa vida seja sempre nosso modelo e nossa inspiração. Amém.' },
+      {
+        day: 1,
+        title: 'Primeiro Dia',
+        text: '"É uma grande vantagem conformar-te aos sofrimentos que Jesus te enviará. Jesus, que não suporta te ver sofrer, virá te socorrer e te confortar enquanto infunde uma coragem nova em tua alma."\n\nAmado São Pio de Pietrelcina, tu carregaste em teu corpo os sinais da Paixão de Nosso Senhor Jesus Cristo. Tu levaste a cruz para todo o mundo, enquanto aguentavas os sofrimentos físicos e morais que flagelavam tua alma e teu corpo em um martírio contínuo. Nós te imploramos, por favor, reza a Deus por nós: assim cada um de nós poderá aceitar as pequenas e as grandes cruzes da vida, e todo o mundo poderá transformar o sofrimento individual em vínculo seguro que nos liga à vida eterna.'
+      },
+      {
+        day: 2,
+        title: 'Segundo Dia',
+        text: '"Coragem! Não temas as agressões do Diabo. Lembra-te disto sempre: é um sinal bom se o Inimigo gritar e rogar o teu perjúrio ao teu redor – isto mostra que ele não está dentro de ti."\n\nSão Pio de Pietrelcina, que estás junto com Nosso Deus Jesus, tu soubeste resistir às tentações do maligno. Tu sofres-te os golpes e a opressão do endiabrado do Inferno, que quis induzir-te a abandonar a tua estrada de santidade. Nós te imploramos, por favor, reza a Deus por nós, de forma que, com a tua ajuda e com ajuda de todo o Reino Divino, possamos achar a força para abandonar o pecado e perseverar de fato na fé até o dia de nossa morte.'
+      },
+      {
+        day: 3,
+        title: 'Terceiro Dia',
+        text: '"Que Maria seja a estrela que ilumina o vosso caminho e que ela vos mostre o modo seguro de seguir o Pai celestial. Ela é como uma âncora, na qual tendes de vos agarrar e vos conservar cada vez mais unidos e firmes nos momentos de tentação."\n\nVirtuosíssimo São Padre Pio de Pietrelcina, tu amaste muito Nossa Senhora, de quem recebeste diariamente graças e consolações. Nós imploramos, por favor, reza à Mãe Santa por nós, enquanto colocas nas mãos dela os nossos pecados e as nossas orações sem fé, de forma que, como em Caná da Galileia, o Filho atenda à Mãe e nosso nome seja escrito no livro da vida.'
+      },
+      {
+        day: 4,
+        title: 'Quarto Dia',
+        text: '"Invoca o teu anjo da guarda, que te iluminará e te conduzirá. Deus o te deu por este motivo. Portanto, vale-te dele!"\n\nCastíssimo São Padre Pio de Pietrelcina, que tanto amaste e nos ensinaste a amar o santo anjo da guarda, este que te serviu de companhia, guia, defensor e mensageiro. A ti as figuras angélicas levaram os rogos dos teus filhos espirituais. Intercede a Deus por nós, para que também nós aprendamos a falar com nosso anjo da guarda, para que a todo momento saibamos obedecer-lhe, pois és a luz viva de Deus que nos livra da desgraça de cair em pecado. Nosso anjo sempre está pronto a ensinar-nos os caminhos do bem e a dissuadir-nos de fazer o mal.'
+      },
+      {
+        day: 5,
+        title: 'Quinto Dia',
+        text: '"Ó Senhor Jesus Cristo, te suplico: derrama sobre mim todos os castigos que são para os pecadores e para as almas benditas do Purgatório; multiplica sobre mim os sofrimentos, com os quais convertes e salva os pecadores; e livra-os salvos do tormento do Purgatório."\n\nPrudentíssimo São Padre Pio de Pietrelcina, tu, que tanto amas e nos ensinaste a amar as almas do Purgatório: por elas te ofereceste como vítima de expiação dos pecados delas. Roga a Deus Nosso Senhor para que ponha em nossos corações sentimentos de compaixão e amor por estas almas. Também nós ajudaremos as almas do Purgatório e reduziremos seus tempos de desterro e de grande aflição. Conseguiremos para elas com sacrifícios e orações o descanso eterno de suas almas, assim como as santas indulgências necessárias para tirá-las do lugar de sofrimento.'
+      },
+      {
+        day: 6,
+        title: 'Sexto Dia',
+        text: '"Se eu sei que uma pessoa está aflita, seja em sua alma, seja em seu corpo, suplico a Deus para vê-la livre de seus males. De boa vontade tomaria todos os seus sofrimentos para vê-la salva e cederia os frutos de tais sofrimentos em seu favor."\n\nObedientíssimo São Padre Pio de Pietrelcina, tu, que quiseste tão bem aos enfermos mais que a ti mesmo, porque neles vias a Jesus; tu, que em nome de Deus obraste milagres de curas do corpo, da alma e da mente no presente, no passado e no futuro das pessoas, devolvendo esperança de vida e renovação de espírito e na integridade total das pessoas, roga a Deus para que todos os enfermos, por intercessão de Maria Santíssima, possam experimentar tua forte ajuda e, através da cura do corpo, possam encontrar benefícios espirituais e agradecer sempre a Deus.'
+      },
+      {
+        day: 7,
+        title: 'Sétimo Dia',
+        text: '"Se o pobre mundo pudesse ver a beleza da alma sem pecado, todos os pecadores e todos os incrédulos se converteriam naquele instante."\n\nBenditíssimo São Padre Pio de Pietrelcina, tu, que tens realizado o projeto de salvação de Deus e tens oferecido teus sofrimentos para desatar os pecadores das redes de Satanás, roga a Deus para que os homens que não creem tenham uma grande e verdadeira fé e se convertam, arrependendo-se do fundo de seus corações; que as pessoas com pouca fé melhorem sua vida cristã; que os homens justos perseverem no caminho da salvação.'
+      },
+      {
+        day: 8,
+        title: 'Oitavo Dia',
+        text: '"Se me fosse possível, gostaria de obter de Deus somente uma coisa; se Ele me dissesse \'vá para o Paraíso\', conseguiria esta graça deste modo dizendo: \'Senhor, não me deixes ir ao Paraíso até que o último dos meus filhos, a última das pessoas que me foram confiadas, tenha entrado antes de mim\'."\n\nPuríssimo São Padre Pio de Pietrelcina, tu, que quiseste muito bem aos teus filhos espirituais, muitos dos teus filhos foram comprados por ti com o preço do teu sangue. Também concede a nós, que não te conhecemos pessoalmente, sermos considerados como teus filhos espirituais. Com tua paternal proteção, com tua santa orientação e com a força que obtiveste para os outros filhos de Deus, poderemos no momento da morte encontrar-te nas portas do Paraíso aguardando a nossa chegada.'
+      },
+      {
+        day: 9,
+        title: 'Nono Dia',
+        text: '"Sempre te mantém unido à Santa Igreja Católica, porque somente ela pode salvar-te, porque somente ela possui o Jesus Sacramentado, que é o verdadeiro príncipe da paz."\n\nHumilde São Padre Pio de Pietrelcina, tu, que és verdadeiramente amado pela Santa Madre Igreja: roga a Deus, Nosso Senhor, ao Senhor das messes, para que mande trabalhadores à Sua santa obra e dê a cada um deles segundo o seu santo trabalho, de maneira que tenhamos no mundo sacerdotes santos. Que estes obtenham a força e a inspiração divina. Ao mais, nós te rogamos a intercessão junto à Santíssima sempre Virgem Maria, para que conduza todos os homens a uma unidade de cristãos reunidos na grande casa de Deus, e para que a Santa Igreja seja o farol de luz e salvação neste mar de tempestades que é a vida de hoje.'
+      },
     ],
   },
   {
