@@ -1099,4 +1099,58 @@ export const novenas: NovenasPrayer[] = [
       },
     ],
   },
+  {
+    id: 'anjo-da-guarda',
+    title: 'Anjo da Guarda',
+    subtitle: 'Novena ao Nosso Santo Protetor',
+    initialPrayer: 'Santo Anjo da Guarda, guardai-nos de todas as ciladas do inimigo astucioso. Deus, vinde em meu auxílio. Apressai-vos, Senhor, em socorrer-me.\n\n(Rezar: Glória ao Pai)\n\nÓ Santo Anjo da minha Guarda, dou-vos graças pelos cuidados que tivestes comigo desde os primeiros dias de minha vida, livrando-me dos perigos espirituais e corporais. Ajudai-me com suas santas aparições, para que, sendo fiel a elas, consiga viver santamente neste mundo e gozar, depois, de vossa companhia na pátria celestial. Amém.\n\n(Rezar: Pai Nosso; Ave-Maria)',
+    finalPrayer: 'Ó fidelíssimo Companheiro, destinado por Deus à minha guarda, meu protetor e defensor, que nunca vos afastais do meu lado! Como vos hei de agradecer a fidelidade, o amor e os inúmeros benefícios de vós recebidos? Por mim velais no sono, na tristeza me consolais, no abatimento me ergueis; de mim afastais os perigos iminentes e me ensinais a precaver os futuros; dos pecados me desviais e ao bem me impelis; à penitência me chamais na queda e com Deus me reconciliais. Já há muito, quem sabe, eu me teria condenado ao inferno, se por vossas preces não houvésseis afastado de mim a ira divina! Peço-vos que nunca me abandoneis; consolai-me na adversidade, controlai-me na prosperidade, guardai-me nos perigos e ajudai-me nas tentações, para que a elas nunca sucumba. Apresentai à presença divina as minhas preces, gemidos e todas as minhas boas obras e fazei que, partindo em graça desta, eu entre um dia na vida eterna. Amém.',
+    days: [
+      {
+        day: 1,
+        title: '1º Dia - Para que o Senhor nos torne dignos de perfeita caridade',
+        text: 'Intenção: Para que o Senhor nos torne dignos de sermos abrasados de uma perfeita caridade.\n\nSanto Anjo da Guarda, guardai-nos de todas as ciladas do inimigo astucioso. Deus, vinde em meu auxílio. Apressai-vos, Senhor, em socorrer-me.\n\n(Rezar: Glória ao Pai)\n\nÓ Santo Anjo da minha Guarda, dou-vos graças pelos cuidados que tivestes comigo desde os primeiros dias de minha vida, livrando-me dos perigos espirituais e corporais. Ajudai-me com suas santas aparições, para que, sendo fiel a elas, consiga viver santamente neste mundo e gozar, depois, de vossa companhia na pátria celestial. Amém.\n\n(Rezar: Pai Nosso; Ave-Maria)'
+      },
+      {
+        day: 2,
+        title: '2º Dia - Para fugir do pecado e buscar a perfeição',
+        text: 'Intenção: Para que o Senhor nos conceda a graça de fugirmos do pecado e procurarmos sempre a perfeição cristã.\n\nSanto Anjo da Guarda, guardai-nos de todas as ciladas do inimigo astucioso. Deus, vinde em meu auxílio. Apressai-vos, Senhor, em socorrer-me.\n\n(Rezar: Glória ao Pai)\n\nÓ Santo Anjo da minha Guarda, dou-vos graças pelos cuidados que tivestes comigo desde os primeiros dias de minha vida, livrando-me dos perigos espirituais e corporais. Ajudai-me com suas santas aparições, para que, sendo fiel a elas, consiga viver santamente neste mundo e gozar, depois, de vossa companhia na pátria celestial. Amém.\n\n(Rezar: Pai Nosso; Ave-Maria)'
+      },
+      {
+        day: 3,
+        title: '3º Dia - Para que o Senhor derrame humildade em nossos corações',
+        text: 'Intenção: Para que o Senhor derrame em nossos corações o espírito de verdadeira humildade.\n\nSanto Anjo da Guarda, guardai-nos de todas as ciladas do inimigo astucioso. Deus, vinde em meu auxílio. Apressai-vos, Senhor, em socorrer-me.\n\n(Rezar: Glória ao Pai)\n\nÓ Santo Anjo da minha Guarda, dou-vos graças pelos cuidados que tivestes comigo desde os primeiros dias de minha vida, livrando-me dos perigos espirituais e corporais. Ajudai-me com suas santas aparições, para que, sendo fiel a elas, consiga viver santamente neste mundo e gozar, depois, de vossa companhia na pátria celestial. Amém.\n\n(Rezar: Pai Nosso; Ave-Maria)'
+      },
+      {
+        day: 4,
+        title: '4º Dia - Para dominar os sentidos e corrigir más inclinações',
+        text: 'Intenção: Para que o Senhor nos conceda a graça de dominar nossos sentidos e nos corrigir das nossas más inclinações.\n\nSanto Anjo da Guarda, guardai-nos de todas as ciladas do inimigo astucioso. Deus, vinde em meu auxílio. Apressai-vos, Senhor, em socorrer-me.\n\n(Rezar: Glória ao Pai)\n\nÓ Santo Anjo da minha Guarda, dou-vos graças pelos cuidados que tivestes comigo desde os primeiros dias de minha vida, livrando-me dos perigos espirituais e corporais. Ajudai-me com suas santas aparições, para que, sendo fiel a elas, consiga viver santamente neste mundo e gozar, depois, de vossa companhia na pátria celestial. Amém.\n\n(Rezar: Pai Nosso; Ave-Maria)'
+      },
+      {
+        day: 5,
+        title: '5º Dia - Para crescer nas virtudes de fé, esperança e caridade',
+        text: 'Intenção: Para que o Senhor nos conceda a graça de crescer e fortalecer as virtudes de fé, esperança e caridade.\n\nSanto Anjo da Guarda, guardai-nos de todas as ciladas do inimigo astucioso. Deus, vinde em meu auxílio. Apressai-vos, Senhor, em socorrer-me.\n\n(Rezar: Glória ao Pai)\n\nÓ Santo Anjo da minha Guarda, dou-vos graças pelos cuidados que tivestes comigo desde os primeiros dias de minha vida, livrando-me dos perigos espirituais e corporais. Ajudai-me com suas santas aparições, para que, sendo fiel a elas, consiga viver santamente neste mundo e gozar, depois, de vossa companhia na pátria celestial. Amém.\n\n(Rezar: Pai Nosso; Ave-Maria)'
+      },
+      {
+        day: 6,
+        title: '6º Dia - Para que o Senhor nos livre da tentação e do mal',
+        text: 'Intenção: Para que o Senhor não nos deixe cair em tentação, mas que nos livre de todo o mal e, de modo especial, dos vícios contra a pureza.\n\nSanto Anjo da Guarda, guardai-nos de todas as ciladas do inimigo astucioso. Deus, vinde em meu auxílio. Apressai-vos, Senhor, em socorrer-me.\n\n(Rezar: Glória ao Pai)\n\nÓ Santo Anjo da minha Guarda, dou-vos graças pelos cuidados que tivestes comigo desde os primeiros dias de minha vida, livrando-me dos perigos espirituais e corporais. Ajudai-me com suas santas aparições, para que, sendo fiel a elas, consiga viver santamente neste mundo e gozar, depois, de vossa companhia na pátria celestial. Amém.\n\n(Rezar: Pai Nosso; Ave-Maria)'
+      },
+      {
+        day: 7,
+        title: '7º Dia - Para que o Senhor encha nossas almas de obediência',
+        text: 'Intenção: Para que o Senhor encha nossas almas do espírito de uma verdadeira e sincera obediência.\n\nSanto Anjo da Guarda, guardai-nos de todas as ciladas do inimigo astucioso. Deus, vinde em meu auxílio. Apressai-vos, Senhor, em socorrer-me.\n\n(Rezar: Glória ao Pai)\n\nÓ Santo Anjo da minha Guarda, dou-vos graças pelos cuidados que tivestes comigo desde os primeiros dias de minha vida, livrando-me dos perigos espirituais e corporais. Ajudai-me com suas santas aparições, para que, sendo fiel a elas, consiga viver santamente neste mundo e gozar, depois, de vossa companhia na pátria celestial. Amém.\n\n(Rezar: Pai Nosso; Ave-Maria)'
+      },
+      {
+        day: 8,
+        title: '8º Dia - Para perseverar na fé e irradiar o amor de Deus',
+        text: 'Intenção: Para que o Senhor nos conceda a graça da perseverança na fé e nas boas obras, irradiando os preceitos do amor de Deus e do próximo.\n\nSanto Anjo da Guarda, guardai-nos de todas as ciladas do inimigo astucioso. Deus, vinde em meu auxílio. Apressai-vos, Senhor, em socorrer-me.\n\n(Rezar: Glória ao Pai)\n\nÓ Santo Anjo da minha Guarda, dou-vos graças pelos cuidados que tivestes comigo desde os primeiros dias de minha vida, livrando-me dos perigos espirituais e corporais. Ajudai-me com suas santas aparições, para que, sendo fiel a elas, consiga viver santamente neste mundo e gozar, depois, de vossa companhia na pátria celestial. Amém.\n\n(Rezar: Pai Nosso; Ave-Maria)'
+      },
+      {
+        day: 9,
+        title: '9º Dia - Para sermos conduzidos à glória do Céu',
+        text: 'Intenção: Para que o Senhor digne-se conceder que sejamos guardados por todos os anjos nesta vida mortal e, depois, sejamos conduzidos por eles à glória do Céu.\n\nSanto Anjo da Guarda, guardai-nos de todas as ciladas do inimigo astucioso. Deus, vinde em meu auxílio. Apressai-vos, Senhor, em socorrer-me.\n\n(Rezar: Glória ao Pai)\n\nÓ Santo Anjo da minha Guarda, dou-vos graças pelos cuidados que tivestes comigo desde os primeiros dias de minha vida, livrando-me dos perigos espirituais e corporais. Ajudai-me com suas santas aparições, para que, sendo fiel a elas, consiga viver santamente neste mundo e gozar, depois, de vossa companhia na pátria celestial. Amém.\n\n(Rezar: Pai Nosso; Ave-Maria)'
+      },
+    ],
+  },
 ];
