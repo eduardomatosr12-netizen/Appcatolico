@@ -439,17 +439,55 @@ export const novenas: NovenasPrayer[] = [
   {
     id: 'sao-jose-maria-escriva',
     title: 'São José Maria Escrivá',
-    subtitle: '9 dias de oração ao fundador do Opus Dei',
+    subtitle: 'Novena do Trabalho',
+    initialPrayer: 'Ó Deus, que por mediação da Santíssima Virgem Maria concedestes inumeráveis graças a São Josemaría, sacerdote, escolhendo-o como instrumento fidelíssimo para fundar o Opus Dei, caminho de santificação no trabalho profissional e no cumprimento dos deveres cotidianos do cristão, fazei com que eu saiba também converter todos os momentos, amar e servir com alegria e simplicidade a Igreja, o Romano Pontífice e as almas, iluminando os caminhos da Terra com o resplendor da fé e do amor. Concedei-me por intercessão de São Josemaría o favor que vos peço. Assim seja.',
+    finalPrayer: 'Pai Nosso, Ave-Maria, Glória.',
     days: [
-      { day: 1, title: 'Primeiro Dia', text: 'Ó São José Maria Escrivá, fundador do Opus Dei, que ensinastes que a santidade se alcança no trabalho cotidiano, dai-nos a graça de santificarmos nosso trabalho e nossas atividades diárias. Que, imitando vossa doutrina, vivamos com espírito de oração em meio ao mundo. Amém.' },
-      { day: 2, title: 'Segundo Dia', text: 'Ó São José Maria, que dissestes: "A vida não tem sentido sem oração", dai-nos a graça de sermos homens e mulheres de oração em meio à vida cotidiana. Que, imitando vossa constância, rezemos todos os dias com fé e perseverança. Amém.' },
-      { day: 3, title: 'Terceiro Dia', text: 'Ó São José Maria Escrivá, que fostes um modelo de caridade e de serviço aos outros, dai-nos a graça de sermos generosos com o próximo. Que, imitando vossa bondade, estendamos as mãos a todos que sofrem em nosso caminho. Amém.' },
-      { day: 4, title: 'Quarto Dia', text: 'Ó São José Maria, que fostes canonizado pelo Papa João Paulo II em 2002, dai-nos a graça de sermos santos no século XXI. Que vossa vida seja um modelo de santidade para os leigos cristãos de todo o mundo. Amém.' },
-      { day: 5, title: 'Quinto Dia', text: 'Ó São José Maria Escrivá, que ensinastes que "o trabalho é participation na obra criadora de Deus", dai-nos a graça de valorizarmos nosso trabalho como meio de santificação. Que, imitando vossa doutrina, trabalhemos sempre com excelência e amor. Amém.' },
-      { day: 6, title: 'Sexto Dia', text: 'Ó São José Maria, que vivestes uma vida de fidelidade à Igreja e ao Papa, dai-nos a graça de sermos fiéis à doutrina da Igreja. Que, imitando vossa obediência, aceitemos sempre as orientações dos nossos pastores. Amém.' },
-      { day: 7, title: 'Sétimo Dia', text: 'Ó São José Maria Escrivá, que foste um apóstolo da pregação e do ensino, dai-nos a graça de sermos testemunhas de Cristo no mundo. Que, imitando vossa dedicação, anunciemos o Evangelho com alegria e coragem. Amém.' },
-      { day: 8, title: 'Oitavo Dia', text: 'Ó São José Maria, que fostes um modelo de humildade e de serviço, dai-nos a graça de sermos humildes em meio aos sucessos e fortes nas dificuldades. Que, imitando vossa humildade, coloquemos sempre a Deus acima de todas as coisas. Amém.' },
-      { day: 9, title: 'Nono Dia', text: 'Ó São José Maria Escrivá, neste último dia da novena, renovamos nossa confiança em vossa intercessão. Dai-nos a graça de sermos sempre fiéis à nossa vocação, de santificarmos nosso trabalho e de vivermos sempre com espírito de oração. Que vossa vida seja sempre nosso modelo e nossa inspiração. Amém.' },
+      {
+        day: 1,
+        title: '1º Dia - Trabalho, caminho e santidade',
+        text: 'Reflexão:\n"Viemos chamar de novo a atenção para o exemplo de Jesus, que, durante trinta anos, permaneceu em Nazaré trabalhando, desempenhando um ofício. Nas mãos de Jesus, o trabalho, e um trabalho profissional semelhante àquele que desenvolvem milhões de homens no mundo, converte-se em tarefa divina, em trabalho redentor, em caminho de salvação."\n"Aí onde estão os nossos irmãos, os homens, aí onde estão as nossas aspirações, o nosso trabalho, os nossos amores, aí está o lugar do nosso encontro cotidiano com Cristo. Deus nos espera a cada dia no laboratório, na sala de operações de um hospital, no quartel, na cátedra universitária, na fábrica, na oficina, no campo, no seio do lar e em todo o imenso panorama do trabalho."\n\nIntenção A (encontrar trabalho): Para que Deus Nosso Senhor me oriente no esforço de procurar trabalho e me abençoe, fazendo-me conseguir um emprego honesto, digno e estável; e que me ajude, depois, a olhar para a minha tarefa profissional como um caminho de santificação e de serviço aos outros.\n\nIntenção B (fazer um bom trabalho): Para que Deus Nosso Senhor me ajude a olhar para a minha tarefa profissional como um caminho de santificação e de serviço aos outros, onde Ele me espera a toda a hora.'
+      },
+      {
+        day: 2,
+        title: '2º Dia - Trabalhar por amor a Deus',
+        text: 'Reflexão:\n"A dignidade do trabalho se baseia no Amor. O grande privilégio do homem é poder amar, transcendendo assim o efêmero e transitório."\n"Fazei tudo por amor. Assim não há coisas pequenas: tudo é grande. A perseverança nas pequenas coisas por amor é heroísmo."\n"Na simplicidade do teu trabalho habitual, nos detalhes monótonos de cada dia, tens que descobrir o segredo – para tantos escondido – da grandeza e da novidade: o Amor."\n\nIntenção A: Para que Deus me conceda a graça de conseguir logo um trabalho que proporcione segurança à minha família, e que Ele me ajude a compreender que o que dá valor a qualquer trabalho honesto é o amor com que o fazemos.\n\nIntenção B: Para que Deus me ajude a compreender que o que dá valor a qualquer trabalho honesto é o amor com que o fazemos: em primeiro lugar, amor a Deus, a quem oferecemos o trabalho; e amor ao próximo, a quem queremos servir e ser úteis.'
+      },
+      {
+        day: 3,
+        title: '3º Dia - Trabalhar com ordem e constância',
+        text: 'Reflexão:\n"Como é breve a duração da nossa passagem pela Terra! Verdadeiramente é curto o nosso tempo para amar, para dar, para desagravar. Não é justo, portanto, que o malbaratemos. Não podemos desperdiçar esta etapa do mundo que Deus confia a cada um de nós."\n"Quando tiveres ordem, multiplicar-se-á o teu tempo e, portanto, poderás dar mais glória a Deus, trabalhando mais a seu serviço."\n\nIntenção A: Para que com o auxílio de Maria Santíssima eu consiga um trabalho estável e apropriado, e que eu saiba aproveitar o tempo como um tesouro que é, me esmerando em aprimorar a virtude da ordem.\n\nIntenção B: Para que com o auxílio de Maria Santíssima eu saiba aproveitar o tempo como um tesouro que é, me esmerando em aprimorar a virtude da ordem de modo que consiga fazer tudo com pontualidade, intensidade e constância.'
+      },
+      {
+        day: 4,
+        title: '4º Dia - Trabalho bem acabado',
+        text: 'Reflexão:\n"Não podemos oferecer ao Senhor uma coisa que, dentro das pobres limitações humanas, não seja perfeita, sem mancha, realizada com atenção até nos mínimos detalhes. Deus não aceita trabalhos \'marretados\'. Por isso o trabalho de cada qual – essa atividade que ocupa as nossas jornadas e energias – há de ser uma oferenda digna aos olhos do Criador; numa palavra, uma tarefa acabada, impecável."\n"Antes de mais, devemos amar a Santa Missa, que tem de ser o centro do nosso dia."\n\nIntenção A: Para que, com o auxílio de Nossa Senhora, não demore a resolver-se o problema do meu desemprego, e que eu coloque todo o empenho em realizar o trabalho com a maior perfeição possível.\n\nIntenção B: Para que Deus me ajude a colocar todo o empenho em realizar o meu trabalho com categoria, com a maior perfeição possível, sem fazer as tarefas de qualquer maneira.'
+      },
+      {
+        day: 5,
+        title: '5º Dia - Todos os trabalhos honestos são dignos',
+        text: 'Reflexão:\n"É hora de que todos nós, cristãos, anunciemos bem alto que o trabalho é um dom de Deus, e que não faz nenhum sentido dividir os homens em diferentes categorias, conforme os tipos de trabalho, considerando umas ocupações mais nobres do que as outras. O trabalho, todo trabalho, é testemunho da dignidade do homem."\n"Diante de Deus, nenhuma ocupação é em si grande ou pequena. Tudo adquire o valor do Amor com que se realiza."\n\nIntenção A: Para que Deus me conceda a alegria de conseguir um trabalho em que eu possa ser útil e desenvolver as minhas capacidades, realizando-o com toda a responsabilidade.\n\nIntenção B: Para que eu não despreze nenhum trabalho, mas – enquanto não achar um mais apropriado – o realize com toda a responsabilidade, fazendo com que tenha a categoria do trabalho que Jesus realizou na oficina de Nazaré.'
+      },
+      {
+        day: 6,
+        title: '6º Dia - Trabalhar na companhia de Deus',
+        text: 'Reflexão:\n"Deves manter ao longo do dia uma constante conversa com o Senhor, que se alimente também das próprias incidências da tua tarefa profissional."\n"Como cristão, deverias trazer sempre contigo o teu crucifixo e colocá-lo sobre a tua mesa de trabalho."\n"Coloca na tua mesa de trabalho, no teu quarto, na tua carteira uma imagem de Nossa Senhora, e dirige-lhe o olhar ao começares a tua tarefa, enquanto a realizas e ao terminá-la."\n\nIntenção A: Para que Deus me conceda um emprego honesto e digno, e me abra os olhos da alma para compreender que Ele está sempre ao meu lado.\n\nIntenção B: Para que Deus me faça compreender que Ele está sempre ao meu lado, enquanto estou trabalhando, e que eu me esforce em ter a presença de Deus durante o trabalho.'
+      },
+      {
+        day: 7,
+        title: '7º Dia - Amadurecer nas virtudes através do trabalho',
+        text: 'Reflexão:\n"Tudo aquilo em que intervimos os pobrezinhos dos homens – mesmo a santidade – é um tecido de pequenas insignificâncias que, conforme a intenção com que se fazem, podem formar uma tapeçaria esplêndida de heroísmo ou de baixeza, de virtudes ou de pecados."\n"É toda uma trama de virtudes que se põe em jogo quando exercemos o nosso ofício com o propósito de santificá-lo: a fortaleza, a temperança, a justiça, a prudência. E tudo por Amor."\n\nIntenção A: Para que, com a ajuda de Nossa Senhora, eu ache o trabalho que venho procurando, e que eu desenvolva por meio dele as virtudes cristãs e amadureça espiritualmente.\n\nIntenção B: Para que Deus me ajude a desenvolver por meio do trabalho as virtudes cristãs e a amadurecer espiritualmente, sendo paciente, compreensivo, simples e humilde.'
+      },
+      {
+        day: 8,
+        title: '8º Dia - Trabalhar é servir, ajudar os outros',
+        text: 'Reflexão:\n"Pensai que através dos vossos afazeres profissionais, realizados com responsabilidade, além de vos sustentardes economicamente, prestais um serviço diretíssimo ao desenvolvimento da sociedade, aliviais também as cargas dos outros e mantendes muitas obras assistenciais."\n"Quando tiveres terminado o teu trabalho, faz o do teu irmão, ajudando-o, por Cristo, com tal delicadeza e naturalidade, que nem mesmo o favorecido repare que estás fazendo mais do que em justiça deves."\n\nIntenção A: Para que Deus Nosso Senhor me conceda o trabalho que lhe peço com tanta fé, e que infunda na minha alma o desejo de fazer do meu trabalho um serviço aberto ao bem e à utilidade de muitos.\n\nIntenção B: Para que Deus infunda na minha alma o desejo de fazer do meu trabalho um serviço aberto ao bem e à utilidade de muitos, realizado com a certeza de que esse ideal dará um novo sentido à minha vida.'
+      },
+      {
+        day: 9,
+        title: '9º Dia - Fazer apostolado com o trabalho',
+        text: 'Reflexão:\n"O trabalho profissional é também apostolado, ocasião de entrega aos outros homens; o momento de lhes revelar Cristo e levá-los a Deus Pai."\n"Faze a tua vida normal; trabalha onde estás, procurando cumprir os deveres do teu estado, acabar bem as tarefas da tua profissão, superando-te, melhorando dia a dia. Sê leal, compreensivo com os outros e exigente contigo mesmo. Sê mortificado e alegre. Esse será o teu apostolado."\n\nIntenção A: Para que Deus, por mediação de Nossa Senhora, me faça encontrar um bom trabalho, no qual eu possa crescer profissionalmente e dar o melhor de mim mesmo, aproveitando as oportunidades para ajudar outros a descobrirem as maravilhas da fé cristã.\n\nIntenção B: Para que Deus me ajude a ver, no meu ambiente de trabalho, um campo aberto para a realização da missão apostólica, aproveitando as oportunidades para ajudar colegas, amigos, colaboradores a descobrirem as maravilhas da fé cristã.'
+      },
     ],
   },
   {
