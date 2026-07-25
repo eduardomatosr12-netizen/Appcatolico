@@ -61,7 +61,7 @@ export function AuthScreen() {
           <span className="font-serif text-2xl tracking-[0.25em] font-bold text-[#C5A059]">
             FORJA
           </span>
-          <p className="text-xs text-[#8A8A8E]">App Católico</p>
+          <p className="text-xs text-[#8A8A8E]">Produtividade e Fé</p>
         </div>
 
         {recentProfiles.length > 0 && !switchingProfile && (

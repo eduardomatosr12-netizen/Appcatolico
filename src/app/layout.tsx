@@ -8,7 +8,7 @@ import { NotificationToast } from "@/components/ui/notification-toast";
 import { NotificationPanel } from "@/components/ui/notification-panel";
 
 export const metadata: Metadata = {
-  title: "Forja — App Católico",
+  title: "Forja — Produtividade e Fé",
   description: "Liturgia, Bíblia, Orações, Terço, Confissão e mais",
   manifest: "/manifest.json",
   icons: {
