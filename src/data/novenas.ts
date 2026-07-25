@@ -830,4 +830,57 @@ export const novenas: NovenasPrayer[] = [
       },
     ],
   },
+  {
+    id: 'todos-os-santos',
+    title: 'Todos os Santos',
+    subtitle: 'Novena a Todos os Santos',
+    finalPrayer: 'Súplica final:\nTodos os Santos de Deus, intercedei por nós, para que sejamos dignos das promessas de Cristo.\n\nOremos: Ó Deus, que em todos os Santos fizestes brilhar a luz do vosso reino, concedei ao vosso povo a glória eterna, e multiplica em nós os dons da vossa graça, de modo que, imitando a paciência dos vossos mártires e a humildade dos vossos confessores, mereçamos ser admitidos na companhia dos vossos eleitos. Por Cristo, Nosso Senhor. Amém.',
+    days: [
+      {
+        day: 1,
+        title: '1º Dia - Santa Maria, Rainha dos Santos',
+        text: 'Ó Santa Maria, Mãe de Deus e Mãe da Igreja, mostrais que és Mãe e me guieis em direção à uma vida de santidade, para que eu possa unir-me a vós e vosso Filho no Céu por toda a eternidade.\n\nIntercedeis por mim, para que eu seja um aprendiz de sua humildade e pureza. Levais, vos peço, as minhas petições ao vosso Filho. (Mencionar intenções).\n\nMaria, concebida sem pecado, rogai por nós.\nMaria Santíssima, rogai por nós.\nMaria puríssima, rogai por nós.\nMaria, Estrela do Mar, rogai por nós.\nMaria, Rainha do Céu e da Terra, rogai por nós.\nMaria, Rainha dos Anjos e Santos, rogai por nós.\nAmém.'
+      },
+      {
+        day: 2,
+        title: '2º Dia - Santos Anjos, Fiéis Servidores de Deus',
+        text: 'Ó santos anjos, fiéis servidores de Deus desde antes de o mundo ser formado, protegei-nos e guiai-nos em nossas vidas cotidianas, de modo que possamos crescer em santidade.\n\nIntercedeis por mim, para que eu cresça na fortaleza de sempre seguir a Deus, como vós fizestes. Leveis, vos peço, as minhas petições a Deus. (Mencionar intenções).\n\nS. Miguel, rogai por nós.\nS. Gabriel, rogai por nós.\nS. Rafael, rogai por nós.\nAnjos da guarda, rogai por nós.\nAmém.'
+      },
+      {
+        day: 3,
+        title: '3º Dia - Santos Apóstolos, Primeiros Chamados',
+        text: 'Ó santos Apóstolos, fostes os primeiros chamados por Jesus para O seguirem, e a demonstrardes o que significa ser discípulo de Cristo.\n\nIntercedeis por mim, para que melhor me disponha ao Espírito que recebestes em Pentecostes, de modo que anseie por crescer como discípulo de Cristo. Leveis, vos peço, as minhas petições a Deus. (Mencionar intenções).\n\nS. Pedro, rogai por nós.\nS. André, rogai por nós.\nS. Tiago, rogai por nós.\nS. João, rogai por nós.\nS. Filipe, rogai por nós.\nS. Judas Tadeu, rogai por nós.\nS. Bartolomeu, rogai por nós.\nS. Tomé, rogai por nós.\nS. Tiago, rogai por nós.\nS. Mateus, rogai por nós.\nS. Simão, rogai por nós.\nS. Matias, rogai por nós.\nAmém.'
+      },
+      {
+        day: 4,
+        title: '4º Dia - Santos Mártires, Testemunhas da Fé',
+        text: 'Ó santos mártires, morrestes pela fé como fiéis servidores de Deus; agradeço-vos pela coragem e sacrifício que tornaram possível ao Evangelho chegar até mim.\n\nIntercedeis por mim, para que eu cresça em coragem e fé, de modo que possa me manter firme na minha devoção a Deus mesmo diante a morte. Leveis, vos peço, as minhas petições a Deus. (Mencionar intenções).\n\nS. Paulo, rogai por nós.\nSs. Perpétua e Felicidade, rogai por nós.\nS. Policarpo, rogai por nós.\nS. Maximiliano Kolbe, rogai por nós.\nS. Maria Goretti, rogai por nós.\nSantos inocentes, rogai por nós.\nAmém.'
+      },
+      {
+        day: 5,
+        title: '5º Dia - Santos Místicos, Mestres da Oração',
+        text: 'Ó santos místicos, passastes a vida em união com Deus pela oração contemplativa e devoção, sois os modelos da santificação pelo tesouro da oração.\n\nIntercedeis por mim, para que eu cresça em perseverança na oração contemplativa. Leveis, vos peço, as minhas petições a Deus. (Mencionar intenções).\n\nS. Teresa de Ávila, rogai por nós.\nS. Catarina de Sena, rogai por nós.\nS. João da Cruz, rogai por nós.\nS. Francisco de Sales, rogai por nós.\nS. Faustina, rogai por nós.\nS. Padre Pio, rogai por nós.\nAmém.'
+      },
+      {
+        day: 6,
+        title: '6º Dia - Santos Doutores da Igreja',
+        text: 'Ó santos Doutores da Igreja, com vossas obras enriquecestes e esclarecestes os ensinamentos da Igreja; usastes dos vossos dons de conhecimento, sabedoria e articulação para preservardes a verdade da Igreja ao longo da história.\n\nIntercedeis por mim, de modo que eu use os dons que Deus me deu para trazer aqueles que eu encontro para mais perto de Cristo. Leveis, vos peço, as minhas petições a Deus. (Mencionar intenções).\n\nS. Ambrósio, rogai por nós.\nS. Agostinho, rogai por nós.\nS. Gregório Magno, rogai por nós.\nS. Jerônimo, rogai por nós.\nS. Tomás de Aquino, rogai por nós.\nS. Teresa de Lisieux, rogai por nós.\nAmém.'
+      },
+      {
+        day: 7,
+        title: '7º Dia - Santos Servos de Deus, Vazios de Si Mesmos',
+        text: 'Ó santos servos de Deus, resplandecestes em santidade pela vossa genuína humildade, e abraçastes vossa identidade como instrumentos de Deus.\n\nIntercedeis por mim, para que eu me esvazie de mim mesmo e seja purificado, de modo a ser um vaso consagrado ao trabalho de Deus. Leveis, vos peço, as minhas petições a Deus. (Mencionar intenções).\n\nS. Bernadette, rogai por nós.\nS. Teresa de Lisieux, rogai por nós.\nS. José de Cupertino, rogai por nós.\nS. Juan Diego, rogai por nós.\nSs. Francisco e Jacinta de Jesus Marto, rogai por nós.\nAmém.'
+      },
+      {
+        day: 8,
+        title: '8º Dia - Santos Sacerdotes, Monges e Freiras',
+        text: 'Ó santos sacerdotes, monges e freiras, dedicastes vossas vidas ao serviço de Deus e Sua Igreja pelos votos religiosos, e fostes os pés e as mãos de Deus na Terra.\n\nIntercedeis por mim, para que eu tenha uma crescente devoção e desejo de frequentar os sacramentos. Leveis, vos peço, as minhas petições a Deus. (Mencionar intenções).\n\nS. Bento, rogai por nós.\nS. Domingos, rogai por nós.\nS. Inácio de Loyola, rogai por nós.\nS. Clara de Assis, rogai por nós.\nS. Francisco de Assis, rogai por nós.\nAmém.'
+      },
+      {
+        day: 9,
+        title: '9º Dia - Santos Casados, Prefiguração das Bodas Celestiais',
+        text: 'Ó santos que durante a vida na Terra foram casados, prefigurastes com vosso matrimônio as bodas no Céu, e soubestes crescer em santidade no meio das alegrias e tristezas da vida matrimonial e familiar.\n\nIntercedeis por mim, para que eu possa reconhecer, no curso ordinário da vida, o dom extraordinário da família. Leveis, vos peço, as minhas petições a Deus. (Mencionar intenções).\n\nS. Maria e S. José, pais de Jesus, rogai por nós.\nS. Ana e S. Joaquim, pais da Santíssima Virgem Maria, rogai por nós.\nS. Isabel e S. Zacarias, pais de S. João Batista, rogai por nós.\nS. Zélia e S. Luís Martin, pais de S. Teresa de Lisieux, rogai por nós.\nS. Nona e S. Gregório, o Velho, pais de S. Gorgonia, S. Cesáreo e S. Gregório Nazianzeno, rogai por nós.\nAmém.'
+      },
+    ],
+  },
 ];
