@@ -4,17 +4,56 @@ export const novenas: NovenasPrayer[] = [
   {
     id: 'nossa-senhora-de-fatima',
     title: 'Nossa Senhora de Fátima',
-    subtitle: '9 dias de oração à Santíssima Virgem',
+    subtitle: 'Novena a Nossa Senhora de Fátima - Pelas necessidades impossíveis',
+    initialPrayer: 'Santíssima Virgem, que nos montes de Fátima vos dignastes revelar aos três pastorinhos os tesouros das graças que podemos alcançar, rezando o Santo Rosário, ajudai-nos a apreciar sempre mais essa santa oração, a fim de que, meditando os mistérios da nossa redenção, alcancemos as graças que, insistentemente, vos pedimos (pedir a grace).\n\nÓ meu Jesus, perdoai-nos, livrai-nos do fogo do inferno, levai as almas todas para o céu e socorrei principalmente as que mais precisarem.\n\nNossa Senhora de Fátima, rogai por nós.\n\n(Reza-se uma dezena de Ave-Marias em saudação a Nossa Senhora de Fátima)',
+    preparatoryPrayer: 'Ó Santíssima Virgem Maria, Rainha do Rosário e Mãe de Misericórdia, que vos dignastes manifestar, em Fátima, a ternura de vosso Imaculado Coração, trazendo-nos mensagens de salvação e paz, confiados em vossa misericórdia maternal e agradecidos das bondades de vosso amantíssimo coração, viemos a vossos pés para render-vos o tributo de nossa veneração e amor.\n\nConcedei-nos as graças de que necessitamos para cumprir fielmente vossa mensagem de amor, e a que vos pedimos nessa novena, se forem elas para maior glória de Deus, honra vossa e proveito de nossas almas. Assim seja.',
+    finalPrayer: 'Ó Deus, cujo Unigênito, com Sua vida, Morte e Ressurreição mereceu-nos o prêmio da salvação eterna, suplicamo-Vos: concedas-nos que, meditando os mistérios do Santíssimo Rosário da bem-aventurada Virgem Maria, imitemos os exemplos que nos ensinam e alcancemos o prêmio que prometem. Pelo mesmo Jesus Cristo, nosso Senhor. Amém.',
     days: [
-      { day: 1, title: 'Primeiro Dia', text: 'Ó Mãe amorosa de Fátima, que no dia 13 de maio de 1917 aparecestes a três pastorinhos em Portugal, vinde ao encontro de nós, vossos filhos, que confiamos em vossa proteção. Vós que dissestes: "Sou a Senhora do Rosário, vim para vos ensinar a rezar e a amar a Nosso Senhor Jesus Cristo", dai-nos a graça de sermos fiéis à oração e ao sacramento da Eucaristia. Ó Rainha do Rosário de Fátima, pedi a Nosso Senhor Jesus Cristo que tenha piedade de nós, que nos perdoe nossos pecados e nos conceda a paz do coração. Amém.' },
-      { day: 2, title: 'Segundo Dia', text: 'Ó Mãe de Fátima, vós que convidastes o mundo inteiro à conversão do coração, concedei-nos a graça de termos um coração arrependido e humilde diante de Deus. Que possamos, imitando os três pastorinhos, offercer nossos sofrimentos pela conversão dos pecadores e pela paz do mundo. Rainha do Rosário, intercedei por nós junto ao trono de Deus. Amém.' },
-      { day: 3, title: 'Terceiro Dia', text: 'Ó Mãe santíssima de Fátima, que ensinastes aos pastorinhos a rezar o Rosário diariamente, dai-nos a perseverança na oração. Que o sagrado mistério do Rosário seja para nós fonte de paz e de esperança. Nossa Senhora de Fátima, rogai por nós, para que sejamos dignos das promessas de Cristo. Amém.' },
-      { day: 4, title: 'Quarto Dia', text: 'Ó Mãe de Fátima, que mostrastes aos pastorinhos os sofrimentos do inferno e da guerra, intercedei por nós para que escolhamos sempre o caminho do céu. Dai-nos a coragem de sermos apóstolos do Rosário e da devoção ao Sagrado Coração de Jesus. Amém.' },
-      { day: 5, title: 'Quinto Dia', text: 'Ó Rainha de Fátima, que consagrai vossos filhos ao vosso Imaculado Coração, aceitai esta consagração que hoje fazemos de nós mesmos, de nossas famílias e de tudo o que temos, ao vosso Coração Santíssimo. Protegei-nos em todos os perigos da vida presente e da vida eterna. Amém.' },
-      { day: 6, title: 'Sexto Dia', text: 'Ó Mãe amorosa de Fátima, que pedistes a construção de uma capela em vossa honra, dai-nos a graça de sermos templos vivos do Espírito Santo. Que nossa vida inteira seja um louvor a Deus e um testemunho de fé diante do mundo. Amém.' },
-      { day: 7, title: 'Sétimo Dia', text: 'Ó Nossa Senhora de Fátima, vós que dissestes: "No final, o Imaculado Coração triunfará", fortalecei nossa fé em tempos de provação. Dai-nos a certeza de que, com vossa intercessão, alcançaremos a vitória sobre o mal e a morte. Amém.' },
-      { day: 8, title: 'Oitavo Dia', text: 'Ó Mãe de Fátima, que mostrastes aos pastorinhos a relevação dos três segredos, dai-nos sabedoria para compreender os sinais dos tempos e discernir a vontade de Deus em nossas vidas. Que a vossa mensagem de conversão e penitência ecoe em nossos corações todos os dias. Amém.' },
-      { day: 9, title: 'Nono Dia', text: 'Ó Rainha do Rosário de Fátima, neste último dia da novena, renovamos nossa confiança em vossa intercessão. Dai-nos a graça de sermos fiéis à oração, ao jejum e à penitência, pela conversão dos pecadores e pela paz do mundo. Que o vosso Imaculado Coração seja nosso refúgio e nosso caminho até Jesus. Amém.' },
+      {
+        day: 1,
+        title: 'Primeiro Dia – Penitência e reparação',
+        text: 'Ó Santíssima Virgem Maria, Mãe dos pobres pecadores, que, aparecendo em Fátima, deixastes transparecer em vosso rosto celestial uma leve sombra de tristeza, para indicar a dor que causam os pecados dos homens, os quais, com maternal compaixão, exortastes a não afligir mais a vosso Filho com a culpa e a reparar os pecados com a mortificação e a penitência, dai-nos a graça de uma sincera dor dos pecados cometidos e a resolução generosa de reparar com obras de penitência e mortificação todas as ofensas que se inferem a vosso Divino Filho e o vosso Coração Imaculado.'
+      },
+      {
+        day: 2,
+        title: 'Segundo Dia – Santidade de vida',
+        text: 'Ó Santíssima Virgem Maria, Mãe da Divina Graça, que vestida de nívea brancura aparecestes aos pastorinhos singelos e inocentes, ensinando-os, assim, o quanto devemos amar e procurar a inocência da alma, e que pedistes, por meio deles, a emenda dos costumes e a santidade de uma vida cristã perfeita, concedei-nos misericordiosamente a graça de saber apreciar a dignidade de nossa condição de cristãos e levar uma vida conforme as promessas batismais.'
+      },
+      {
+        day: 3,
+        title: 'Terceiro Dia – Amor à oração',
+        text: 'Ó Santíssima Virgem Maria, vaso insigne de devoção, que aparecestes em Fátima tendo pendente de vossas mãos o Santo Rosário, e que insistentemente repetias: "Orai, orai muito" para conseguir findar, por meio da oração, os males que nos ameaçam. Concedei-nos o dom e o espírito de oração, a graça de sermos fiéis no cumprimento do grande preceito de orar, fazendo-o, todos os dias, para assim observar bem os santos mandamentos, vencer as tentações e chegar ao conhecimento e amor de Jesus Cristo, nesta vida, e à união feliz com Ele na outra.'
+      },
+      {
+        day: 4,
+        title: 'Quarto Dia – Amor à Igreja',
+        text: 'Ó Santíssima Virgem Maria, rainha da Igreja, que exortastes aos pastorinhos de Fátima a rogar pelo Papa e infundistes em suas almas sinceras uma grande veneração e amor por ele, como vigário de vosso Filho e Seu representante na Terra, infunde também a nós o espírito de veneração e docilidade à autoridade do Romano Pontífice, de adesão inquebrantável a seus ensinamentos, e nele e com ele um grande amor e respeito a todos os ministros da Santa Igreja, por meio dos quais participamos da vida da graça nos sacramentos.'
+      },
+      {
+        day: 5,
+        title: 'Quinto Dia – Maria, saúde dos enfermos',
+        text: 'Ó Santíssima Virgem Maria, saúde dos enfermos e amparo dos aflitos, que movida pelo rogo dos pastorinhos, fizestes já curas em vossas aparições em Fátima, e haveis convertido este lugar, santificado por vossa presença, em oficina de vossas misericórdias maternais em favor de todos os aflitos; ao vosso coração maternal acudimos cheios de filial confiança, mostrando as enfermidades de nossas almas e as aflições e doenças todas de nossa vida.\n\nDeixai sobre elas um olhar de compaixão e as remedíeis com a ternura de vossas mãos, para que assim possamos servir-vos e amar-vos com todo nosso coração e com todo nosso ser.'
+      },
+      {
+        day: 6,
+        title: 'Sexto Dia – Maria, refúgio dos pecadores',
+        text: 'Ó Santíssima Virgem Maria, refúgio dos pecadores, que ensinastes aos pastorinhos de Fátima a rogar incessantemente ao Senhor, para que os desgraçados não caiam nas penas eternas do inferno, e que manifestastes a um dos três que os pecados da carne são os que mais almas arrastam àquelas terríveis chamas, colocai em nossas almas um grande horror ao pecado e o temor santo da justiça divina; ao mesmo tempo, despertai nelas a compaixão pelos pobres pecadores e um santo zelo para trabalhar com nossas orações, exemplos e palavras por sua conversão.'
+      },
+      {
+        day: 7,
+        title: 'Sétimo Dia – Maria, alívio das almas do purgatório',
+        text: 'Ó Santíssima Virgem Maria, rainha do Purgatório, que ensinastes aos pastorinhos de Fátima a rogar a Deus pelas almas do Purgatório, especialmente pelas mais abandonadas, encomendamos à inesgotável ternura de vosso maternal coração todas as almas que padecem naquele lugar de purificação, em particular as de todos os nossos chegados e familiares e as mais abandonadas e necessitadas; aliviais suas penas e levai-as prontas à região da luz e da paz, para ali cantar perpetuamente vossas misericórdias.'
+      },
+      {
+        day: 8,
+        title: 'Oitavo Dia – Maria, rainha do rosário',
+        text: 'Ó Santíssima Virgem Maria, que em vossa última aparição vos destes a conhecer como a Rainha do Santíssimo Rosário, e em todas as aparições recomendastes a reza dessa devoção como o remédio mais seguro e eficaz para todos os males e calamidades que nos afligem, tanto da alma quanto do corpo, tanto públicas quanto privadas, colocai em nossas almas uma profunda estima pelos mistérios de nossa Redenção, que se comemoram na reza do Rosário, para assim viverem sempre de seus frutos.\n\nConcedei-nos a graça de ser sempre fiéis à prática de rezá-lo diariamente para honrarmos a vós, acompanhando vossas alegrias, dores e glórias, e assim merecer vossa maternal proteção e assistência em todos os momentos da vida, mais especialmente na hora da morte.'
+      },
+      {
+        day: 9,
+        title: 'Nono Dia – Imaculado Coração de Maria',
+        text: 'Ó Santíssima Virgem Maria, Mãe nossa dulcíssima, que escolhestes aos pastorinhos de Fátima para mostrar ao mundo as ternuras de vosso coração misericordioso e lhes propusestes a devoção ao mesmo como o meio com o qual Deus quer dar a paz ao mundo, como o caminho para levar as almas a Ele, e como uma prenda suprema de salvação, fazei, ó coração da mais terna das mães, que possamos compreender vossa mensagem de amor e misericórdia, que a abracemos com filial adesão e que a pratiquemos sempre com fervor.\n\nAssim seja vosso coração nosso refúgio, nossa esperança e o caminho que nos conduz ao amor e à união com vosso Filho Jesus.'
+      },
     ],
   },
   {

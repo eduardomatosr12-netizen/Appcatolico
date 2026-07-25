@@ -21,6 +21,9 @@ export interface NovenasPrayer {
   id: string;
   title: string;
   subtitle: string;
+  initialPrayer?: string;
+  preparatoryPrayer?: string;
+  finalPrayer?: string;
   days: {
     day: number;
     title: string;
