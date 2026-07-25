@@ -78,7 +78,7 @@ export function DesktopSidebar() {
       <div className="flex flex-col gap-8">
         <div className="flex items-center justify-between px-2">
           <span className="font-serif text-xl md:text-2xl tracking-[0.25em] font-bold text-[#C5A059]">
-            LUMEN
+            FORJA
           </span>
           <button
             onClick={togglePanel}

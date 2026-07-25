@@ -12,7 +12,7 @@ import {
 import { getDb } from '@/lib/firebase';
 import type { AppNotification, NotificationPermission } from '@/types/notification';
 
-const STORAGE_KEY = 'lumen-notifications';
+const STORAGE_KEY = 'forja-notifications';
 const MAX_NOTIFICATIONS = 50;
 
 function loadNotifications(): AppNotification[] {

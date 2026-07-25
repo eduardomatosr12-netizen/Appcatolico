@@ -7,7 +7,7 @@ import { useAuthStore } from '@/lib/stores/auth-store';
 import { useSyncedSingleDoc } from '@/lib/services/sync-service';
 import type { BibleChapter } from '@/types/bible';
 
-const HIGHLIGHTS_KEY = 'lumen_bible_highlights';
+const HIGHLIGHTS_KEY = 'forja_bible_highlights';
 
 interface HighlightsData {
   verseKeys: Record<string, boolean>;

@@ -1,4 +1,4 @@
-const CACHE_NAME = "lumen-v10";
+const CACHE_NAME = "forja-v1";
 
 self.addEventListener("message", (event) => {
   if (event.data && event.data.type === "SKIP_WAITING") {

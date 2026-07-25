@@ -12,7 +12,7 @@ import {
 import { FirebaseError } from 'firebase/app';
 import { getAuthInstance } from '@/lib/firebase';
 
-const PROFILES_KEY = 'lumen-auth-profiles';
+const PROFILES_KEY = 'forja-auth-profiles';
 
 interface ProfileMeta {
   uid: string;
@@ -107,7 +107,7 @@ export const useAuthStore = create<AuthState>((set) => ({
 
       if (code === 'auth/configuration-not-found') {
         console.error(
-          '[Lumen] O método de login Email/Senha NÃO está ativado no Firebase Console.\n' +
+          '[Forja] O método de login Email/Senha NÃO está ativado no Firebase Console.\n' +
           'Acesse: https://console.firebase.google.com → Build → Authentication → Sign-in method → Ative "Email/Password".'
         );
         set({ authError: 'Serviço de autenticação indisponível. Ative o login por email/senha no painel do Firebase.' });
@@ -134,7 +134,7 @@ export const useAuthStore = create<AuthState>((set) => ({
 
       if (code === 'auth/configuration-not-found') {
         console.error(
-          '[Lumen] O método de login Email/Senha NÃO está ativado no Firebase Console.\n' +
+          '[Forja] O método de login Email/Senha NÃO está ativado no Firebase Console.\n' +
           'Acesse: https://console.firebase.google.com → Build → Authentication → Sign-in method → Ative "Email/Password".'
         );
         set({ authError: 'Serviço de autenticação indisponível. Ative o login por email/senha no painel do Firebase.' });
@@ -167,7 +167,7 @@ export const useAuthStore = create<AuthState>((set) => ({
 
       if (code === 'auth/configuration-not-found') {
         console.error(
-          '[Lumen] O método de login Email/Senha NÃO está ativado no Firebase Console.\n' +
+          '[Forja] O método de login Email/Senha NÃO está ativado no Firebase Console.\n' +
           'Acesse: https://console.firebase.google.com → Build → Authentication → Sign-in method → Ative "Email/Password".'
         );
         set({ authError: 'Serviço de autenticação indisponível. Ative o login por email/senha no painel do Firebase.' });

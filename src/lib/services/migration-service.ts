@@ -3,7 +3,7 @@
 import { collection, doc, getDocs, writeBatch } from 'firebase/firestore';
 import { getDb } from '@/lib/firebase';
 
-const MIGRATION_KEY = 'lumen-sync-migrated';
+const MIGRATION_KEY = 'forja-sync-migrated';
 
 interface MigrationConfig {
   localStorageKey: string;
@@ -13,12 +13,12 @@ interface MigrationConfig {
 }
 
 const migrations: MigrationConfig[] = [
-  { localStorageKey: 'lumen-alarms', firestoreCollection: 'alarms' },
-  { localStorageKey: 'lumen-purposes', firestoreCollection: 'purposes' },
-  { localStorageKey: 'lumen_confession_history', firestoreCollection: 'confessions' },
-  { localStorageKey: 'lumen-notifications', firestoreCollection: 'notifications' },
+  { localStorageKey: 'forja-alarms', firestoreCollection: 'alarms' },
+  { localStorageKey: 'forja-purposes', firestoreCollection: 'purposes' },
+  { localStorageKey: 'forja_confession_history', firestoreCollection: 'confessions' },
+  { localStorageKey: 'forja-notifications', firestoreCollection: 'notifications' },
   {
-    localStorageKey: 'lumen_bible_highlights',
+    localStorageKey: 'forja_bible_highlights',
     firestoreCollection: 'bibleHighlights',
     type: 'single-doc',
     defaultValue: {},

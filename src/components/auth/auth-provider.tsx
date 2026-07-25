@@ -45,7 +45,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       <div className="fixed inset-0 z-[10000] bg-[#0B0B0E] flex items-center justify-center">
         <div className="flex flex-col items-center gap-4">
           <div className="w-8 h-8 border-2 border-[#C5A059]/30 border-t-[#C5A059] rounded-full animate-spin" />
-          <span className="font-serif text-sm tracking-[0.2em] text-[#C5A059]">LUMEN</span>
+          <span className="font-serif text-sm tracking-[0.2em] text-[#C5A059]">FORJA</span>
         </div>
       </div>
     );

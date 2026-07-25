@@ -15,7 +15,7 @@ interface ConfessionRecord {
   notes: string;
 }
 
-const CONFESSIONS_KEY = 'lumen_confession_history';
+const CONFESSIONS_KEY = 'forja_confession_history';
 
 const actsOfContrition = [
   {

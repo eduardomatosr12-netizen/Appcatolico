@@ -8,7 +8,7 @@ import { useAuthStore } from '@/lib/stores/auth-store';
 import { useSyncedCollection } from '@/lib/services/sync-service';
 import type { PrayerAlarm } from '@/types/productivity';
 
-const STORAGE_KEY = 'lumen-alarms';
+const STORAGE_KEY = 'forja-alarms';
 const defaults: PrayerAlarm[] = [
   { id: 'a1', title: 'Laudes', hour: 6, minute: 0, daysOfWeek: [0,1,2,3,4,5,6], enabled: true, liturgyHour: 'laudes' },
   { id: 'a2', title: 'Hora Tércia', hour: 9, minute: 0, daysOfWeek: [1,2,3,4,5], enabled: false, liturgyHour: 'terca' },

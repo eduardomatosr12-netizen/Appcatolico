@@ -8,7 +8,7 @@ import { NotificationToast } from "@/components/ui/notification-toast";
 import { NotificationPanel } from "@/components/ui/notification-panel";
 
 export const metadata: Metadata = {
-  title: "Lumen — App Católico",
+  title: "Forja — App Católico",
   description: "Liturgia, Bíblia, Orações, Terço, Confissão e mais",
   manifest: "/manifest.json",
   icons: {
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
   appleWebApp: {
     capable: true,
     statusBarStyle: "black-translucent",
-    title: "Lumen",
+    title: "Forja",
   },
 };
 

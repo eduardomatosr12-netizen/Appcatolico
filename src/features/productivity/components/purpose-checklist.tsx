@@ -7,7 +7,7 @@ import { useAuthStore } from '@/lib/stores/auth-store';
 import { useSyncedCollection } from '@/lib/services/sync-service';
 import type { Purpose } from '@/types/productivity';
 
-const STORAGE_KEY = 'lumen-purposes';
+const STORAGE_KEY = 'forja-purposes';
 const defaults: Purpose[] = [
   { id: 'p1', title: 'Rezar o Pai-Nosso com atenção', completed: false, date: '', category: 'Oração' },
   { id: 'p2', title: 'Ler um trecho da Bíblia', completed: false, date: '', category: 'Leitura' },

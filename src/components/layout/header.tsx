@@ -21,13 +21,13 @@ export function Header() {
     <header className="flex flex-col items-center gap-3 border-b border-white/[0.05] pb-4 text-center w-full">
       <div className="md:hidden">
         <Link href="/" className="font-serif text-lg font-bold text-[#C5A059] tracking-[0.2em]">
-          LUMEN
+          FORJA
         </Link>
       </div>
 
       <div className="flex flex-col items-center gap-2 w-full">
         <span className="font-serif text-xs tracking-widest text-[#C5A059] uppercase font-medium">
-          LUMEN
+          FORJA
         </span>
         <h1 className="text-lg sm:text-xl md:text-3xl font-bold tracking-tight text-white font-serif w-full text-center">
           {currentDate}

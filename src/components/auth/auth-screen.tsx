@@ -59,7 +59,7 @@ export function AuthScreen() {
       <div className="w-full max-w-sm flex flex-col items-center gap-6 py-8">
         <div className="text-center space-y-2">
           <span className="font-serif text-2xl tracking-[0.25em] font-bold text-[#C5A059]">
-            LUMEN
+            FORJA
           </span>
           <p className="text-xs text-[#8A8A8E]">App Católico</p>
         </div>
