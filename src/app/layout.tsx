@@ -6,6 +6,7 @@ import { DesktopSidebar } from "@/components/navigation/desktop-sidebar";
 import { MobileNav } from "@/components/navigation/mobile-nav";
 import { NotificationToast } from "@/components/ui/notification-toast";
 import { NotificationPanel } from "@/components/ui/notification-panel";
+import { PushManager } from "@/components/push-manager";
 
 export const metadata: Metadata = {
   title: "Forja — Produtividade e Fé",
@@ -75,6 +76,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         </AuthProvider>
         <NotificationToast />
         <NotificationPanel />
+        <PushManager />
       </body>
     </html>
   );

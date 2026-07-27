@@ -39,6 +39,10 @@ yarn-error.log*
 # firebase
 .firebase/
 
+# firebase functions
+/functions/node_modules
+/functions/lib
+
 # plan docs
 PLAN-*.md
 

@@ -39,8 +39,33 @@ self.addEventListener("fetch", (event) => {
   );
 });
 
+self.addEventListener("push", (event) => {
+  let data = { title: "Forja", body: "Hora da oração!", icon: "/icon-192.png", tag: "forja-push", data: { url: "/" } };
+
+  if (event.data) {
+    try {
+      data = { ...data, ...event.data.json() };
+    } catch {
+      data.body = event.data.text();
+    }
+  }
+
+  event.waitUntil(
+    self.registration.showNotification(data.title, {
+      body: data.body,
+      icon: data.icon || "/icon-192.png",
+      badge: "/icon-192.png",
+      tag: data.tag,
+      renotify: true,
+      vibrate: [200, 100, 200, 100, 200],
+      data: data.data || { url: "/" },
+    })
+  );
+});
+
 self.addEventListener("notificationclick", (event) => {
   event.notification.close();
+  const url = event.notification.data?.url || "/";
   event.waitUntil(
     self.clients.matchAll({ type: "window", includeUncontrolled: true }).then((clients) => {
       for (const client of clients) {
@@ -48,7 +73,7 @@ self.addEventListener("notificationclick", (event) => {
           return client.focus();
         }
       }
-      return self.clients.openWindow("/");
+      return self.clients.openWindow(url);
     })
   );
 });
