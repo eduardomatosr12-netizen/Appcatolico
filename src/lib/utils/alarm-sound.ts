@@ -1,15 +1,3 @@
-let audioCtx: AudioContext | null = null;
-
-function getAudioContext(): AudioContext {
-  if (!audioCtx || audioCtx.state === 'closed') {
-    audioCtx = new AudioContext();
-  }
-  if (audioCtx.state === 'suspended') {
-    audioCtx.resume();
-  }
-  return audioCtx;
-}
-
 function playBeep(ctx: AudioContext, startTime: number, duration = 0.12, frequency = 880) {
   const oscillator = ctx.createOscillator();
   const gainNode = ctx.createGain();
@@ -29,37 +17,42 @@ function playBeep(ctx: AudioContext, startTime: number, duration = 0.12, frequen
   oscillator.stop(startTime + duration);
 }
 
-export function ensureAudioReady() {
-  getAudioContext();
+async function createActiveContext(): Promise<AudioContext | null> {
+  try {
+    const ctx = new AudioContext();
+    if (ctx.state === 'suspended') {
+      await ctx.resume();
+    }
+    return ctx;
+  } catch {
+    return null;
+  }
 }
 
-export function playAlarmSound() {
-  try {
-    const ctx = getAudioContext();
-    const now = ctx.currentTime;
-    playBeep(ctx, now, 0.15, 880);
-    playBeep(ctx, now + 0.2, 0.15, 880);
-    playBeep(ctx, now + 0.4, 0.15, 880);
-  } catch {
-    // AudioContext unavailable
-  }
+export function ensureAudioReady() {
+  createActiveContext();
+}
+
+export async function playAlarmSound() {
+  const ctx = await createActiveContext();
+  if (!ctx) return;
+  const now = ctx.currentTime;
+  playBeep(ctx, now, 0.15, 880);
+  playBeep(ctx, now + 0.2, 0.15, 880);
+  playBeep(ctx, now + 0.4, 0.15, 880);
+  setTimeout(() => ctx.close().catch(() => {}), 2000);
 }
 
 export function stopAlarmSound() {
-  if (audioCtx && audioCtx.state !== 'closed') {
-    audioCtx.close().catch(() => {});
-    audioCtx = null;
-  }
+  // No persistent context to stop anymore — each play creates its own
 }
 
-export function testAlarmSound() {
-  try {
-    const ctx = getAudioContext();
-    const now = ctx.currentTime;
-    playBeep(ctx, now, 0.1, 880);
-    playBeep(ctx, now + 0.15, 0.1, 880);
-    playBeep(ctx, now + 0.3, 0.1, 880);
-  } catch {
-    // AudioContext unavailable
-  }
+export async function testAlarmSound() {
+  const ctx = await createActiveContext();
+  if (!ctx) return;
+  const now = ctx.currentTime;
+  playBeep(ctx, now, 0.1, 880);
+  playBeep(ctx, now + 0.15, 0.1, 880);
+  playBeep(ctx, now + 0.3, 0.1, 880);
+  setTimeout(() => ctx.close().catch(() => {}), 2000);
 }
