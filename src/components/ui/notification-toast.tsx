@@ -87,7 +87,7 @@ export function NotificationToast() {
   if (!currentToast) return null;
 
   return (
-    <div className="fixed top-4 right-4 z-[9999] pointer-events-none">
+    <div className="fixed top-4 right-4 z-[9999] pointer-events-none" style={{ top: 'max(1rem, env(safe-area-inset-top))' }}>
       <div className="pointer-events-auto">
         <ToastItem key={currentToast.id} notification={currentToast} onDismiss={dismiss} />
       </div>

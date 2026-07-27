@@ -114,7 +114,7 @@ export function NotificationPanel() {
         ref={panelRef}
         className="fixed top-0 right-0 z-[9999] h-full w-full max-w-sm bg-[#0B0B0E] border-l border-white/[0.05] shadow-[-8px_0_40px_rgba(0,0,0,0.8)] flex flex-col animate-in"
       >
-        <div className="flex items-center justify-between p-4 border-b border-white/[0.05]">
+        <div className="flex items-center justify-between p-4 border-b border-white/[0.05]" style={{ paddingTop: 'max(1rem, env(safe-area-inset-top))' }}>
           <div className="flex items-center gap-2">
             <h2 className="font-serif text-sm tracking-[0.15em] uppercase text-[#C5A059] font-semibold">
               Notificações

@@ -64,7 +64,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <DesktopSidebar />
 
               <main className="flex-1 min-h-screen flex flex-col bg-[#0B0B0E] md:ml-64 w-full max-w-full">
-                <div className="w-full max-w-3xl mx-auto px-4 md:px-8 lg:px-12 py-6 md:py-8 pb-28 md:pb-8 flex flex-col gap-6 md:gap-8 overflow-x-hidden">
+                <div className="w-full max-w-3xl mx-auto px-4 md:px-8 lg:px-12 pt-6 md:pt-8 pb-[calc(env(safe-area-inset-bottom)+7rem)] md:pb-8 flex flex-col gap-6 md:gap-8 overflow-x-hidden">
                   {children}
                 </div>
               </main>

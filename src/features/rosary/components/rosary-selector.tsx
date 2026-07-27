@@ -75,7 +75,7 @@ export function RosarySelector({ rosaries, selectedId, onSelect, className }: Ro
       </button>
 
       {isOpen && (
-        <div className="absolute z-50 mt-2 w-full max-h-[60vh] overflow-y-auto rounded-xl bg-[#1A1A1F] border border-[rgba(197,160,89,0.12)] shadow-xl scrollbar-none" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+        <div className="absolute z-[60] mt-2 w-full max-h-[50vh] overflow-y-auto rounded-xl bg-[#1A1A1F] border border-[rgba(197,160,89,0.12)] shadow-xl scrollbar-none" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
           {Object.entries(grouped).map(([category, items]) => (
             <div key={category}>
               <div className="px-4 pt-3 pb-1">
