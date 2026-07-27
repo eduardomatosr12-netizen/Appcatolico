@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect, useRef, useCallback } from 'react';
-import { playAlarmSound, stopAlarmSound, testAlarmSound, ensureAudioReady } from '@/lib/utils/alarm-sound';
+import { testAlarmSound } from '@/lib/utils/alarm-sound';
 import { useNotificationStore } from '@/lib/stores/notification-store';
 
 function formatTime(totalSeconds: number): string {
@@ -9,6 +9,28 @@ function formatTime(totalSeconds: number): string {
   const m = Math.floor((totalSeconds % 3600) / 60);
   const s = totalSeconds % 60;
   return `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
+}
+
+function playBeep(ctx: AudioContext, startTime: number, duration = 0.15, frequency = 880) {
+  const oscillator = ctx.createOscillator();
+  const gainNode = ctx.createGain();
+  oscillator.type = 'sine';
+  oscillator.frequency.setValueAtTime(frequency, startTime);
+  gainNode.gain.setValueAtTime(0, startTime);
+  gainNode.gain.linearRampToValueAtTime(0.6, startTime + 0.01);
+  gainNode.gain.setValueAtTime(0.6, startTime + duration - 0.02);
+  gainNode.gain.linearRampToValueAtTime(0, startTime + duration);
+  oscillator.connect(gainNode);
+  gainNode.connect(ctx.destination);
+  oscillator.start(startTime);
+  oscillator.stop(startTime + duration);
+}
+
+function playThreeBeeps(ctx: AudioContext) {
+  const now = ctx.currentTime;
+  playBeep(ctx, now, 0.15, 880);
+  playBeep(ctx, now + 0.25, 0.15, 880);
+  playBeep(ctx, now + 0.5, 0.15, 880);
 }
 
 export function MeditationTimer() {
@@ -20,53 +42,70 @@ export function MeditationTimer() {
   const [isRunning, setIsRunning] = useState(false);
   const [isFinished, setIsFinished] = useState(false);
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const audioCtxRef = useRef<AudioContext | null>(null);
   const addNotification = useNotificationStore((s) => s.addNotification);
 
   const computedTotal = hours * 3600 + minutes * 60 + seconds;
 
   useEffect(() => {
-    if (isRunning && remaining > 0) {
-      intervalRef.current = setInterval(() => {
-        setRemaining((prev) => {
-          if (prev <= 1) {
-            clearInterval(intervalRef.current!);
-            intervalRef.current = null;
-            setIsRunning(false);
-            setIsFinished(true);
-            return 0;
-          }
-          return prev - 1;
-        });
-      }, 1000);
-    }
+    if (!isRunning || remaining <= 0) return;
+
+    intervalRef.current = setInterval(() => {
+      setRemaining((prev) => {
+        if (prev <= 1) {
+          return 0;
+        }
+        return prev - 1;
+      });
+    }, 1000);
+
     return () => {
       if (intervalRef.current) {
         clearInterval(intervalRef.current);
         intervalRef.current = null;
       }
     };
-  }, [isRunning, addNotification]);
+  }, [isRunning]);
 
   useEffect(() => {
-    if (isFinished) {
-      ensureAudioReady();
-      playAlarmSound();
+    if (isRunning && remaining === 0 && totalSeconds > 0) {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+        intervalRef.current = null;
+      }
+      setIsRunning(false);
+      setIsFinished(true);
+
+      const ctx = audioCtxRef.current;
+      if (ctx && ctx.state === 'running') {
+        playThreeBeeps(ctx);
+      } else if (ctx && ctx.state === 'suspended') {
+        ctx.resume().then(() => playThreeBeeps(ctx));
+      }
+
       addNotification({
         type: 'timer',
         title: 'Cronômetro concluído',
         body: 'Seu tempo de meditação finalizou. Volte em paz!',
       });
     }
-  }, [isFinished, addNotification]);
+  }, [remaining, isRunning, totalSeconds, addNotification]);
 
   const handleStart = useCallback(() => {
     if (computedTotal <= 0) return;
-    ensureAudioReady();
+
+    if (!audioCtxRef.current || audioCtxRef.current.state === 'closed') {
+      audioCtxRef.current = new AudioContext();
+    }
+    const ctx = audioCtxRef.current;
+    if (ctx.state === 'suspended') {
+      ctx.resume();
+    }
+
     setTotalSeconds(computedTotal);
     setRemaining(computedTotal);
     setIsRunning(true);
     setIsFinished(false);
-    stopAlarmSound();
   }, [computedTotal]);
 
   const handlePause = useCallback(() => {
@@ -82,7 +121,10 @@ export function MeditationTimer() {
     setRemaining(0);
     setTotalSeconds(0);
     setIsFinished(false);
-    stopAlarmSound();
+    if (audioCtxRef.current && audioCtxRef.current.state !== 'closed') {
+      audioCtxRef.current.close().catch(() => {});
+      audioCtxRef.current = null;
+    }
   }, []);
 
   const progress = totalSeconds > 0 ? remaining / totalSeconds : 0;
@@ -159,7 +201,7 @@ export function MeditationTimer() {
             Iniciar
           </button>
 
-          <button onClick={() => { ensureAudioReady(); testAlarmSound(); }} className="rounded-xl bg-[#16161A] border border-white/10 px-6 py-2.5 text-xs font-medium text-[#C5A059] hover:bg-white/5 active:bg-white/10 transition-colors">
+          <button onClick={() => testAlarmSound()} className="rounded-xl bg-[#16161A] border border-white/10 px-6 py-2.5 text-xs font-medium text-[#C5A059] hover:bg-white/5 active:bg-white/10 transition-colors">
             🔊 Testar som do alarme
           </button>
         </div>

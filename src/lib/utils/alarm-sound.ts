@@ -1,4 +1,20 @@
-function playBeep(ctx: AudioContext, startTime: number, duration = 0.12, frequency = 880) {
+let sharedCtx: AudioContext | null = null;
+
+function getSharedContext(): AudioContext | null {
+  try {
+    if (!sharedCtx || sharedCtx.state === 'closed') {
+      sharedCtx = new AudioContext();
+    }
+    if (sharedCtx.state === 'suspended') {
+      sharedCtx.resume();
+    }
+    return sharedCtx;
+  } catch {
+    return null;
+  }
+}
+
+function playBeep(ctx: AudioContext, startTime: number, duration = 0.15, frequency = 880) {
   const oscillator = ctx.createOscillator();
   const gainNode = ctx.createGain();
 
@@ -17,42 +33,31 @@ function playBeep(ctx: AudioContext, startTime: number, duration = 0.12, frequen
   oscillator.stop(startTime + duration);
 }
 
-async function createActiveContext(): Promise<AudioContext | null> {
-  try {
-    const ctx = new AudioContext();
-    if (ctx.state === 'suspended') {
-      await ctx.resume();
-    }
-    return ctx;
-  } catch {
-    return null;
-  }
-}
-
 export function ensureAudioReady() {
-  createActiveContext();
+  getSharedContext();
 }
 
 export async function playAlarmSound() {
-  const ctx = await createActiveContext();
+  const ctx = getSharedContext();
   if (!ctx) return;
   const now = ctx.currentTime;
   playBeep(ctx, now, 0.15, 880);
-  playBeep(ctx, now + 0.2, 0.15, 880);
-  playBeep(ctx, now + 0.4, 0.15, 880);
-  setTimeout(() => ctx.close().catch(() => {}), 2000);
+  playBeep(ctx, now + 0.25, 0.15, 880);
+  playBeep(ctx, now + 0.5, 0.15, 880);
 }
 
 export function stopAlarmSound() {
-  // No persistent context to stop anymore — each play creates its own
+  if (sharedCtx && sharedCtx.state !== 'closed') {
+    sharedCtx.close().catch(() => {});
+    sharedCtx = null;
+  }
 }
 
 export async function testAlarmSound() {
-  const ctx = await createActiveContext();
+  const ctx = getSharedContext();
   if (!ctx) return;
   const now = ctx.currentTime;
   playBeep(ctx, now, 0.1, 880);
   playBeep(ctx, now + 0.15, 0.1, 880);
   playBeep(ctx, now + 0.3, 0.1, 880);
-  setTimeout(() => ctx.close().catch(() => {}), 2000);
 }
