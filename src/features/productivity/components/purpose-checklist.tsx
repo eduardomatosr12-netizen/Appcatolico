@@ -1,14 +1,15 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { SacredCard, SacredCardContent, SacredCardTitle } from '@/components/ui/sacred-card';
 import { Button } from '@/components/ui/button';
 import { useAuthStore } from '@/lib/stores/auth-store';
 import { useSyncedCollection } from '@/lib/services/sync-service';
+import { getDb } from '@/lib/firebase';
+import { collection, getDocs, writeBatch, doc } from 'firebase/firestore';
 import type { Purpose } from '@/types/productivity';
 
 const STORAGE_KEY = 'forja-purposes';
-const SEEDED_KEY = 'forja-purposes-seeded';
 const defaultPurposes: Purpose[] = [
   { id: 'p1', title: 'Rezar o Pai-Nosso com atenção', completed: false, date: '', category: 'Oração' },
   { id: 'p2', title: 'Ler um trecho da Bíblia', completed: false, date: '', category: 'Leitura' },
@@ -31,13 +32,23 @@ export function PurposeChecklist() {
   );
 
   const [newPurpose, setNewPurpose] = useState('');
+  const seededRef = useRef(false);
 
   useEffect(() => {
-    if (purposes.length === 0 && !localStorage.getItem(SEEDED_KEY)) {
-      localStorage.setItem(SEEDED_KEY, '1');
-      defaultPurposes.forEach((p) => add(p));
-    }
-  }, [purposes.length, add]);
+    if (!userId || seededRef.current) return;
+    seededRef.current = true;
+
+    const colRef = collection(getDb(), 'users', userId, 'purposes');
+    getDocs(colRef).then((snapshot) => {
+      if (snapshot.empty) {
+        const batch = writeBatch(getDb());
+        defaultPurposes.forEach((p) => {
+          batch.set(doc(colRef, p.id), p);
+        });
+        batch.commit();
+      }
+    }).catch(() => {});
+  }, [userId]);
 
   const effectivePurposes = purposes;
 

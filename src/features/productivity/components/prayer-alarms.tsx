@@ -6,10 +6,11 @@ import { playAlarmSound, stopAlarmSound, testAlarmSound, ensureAudioReady } from
 import { useNotificationStore } from '@/lib/stores/notification-store';
 import { useAuthStore } from '@/lib/stores/auth-store';
 import { useSyncedCollection } from '@/lib/services/sync-service';
+import { getDb } from '@/lib/firebase';
+import { collection, getDocs, writeBatch, doc } from 'firebase/firestore';
 import type { PrayerAlarm } from '@/types/productivity';
 
 const STORAGE_KEY = 'forja-alarms';
-const ALARMS_SEEDED_KEY = 'forja-alarms-seeded';
 const defaultAlarms: PrayerAlarm[] = [
   { id: 'a1', title: 'Laudes', hour: 6, minute: 0, daysOfWeek: [0,1,2,3,4,5,6], enabled: true, liturgyHour: 'laudes' },
   { id: 'a2', title: 'Hora Tércia', hour: 9, minute: 0, daysOfWeek: [1,2,3,4,5], enabled: false, liturgyHour: 'terca' },
@@ -38,14 +39,24 @@ export function PrayerAlarms() {
   const [formDays, setFormDays] = useState<number[]>([0,1,2,3,4,5,6]);
   const checkedRef = useRef<Set<string>>(new Set());
   const lastMinuteRef = useRef<string>('');
+  const seededRef = useRef(false);
   const addNotification = useNotificationStore((s) => s.addNotification);
 
   useEffect(() => {
-    if (alarms.length === 0 && !localStorage.getItem(ALARMS_SEEDED_KEY)) {
-      localStorage.setItem(ALARMS_SEEDED_KEY, '1');
-      defaultAlarms.forEach((alarm) => add(alarm));
-    }
-  }, [alarms.length, add]);
+    if (!userId || seededRef.current) return;
+    seededRef.current = true;
+
+    const colRef = collection(getDb(), 'users', userId, 'alarms');
+    getDocs(colRef).then((snapshot) => {
+      if (snapshot.empty) {
+        const batch = writeBatch(getDb());
+        defaultAlarms.forEach((a) => {
+          batch.set(doc(colRef, a.id), a);
+        });
+        batch.commit();
+      }
+    }).catch(() => {});
+  }, [userId]);
 
   const effectiveAlarms = alarms;
 

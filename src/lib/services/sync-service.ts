@@ -59,7 +59,7 @@ export function useSyncedCollection<T extends { id: string }>(
   userId: string | null,
   fallbackKey: string
 ): SyncedCollectionResult<T> {
-  const [data, setData] = useState<T[]>(() => loadFromLocalStorage<T>(fallbackKey));
+  const [data, setData] = useState<T[]>(() => userId ? [] : loadFromLocalStorage<T>(fallbackKey));
   const [isSyncing, setIsSyncing] = useState(false);
   const unsubscribeRef = useRef<(() => void) | null>(null);
 
@@ -78,7 +78,6 @@ export function useSyncedCollection<T extends { id: string }>(
         items.push({ id: docSnap.id, ...docSnap.data() } as T);
       });
       setData(items);
-      saveToLocalStorage(fallbackKey, items);
       setIsSyncing(false);
     }, () => {
       setIsSyncing(false);
@@ -144,7 +143,7 @@ export function useSyncedSingleDoc<T>(
   fallbackKey: string,
   defaultValue: T
 ): SyncedSingleDocResult<T> {
-  const [data, setData] = useState<T>(() => loadSingleFromLocalStorage<T>(fallbackKey) ?? defaultValue);
+  const [data, setData] = useState<T>(() => userId ? defaultValue : (loadSingleFromLocalStorage<T>(fallbackKey) ?? defaultValue));
   const [isSyncing, setIsSyncing] = useState(false);
   const unsubscribeRef = useRef<(() => void) | null>(null);
 
@@ -160,7 +159,6 @@ export function useSyncedSingleDoc<T>(
     unsubscribeRef.current = onSnapshot(docRef, (docSnap) => {
       if (docSnap.exists()) {
         setData(docSnap.data() as T);
-        saveSingleToLocalStorage(fallbackKey, docSnap.data() as T);
       }
       setIsSyncing(false);
     }, () => {
@@ -175,9 +173,11 @@ export function useSyncedSingleDoc<T>(
 
   const save = useCallback(async (newData: T) => {
     setData(newData);
-    saveSingleToLocalStorage(fallbackKey, newData);
 
-    if (!userId) return;
+    if (!userId) {
+      saveSingleToLocalStorage(fallbackKey, newData);
+      return;
+    }
     const docRef = doc(getDb(), 'users', userId, docPath);
     await setDoc(docRef, newData as DocumentData, { merge: true });
   }, [userId, docPath, fallbackKey]);
