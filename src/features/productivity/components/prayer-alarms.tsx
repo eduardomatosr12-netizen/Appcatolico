@@ -8,6 +8,7 @@ import { useAuthStore } from '@/lib/stores/auth-store';
 import { useSyncedCollection } from '@/lib/services/sync-service';
 import { getDb } from '@/lib/firebase';
 import { collection, getDocs, writeBatch, doc, getDoc } from 'firebase/firestore';
+import { putAlarms, deleteAlarm as idbDeleteAlarm, type StoredAlarm } from '@/lib/services/alarm-store';
 import type { PrayerAlarm } from '@/types/productivity';
 
 const STORAGE_KEY = 'forja-alarms';
@@ -68,6 +69,21 @@ export function PrayerAlarms() {
   }, [userId]);
 
   const effectiveAlarms = alarms;
+
+  // Sync alarms to IndexedDB so the Service Worker and scheduler can read them
+  useEffect(() => {
+    if (effectiveAlarms.length === 0) return;
+    const idbAlarms: StoredAlarm[] = effectiveAlarms.map((a) => ({
+      id: a.id,
+      title: a.title,
+      hour: a.hour,
+      minute: a.minute,
+      daysOfWeek: a.daysOfWeek,
+      enabled: a.enabled,
+      liturgyHour: a.liturgyHour,
+    }));
+    putAlarms(idbAlarms).catch(() => {});
+  }, [effectiveAlarms]);
 
   useEffect(() => {
     const tick = () => {
@@ -158,6 +174,7 @@ export function PrayerAlarms() {
 
   const handleDelete = async (id: string) => {
     await remove(id);
+    idbDeleteAlarm(id).catch(() => {});
   };
 
   const toggleFormDay = (day: number) => {

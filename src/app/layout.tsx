@@ -7,6 +7,7 @@ import { MobileNav } from "@/components/navigation/mobile-nav";
 import { NotificationToast } from "@/components/ui/notification-toast";
 import { NotificationPanel } from "@/components/ui/notification-panel";
 import { PushManager } from "@/components/push-manager";
+import { AlarmScheduler } from "@/components/alarm-scheduler";
 
 export const metadata: Metadata = {
   title: "Forja — Produtividade e Fé",
@@ -77,6 +78,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <NotificationToast />
         <NotificationPanel />
         <PushManager />
+        <AlarmScheduler />
       </body>
     </html>
   );

@@ -91,6 +91,6 @@ export const checkAlarms = onSchedule({
             .collection("meta").doc("push").delete().catch(() => {});
         }
       }
-    });
+    }));
   }));
 });
