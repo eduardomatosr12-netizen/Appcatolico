@@ -7,10 +7,11 @@ import { useNotificationStore } from '@/lib/stores/notification-store';
 import { useAuthStore } from '@/lib/stores/auth-store';
 import { useSyncedCollection } from '@/lib/services/sync-service';
 import { getDb } from '@/lib/firebase';
-import { collection, getDocs, writeBatch, doc } from 'firebase/firestore';
+import { collection, getDocs, writeBatch, doc, getDoc } from 'firebase/firestore';
 import type { PrayerAlarm } from '@/types/productivity';
 
 const STORAGE_KEY = 'forja-alarms';
+const SEEDED_DOC = 'meta/seeded';
 const defaultAlarms: PrayerAlarm[] = [
   { id: 'a1', title: 'Laudes', hour: 6, minute: 0, daysOfWeek: [0,1,2,3,4,5,6], enabled: true, liturgyHour: 'laudes' },
   { id: 'a2', title: 'Hora Tércia', hour: 9, minute: 0, daysOfWeek: [1,2,3,4,5], enabled: false, liturgyHour: 'terca' },
@@ -46,15 +47,23 @@ export function PrayerAlarms() {
     if (!userId || seededRef.current) return;
     seededRef.current = true;
 
-    const colRef = collection(getDb(), 'users', userId, 'alarms');
-    getDocs(colRef).then((snapshot) => {
-      if (snapshot.empty) {
-        const batch = writeBatch(getDb());
-        defaultAlarms.forEach((a) => {
-          batch.set(doc(colRef, a.id), a);
-        });
-        batch.commit();
-      }
+    const db = getDb();
+    const seededDocRef = doc(db, 'users', userId, SEEDED_DOC);
+
+    getDoc(seededDocRef).then((snap) => {
+      if (snap.exists()) return;
+
+      const colRef = collection(db, 'users', userId, 'alarms');
+      getDocs(colRef).then((snapshot) => {
+        if (snapshot.empty) {
+          const batch = writeBatch(db);
+          defaultAlarms.forEach((a) => {
+            batch.set(doc(colRef, a.id), a);
+          });
+          batch.set(seededDocRef, { purposes: true, alarms: true, createdAt: Date.now() });
+          batch.commit();
+        }
+      });
     }).catch(() => {});
   }, [userId]);
 

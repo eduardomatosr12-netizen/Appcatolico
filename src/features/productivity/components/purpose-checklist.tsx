@@ -6,10 +6,11 @@ import { Button } from '@/components/ui/button';
 import { useAuthStore } from '@/lib/stores/auth-store';
 import { useSyncedCollection } from '@/lib/services/sync-service';
 import { getDb } from '@/lib/firebase';
-import { collection, getDocs, writeBatch, doc } from 'firebase/firestore';
+import { collection, getDocs, writeBatch, doc, getDoc } from 'firebase/firestore';
 import type { Purpose } from '@/types/productivity';
 
 const STORAGE_KEY = 'forja-purposes';
+const SEEDED_DOC = 'meta/seeded';
 const defaultPurposes: Purpose[] = [
   { id: 'p1', title: 'Rezar o Pai-Nosso com atenção', completed: false, date: '', category: 'Oração' },
   { id: 'p2', title: 'Ler um trecho da Bíblia', completed: false, date: '', category: 'Leitura' },
@@ -38,15 +39,23 @@ export function PurposeChecklist() {
     if (!userId || seededRef.current) return;
     seededRef.current = true;
 
-    const colRef = collection(getDb(), 'users', userId, 'purposes');
-    getDocs(colRef).then((snapshot) => {
-      if (snapshot.empty) {
-        const batch = writeBatch(getDb());
-        defaultPurposes.forEach((p) => {
-          batch.set(doc(colRef, p.id), p);
-        });
-        batch.commit();
-      }
+    const db = getDb();
+    const seededDocRef = doc(db, 'users', userId, SEEDED_DOC);
+
+    getDoc(seededDocRef).then((snap) => {
+      if (snap.exists()) return;
+
+      const colRef = collection(db, 'users', userId, 'purposes');
+      getDocs(colRef).then((snapshot) => {
+        if (snapshot.empty) {
+          const batch = writeBatch(db);
+          defaultPurposes.forEach((p) => {
+            batch.set(doc(colRef, p.id), p);
+          });
+          batch.set(seededDocRef, { purposes: true, alarms: true, createdAt: Date.now() });
+          batch.commit();
+        }
+      });
     }).catch(() => {});
   }, [userId]);
 
