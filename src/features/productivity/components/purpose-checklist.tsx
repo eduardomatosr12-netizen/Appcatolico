@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { SacredCard, SacredCardContent, SacredCardTitle } from '@/components/ui/sacred-card';
 import { Button } from '@/components/ui/button';
 import { useAuthStore } from '@/lib/stores/auth-store';
@@ -8,7 +8,7 @@ import { useSyncedCollection } from '@/lib/services/sync-service';
 import type { Purpose } from '@/types/productivity';
 
 const STORAGE_KEY = 'forja-purposes';
-const defaults: Purpose[] = [
+const defaultPurposes: Purpose[] = [
   { id: 'p1', title: 'Rezar o Pai-Nosso com atenção', completed: false, date: '', category: 'Oração' },
   { id: 'p2', title: 'Ler um trecho da Bíblia', completed: false, date: '', category: 'Leitura' },
   { id: 'p3', title: 'Fazer um ato de caridade', completed: false, date: '', category: 'Caridade' },
@@ -30,8 +30,16 @@ export function PurposeChecklist() {
   );
 
   const [newPurpose, setNewPurpose] = useState('');
+  const seededRef = useRef(false);
 
-  const effectivePurposes = purposes.length > 0 ? purposes : defaults;
+  useEffect(() => {
+    if (!seededRef.current && purposes.length === 0) {
+      seededRef.current = true;
+      defaultPurposes.forEach((p) => add(p));
+    }
+  }, [purposes.length, add]);
+
+  const effectivePurposes = purposes;
 
   const toggle = (id: string) => {
     const purpose = effectivePurposes.find((p) => p.id === id);
@@ -66,15 +74,24 @@ export function PurposeChecklist() {
 
   const completed = effectivePurposes.filter((p) => p.completed).length;
   const categories = [...new Set(effectivePurposes.map((p) => p.category))];
+  const totalPurposes = effectivePurposes.length;
+  const progressPercent = totalPurposes > 0 ? (completed / totalPurposes) * 100 : 0;
 
   return (
     <div className="space-y-4">
-      <SacredCard><SacredCardContent><div className="flex items-center justify-between"><div><p className="text-sm text-[#8A8A8E]">{completed} de {effectivePurposes.length}</p><div className="mt-1.5 h-1.5 w-32 rounded-full bg-white/10 overflow-hidden"><div className="h-full rounded-full bg-[#C5A059] transition-all" style={{ width: `${(completed / effectivePurposes.length) * 100}%` }} /></div></div><Button variant="ghost" size="sm" onClick={reset}>Resetar</Button></div></SacredCardContent></SacredCard>
+      <SacredCard><SacredCardContent><div className="flex items-center justify-between"><div><p className="text-sm text-[#8A8A8E]">{completed} de {totalPurposes}</p><div className="mt-1.5 h-1.5 w-32 rounded-full bg-white/10 overflow-hidden"><div className="h-full rounded-full bg-[#C5A059] transition-all" style={{ width: `${progressPercent}%` }} /></div></div><Button variant="ghost" size="sm" onClick={reset}>Resetar</Button></div></SacredCardContent></SacredCard>
 
       <div className="flex gap-2">
         <input type="text" value={newPurpose} onChange={(e) => setNewPurpose(e.target.value)} onKeyDown={(e) => e.key === 'Enter' && addPurpose()} placeholder="Novo propósito..." autoComplete="off" className="flex-1 h-10 rounded-[14px] border border-white/10 bg-[#16161A] px-3 text-sm text-white placeholder:text-gray-600 focus:outline-none focus:ring-2 focus:ring-[#C5A059]/50 focus:border-transparent" />
         <Button onClick={addPurpose}>+</Button>
       </div>
+
+      {totalPurposes === 0 && (
+        <div className="text-center py-8 text-gray-500 text-sm">
+          <p>Nenhum propósito ainda.</p>
+          <p className="text-xs text-gray-600 mt-1">Adicione um propósito acima para começar.</p>
+        </div>
+      )}
 
       {categories.map((category) => (
         <SacredCard key={category}><SacredCardTitle className="text-sm">{category}</SacredCardTitle><SacredCardContent className="space-y-1 mt-3">

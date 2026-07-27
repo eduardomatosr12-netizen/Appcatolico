@@ -9,7 +9,7 @@ import { useSyncedCollection } from '@/lib/services/sync-service';
 import type { PrayerAlarm } from '@/types/productivity';
 
 const STORAGE_KEY = 'forja-alarms';
-const defaults: PrayerAlarm[] = [
+const defaultAlarms: PrayerAlarm[] = [
   { id: 'a1', title: 'Laudes', hour: 6, minute: 0, daysOfWeek: [0,1,2,3,4,5,6], enabled: true, liturgyHour: 'laudes' },
   { id: 'a2', title: 'Hora Tércia', hour: 9, minute: 0, daysOfWeek: [1,2,3,4,5], enabled: false, liturgyHour: 'terca' },
   { id: 'a3', title: 'Angelus (12h)', hour: 12, minute: 0, daysOfWeek: [0,1,2,3,4,5,6], enabled: true, liturgyHour: 'sexta' },
@@ -18,8 +18,6 @@ const defaults: PrayerAlarm[] = [
   { id: 'a6', title: 'Completas', hour: 21, minute: 0, daysOfWeek: [0,1,2,3,4,5,6], enabled: true, liturgyHour: 'completas' },
 ];
 const dayNames = ['Dom','Seg','Ter','Qua','Qui','Sex','Sáb'];
-
-const defaultIds = new Set(defaults.map((d) => d.id));
 
 export function PrayerAlarms() {
   const user = useAuthStore((s) => s.user);
@@ -39,9 +37,17 @@ export function PrayerAlarms() {
   const [formDays, setFormDays] = useState<number[]>([0,1,2,3,4,5,6]);
   const checkedRef = useRef<Set<string>>(new Set());
   const lastMinuteRef = useRef<string>('');
+  const seededRef = useRef(false);
   const addNotification = useNotificationStore((s) => s.addNotification);
 
-  const effectiveAlarms = alarms.length > 0 ? alarms : defaults;
+  useEffect(() => {
+    if (!seededRef.current && alarms.length === 0) {
+      seededRef.current = true;
+      defaultAlarms.forEach((alarm) => add(alarm));
+    }
+  }, [alarms.length, add]);
+
+  const effectiveAlarms = alarms;
 
   useEffect(() => {
     const tick = () => {
@@ -234,6 +240,12 @@ export function PrayerAlarms() {
       )}
 
       <SacredCardContent className="space-y-3 mt-3">
+        {effectiveAlarms.length === 0 && (
+          <div className="text-center py-6 text-gray-500 text-sm">
+            <p>Nenhum alarme configurado.</p>
+            <p className="text-xs text-gray-600 mt-1">Crie um novo alarme acima.</p>
+          </div>
+        )}
         {effectiveAlarms.map((alarm) => (
           <div key={alarm.id} className={`rounded-[20px] border p-4 transition-all ${alarm.enabled ? 'border-[#C5A059]/20 bg-[#C5A059]/5' : 'border-white/5 opacity-50'}`}>
             <div className="flex items-center justify-between mb-2">
@@ -242,17 +254,15 @@ export function PrayerAlarms() {
                 <p className="text-xs text-[#8A8A8E]">{String(alarm.hour).padStart(2,'0')}:{String(alarm.minute).padStart(2,'0')}</p>
               </div>
               <div className="flex items-center gap-2">
-                {!defaultIds.has(alarm.id) && (
-                  <button
-                    onClick={() => handleDelete(alarm.id)}
-                    className="text-[#6A6A6E] hover:text-red-400 transition-colors p-1"
-                    aria-label="Excluir alarme"
-                  >
-                    <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                      <path d="M3 6h18M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2" />
-                    </svg>
-                  </button>
-                )}
+                <button
+                  onClick={() => handleDelete(alarm.id)}
+                  className="text-[#6A6A6E] hover:text-red-400 transition-colors p-1"
+                  aria-label="Excluir alarme"
+                >
+                  <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path d="M3 6h18M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2" />
+                  </svg>
+                </button>
                 <button onClick={() => toggle(alarm.id)} className={`relative h-6 w-11 rounded-full transition-colors ${alarm.enabled ? 'bg-[#C5A059]' : 'bg-white/10'}`}>
                   <span className={`absolute top-0.5 h-5 w-5 rounded-full bg-white shadow transition-transform ${alarm.enabled ? 'translate-x-5.5' : 'translate-x-0.5'}`} />
                 </button>
