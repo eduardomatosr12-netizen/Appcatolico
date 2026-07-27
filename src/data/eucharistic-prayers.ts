@@ -18,22 +18,54 @@ export const eucharisticPrayers: EucharisticPrayer[] = [
         ],
       },
       {
-        key: 'preface',
-        label: 'Prefácio',
+        key: 'canonPrincipal',
+        label: 'Cânone Principal',
         lines: [
-          { speaker: 'sacerdote', text: 'Pai de misericórdia, a quem sobem nossos louvores, suplicantes, vos rogamos e pedimos por Jesus Cristo, vosso Filho e Senhor nosso, que aceiteis e abençoeis estes dons, estas oferendas, este sacrifício puro e santo, que oferecemos, antes de tudo, pela vossa Igreja santa e católica: concedei-lhe paz e proteção, unindo-a num só corpo e governando-a por toda a terra, em comunhão com vosso servo o Papa N., o nosso Bispo N., e todos os que guardam a fé católica que receberam dos Apóstolos.' },
+          { speaker: 'sacerdote', text: 'Pai de misericórdia, a quem sobem nossos louvores, suplicantes, vos rogamos e pedimos por Jesus Cristo, vosso Filho e Senhor nosso, que aceiteis e abençoeis ✠ estes dons, estas oferendas, este sacrifício puro e santo, que oferecemos, antes de tudo, pela vossa Igreja santa e católica: concedei-lhe paz e proteção, unindo-a num só corpo e governando-a por toda a terra, em comunhão com vosso servo o Papa N., o nosso Bispo N., e todos os que guardam a fé católica que receberam dos Apóstolos.' },
           { speaker: 'assembleia', text: 'Abençoai nossa oferenda, ó Senhor!' },
-          { speaker: 'sacerdote', text: 'Lembrai-vos, ó Pai, dos vossos filhos e filhas N. N. e de todos os que circundam este altar, dos quais conheceis a fé e a dedicação ao vosso serviço. Por eles nós vos oferecemos e também eles vos oferecem este sacrifício de louvor por si e por todos os seus, e elevam a vós as suas preces, Deus eterno, vivo e verdadeiro, para alcançar o perdão de suas faltas, a segurança em suas vidas e a salvação que esperam.' },
-          { speaker: 'assembleia', text: 'Lembrai-vos, ó Pai, de vossos filhos!' },
-          { speaker: 'sacerdote', text: 'Em comunhão com toda a Igreja, celebramos em primeiro lugar a memória da Mãe de nosso Deus e Senhor Jesus Cristo, a gloriosa sempre Virgem Maria, a de seu esposo São José, e também a dos Santos Apóstolos e Mártires: Pedro e Paulo, André, e todos os vossos Santos. Por seus méritos e preces concedei-nos sem cessar a vossa proteção.' },
-          { speaker: 'assembleia', text: 'Em comunhão com os vossos Santos vos louvamos!' },
+        ],
+      },
+      {
+        key: 'firstCommemoration',
+        label: 'Primeira Comemoração',
+        lines: [
+          { speaker: 'sacerdote', text: 'Lembrai-vos, ó Pai, dos vossos filhos e filhas N. N. e de todos os que circundam este altar, dos quais conheceis a fé e a dedicação ao vosso serviço. ★ Por eles nós vos oferecemos e também eles vos oferecem este sacrifício de louvor por si e por todos os seus, e elevam a vós as suas preces, Deus eterno, vivo e verdadeiro, para alcançar o perdão de suas faltas, a segurança em suas vidas e a salvação que esperam.' },
+          { speaker: 'assembleia', text: 'Lembrai-vos, ó Pai, dos vossos filhos!' },
+        ],
+      },
+      {
+        key: 'secondCommemoration',
+        label: 'Comunhão com os Santos',
+        lines: [
+          { speaker: 'sacerdote', text: 'Em comunhão com toda a Igreja, celebramos em primeiro lugar a memória da Mãe de nosso Deus e Senhor Jesus Cristo, a gloriosa sempre Virgem Maria, a de seu esposo São José, e também a dos Santos Apóstolos e Mártires: Pedro e Paulo, André, Tiago e João, Tomé, Tiago e Filipe, Bartolomeu e Mateus, Simão e Tadeu, Lino, Cleto, Clemente, Sisto, Cornélio e Cipriano, Lourenço e Crisógono, João e Paulo, Cosme e Damião, e a de todos os vossos Santos. Por seus méritos e preces concedei-nos sem cessar a vossa proteção.' },
+          { speaker: 'assembleia', text: 'Em comunhão com vossos Santos vos louvamos!' },
+        ],
+      },
+      {
+        key: 'canonContinuation',
+        label: 'Continuação do Cânone',
+        lines: [
           { speaker: 'sacerdote', text: 'Aceitai, ó Pai, com bondade, a oblação dos vossos servos e de toda a vossa família; dai-nos sempre a vossa paz, livrai-nos da condenação eterna e acolhei-nos entre os vossos eleitos.' },
-          { speaker: 'sacerdote', text: 'Dignai-vos, ó Pai, aceitar, abençoar e santificar estas oferendas, recebei-as como sacrifício espiritual perfeito, a fim de que se tornem para nós o Corpo e o Sangue de vosso amado Filho, nosso Senhor Jesus Cristo.' },
+        ],
+      },
+      {
+        key: 'consecration',
+        label: 'Consagração',
+        lines: [
+          { speaker: 'sacerdote', text: 'Dignai-vos, ó Pai, aceitar, abençoar e santificar estas oferendas; recebei-as como sacrifício espiritual perfeito, a fim de que se tornem para nós o Corpo e o Sangue de vosso amado Filho, nosso Senhor Jesus Cristo.' },
           { speaker: 'assembleia', text: 'Enviai o vosso Espírito Santo!' },
-          { speaker: 'sacerdote', text: 'Na véspera de sua paixão, ele tomou o pão em suas santas e veneráveis mãos, elevou os olhos ao céu, a vós, ó Pai, todo-poderoso, pronunciou a bênção de ação de graças, partiu o pão e o deu a seus discípulos, dizendo:' },
+        ],
+      },
+      {
+        key: 'institutionNarrative',
+        label: 'Narrativa da Instituição',
+        lines: [
+          { speaker: 'rubrica', text: 'Na véspera de sua paixão,' },
+          { speaker: 'sacerdote', text: 'ele tomou o pão em suas santas e veneráveis mãos, elevou os olhos ao céu, a vós, ó Pai todo-poderoso, pronunciou a bênção de ação de graças, partiu o pão e o deu a seus discípulos, dizendo:' },
           { speaker: 'sacerdote', text: 'TOMAI, TODOS, E COMEI:\nISTO É O MEU CORPO,\nQUE SERÁ ENTREGUE POR VÓS.' },
-          { speaker: 'sacerdote', text: 'Do mesmo modo, ao fim da Ceia, ele tomou este precioso cálice em suas santas e veneráveis mãos, pronunciou novamente a bênção de ação de graças e o deu a seus discípulos, dizendo:' },
-          { speaker: 'sacerdote', text: 'TOMAI, TODOS, E BEBEI:\nESTE É O CÁLICE DO MEU SANGUE,\nO SANGUE DA NOVA E ETERNA ALIANÇA,\nQUE SERÁ DERRAMADO POR VÓS E POR TODOS,\nPRA REMISSÃO DOS PECADOS.\nFAZEI ISTO EM MEMÓRIA DE MIM.' },
+          { speaker: 'rubrica', text: 'Do mesmo modo,' },
+          { speaker: 'sacerdote', text: 'no fim da ceia, ele tomou este precioso cálice em suas santas e veneráveis mãos, pronunciou novamente a bênção de ação de graças e o deu a seus discípulos, dizendo:' },
+          { speaker: 'sacerdote', text: 'TOMAI, TODOS, E BEBEI:\nESTE É O CÁLICE DO MEU SANGUE,\nO SANGUE DA NOVA E ETERNA ALIANÇA,\nQUE SERÁ DERRAMADO POR VÓS E POR TODOS\nPARA REMISSÃO DOS PECADOS.\nFAZEI ISTO EM MEMÓRIA DE MIM.' },
         ],
       },
       {
@@ -75,15 +107,15 @@ export const eucharisticPrayers: EucharisticPrayer[] = [
         key: 'finalIntercession',
         label: 'Intercessão Final',
         lines: [
-          { speaker: 'sacerdote', text: 'E a todos nós pecadores, que esperamos na vossa infinita misericórdia, concedei, não por nossos méritos, mas por vossa bondade, o convívio dos Apóstolos e Mártires: João Batista e Estêvão, Matias e Barnabé, e de todos os vossos Santos. Por Cristo, nosso Senhor.' },
-          { speaker: 'sacerdote', text: 'Por ele não cessais de criar e santificar, vivificar, abençoar estes bens e distribuí-los entre nós.' },
+          { speaker: 'sacerdote', text: 'E a todos nós pecadores, que esperamos na vossa infinita misericórdia, concedei, não por nossos méritos, mas por vossa bondade, o convívio dos Apóstolos e Mártires: João Batista e Estêvão, Matias e Barnabé, Inácio, Alexandre, Marcelino e Pedro, Felicidade e Perpétua, Águeda e Luzia, Inês, Cecília, Anastácia, e de todos os vossos Santos. Por Cristo, nosso Senhor.' },
+          { speaker: 'sacerdote', text: 'Por ele não cessais de criar, santificar, vivificar, abençoar estes bens e distribuí-los entre nós.' },
         ],
       },
       {
         key: 'concludingDoxology',
         label: 'Doxologia Final',
         lines: [
-          { speaker: 'sacerdote', text: 'Por Cristo, com Cristo, e em Cristo, a vós, Deus Pai todo-poderoso, na unidade do Espírito Santo, toda a honra e toda a glória, por todos os séculos dos séculos.' },
+          { speaker: 'sacerdote', text: 'Por Cristo, com Cristo, e em Cristo, a vós, Deus Pai todo-poderoso, na unidade do Espírito Santo, toda honra e toda glória, por todos os séculos dos séculos.' },
           { speaker: 'assembleia', text: 'Amém.' },
         ],
       },
