@@ -194,6 +194,7 @@ function NovenasView() {
               {n.title}
             </h3>
             <p className="text-xs text-[#8A8A8E]">{n.subtitle}</p>
+            <p className="text-[10px] text-[#C5A059]/60 mt-1">Início: {n.startDate}</p>
           </SacredCard>
         ))}
       </div>
