@@ -99,7 +99,7 @@ export function PurposeChecklist() {
             <div key={purpose.id} className="flex items-center gap-3 rounded-xl px-2 py-2 hover:bg-white/[0.03] group transition-colors">
               <button onClick={() => toggle(purpose.id)} className={`flex h-5 w-5 shrink-0 items-center justify-center rounded-md border-2 transition-all ${purpose.completed ? 'border-green-500 bg-green-500 text-black' : 'border-gray-600 hover:border-[#C5A059]'}`}>{purpose.completed && '✓'}</button>
               <span className={`flex-1 text-sm ${purpose.completed ? 'text-gray-500 line-through' : 'text-gray-200'}`}>{purpose.title}</span>
-              <button onClick={() => removePurpose(purpose.id)} className="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-red-400 text-xs transition-all">✕</button>
+              <button onClick={() => removePurpose(purpose.id)} className="text-[#6A6A6E] hover:text-red-400 transition-colors p-1 text-xs" aria-label="Remover">✕</button>
             </div>
           ))}
         </SacredCardContent></SacredCard>

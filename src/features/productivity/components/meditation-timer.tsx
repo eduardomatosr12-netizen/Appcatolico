@@ -33,12 +33,6 @@ export function MeditationTimer() {
             intervalRef.current = null;
             setIsRunning(false);
             setIsFinished(true);
-            playAlarmSound();
-            addNotification({
-              type: 'timer',
-              title: 'Cronômetro concluído',
-              body: 'Seu tempo de meditação finalizou. Volte em paz!',
-            });
             return 0;
           }
           return prev - 1;
@@ -52,6 +46,18 @@ export function MeditationTimer() {
       }
     };
   }, [isRunning, addNotification]);
+
+  useEffect(() => {
+    if (isFinished) {
+      ensureAudioReady();
+      playAlarmSound();
+      addNotification({
+        type: 'timer',
+        title: 'Cronômetro concluído',
+        body: 'Seu tempo de meditação finalizou. Volte em paz!',
+      });
+    }
+  }, [isFinished, addNotification]);
 
   const handleStart = useCallback(() => {
     if (computedTotal <= 0) return;
