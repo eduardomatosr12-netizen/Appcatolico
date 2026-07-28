@@ -7,11 +7,6 @@ export interface GeneralPrayer {
 
 export const generalPrayers: GeneralPrayer[] = [
   {
-    id: "sinal-da-cruz",
-    title: "Sinal da Cruz",
-    text: "Pelo sinal da Santa Cruz, livrai-nos Deus Nosso Senhor, dos nossos inimigos. Em nome do Pai, e do Filho, e do Espírito Santo. Amém.",
-  },
-  {
     id: "creio",
     title: "Creio em Deus Pai",
     subtitle: "Credo",
@@ -47,11 +42,6 @@ Rogai por nós, Santa Mãe de Deus, para que sejamos dignos das promessas de Cri
     id: "santo-anjo",
     title: "Santo Anjo do Senhor",
     text: `Santo Anjo do Senhor, meu zeloso guardador, se a ti me confiou a piedade divina, sempre me rege, guarda, governa e ilumina. Amém.`,
-  },
-  {
-    id: "ato-contricao",
-    title: "Ato de Contrição",
-    text: `Meu Jesus, de coração arrependido e pesaroso, me prostro aos Vossos pés, pedindo-Vos perdão. Pesam-me, Senhor, os meus pecados, porque ofendi a Vós, que sois tão bom e digno de ser amado. Proponho firmemente, com o auxílio da Vossa graita, não mais pecar e fugir de todas as ocasiões de pecado. Amém.`,
   },
   {
     id: "vinde-espirito-santo",
