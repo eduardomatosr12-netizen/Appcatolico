@@ -1,12 +1,19 @@
 {
+  "id": "/",
   "name": "Forja — Produtividade e Fé",
   "short_name": "Forja",
-  "description": "Liturgia, Bíblia, Orações, Terço, Confissão e mais",
+  "description": "Liturgia Diária, Bíblia, Orações, Terço, Confissão e Produtividade",
   "start_url": "/",
   "display": "standalone",
+  "display_override": ["window-controls-overlay", "standalone", "minimal-ui"],
   "background_color": "#0B0B0E",
   "theme_color": "#0B0B0E",
   "orientation": "portrait-primary",
+  "categories": ["religion", "spirituality", "productivity"],
+  "lang": "pt-BR",
+  "launch_handler": {
+    "client_mode": "focus-existing"
+  },
   "icons": [
     {
       "src": "/icon.svg",

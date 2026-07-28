@@ -68,8 +68,8 @@ export function MobileNav() {
   const pathname = usePathname();
 
   return (
-    <nav className="flex md:hidden fixed bottom-0 left-0 right-0 z-50 bg-[#0B0B0E]/95 backdrop-blur-xl border-t border-[rgba(197,160,89,0.06)]" style={{ paddingBottom: 'env(safe-area-inset-bottom)' }}>
-      <div className="w-full px-0 py-1.5">
+    <nav className="flex md:hidden fixed bottom-0 left-0 right-0 z-50 bg-[#0B0B0E]/95 backdrop-blur-xl border-t border-[rgba(197,160,89,0.06)] safe-area-bottom">
+      <div className="w-full px-0 py-1">
         <div className="flex items-center justify-evenly">
           {navItems.map((item) => {
             const isActive = pathname === item.href;
@@ -78,18 +78,18 @@ export function MobileNav() {
                 key={item.href}
                 href={item.href}
                 className={cn(
-                  'flex flex-col items-center gap-0.5 py-1.5 px-1.5 sm:px-2 rounded-xl transition-all duration-300 flex-1 max-w-[72px]',
-                  isActive ? 'bg-[#5C0F1B]/30' : '',
+                  'flex flex-col items-center gap-1 py-2 px-2 sm:px-3 rounded-xl transition-all duration-150 active:scale-[0.92] active:opacity-70 flex-1 min-w-0',
+                  isActive ? 'bg-[#5C0F1B]/30' : 'hover:bg-white/[0.03]',
                 )}
               >
                 <NavIcon icon={item.icon} isActive={isActive} />
                 <span className={cn(
-                  'text-[9px] font-medium transition-colors truncate',
+                  'text-[9px] leading-tight font-medium transition-colors truncate max-w-full',
                   isActive ? 'text-[#C5A059]' : 'text-[#6A6A6E]',
                 )}>
                   {item.label}
                 </span>
-                {isActive && <span className="w-1 h-1 rounded-full bg-[#C5A059] mt-0.5" />}
+                {isActive && <span className="w-1 h-1 rounded-full bg-[#C5A059]" />}
               </Link>
             );
           })}

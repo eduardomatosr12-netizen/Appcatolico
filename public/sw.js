@@ -1,4 +1,4 @@
-const CACHE_NAME = "forja-v1";
+const CACHE_NAME = "forja-v2";
 
 // ─── Lifecycle ───────────────────────────────────────────────────────────────
 
@@ -22,34 +22,57 @@ self.addEventListener("install", (event) => {
 
 self.addEventListener("activate", (event) => {
   event.waitUntil(
-    caches
-      .keys()
-      .then((names) => Promise.all(names.map((n) => caches.delete(n))))
-      .then(() => {
-        self.clients.claim();
-        registerPeriodicSync();
-      })
+    (async () => {
+      const names = await caches.keys();
+      await Promise.all(names.map((n) => caches.delete(n)));
+      await self.clients.claim();
+      if ("navigationPreload" in self.registration) {
+        await self.registration.navigationPreload.enable();
+      }
+      registerPeriodicSync();
+    })()
   );
 });
 
-// ─── Fetch (stale-while-revalidate) ─────────────────────────────────────────
+// ─── Fetch (stale-while-revalidate + navigation preload) ─────────────────────
 
 self.addEventListener("fetch", (event) => {
   if (event.request.method !== "GET") return;
   if (!event.request.url.startsWith("http")) return;
 
+  const { request } = event;
+
+  if (request.mode === "navigate") {
+    event.respondWith(
+      (async () => {
+        try {
+          const preloadResponse = await event.preloadResponse;
+          if (preloadResponse) return preloadResponse;
+          const response = await fetch(request);
+          if (response.ok && response.type === "basic") {
+            const cache = await caches.open(CACHE_NAME);
+            cache.put(request, response.clone());
+          }
+          return response;
+        } catch {
+          const cached = await caches.match(request);
+          return cached || new Response("Offline", { status: 503 });
+        }
+      })()
+    );
+    return;
+  }
+
   event.respondWith(
-    fetch(event.request)
+    fetch(request)
       .then((response) => {
         if (response.ok && response.type === "basic") {
           const clone = response.clone();
-          caches
-            .open(CACHE_NAME)
-            .then((cache) => cache.put(event.request, clone));
+          caches.open(CACHE_NAME).then((cache) => cache.put(request, clone));
         }
         return response;
       })
-      .catch(() => caches.match(event.request))
+      .catch(() => caches.match(request))
   );
 });
 
