@@ -5,6 +5,7 @@ import { SacredCard } from '@/components/ui/sacred-card';
 import { PillTabBar } from '@/components/ui/pill-tab-bar';
 import { eucharisticPrayers } from '@/data/eucharistic-prayers';
 import { novenas } from '@/data/novenas';
+import { generalPrayers } from '@/data/general-prayers';
 import type { LiturgicalSpeaker, NovenasPrayer } from '@/types/prayer';
 
 const speakerStyles: Record<LiturgicalSpeaker, string> = {
@@ -42,8 +43,9 @@ function LiturgicalLine({
 }
 
 const categories = [
-  { key: 'eucharistic', label: 'Orações Eucarísticas' },
   { key: 'novenas', label: 'Novenas' },
+  { key: 'diversas', label: 'Diversas' },
+  { key: 'eucharistic', label: 'Orações Eucarísticas' },
 ] as const;
 
 type CategoryKey = (typeof categories)[number]['key'];
@@ -202,8 +204,65 @@ function NovenasView() {
   );
 }
 
+function DiversasView() {
+  const [selectedPrayer, setSelectedPrayer] = useState<typeof generalPrayers[number] | null>(null);
+
+  if (selectedPrayer) {
+    return (
+      <div className="space-y-5">
+        <button
+          onClick={() => setSelectedPrayer(null)}
+          className="flex items-center gap-2 text-sm text-[#C5A059] hover:text-[#D4B87A] transition-colors"
+        >
+          <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <path d="M19 12H5M12 19l-7-7 7-7" />
+          </svg>
+          Voltar
+        </button>
+
+        <div className="text-center space-y-2">
+          <h2 className="font-serif text-xl font-bold text-[#C5A059]">
+            {selectedPrayer.title}
+          </h2>
+          {selectedPrayer.subtitle && (
+            <p className="text-xs text-[#8A8A8E]">{selectedPrayer.subtitle}</p>
+          )}
+        </div>
+
+        <SacredCard variant="accent">
+          <p className="text-base md:text-lg leading-relaxed text-gray-300 whitespace-pre-line">
+            {selectedPrayer.text}
+          </p>
+        </SacredCard>
+      </div>
+    );
+  }
+
+  return (
+    <div className="space-y-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        {generalPrayers.map((p) => (
+          <SacredCard
+            key={p.id}
+            variant="default"
+            className="cursor-pointer hover:border-[#C5A059]/30 transition-colors"
+            onClick={() => setSelectedPrayer(p)}
+          >
+            <h3 className="font-serif text-sm font-semibold text-[#C5A059] mb-1">
+              {p.title}
+            </h3>
+            {p.subtitle && (
+              <p className="text-[10px] text-[#8A8A8E] italic">{p.subtitle}</p>
+            )}
+          </SacredCard>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 export function PrayersPage() {
-  const [activeCategory, setActiveCategory] = useState<CategoryKey>('eucharistic');
+  const [activeCategory, setActiveCategory] = useState<CategoryKey>('novenas');
 
   return (
     <div className="space-y-5">
@@ -227,8 +286,9 @@ export function PrayersPage() {
         className="mx-auto"
       />
 
-      {activeCategory === 'eucharistic' && <EucharisticView />}
       {activeCategory === 'novenas' && <NovenasView />}
+      {activeCategory === 'diversas' && <DiversasView />}
+      {activeCategory === 'eucharistic' && <EucharisticView />}
     </div>
   );
 }
