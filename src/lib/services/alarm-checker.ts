@@ -81,13 +81,17 @@ export function showAlarmNotification(
       }
     );
   } else if (context === 'main' && typeof Notification !== 'undefined') {
-    // Main thread — use Web Notification API
     if (Notification.permission === 'granted') {
+      if ('vibrate' in navigator) {
+        navigator.vibrate([200, 100, 200, 100, 200]);
+      }
       const n = new Notification('Hora da oração!', {
         body: `${alarm.title} — Hora da oração!`,
         icon: '/icon-192.png',
         tag: `alarm-${alarm.id}`,
-      });
+        vibrate: [200, 100, 200, 100, 200],
+        requireInteraction: true,
+      } as NotificationOptions & { vibrate: number[]; requireInteraction: boolean });
       n.onclick = () => {
         window.focus();
         n.close();

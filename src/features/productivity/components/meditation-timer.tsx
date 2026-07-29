@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect, useRef, useCallback } from 'react';
-import { testAlarmSound } from '@/lib/utils/alarm-sound';
+import { playAlarmSound, testAlarmSound, vibrate, ensureAudioReady, resumeAudioContext } from '@/lib/utils/alarm-sound';
 import { useNotificationStore } from '@/lib/stores/notification-store';
 
 function formatTime(totalSeconds: number): string {
@@ -9,28 +9,6 @@ function formatTime(totalSeconds: number): string {
   const m = Math.floor((totalSeconds % 3600) / 60);
   const s = totalSeconds % 60;
   return `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
-}
-
-function playBeep(ctx: AudioContext, startTime: number, duration = 0.15, frequency = 880) {
-  const oscillator = ctx.createOscillator();
-  const gainNode = ctx.createGain();
-  oscillator.type = 'sine';
-  oscillator.frequency.setValueAtTime(frequency, startTime);
-  gainNode.gain.setValueAtTime(0, startTime);
-  gainNode.gain.linearRampToValueAtTime(0.6, startTime + 0.01);
-  gainNode.gain.setValueAtTime(0.6, startTime + duration - 0.02);
-  gainNode.gain.linearRampToValueAtTime(0, startTime + duration);
-  oscillator.connect(gainNode);
-  gainNode.connect(ctx.destination);
-  oscillator.start(startTime);
-  oscillator.stop(startTime + duration);
-}
-
-function playThreeBeeps(ctx: AudioContext) {
-  const now = ctx.currentTime;
-  playBeep(ctx, now, 0.15, 880);
-  playBeep(ctx, now + 0.25, 0.15, 880);
-  playBeep(ctx, now + 0.5, 0.15, 880);
 }
 
 export function MeditationTimer() {
@@ -42,7 +20,6 @@ export function MeditationTimer() {
   const [isRunning, setIsRunning] = useState(false);
   const [isFinished, setIsFinished] = useState(false);
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
-  const audioCtxRef = useRef<AudioContext | null>(null);
   const addNotification = useNotificationStore((s) => s.addNotification);
 
   const computedTotal = hours * 3600 + minutes * 60 + seconds;
@@ -76,12 +53,10 @@ export function MeditationTimer() {
       setIsRunning(false);
       setIsFinished(true);
 
-      const ctx = audioCtxRef.current;
-      if (ctx && ctx.state === 'running') {
-        playThreeBeeps(ctx);
-      } else if (ctx && ctx.state === 'suspended') {
-        ctx.resume().then(() => playThreeBeeps(ctx));
-      }
+      resumeAudioContext().then(() => {
+        playAlarmSound();
+      });
+      vibrate([200, 100, 200, 100, 200]);
 
       addNotification({
         type: 'timer',
@@ -93,14 +68,7 @@ export function MeditationTimer() {
 
   const handleStart = useCallback(() => {
     if (computedTotal <= 0) return;
-
-    if (!audioCtxRef.current || audioCtxRef.current.state === 'closed') {
-      audioCtxRef.current = new AudioContext();
-    }
-    const ctx = audioCtxRef.current;
-    if (ctx.state === 'suspended') {
-      ctx.resume();
-    }
+    ensureAudioReady();
 
     setTotalSeconds(computedTotal);
     setRemaining(computedTotal);
@@ -121,10 +89,6 @@ export function MeditationTimer() {
     setRemaining(0);
     setTotalSeconds(0);
     setIsFinished(false);
-    if (audioCtxRef.current && audioCtxRef.current.state !== 'closed') {
-      audioCtxRef.current.close().catch(() => {});
-      audioCtxRef.current = null;
-    }
   }, []);
 
   const progress = totalSeconds > 0 ? remaining / totalSeconds : 0;

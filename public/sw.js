@@ -11,6 +11,13 @@ self.addEventListener("message", (event) => {
   }
 });
 
+async function notifyClientsToPlaySound() {
+  const clients = await self.clients.matchAll({ type: "window", includeUncontrolled: true });
+  for (const client of clients) {
+    client.postMessage({ type: "PLAY_ALARM_SOUND" });
+  }
+}
+
 self.addEventListener("install", (event) => {
   event.waitUntil(
     caches
@@ -103,9 +110,11 @@ self.addEventListener("push", (event) => {
       tag: data.tag,
       renotify: true,
       vibrate: [200, 100, 200, 100, 200],
+      requireInteraction: true,
       data: data.data || { url: "/" },
     })
   );
+  event.waitUntil(notifyClientsToPlaySound());
 });
 
 self.addEventListener("notificationclick", (event) => {
@@ -270,9 +279,11 @@ async function checkAlarms() {
         tag: `alarm-${alarm.id}`,
         renotify: true,
         vibrate: [200, 100, 200, 100, 200],
+        requireInteraction: true,
         data: { url: "/liturgia", alarmId: alarm.id },
       });
     }
+    notifyClientsToPlaySound();
   } catch (err) {
     console.error("[SW] Alarm check failed:", err);
   }

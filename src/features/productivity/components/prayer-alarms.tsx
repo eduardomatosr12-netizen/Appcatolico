@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react';
 import { SacredCard, SacredCardContent, SacredCardTitle } from '@/components/ui/sacred-card';
-import { playAlarmSound, stopAlarmSound, testAlarmSound, ensureAudioReady } from '@/lib/utils/alarm-sound';
+import { stopAlarmSound, testAlarmSound, ensureAudioReady } from '@/lib/utils/alarm-sound';
 import { useNotificationStore } from '@/lib/stores/notification-store';
 import { useAuthStore } from '@/lib/stores/auth-store';
 import { useSyncedCollection } from '@/lib/services/sync-service';
@@ -39,10 +39,7 @@ export function PrayerAlarms() {
   const [formHour, setFormHour] = useState('8');
   const [formMinute, setFormMinute] = useState('0');
   const [formDays, setFormDays] = useState<number[]>([0,1,2,3,4,5,6]);
-  const checkedRef = useRef<Set<string>>(new Set());
-  const lastMinuteRef = useRef<string>('');
   const seededRef = useRef(false);
-  const addNotification = useNotificationStore((s) => s.addNotification);
 
   useEffect(() => {
     if (!userId || seededRef.current) return;
@@ -86,51 +83,24 @@ export function PrayerAlarms() {
   }, [effectiveAlarms]);
 
   useEffect(() => {
-    const tick = () => {
-      const now = new Date();
-      const currentDay = now.getDay();
-      const currentHour = now.getHours();
-      const currentMinute = now.getMinutes();
-      const minuteKey = `${currentDay}-${currentHour}-${currentMinute}`;
-
-      if (minuteKey === lastMinuteRef.current) return;
-      lastMinuteRef.current = minuteKey;
-
-      effectiveAlarms.forEach((alarm) => {
-        if (!alarm.enabled) return;
-        if (!alarm.daysOfWeek.includes(currentDay)) return;
-        if (alarm.hour !== currentHour || alarm.minute !== currentMinute) return;
-
-        const key = `${alarm.id}-${minuteKey}`;
-        if (checkedRef.current.has(key)) return;
-
-        checkedRef.current.add(key);
-        setTriggeredAlarm(alarm.id);
-        playAlarmSound();
-        addNotification({
-          type: 'alarm',
-          title: alarm.title,
-          body: `Hora da oração — ${alarm.title}!`,
+    const handleSWMessage = (event: MessageEvent) => {
+      if (event.data?.type === 'PLAY_ALARM_SOUND') {
+        const now = new Date();
+        const currentMinute = `${now.getHours()}:${now.getMinutes()}`;
+        const alarm = effectiveAlarms.find((a) => {
+          const alarmMinute = `${a.hour}:${String(a.minute).padStart(2, '0')}`;
+          return alarmMinute === currentMinute && a.enabled;
         });
-      });
-    };
-
-    tick();
-    const interval = setInterval(tick, 10000);
-
-    const handleVisibility = () => {
-      if (document.visibilityState === 'visible') {
-        lastMinuteRef.current = '';
-        tick();
+        if (alarm) {
+          setTriggeredAlarm(alarm.id);
+        }
       }
     };
-    document.addEventListener('visibilitychange', handleVisibility);
-
+    navigator.serviceWorker?.addEventListener('message', handleSWMessage);
     return () => {
-      clearInterval(interval);
-      document.removeEventListener('visibilitychange', handleVisibility);
+      navigator.serviceWorker?.removeEventListener('message', handleSWMessage);
     };
-  }, [effectiveAlarms, addNotification]);
+  }, [effectiveAlarms]);
 
   const dismissAlarm = () => {
     stopAlarmSound();

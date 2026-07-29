@@ -61,3 +61,31 @@ export async function testAlarmSound() {
   playBeep(ctx, now + 0.15, 0.1, 880);
   playBeep(ctx, now + 0.3, 0.1, 880);
 }
+
+export function vibrate(pattern: number | number[] = [200, 100, 200]) {
+  if (typeof navigator !== 'undefined' && 'vibrate' in navigator) {
+    navigator.vibrate(pattern);
+  }
+}
+
+export async function playAlarmSoundWithVibration() {
+  vibrate([200, 100, 200, 100, 200]);
+  await playAlarmSound();
+}
+
+export function getAudioContext(): AudioContext | null {
+  return sharedCtx;
+}
+
+export async function resumeAudioContext(): Promise<boolean> {
+  const ctx = sharedCtx;
+  if (!ctx || ctx.state === 'closed') return false;
+  if (ctx.state === 'suspended') {
+    try {
+      await ctx.resume();
+    } catch {
+      return false;
+    }
+  }
+  return true;
+}

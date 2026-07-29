@@ -124,13 +124,18 @@ export const useNotificationStore = create<NotificationState>((set, get) => ({
 
     if (typeof window !== 'undefined' && 'Notification' in window && Notification.permission === 'granted') {
       try {
+        if ('vibrate' in navigator) {
+          navigator.vibrate([200, 100, 200]);
+        }
         new Notification(notification.title, {
           body: notification.body,
           icon: '/icon.svg',
           tag: notification.id,
-        });
+          vibrate: [200, 100, 200],
+          requireInteraction: true,
+        } as NotificationOptions & { vibrate: number[]; requireInteraction: boolean });
       } catch {
-        // Notification API unavailable (e.g. no SW on some browsers)
+        // Notification API unavailable
       }
     }
   },
