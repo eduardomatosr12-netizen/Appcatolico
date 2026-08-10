@@ -35,6 +35,12 @@ export interface GospelAcclamation {
   verse: string;
 }
 
+export interface PsalmVerse {
+  number: number;
+  parts: string[];
+  endStanza: boolean;
+}
+
 export interface DailyLiturgy {
   date: string;
   liturgicalSeason: string;
@@ -42,7 +48,13 @@ export interface DailyLiturgy {
   celebrationName: string;
   saintOfTheDay?: string;
   firstReading?: { title: string; text: string; reference: string };
-  psalm?: { title: string; text: string; reference: string; response: string };
+  psalm?: {
+    title: string;
+    text: string;
+    reference: string;
+    response: string;
+    verses?: PsalmVerse[];
+  };
   secondReading?: { title: string; text: string; reference: string };
   gospel?: {
     title: string;

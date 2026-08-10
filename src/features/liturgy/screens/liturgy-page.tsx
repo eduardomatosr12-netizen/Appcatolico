@@ -9,7 +9,7 @@ import { PillTabBar } from '@/components/ui/pill-tab-bar';
 import { SacredCard } from '@/components/ui/sacred-card';
 import { fetchLiturgy, getCachedLiturgy } from '@/services/liturgiaService';
 import { liturgyHoursData } from '@/data/liturgy-hours';
-import type { DailyLiturgy } from '@/types/liturgy';
+import type { DailyLiturgy, PsalmVerse } from '@/types/liturgy';
 import type { LiturgyOfHours, LiturgicalSpeaker } from '@/types/prayer';
 
 const hourOrder = [
@@ -194,11 +194,13 @@ function PsalmCard({
   reference,
   text,
   response,
+  verses,
 }: {
   title: string;
   reference?: string;
   text: string;
   response?: string;
+  verses?: PsalmVerse[];
 }) {
   const stanzas = useMemo(() => parsePsalmStanzas(text), [text]);
 
@@ -236,19 +238,57 @@ function PsalmCard({
           padding: '4px 0',
         }}
       >
-        {stanzas.map((stanza, i) => (
-          <div key={i} className="mb-5 last:mb-0">
-            <p className="font-serif text-[#C5A059] font-semibold mb-0.5">
-              {i + 1}
-            </p>
-            <p className="leading-relaxed">
-              {stanza.first} <span className="text-[#C5A059]">*</span>
-            </p>
-            <p className="leading-relaxed">
-              {stanza.second} <span className="text-[#C5A059] font-semibold">R.</span>
-            </p>
-          </div>
-        ))}
+        {verses && verses.length > 0
+          ? verses.map((v, i) => {
+              const isFinalVerse = i === verses.length - 1;
+              return (
+                <div key={i} className={v.endStanza ? 'mb-5' : 'mb-2'}>
+                  <p className="font-serif text-[#C5A059] font-semibold mb-0.5">
+                    {v.number}
+                  </p>
+                  {v.parts.map((part, j) => {
+                    const isLastPart = j === v.parts.length - 1;
+                    let marker = '';
+                    if (isLastPart) {
+                      marker = v.endStanza || isFinalVerse ? 'R.' : '';
+                    } else if (v.parts.length === 3 && j === 0) {
+                      marker = '†';
+                    } else {
+                      marker = '*';
+                    }
+                    return (
+                      <p key={j} className="leading-relaxed">
+                        {part}
+                        {marker && (
+                          <span
+                            className={
+                              marker === 'R.'
+                                ? 'text-[#C5A059] font-semibold'
+                                : 'text-[#C5A059]'
+                            }
+                          >
+                            {` ${marker}`}
+                          </span>
+                        )}
+                      </p>
+                    );
+                  })}
+                </div>
+              );
+            })
+          : stanzas.map((stanza, i) => (
+              <div key={i} className="mb-5 last:mb-0">
+                <p className="font-serif text-[#C5A059] font-semibold mb-0.5">
+                  {i + 1}
+                </p>
+                <p className="leading-relaxed">
+                  {stanza.first} <span className="text-[#C5A059]">*</span>
+                </p>
+                <p className="leading-relaxed">
+                  {stanza.second} <span className="text-[#C5A059] font-semibold">R.</span>
+                </p>
+              </div>
+            ))}
       </div>
     </article>
   );
@@ -507,6 +547,7 @@ export function LiturgyPage() {
               reference={liturgy.psalm.reference}
               text={liturgy.psalm.text}
               response={liturgy.psalm.response}
+              verses={liturgy.psalm.verses}
             />
           )}
 
