@@ -30,6 +30,11 @@ export interface RailwayLiturgyResponse {
   };
 }
 
+export interface GospelAcclamation {
+  response: string;
+  verse: string;
+}
+
 export interface DailyLiturgy {
   date: string;
   liturgicalSeason: string;
@@ -39,5 +44,10 @@ export interface DailyLiturgy {
   firstReading?: { title: string; text: string; reference: string };
   psalm?: { title: string; text: string; reference: string; response: string };
   secondReading?: { title: string; text: string; reference: string };
-  gospel?: { title: string; text: string; reference: string };
+  gospel?: {
+    title: string;
+    text: string;
+    reference: string;
+    acclamation?: GospelAcclamation;
+  };
 }

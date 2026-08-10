@@ -1,6 +1,12 @@
-import type { RailwayLiturgyResponse, DailyLiturgy } from '@/types/liturgy';
+import type {
+  RailwayLiturgyResponse,
+  DailyLiturgy,
+  GospelAcclamation,
+} from '@/types/liturgy';
 
 const BASE_URL = 'https://liturgia.up.railway.app/v2/';
+const ACCLAMATION_URL =
+  'https://www.agenciaarcanjo.com.br/api.php?tipo=liturgia&data=';
 
 function pad(n: number): string {
   return n.toString().padStart(2, '0');
@@ -17,6 +23,7 @@ function buildDateParams(date: Date) {
 /**
  * Busca a liturgia diária da API pública de liturgia católica.
  * Usa `If-None-Match` via ETag se disponível em localStorage.
+ * Também busca a aclamação ao evangelho em fonte secundária.
  */
 export async function fetchLiturgy(date: Date): Promise<DailyLiturgy> {
   const params = buildDateParams(date);
@@ -30,32 +37,51 @@ export async function fetchLiturgy(date: Date): Promise<DailyLiturgy> {
     }
   }
 
+  const acclamationPromise = Promise.resolve(
+    getCachedAcclamation(date) ?? fetchAndCacheAcclamation(date),
+  );
+
   const res = await fetch(url, { headers });
+
+  let raw: RailwayLiturgyResponse | null = null;
 
   if (res.status === 304 && typeof window !== 'undefined') {
     const cached = localStorage.getItem(`liturgia-data-${params.ano}-${pad(params.mes)}-${pad(params.dia)}`);
     if (cached) {
-      return parseLiturgyResponse(JSON.parse(cached) as RailwayLiturgyResponse);
+      raw = JSON.parse(cached) as RailwayLiturgyResponse;
     }
   }
 
-  if (!res.ok) {
-    throw new Error(`Erro HTTP ${res.status}: ${res.statusText}`);
+  if (!raw) {
+    if (!res.ok) {
+      throw new Error(`Erro HTTP ${res.status}: ${res.statusText}`);
+    }
+
+    const etag = res.headers.get('ETag');
+    const data: RailwayLiturgyResponse = await res.json();
+
+    if (!data || !data.data) {
+      throw new Error('Nenhum dado litúrgico encontrado para esta data.');
+    }
+
+    raw = data;
+
+    if (etag && typeof window !== 'undefined') {
+      localStorage.setItem(`liturgia-etag-${params.ano}-${pad(params.mes)}-${pad(params.dia)}`, etag);
+      localStorage.setItem(`liturgia-data-${params.ano}-${pad(params.mes)}-${pad(params.dia)}`, JSON.stringify(data));
+    }
   }
 
-  const etag = res.headers.get('ETag');
-  const data: RailwayLiturgyResponse = await res.json();
+  const [acclamation, parsed] = await Promise.all([
+    acclamationPromise,
+    Promise.resolve(parseLiturgyResponse(raw)),
+  ]);
 
-  if (!data || !data.data) {
-    throw new Error('Nenhum dado litúrgico encontrado para esta data.');
+  if (acclamation && parsed.gospel) {
+    parsed.gospel.acclamation = acclamation;
   }
 
-  if (etag && typeof window !== 'undefined') {
-    localStorage.setItem(`liturgia-etag-${params.ano}-${pad(params.mes)}-${pad(params.dia)}`, etag);
-    localStorage.setItem(`liturgia-data-${params.ano}-${pad(params.mes)}-${pad(params.dia)}`, JSON.stringify(data));
-  }
-
-  return parseLiturgyResponse(data);
+  return parsed;
 }
 
 /**
@@ -67,12 +93,84 @@ export function getCachedLiturgy(date: Date): DailyLiturgy | null {
   const cached = localStorage.getItem(`liturgia-data-${params.ano}-${pad(params.mes)}-${pad(params.dia)}`);
   if (cached) {
     try {
-      return parseLiturgyResponse(JSON.parse(cached) as RailwayLiturgyResponse);
+      const parsed = parseLiturgyResponse(JSON.parse(cached) as RailwayLiturgyResponse);
+      const acclamation = getCachedAcclamation(date);
+      if (acclamation && parsed.gospel) {
+        parsed.gospel.acclamation = acclamation;
+      }
+      return parsed;
     } catch {
       return null;
     }
   }
   return null;
+}
+
+function acclamationCacheKey(date: Date): string {
+  const params = buildDateParams(date);
+  return `liturgia-aclamacao-${params.ano}-${pad(params.mes)}-${pad(params.dia)}`;
+}
+
+function decodeHtmlEntities(input: string): string {
+  if (typeof document === 'undefined') return input;
+  const el = document.createElement('textarea');
+  el.innerHTML = input;
+  return el.value;
+}
+
+function isAcclamationResponse(text: string): boolean {
+  return /aleluia/i.test(text) || /Cristo/i.test(text) || /Senhor Jesus/i.test(text);
+}
+
+/**
+ * Busca a aclamação ao evangelho (resposta + versículo) na API da
+ * Agência Arcanjo. Retorna `null` se indisponível para a data.
+ */
+async function fetchAcclamation(date: Date): Promise<GospelAcclamation | null> {
+  const params = buildDateParams(date);
+  const iso = `${params.ano}-${pad(params.mes)}-${pad(params.dia)}`;
+  try {
+    const res = await fetch(`${ACCLAMATION_URL}${iso}`);
+    if (!res.ok) return null;
+    const json = (await res.json()) as { evangelho?: string };
+    if (!json.evangelho) return null;
+
+    const matches = [...json.evangelho.matchAll(/<p>\s*-\s*([^<]*)<\/p>/g)].slice(0, 2);
+    if (matches.length === 0) return null;
+
+    const response = decodeHtmlEntities(matches[0][1].trim());
+    if (!isAcclamationResponse(response)) return null;
+
+    return {
+      response,
+      verse: matches[1] ? decodeHtmlEntities(matches[1][1].trim()) : '',
+    };
+  } catch {
+    return null;
+  }
+}
+
+async function fetchAndCacheAcclamation(date: Date): Promise<GospelAcclamation | null> {
+  const acclamation = await fetchAcclamation(date);
+  if (acclamation && typeof window !== 'undefined') {
+    try {
+      localStorage.setItem(acclamationCacheKey(date), JSON.stringify(acclamation));
+    } catch {
+      // armazenamento indisponível: segue sem cache
+    }
+  }
+  return acclamation;
+}
+
+function getCachedAcclamation(date: Date): GospelAcclamation | null {
+  if (typeof window === 'undefined') return null;
+  const cached = localStorage.getItem(acclamationCacheKey(date));
+  if (!cached) return null;
+  try {
+    return JSON.parse(cached) as GospelAcclamation;
+  } catch {
+    return null;
+  }
 }
 
 function parseLiturgyResponse(api: RailwayLiturgyResponse): DailyLiturgy {

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useCallback, useEffect } from 'react';
+import { useState, useCallback, useEffect, useMemo } from 'react';
 import { Header } from '@/components/layout/header';
 import { FloatingToolbar } from '@/components/ui/floating-toolbar';
 import { HorizontalDatePicker } from '@/components/features/horizontal-date-picker';
@@ -119,24 +119,14 @@ function ReadingCard({
   title,
   reference,
   text,
-  variant = 'default',
-  adornment,
 }: {
   title: string;
   reference?: string;
   text: string;
-  variant?: 'default' | 'gospel';
-  adornment?: React.ReactNode;
 }) {
-  const isGospel = variant === 'gospel';
-
   return (
     <article
-      className={`w-full rounded-[24px] p-4 sm:p-5 md:p-10 border shadow-[0_12px_40px_rgba(0,0,0,0.5)] flex flex-col gap-4 sm:gap-5 transition-all hover:border-white/[0.06] overflow-hidden ${
-        isGospel
-          ? 'bg-gradient-to-br from-[#3D0A11] to-[#1A0508] border-[rgba(197,160,89,0.15)] hover:border-[rgba(197,160,89,0.25)]'
-          : 'bg-[#16161A] border-white/[0.03]'
-      }`}
+      className="w-full rounded-[24px] p-4 sm:p-5 md:p-10 border shadow-[0_12px_40px_rgba(0,0,0,0.5)] flex flex-col gap-4 sm:gap-5 transition-all hover:border-white/[0.06] overflow-hidden bg-[#16161A] border-white/[0.03]"
       style={{ width: '100%', maxWidth: '100%' }}
     >
       <div className="flex items-start justify-between gap-3 min-w-0">
@@ -145,14 +135,11 @@ function ReadingCard({
             {title}
           </h2>
           {reference && (
-            <span className={`text-sm sm:text-base md:text-lg font-mono font-semibold tracking-wide break-words ${
-              isGospel ? 'text-[#C5A059]' : 'text-gray-300'
-            }`}>
+            <span className="text-sm sm:text-base md:text-lg font-mono font-semibold tracking-wide break-words text-gray-300">
               {reference}
             </span>
           )}
         </div>
-        {adornment}
       </div>
       <div
         className="text-sm sm:text-base md:text-xl font-normal space-y-5 pt-1 sm:pt-2"
@@ -170,6 +157,38 @@ function ReadingCard({
   );
 }
 
+function splitPsalmStanza(line: string): { first: string; second: string } {
+  const clean = line.trim();
+  const mid = Math.floor(clean.length / 2);
+  const lowerBound = Math.floor(clean.length * 0.35);
+
+  let splitAt = -1;
+  const punct = /[;,.:!?]/g;
+  let m: RegExpExecArray | null;
+  while ((m = punct.exec(clean)) !== null) {
+    if (m.index > mid) break;
+    if (m.index >= lowerBound) splitAt = m.index + 1;
+  }
+
+  if (splitAt < lowerBound) splitAt = clean.lastIndexOf(' ', mid);
+  if (splitAt < lowerBound) splitAt = clean.indexOf(' ', mid);
+  if (splitAt < lowerBound) splitAt = mid;
+
+  return {
+    first: clean.slice(0, splitAt).trim(),
+    second: clean.slice(splitAt).trim(),
+  };
+}
+
+function parsePsalmStanzas(text: string): { first: string; second: string }[] {
+  return text
+    .replace(/\r/g, '')
+    .split('\n')
+    .map((s) => s.replace(/^[—–\-•*\s]+/, '').trim())
+    .filter(Boolean)
+    .map(splitPsalmStanza);
+}
+
 function PsalmCard({
   title,
   reference,
@@ -181,6 +200,8 @@ function PsalmCard({
   text: string;
   response?: string;
 }) {
+  const stanzas = useMemo(() => parsePsalmStanzas(text), [text]);
+
   return (
     <article className="w-full bg-[#16161A] rounded-[24px] p-4 sm:p-5 md:p-10 border border-white/[0.03] shadow-[0_12px_40px_rgba(0,0,0,0.5)] flex flex-col gap-4 sm:gap-5 transition-all hover:border-white/[0.06] overflow-hidden" style={{ width: '100%', maxWidth: '100%' }}>
       <div className="flex flex-col gap-1 border-l-2 border-[#C5A059] pl-3 sm:pl-4 min-w-0">
@@ -193,11 +214,93 @@ function PsalmCard({
           </span>
         )}
       </div>
+
       {response && (
-        <span className="inline-block w-fit rounded-full bg-[#C5A059]/10 border border-[#C5A059]/20 px-3 sm:px-5 py-1.5 sm:py-2 text-[10px] sm:text-xs text-[#C5A059] italic font-semibold tracking-wide">
-          R: {response}
-        </span>
+        <div className="pl-4 border-l-2 border-[#C5A059]/30 bg-[#C5A059]/5 py-2 pr-3 rounded-r-xl">
+          <span className="text-[10px] md:text-xs uppercase tracking-wider text-[#C5A059]/70 font-semibold block mb-1">
+            R.
+          </span>
+          <p className="text-sm sm:text-base md:text-lg italic text-[#C5A059]/90 font-serif leading-relaxed">
+            {response}
+          </p>
+        </div>
       )}
+
+      <div
+        className="text-sm sm:text-base md:text-xl font-normal pt-1 sm:pt-2"
+        style={{
+          wordBreak: 'break-word',
+          overflowWrap: 'break-word',
+          whiteSpace: 'normal',
+          lineHeight: '1.6',
+          padding: '4px 0',
+        }}
+      >
+        {stanzas.map((stanza, i) => (
+          <div key={i} className="mb-5 last:mb-0">
+            <p className="font-serif text-[#C5A059] font-semibold mb-0.5">
+              {i + 1}
+            </p>
+            <p className="leading-relaxed">
+              {stanza.first} <span className="text-[#C5A059]">*</span>
+            </p>
+            <p className="leading-relaxed">
+              {stanza.second} <span className="text-[#C5A059] font-semibold">R.</span>
+            </p>
+          </div>
+        ))}
+      </div>
+    </article>
+  );
+}
+
+function GospelCard({
+  title,
+  reference,
+  text,
+  acclamation,
+}: {
+  title: string;
+  reference?: string;
+  text: string;
+  acclamation?: { response: string; verse: string };
+}) {
+  return (
+    <article className="w-full bg-gradient-to-br from-[#3D0A11] to-[#1A0508] rounded-[24px] p-4 sm:p-5 md:p-10 border border-[rgba(197,160,89,0.15)] shadow-[0_12px_40px_rgba(0,0,0,0.5)] flex flex-col gap-4 sm:gap-5 transition-all hover:border-[rgba(197,160,89,0.25)] overflow-hidden" style={{ width: '100%', maxWidth: '100%' }}>
+      <div className="flex items-start justify-between gap-3 min-w-0">
+        <div className="flex flex-col gap-1 border-l-2 border-[#C5A059] pl-3 sm:pl-4 min-w-0">
+          <h2 className="font-serif text-[10px] sm:text-xs md:text-sm tracking-[0.15em] uppercase text-[#C5A059]/80 font-medium break-words">
+            {title}
+          </h2>
+          {reference && (
+            <span className="text-sm sm:text-base md:text-lg font-mono font-semibold tracking-wide break-words text-[#C5A059]">
+              {reference}
+            </span>
+          )}
+        </div>
+        {!acclamation && (
+          <span className="text-[10px] uppercase tracking-widest text-[#C5A059]/40 border border-[#C5A059]/10 rounded-full px-3 py-1 font-semibold shrink-0">
+            Aleluia
+          </span>
+        )}
+      </div>
+
+      {acclamation && (
+        <div className="pl-4 border-l-2 border-[#C5A059]/30 bg-[#C5A059]/5 py-2 pr-3 rounded-r-xl">
+          <span className="text-[10px] md:text-xs uppercase tracking-wider text-[#C5A059]/70 font-semibold block mb-1">
+            Aclamação ao Evangelho
+          </span>
+          <p className="text-sm sm:text-base md:text-lg italic text-[#C5A059]/90 font-serif leading-relaxed">
+            {acclamation.response}
+          </p>
+          {acclamation.verse && (
+            <p className="mt-1.5 text-sm sm:text-base md:text-lg text-gray-200/90 leading-relaxed">
+              {acclamation.verse}
+            </p>
+          )}
+        </div>
+      )}
+
       <div
         className="text-sm sm:text-base md:text-xl font-normal space-y-5 pt-1 sm:pt-2"
         style={{
@@ -241,7 +344,12 @@ export function LiturgyPage() {
     if (liturgy.firstReading) parts.push(`${liturgy.firstReading.title}. ${liturgy.firstReading.reference}. ${liturgy.firstReading.text}`);
     if (liturgy.psalm) parts.push(`${liturgy.psalm.title}. ${liturgy.psalm.reference}. ${liturgy.psalm.text}`);
     if (liturgy.secondReading) parts.push(`${liturgy.secondReading.title}. ${liturgy.secondReading.reference}. ${liturgy.secondReading.text}`);
-    if (liturgy.gospel) parts.push(`${liturgy.gospel.title}. ${liturgy.gospel.reference}. ${liturgy.gospel.text}`);
+    if (liturgy.gospel) {
+      if (liturgy.gospel.acclamation) {
+        parts.push(`Aclamação ao Evangelho. ${liturgy.gospel.acclamation.response} ${liturgy.gospel.acclamation.verse}`);
+      }
+      parts.push(`${liturgy.gospel.title}. ${liturgy.gospel.reference}. ${liturgy.gospel.text}`);
+    }
     const utter = new SpeechSynthesisUtterance(parts.join('.\n\n'));
     utter.lang = 'pt-BR';
     utter.rate = 0.9;
@@ -253,10 +361,13 @@ export function LiturgyPage() {
 
   const handleShare = useCallback(async () => {
     if (!liturgy) return;
+    const acclamationText = liturgy.gospel?.acclamation
+      ? `${liturgy.gospel.acclamation.response}\n${liturgy.gospel.acclamation.verse}\n\n`
+      : '';
     const text = `${liturgy.celebrationName}\n\n` +
       (liturgy.firstReading ? `${liturgy.firstReading.title}\n${liturgy.firstReading.reference}\n\n` : '') +
       (liturgy.psalm ? `${liturgy.psalm.title}\n${liturgy.psalm.reference}\n\n` : '') +
-      (liturgy.gospel ? `${liturgy.gospel.title}\n${liturgy.gospel.reference}\n\n${liturgy.gospel.text}` : '');
+      (liturgy.gospel ? `${liturgy.gospel.title}\n${liturgy.gospel.reference}\n\n${acclamationText}${liturgy.gospel.text}` : '');
     if (navigator.share) {
       await navigator.share({ title: liturgy.celebrationName, text });
     } else {
@@ -408,16 +519,11 @@ export function LiturgyPage() {
           )}
 
           {liturgy.gospel && (
-            <ReadingCard
+            <GospelCard
               title="Evangelho"
               reference={liturgy.gospel.reference}
               text={liturgy.gospel.text}
-              variant="gospel"
-              adornment={
-                <span className="text-[10px] uppercase tracking-widest text-[#C5A059]/40 border border-[#C5A059]/10 rounded-full px-3 py-1 font-semibold">
-                  Aleluia
-                </span>
-              }
+              acclamation={liturgy.gospel.acclamation}
             />
           )}
         </section>
