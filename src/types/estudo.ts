@@ -10,9 +10,10 @@ export interface FormationModule {
 export interface FormationLesson {
   id: string;
   title: string;
-  summary: string;
-  references: string[];
-  content: string[];
+  intro: string;
+  catecismo: string[];
+  escritura: string[];
+  aprofundar: string[];
 }
 
 export interface FaqCategory {

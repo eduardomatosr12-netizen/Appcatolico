@@ -58,23 +58,51 @@ function FormationView() {
       <div className="space-y-5">
         {backButton(() => setSelectedLesson(null))}
         <div className="text-center space-y-2">
-          <h2 className="font-serif text-xl font-bold text-[#C5A059]">{selectedLesson.title}</h2>
+          <h2 className="font-serif text-xl md:text-2xl font-bold text-[#C5A059] uppercase tracking-wide">
+            {selectedLesson.title}
+          </h2>
         </div>
-        <div className="space-y-4">
-          {selectedLesson.content.map((paragraph, i) => (
-            <SacredCard key={i} variant="accent">
-              <p className="text-base md:text-lg leading-relaxed text-gray-300">{paragraph}</p>
-            </SacredCard>
-          ))}
-        </div>
-        {selectedLesson.references.length > 0 && (
-          <div className="text-center">
-            <p className="text-[10px] uppercase tracking-wider text-[#8A8A8E]">Referências</p>
-            <p className="text-xs text-[#C5A059]/80 mt-1 font-serif italic">
-              {selectedLesson.references.join(' · ')}
+
+        <SacredCard variant="accent">
+          <p className="text-base md:text-lg leading-relaxed text-gray-300">{selectedLesson.intro}</p>
+        </SacredCard>
+
+        <div className="space-y-3">
+          <SacredCard variant="default">
+            <div className="flex items-center gap-2 mb-2 text-[#C5A059]">
+              <span className="text-base">📖</span>
+              <span className="font-serif text-sm uppercase tracking-wider font-semibold">Catecismo</span>
+            </div>
+            <p className="text-sm text-gray-200 whitespace-pre-line">
+              {selectedLesson.catecismo.join('\n')}
             </p>
-          </div>
-        )}
+          </SacredCard>
+
+          <SacredCard variant="default">
+            <div className="flex items-center gap-2 mb-2 text-[#C5A059]">
+              <span className="text-base">✝️</span>
+              <span className="font-serif text-sm uppercase tracking-wider font-semibold">Sagrada Escritura</span>
+            </div>
+            <p className="text-sm text-gray-200 whitespace-pre-line">
+              {selectedLesson.escritura.join('\n')}
+            </p>
+          </SacredCard>
+
+          <SacredCard variant="default">
+            <div className="flex items-center gap-2 mb-2 text-[#C5A059]">
+              <span className="text-base">📚</span>
+              <span className="font-serif text-sm uppercase tracking-wider font-semibold">Para aprofundar</span>
+            </div>
+            <ul className="space-y-1.5">
+              {selectedLesson.aprofundar.map((item, i) => (
+                <li key={i} className="flex gap-2 text-sm text-gray-200 leading-relaxed">
+                  <span className="text-[#C5A059]">•</span>
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </SacredCard>
+        </div>
       </div>
     );
   }
@@ -96,13 +124,10 @@ function FormationView() {
               onClick={() => setSelectedLesson(lesson)}
             >
               <div className="flex items-start justify-between gap-3">
-                <div>
-                  <h3 className="font-serif text-sm md:text-base font-semibold text-[#C5A059]">
-                    {lesson.title}
-                  </h3>
-                  <p className="text-xs text-[#8A8A8E] mt-1 leading-relaxed">{lesson.summary}</p>
-                </div>
-                <svg className="w-4 h-4 text-[#C5A059]/60 shrink-0 mt-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <h3 className="font-serif text-sm md:text-base font-semibold text-[#C5A059]">
+                  {lesson.title}
+                </h3>
+                <svg className="w-4 h-4 text-[#C5A059]/60 shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <path d="M9 18l6-6-6-6" />
                 </svg>
               </div>

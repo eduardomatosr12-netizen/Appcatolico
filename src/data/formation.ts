@@ -11,50 +11,106 @@ export const formationModules: FormationModule[] = [
       {
         id: 'iniciacao-1',
         title: 'O que é a fé?',
-        summary:
-          'A fé é a resposta do homem a Deus, que se revela. É um dom de Deus e um ato livre de confiança.',
-        references: ['CIC 26-49', 'Heb 11,1'],
-        content: [
-          'O desejo de Deus está inscrito no coração do homem, porque o homem foi criado por Deus e para Deus (CIC 27).',
-          'A fé é antes de tudo uma adesão pessoal do homem a Deus: "Crê no Senhor Jesus e serás salvo, tu e tua família" (At 16,31).',
-          'Crer tem uma dupla referência: à pessoa de Deus e à verdade que Ele revela. A fé é dom gratuito de Deus, que nos concede o Espírito Santo.',
-          'A fé é um ato humano: não é contrária nem à liberdade nem à inteligência humana. Confia-se e adere-se livremente ao que Deus revelou.',
+        intro:
+          'A fé é a resposta livre do ser humano a Deus que se revela. É um dom de Deus e, ao mesmo tempo, uma resposta de confiança e adesão àquilo que Ele revelou.',
+        catecismo: ['§§ 142–184'],
+        escritura: ['Hb 11,1', 'Rm 10,9-17', 'Jo 20,30-31'],
+        aprofundar: [
+          'Catecismo da Igreja Católica — A resposta do homem a Deus: «Eu creio»',
         ],
       },
       {
         id: 'iniciacao-2',
         title: 'Quem é Deus?',
-        summary: 'Deus é amor, três Pessoas em uma só natureza: Pai, Filho e Espírito Santo.',
-        references: ['CIC 198-231', '1Jo 4,8'],
-        content: [
-          'Deus se revelou a Israel como o único Deus vivo e verdadeiro (Cf. Dt 6,4).',
-          '"Deus é amor" (1Jo 4,8) — esta é a revelação central: toda a vida divina é comunhão de amor entre o Pai, o Filho e o Espírito Santo.',
-          'A Santíssima Trindade é o mistério central da fé e da vida cristã. Deus se revelou progressivamente: como Pai, como Filho e como Espírito Santo.',
-          'Deus é infinitamente perfeito e bem-aventurado em si mesmo, e por pura bondade criou o homem para fazê-lo participar de sua bem-aventurança.',
+        intro:
+          'Deus é único, eterno, perfeito e infinitamente bom. Ele é o Criador de tudo o que existe e não depende de nenhuma criatura para existir. Deus nos criou por amor e nos chama a conhecê-Lo, amá-Lo e participar de sua vida.',
+        catecismo: ['§§ 198–231'],
+        escritura: ['Êx 3,13-15', 'Dt 6,4', 'Jo 17,3', '1Jo 4,8'],
+        aprofundar: [
+          'Catecismo da Igreja Católica — «Eu creio em Deus Pai todo-poderoso»',
         ],
       },
       {
         id: 'iniciacao-3',
-        title: 'Jesus Cristo, o Salvador',
-        summary: 'Jesus é o Filho de Deus feito homem, que nos redimiu por sua cruz e ressurreição.',
-        references: ['CIC 422-451', 'Jo 14,6'],
-        content: [
-          '"Deus amou tanto o mundo, que deu o seu Filho único, para que todo o que nele crer não pereça, mas tenha a vida eterna" (Jo 3,16).',
-          'Jesus é verdadeiro Deus e verdadeiro homem: duas naturezas unidas na única Pessoa do Verbo.',
-          'Por sua morte na cruz, Jesus nos reconciliou com Deus; por sua ressurreição, venceu a morte e nos abriu as portas da vida eterna.',
-          'Jesus é o único mediador entre Deus e os homens. "Ninguém vai ao Pai senão por mim" (Jo 14,6).',
+        title: 'Santíssima Trindade',
+        intro:
+          'Existe um só Deus em três Pessoas: Pai, Filho e Espírito Santo. As três Pessoas são distintas, mas possuem a mesma e única natureza divina. A Trindade é o centro da fé cristã e um mistério que Deus revelou ao homem. O próprio Catecismo destaca que a fé na Trindade está presente desde as origens da Igreja, especialmente na fé batismal.',
+        catecismo: ['§§ 232–267'],
+        escritura: ['Mt 28,19', 'Jo 1,1-18', 'Jo 14,16-17', '2Cor 13,13'],
+        aprofundar: [
+          'Catecismo da Igreja Católica — A fé na Santíssima Trindade: um só Deus em três Pessoas',
         ],
       },
       {
         id: 'iniciacao-4',
+        title: 'Criação',
+        intro:
+          'Deus criou livremente tudo o que existe. A criação é boa porque procede de Deus, e tudo aquilo que existe depende continuamente d\'Ele. O mundo não é Deus, mas uma obra de Deus, e toda a criação encontra seu sentido último n\'Ele.',
+        catecismo: ['§§ 279–324'],
+        escritura: ['Gn 1–2', 'Sl 8', 'Sl 19', 'Jo 1,1-3', 'Cl 1,15-17'],
+        aprofundar: [
+          'Catecismo da Igreja Católica — O Criador: «No princípio, Deus criou o céu e a terra»',
+        ],
+      },
+      {
+        id: 'iniciacao-5',
+        title: 'Anjos',
+        intro:
+          'Os anjos são criaturas espirituais, pessoais, inteligentes e dotadas de vontade. Foram criados por Deus para servi-Lo e participar de seu plano de salvação. Alguns anjos permaneceram fiéis a Deus, enquanto outros, por uma escolha livre, se afastaram d\'Ele. O Catecismo ensina que os anjos são criaturas incorpóreas, pessoais e imortais, que contemplam, servem e glorificam a Deus.',
+        catecismo: ['§§ 328–336', 'Sobre os anjos decaídos: §§ 391–395'],
+        escritura: ['Sl 91,11', 'Mt 18,10', 'Hb 1,14', 'Ap 12,7-9'],
+        aprofundar: [
+          'Catecismo da Igreja Católica — Os anjos em a economia da salvação',
+        ],
+      },
+      {
+        id: 'iniciacao-6',
+        title: 'O ser humano',
+        intro:
+          'O ser humano foi criado por Deus à sua imagem e semelhança. Possui dignidade única entre as criaturas e foi criado para conhecer, amar e servir a Deus. O homem é formado de corpo e alma e é chamado à comunhão com Deus e à vida eterna. O Catecismo destaca que o homem é a única criatura terrestre que Deus quis por si mesma e que é chamada a participar da própria vida divina.',
+        catecismo: ['§§ 355–384'],
+        escritura: ['Gn 1,26-27', 'Gn 2,7', 'Sl 8', 'Mt 22,37-39'],
+        aprofundar: [
+          'Catecismo da Igreja Católica — O homem feito à imagem de Deus: dignidade da pessoa humana',
+        ],
+      },
+      {
+        id: 'iniciacao-7',
+        title: 'Pecado Original',
+        intro:
+          'Deus criou o homem em amizade e santidade. Porém, os primeiros pais, seduzidos pelo Maligno, abusaram de sua liberdade e desobedeceram a Deus. Essa queda feriu a natureza humana e fez com que a humanidade nascesse privada da santidade e justiça originais. O pecado original não é um pecado pessoal cometido por cada indivíduo, mas uma condição herdada. O Batismo apaga o pecado original e restaura a vida da graça, embora permaneçam as consequências da natureza ferida e a inclinação ao pecado.',
+        catecismo: [
+          '§§ 385–421',
+          '396–409 — A queda e o primeiro pecado',
+          '404–405 — O pecado original',
+          '410–412 — A promessa de salvação',
+          '416–421 — Consequências e vitória de Cristo',
+        ],
+        escritura: ['Gn 3', 'Rm 5,12-21', '1Cor 15,21-22'],
+        aprofundar: [
+          'Catecismo da Igreja Católica — A realidade do pecado: «A queda»',
+        ],
+      },
+      {
+        id: 'iniciacao-8',
+        title: 'Jesus Cristo, o Salvador',
+        intro:
+          'Jesus é o Filho de Deus feito homem, que nos redimiu por sua cruz e ressurreição. Ele é verdadeiro Deus e verdadeiro homem, o único mediador entre Deus e os homens.',
+        catecismo: ['§§ 422–451'],
+        escritura: ['Jo 14,6', 'Jo 3,16', '1Tm 2,5'],
+        aprofundar: [
+          'Catecismo da Igreja Católica — «Eu creio em Jesus Cristo, seu único Filho, nosso Senhor»',
+        ],
+      },
+      {
+        id: 'iniciacao-9',
         title: 'O Espírito Santo e a Igreja',
-        summary: 'O Espírito Santo anima a Igreja, Corpo de Cristo, fundada sobre os Apóstolos.',
-        references: ['CIC 683-747', 'At 2,1-4'],
-        content: [
-          'O Espírito Santo foi enviado no dia de Pentecostes para santificar a Igreja e conduzi-la a toda a verdade (Cf. At 2,1-4).',
-          'A Igreja é o Corpo de Cristo, o Templo do Espírito Santo, e foi fundada sobre o fundamento dos Apóstolos, com Pedro à frente.',
-          'Os quatro sinais da Igreja (notas) são: una, santa, católica e apostólica.',
-          'Na Igreja, o Espírito Santo distribui seus dons e carismas, edificando a comunidade dos fiéis.',
+        intro:
+          'O Espírito Santo foi enviado no dia de Pentecostes para santificar e conduzir a Igreja, Corpo de Cristo, fundada sobre os Apóstolos com Pedro à frente.',
+        catecismo: ['§§ 683–747'],
+        escritura: ['At 2,1-4', 'Ef 4,4-6'],
+        aprofundar: [
+          'Catecismo da Igreja Católica — «Eu creio na Igreja una, santa, católica e apostólica»',
         ],
       },
     ],
@@ -69,49 +125,46 @@ export const formationModules: FormationModule[] = [
       {
         id: 'fundamentos-1',
         title: 'O Credo',
-        summary: 'As doze verdades fundamentais da fé cristã proclamadas no Símbolo dos Apóstolos.',
-        references: ['CIC 185-197', 'Símbolo dos Apóstolos'],
-        content: [
-          'O Credo resume a fé da Igreja. Deus o entregou a nós como "símbolo", isto é, sinal de identificação e comunhão entre os cristãos.',
-          'O Símbolo dos Apóstolos é dividido em três partes: Deus Pai e a criação; Jesus Cristo e a Redenção; o Espírito Santo e a santificação.',
-          '"Creio" e "Nós cremos": a fé é um ato pessoal (eu creio) vivido em comunhão (nós cremos) com toda a Igreja.',
-          'Recitar o Credo é professar publicamente a nossa adesão às verdades reveladas por Deus.',
+        intro:
+          'O Credo resume a fé da Igreja. Ele é o "símbolo" da fé, isto é, sinal de identificação e comunhão entre todos os cristãos.',
+        catecismo: ['§§ 185–197'],
+        escritura: ['1Cor 15,3-4', 'Dt 6,4'],
+        aprofundar: [
+          'Catecismo da Igreja Católica — Os Símbolos da fé: «Creio» e «Nós cremos»',
         ],
       },
       {
         id: 'fundamentos-2',
         title: 'Os Sacramentos',
-        summary: 'Sete sinais eficazes da graça instituídos por Cristo.',
-        references: ['CIC 1113-1134'],
-        content: [
+        intro:
           'Os sacramentos são sinais eficazes da graça, instituídos por Cristo e confiados à Igreja, pelos quais nos é concedida a vida divina.',
-          'São sete: Batismo, Confirmação, Eucaristia, Penitência, Unção dos Enfermos, Ordem e Matrimônio.',
-          'Os sacramentos da iniciação cristã: Batismo, Confirmação e Eucaristia, que fundamentam a vida cristã.',
-          'Pela Eucaristia, Cristo se faz presente de modo real e substancial — "o sacramento dos sacramentos".',
+        catecismo: ['§§ 1113–1134'],
+        escritura: ['Jo 6,53-58', 'Mt 28,19'],
+        aprofundar: [
+          'Catecismo da Igreja Católica — Os sete sacramentos da Igreja',
         ],
       },
       {
         id: 'fundamentos-3',
         title: 'Os Dez Mandamentos',
-        summary: 'A lei de Deus, expressão do amor a Deus e ao próximo.',
-        references: ['CIC 2052-2074', 'Ex 20,1-17'],
-        content: [
-          'Os Dez Mandamentos foram entregues por Deus a Moisés no Monte Sinai e resumem a lei moral.',
-          'Jesus os resumiu no mandamento do amor: "Amarás o Senhor teu Deus de todo o teu coração... e amarás o teu próximo como a ti mesmo" (Mt 22,37-39).',
-          'Os três primeiros mandamentos referem-se ao amor a Deus; os sete seguintes, ao amor ao próximo.',
-          'Os mandamentos não são limitações à liberdade, mas caminho de vida e felicidade, protegendo o bem da pessoa.',
+        intro:
+          'Os Dez Mandamentos foram entregues por Deus a Moisés e resumem a lei moral. Jesus os resumiu no mandamento do amor a Deus e ao próximo.',
+        catecismo: ['§§ 2052–2074'],
+        escritura: ['Ex 20,1-17', 'Mt 22,37-40'],
+        aprofundar: [
+          'Catecismo da Igreja Católica — A lei moral: «Ama a Deus sobre todas as coisas»',
         ],
       },
       {
         id: 'fundamentos-4',
         title: 'A Oração',
-        summary: 'O encontro da sede de Deus com a sede do homem.',
-        references: ['CIC 2559-2560'],
-        content: [
-          'A oração é a elevação da alma a Deus e o diálogo de amor entre Deus e o homem.',
-          'As principais formas de oração: bênção e adoração, oração de petição, de intercessão, de ação de graças e de louvor.',
-          'O Pai-Nosso é a oração por excelência, ensinada pessoalmente por Jesus aos seus discípulos.',
-          'A oração é um dom da graça e uma resposta livre do homem; alimenta-se da Palavra de Deus e dos sacramentos.',
+        intro:
+          'A oração é a elevação da alma a Deus e o diálogo de amor entre Deus e o homem. O Pai-Nosso é a oração por excelência, ensinada por Jesus.',
+        catecismo: ['§§ 2559–2560', '§§ 2759–2865'],
+        escritura: ['Mt 6,9-13', 'Lc 11,1-4'],
+        aprofundar: [
+          'Catecismo da Igreja Católica — A Revelação da oração: o dom de Deus',
+          'Catecismo da Igreja Católica — A oração do Senhor: «Pai-Nosso»',
         ],
       },
     ],
@@ -126,49 +179,45 @@ export const formationModules: FormationModule[] = [
       {
         id: 'aprofundamento-1',
         title: 'A Virgem Maria',
-        summary: 'Mãe de Deus e nossa mãe, modelo de fé e obediência.',
-        references: ['CIC 484-511, 963-975', 'Lc 1,26-38'],
-        content: [
-          'Maria é a "Mãe de Deus" (Theotókos) porque gerou o próprio Filho de Deus feito homem.',
-          'Pela Imaculada Conceição, Maria foi preservada, por um privilégio singular, de toda mancha de pecado desde o primeiro instante de sua concepção.',
-          'Maria se manteve virgem antes, durante e depois do parto, consagrando-se totalmente ao seu Filho.',
-          'Maria é nossa mãe na ordem da graça: do alto da cruz, Jesus a entregou a João como mãe de todos os discípulos (Cf. Jo 19,26-27).',
+        intro:
+          'Maria é a "Mãe de Deus" e nossa mãe na ordem da graça, modelo de fé e obediência. Pela Imaculada Conceição, foi preservada de toda mancha de pecado.',
+        catecismo: ['§§ 484–511', '§§ 963–975'],
+        escritura: ['Lc 1,26-38', 'Jo 19,26-27'],
+        aprofundar: [
+          'Catecismo da Igreja Católica — A Virgem Maria, Mãe de Cristo, Mãe da Igreja',
         ],
       },
       {
         id: 'aprofundamento-2',
         title: 'A Graça Santificante',
-        summary: 'A vida divina que nos torna filhos de Deus.',
-        references: ['CIC 1996-2005'],
-        content: [
-          'A graça é o favor gratuito de Deus, a participação na vida divina por ele infundida na alma.',
-          'A graça santificante nos torna agradáveis a Deus e nos permite viver como filhos seus.',
-          'As graças atuais são ajudas de Deus em cada circunstância da vida para responder ao chamado de conversão e santidade.',
-          'Pelo Batismo e pela Confissão, a graça é recebida e restaurada; pelos demais sacramentos, é fortalecida.',
+        intro:
+          'A graça é o favor gratuito de Deus, a participação na vida divina que nos torna filhos de Deus e nos capacita a viver em santidade.',
+        catecismo: ['§§ 1996–2005'],
+        escritura: ['Ef 2,8-9', '2Cor 12,9'],
+        aprofundar: [
+          'Catecismo da Igreja Católica — A graça santificante e a justificação',
         ],
       },
       {
         id: 'aprofundamento-3',
         title: 'Os Santos e a Comunhão dos Santos',
-        summary: 'A família espiritual de Deus, unida além da morte.',
-        references: ['CIC 946-962'],
-        content: [
-          'A comunhão dos santos significa que todos os membros da Igreja — peregrinos na terra, purificantes no Purgatório e gloriosos no Céu — estão unidos em Cristo.',
-          'Os santos são modelos de virtude e intercessores: "a caridade não passa nunca" (1Cor 13,8).',
-          'Podemos recorrer à intercessão dos santos e pedir suas orações, pois eles estão unidos a nós em Cristo.',
-          'A devoção aos santos nos conduz sempre a Cristo, que é o único mediador e Salvador.',
+        intro:
+          'A comunhão dos santos significa que todos os membros da Igreja — peregrinos na terra, purgantes e gloriosos no Céu — estão unidos em Cristo.',
+        catecismo: ['§§ 946–962'],
+        escritura: ['1Cor 13,8', 'Hb 12,1'],
+        aprofundar: [
+          'Catecismo da Igreja Católica — A comunhão dos santos',
         ],
       },
       {
         id: 'aprofundamento-4',
         title: 'O Mistério Pascal na Vida Cristã',
-        summary: 'Morrer e ressuscitar com Cristo no dia a dia.',
-        references: ['CIC 618, 654-655', 'Rm 6,3-11'],
-        content: [
-          'No Batismo, fomos mergulhados na morte de Cristo para ressuscitarmos com ele para a vida nova.',
-          'Participar do Mistério Pascal é abraçar a cruz diária no seguimento de Cristo, certos da glória da ressurreição.',
-          'A Eucaristia torna presente e atualiza o sacrifício redentor de Cristo e nos alimenta para a vida eterna.',
-          'Viver o Mistério Pascal é esperar com alegria a segunda vinda do Senhor e a ressurreição da carne.',
+        intro:
+          'No Batismo fomos mergulhados na morte de Cristo para ressuscitarmos com Ele para a vida nova. Participar do Mistério Pascal é abraçar a cruz no seguimento de Cristo.',
+        catecismo: ['§§ 618, 654–655'],
+        escritura: ['Rm 6,3-11', 'Lc 9,23'],
+        aprofundar: [
+          'Catecismo da Igreja Católica — O Mistério Pascal e a vida nova em Cristo',
         ],
       },
     ],
@@ -183,49 +232,45 @@ export const formationModules: FormationModule[] = [
       {
         id: 'espiritualidade-1',
         title: 'A Vida Interior',
-        summary: 'Cultivar o silêncio e a presença de Deus no coração.',
-        references: ['CIC 2697-2709', 'Mt 6,6'],
-        content: [
-          'A vida interior é o espaço de encontro pessoal com Deus, onde a alma recolhe-se para ouvir sua voz.',
-          '"Tu, porém, quando orares, entra no teu quarto, fecha a porta e ora ao teu Pai em segredo" (Mt 6,6).',
-          'A meditação e a contemplação são formas de oração que alimentam a união com Deus.',
-          'O silêncio é o "mistério do mundo futuro"; sem recolhimento, dificilmente permanecemos na presença de Deus.',
+        intro:
+          'A vida interior é o espaço de encontro pessoal com Deus, onde a alma se recolhe para ouvir a sua voz no silêncio e na oração.',
+        catecismo: ['§§ 2697–2709'],
+        escritura: ['Mt 6,6', '1Rs 19,11-13'],
+        aprofundar: [
+          'Catecismo da Igreja Católica — O combate da oração: a meditação e a contemplação',
         ],
       },
       {
         id: 'espiritualidade-2',
         title: 'O Discernimento Espiritual',
-        summary: 'Reconhecer a voz de Deus nas decisões da vida.',
-        references: ['CIC 1783-1791', '1Rs 19,11-13'],
-        content: [
-          'O discernimento é a capacidade de distinguir o que conduz a Deus daquilo que dele nos afasta.',
-          'Deus fala pela sua Palavra, pela oração, pelos acontecimentos, pelo conselho dos pastores e pelos dons do Espírito.',
-          'Devemos pedir a luz do Espírito Santo e a docilidade para seguir a sua vontade, mesmo quando exige sacrifício.',
-          'A consciência bem formada é o "núcleo santíssimo" do homem, onde ele se encontra a sós com Deus.',
+        intro:
+          'O discernimento é a capacidade de distinguir o que conduz a Deus daquilo que dele nos afasta, reconhecendo a voz de Deus nas decisões da vida.',
+        catecismo: ['§§ 1783–1791'],
+        escritura: ['1Rs 19,11-13', 'Sl 25,4-5'],
+        aprofundar: [
+          'Catecismo da Igreja Católica — A consciência moral e o reto juízo',
         ],
       },
       {
         id: 'espiritualidade-3',
         title: 'A Santidade',
-        summary: 'O chamado universal de todos os cristãos.',
-        references: ['CIC 2012-2016', '1Ts 4,3'],
-        content: [
+        intro:
           '"Esta é a vontade de Deus: a vossa santificação" (1Ts 4,3). Todos são chamados à santidade, cada um no seu estado de vida.',
-          'A santidade é participação na santidade de Deus e plenitude da vida cristã, renovada pela graça dos sacramentos.',
-          'Os meios de santificação: a Palavra de Deus, os sacramentos, a oração, o serviço ao próximo e o exercício das virtudes.',
-          'A santidade não é privilégio de poucos, mas vocação de todos os batizados.',
+        catecismo: ['§§ 2012–2016'],
+        escritura: ['1Ts 4,3', 'Mt 5,48'],
+        aprofundar: [
+          'Catecismo da Igreja Católica — O chamado universal à santidade',
         ],
       },
       {
         id: 'espiritualidade-4',
         title: 'Virtudes: Teologais e Cardeais',
-        summary: 'Hábitos bons que orientam nossas ações para Deus.',
-        references: ['CIC 1803-1845', '1Cor 13,13'],
-        content: [
-          'As virtudes teologais — fé, esperança e caridade — têm Deus como origem, motivo e objeto.',
-          'As virtudes cardeais — prudência, justiça, fortaleza e temperança — orientam a vida moral no dia a dia.',
-          'A caridade é a maior de todas: "agora permanecem a fé, a esperança e a caridade; porém a maior delas é a caridade" (1Cor 13,13).',
-          'As virtudes se adquirem pela educação, pelos atos deliberados e, principalmente, pela graça de Deus.',
+        intro:
+          'As virtudes são hábitos bons que orientam nossas ações para Deus. As teologais — fé, esperança e caridade — têm Deus por origem, motivo e objeto.',
+        catecismo: ['§§ 1803–1845'],
+        escritura: ['1Cor 13,13', 'Sb 8,7'],
+        aprofundar: [
+          'Catecismo da Igreja Católica — As virtudes humanas e as virtudes teologais',
         ],
       },
     ],
