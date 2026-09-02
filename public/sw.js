@@ -136,9 +136,6 @@ self.addEventListener("activate", (event) => {
           .map((n) => caches.delete(n))
       );
       await self.clients.claim();
-      if ("navigationPreload" in self.registration) {
-        await self.registration.navigationPreload.enable();
-      }
       registerPeriodicSync();
     })()
   );
@@ -156,16 +153,30 @@ self.addEventListener("fetch", (event) => {
   if (request.mode === "navigate") {
     event.respondWith(
       (async () => {
+        const cache = await caches.open(APP_SHELL_CACHE);
+        const cached = await caches.match(request) ||
+          await cache.match("/") ||
+          await caches.match("./index.html");
+
+        if (cached) {
+          fetch(request)
+            .then((networkResponse) => {
+              if (networkResponse.ok && networkResponse.type === "basic") {
+                cache.put("/", networkResponse.clone());
+              }
+            })
+            .catch(() => {});
+          return cached;
+        }
+
         try {
           const networkResponse = await fetch(request);
           if (networkResponse.ok && networkResponse.type === "basic") {
-            const cache = await caches.open(APP_SHELL_CACHE);
             cache.put("/", networkResponse.clone());
           }
           return networkResponse;
         } catch {
-          const cached = await caches.match(request) || await caches.match("/");
-          return cached || new Response("Offline", { status: 503, headers: { "Content-Type": "text/html; charset=utf-8" } });
+          return new Response("Offline", { status: 503, headers: { "Content-Type": "text/html; charset=utf-8" } });
         }
       })()
     );
