@@ -59,9 +59,14 @@ export function useSyncedCollection<T extends { id: string }>(
   userId: string | null,
   fallbackKey: string
 ): SyncedCollectionResult<T> {
-  const [data, setData] = useState<T[]>(() => userId ? [] : loadFromLocalStorage<T>(fallbackKey));
+  const [data, setData] = useState<T[]>(() => loadFromLocalStorage<T>(fallbackKey));
   const [isSyncing, setIsSyncing] = useState(false);
   const unsubscribeRef = useRef<(() => void) | null>(null);
+
+  const persistLocal = useCallback((next: T[]) => {
+    saveToLocalStorage(fallbackKey, next);
+    setData(next);
+  }, [fallbackKey]);
 
   useEffect(() => {
     if (!userId) {
@@ -77,10 +82,18 @@ export function useSyncedCollection<T extends { id: string }>(
       snapshot.forEach((docSnap) => {
         items.push({ id: docSnap.id, ...docSnap.data() } as T);
       });
-      setData(items);
+      setData((prev) => {
+        if (items.length === 0 && prev.length > 0) {
+          return prev;
+        }
+        saveToLocalStorage(fallbackKey, items);
+        return items;
+      });
       setIsSyncing(false);
-    }, () => {
-      setIsSyncing(false);
+    }, (err) => {
+      if ((err as { code?: string })?.code === 'permission-denied') {
+        setIsSyncing(false);
+      }
     });
 
     return () => {
@@ -90,43 +103,25 @@ export function useSyncedCollection<T extends { id: string }>(
   }, [userId, collectionPath, fallbackKey]);
 
   const add = useCallback(async (item: T) => {
-    if (!userId) {
-      setData((prev) => {
-        const next = [...prev, item];
-        saveToLocalStorage(fallbackKey, next);
-        return next;
-      });
-      return;
-    }
+    persistLocal([...data, item]);
+    if (!userId) return;
     const docRef = doc(getDb(), 'users', userId, collectionPath, item.id);
     await setDoc(docRef, item);
-  }, [userId, collectionPath, fallbackKey]);
+  }, [userId, collectionPath, data, persistLocal]);
 
   const update = useCallback(async (item: T) => {
-    if (!userId) {
-      setData((prev) => {
-        const next = prev.map((d) => (d.id === item.id ? item : d));
-        saveToLocalStorage(fallbackKey, next);
-        return next;
-      });
-      return;
-    }
+    persistLocal(data.map((d) => (d.id === item.id ? item : d)));
+    if (!userId) return;
     const docRef = doc(getDb(), 'users', userId, collectionPath, item.id);
     await setDoc(docRef, item, { merge: true });
-  }, [userId, collectionPath, fallbackKey]);
+  }, [userId, collectionPath, data, persistLocal]);
 
   const remove = useCallback(async (id: string) => {
-    if (!userId) {
-      setData((prev) => {
-        const next = prev.filter((d) => d.id !== id);
-        saveToLocalStorage(fallbackKey, next);
-        return next;
-      });
-      return;
-    }
+    persistLocal(data.filter((d) => d.id !== id));
+    if (!userId) return;
     const docRef = doc(getDb(), 'users', userId, collectionPath, id);
     await deleteDoc(docRef);
-  }, [userId, collectionPath, fallbackKey]);
+  }, [userId, collectionPath, data, persistLocal]);
 
   return { data, add, update, remove, isSyncing };
 }
@@ -143,7 +138,7 @@ export function useSyncedSingleDoc<T>(
   fallbackKey: string,
   defaultValue: T
 ): SyncedSingleDocResult<T> {
-  const [data, setData] = useState<T>(() => userId ? defaultValue : (loadSingleFromLocalStorage<T>(fallbackKey) ?? defaultValue));
+  const [data, setData] = useState<T>(() => loadSingleFromLocalStorage<T>(fallbackKey) ?? defaultValue);
   const [isSyncing, setIsSyncing] = useState(false);
   const unsubscribeRef = useRef<(() => void) | null>(null);
 
@@ -158,7 +153,9 @@ export function useSyncedSingleDoc<T>(
 
     unsubscribeRef.current = onSnapshot(docRef, (docSnap) => {
       if (docSnap.exists()) {
-        setData(docSnap.data() as T);
+        const value = docSnap.data() as T;
+        setData(value);
+        saveSingleToLocalStorage(fallbackKey, value);
       }
       setIsSyncing(false);
     }, () => {
@@ -173,11 +170,8 @@ export function useSyncedSingleDoc<T>(
 
   const save = useCallback(async (newData: T) => {
     setData(newData);
-
-    if (!userId) {
-      saveSingleToLocalStorage(fallbackKey, newData);
-      return;
-    }
+    saveSingleToLocalStorage(fallbackKey, newData);
+    if (!userId) return;
     const docRef = doc(getDb(), 'users', userId, docPath);
     await setDoc(docRef, newData as DocumentData, { merge: true });
   }, [userId, docPath, fallbackKey]);

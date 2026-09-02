@@ -7,7 +7,7 @@ import { AuthScreen } from '@/components/auth/auth-screen';
 import { migrateLocalStorageToFirestore, isMigrated } from '@/lib/services/migration-service';
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
-  const { user, isLoading, isGuest, initialize } = useAuthStore();
+  const { user, isLoading, isGuest, initialize, continueAsGuest } = useAuthStore();
   const setNotificationUserId = useNotificationStore((s) => s.setUserId);
   const [migrationRan, setMigrationRan] = useState(false);
 
@@ -38,7 +38,23 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     return () => { cancelled = true; };
   }, [user]);
 
-  const migrationDone = !user || isMigrated(user.uid) || migrationRan;
+  const offlineNow = typeof navigator !== 'undefined' && !navigator.onLine;
+
+  useEffect(() => {
+    if (!isLoading || isGuest) return;
+
+    const timer = setTimeout(() => {
+      const offline = typeof navigator !== 'undefined' && !navigator.onLine;
+      const authReady = useAuthStore.getState().isLoading === false;
+      if (offline && !authReady) {
+        continueAsGuest();
+      }
+    }, 6000);
+
+    return () => clearTimeout(timer);
+  }, [isLoading, isGuest, continueAsGuest]);
+
+  const migrationDone = offlineNow || !user || isMigrated(user.uid) || migrationRan;
 
   if (isLoading && !isGuest) {
     return (

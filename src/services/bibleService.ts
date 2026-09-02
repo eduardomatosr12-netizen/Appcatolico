@@ -2,7 +2,7 @@ import type { BibleChapter, BibleVerse } from '@/types/bible';
 import { BIBLE_BOOKS_MAP } from '@/data/bible-versions';
 
 const MIDVASH_BASE = 'https://api.midvash.com/v1';
-const AVE_MARIA_URL = 'https://raw.githubusercontent.com/fidalgobr/bibliaAveMariaJSON/main/bibliaAveMaria.json';
+const AVE_MARIA_URL = '/biblia-ave-maria.json';
 
 const BOOK_ID_TO_AVEMARIA_NAME: Record<string, string> = {
   // AT - Pentateuco
@@ -102,35 +102,11 @@ let aveMariaData: AveMariaData | null = null;
 async function loadAveMariaData(): Promise<AveMariaData> {
   if (aveMariaData) return aveMariaData;
 
-  if (typeof window !== 'undefined') {
-    const cached = localStorage.getItem('bible-ave-maria');
-    if (cached) {
-      try {
-        const parsed = JSON.parse(cached) as AveMariaData;
-        if (parsed.antigoTestamento && parsed.novoTestamento) {
-          aveMariaData = parsed;
-          return aveMariaData;
-        }
-      } catch {
-        // ignore parse error
-      }
-      localStorage.removeItem('bible-ave-maria');
-    }
-  }
-
   const res = await fetch(AVE_MARIA_URL);
   if (!res.ok) throw new Error('Erro ao carregar Bíblia Ave Maria');
 
   const data: AveMariaData = await res.json();
   aveMariaData = data;
-
-  if (typeof window !== 'undefined') {
-    try {
-      localStorage.setItem('bible-ave-maria', JSON.stringify(data));
-    } catch {
-      // localStorage full
-    }
-  }
 
   return aveMariaData;
 }

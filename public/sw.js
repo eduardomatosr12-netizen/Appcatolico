@@ -1,4 +1,26 @@
-const CACHE_NAME = "forja-v2";
+const CACHE_VERSION = 3;
+const CACHE_NAME = `forja-v${CACHE_VERSION}`;
+const APP_SHELL_CACHE = `${CACHE_NAME}-shell`;
+const DYNAMIC_CACHE = `${CACHE_NAME}-dynamic`;
+
+const PRECACHE_ROUTES = [
+  "/",
+  "/liturgia",
+  "/biblia",
+  "/estudo",
+  "/oracoes",
+  "/confissao",
+  "/produtividade",
+  "/rosario",
+];
+
+const PRECACHE_ASSETS = [
+  "/manifest.json",
+  "/icon.svg",
+  "/icon-192.png",
+  "/icon-512.png",
+  "/biblia-ave-maria.json",
+];
 
 // ─── Lifecycle ───────────────────────────────────────────────────────────────
 
@@ -9,6 +31,12 @@ self.addEventListener("message", (event) => {
   if (event.data?.type === "CHECK_ALARMS") {
     event.waitUntil(checkAlarms());
   }
+  if (event.data?.type === "CACHE_BIBLE") {
+    event.waitUntil(precacheBible());
+  }
+  if (event.data?.type === "CACHE_LITURGY") {
+    event.waitUntil(cacheLiturgyRange(event.data?.dates));
+  }
 });
 
 async function notifyClientsToPlaySound() {
@@ -18,12 +46,83 @@ async function notifyClientsToPlaySound() {
   }
 }
 
+function sameOrigin(url) {
+  const u = new URL(url, self.location.origin);
+  return u.origin === self.location.origin;
+}
+
+function cachePut(cacheName, request) {
+  return fetch(request)
+    .then((response) => {
+      if (response.ok && response.type === "basic") {
+        const clone = response.clone();
+        return caches.open(cacheName).then((cache) => cache.put(request, clone)).then(() => response);
+      }
+      return response;
+    })
+    .catch((err) => {
+      if (err instanceof TypeError && typeof caches !== "undefined") {
+        // offline durante install: tenta servir do cache
+      }
+      throw err;
+    });
+}
+
+async function extractStaticAssets(htmlText) {
+  const assets = new Set();
+  const re = /\/_next\/static\/[^"'\s\\]+/g;
+  let m;
+  while ((m = re.exec(htmlText)) !== null) {
+    assets.add(m[0]);
+  }
+  return Array.from(assets);
+}
+
+async function precacheAppShell() {
+  const prefetch = async (url) => {
+    try {
+      const res = await cachePut(APP_SHELL_CACHE, url);
+      return res;
+    } catch {
+      return null;
+    }
+  };
+
+  const htmlRes = await prefetch("/");
+  let staticAssets = [];
+  if (htmlRes) {
+    try {
+      const text = await htmlRes.clone().text();
+      staticAssets = await extractStaticAssets(text);
+    } catch {
+      // ignore
+    }
+  }
+
+  const urls = [...PRECACHE_ROUTES, ...PRECACHE_ASSETS, ...staticAssets];
+  await Promise.all(urls.map((u) => prefetch(u)));
+
+  await precacheBible();
+}
+
+async function precacheBible() {
+  const cache = await caches.open(DYNAMIC_CACHE);
+  try {
+    const response = await fetch("/biblia-ave-maria.json");
+    if (response.ok) {
+      await cache.put("/biblia-ave-maria.json", response);
+    }
+  } catch {
+    // offline: mantém cache existente
+  }
+}
+
 self.addEventListener("install", (event) => {
   event.waitUntil(
-    caches
-      .keys()
-      .then((names) => Promise.all(names.map((n) => caches.delete(n))))
-      .then(() => self.skipWaiting())
+    (async () => {
+      await precacheAppShell();
+      await self.skipWaiting();
+    })()
   );
 });
 
@@ -31,7 +130,11 @@ self.addEventListener("activate", (event) => {
   event.waitUntil(
     (async () => {
       const names = await caches.keys();
-      await Promise.all(names.map((n) => caches.delete(n)));
+      await Promise.all(
+        names
+          .filter((n) => n.startsWith("forja-v") && n !== CACHE_NAME && n !== APP_SHELL_CACHE && n !== DYNAMIC_CACHE)
+          .map((n) => caches.delete(n))
+      );
       await self.clients.claim();
       if ("navigationPreload" in self.registration) {
         await self.registration.navigationPreload.enable();
@@ -41,11 +144,12 @@ self.addEventListener("activate", (event) => {
   );
 });
 
-// ─── Fetch (stale-while-revalidate + navigation preload) ─────────────────────
+// ─── Fetch (offline-first app shell + stale-while-revalidate) ────────────────
 
 self.addEventListener("fetch", (event) => {
   if (event.request.method !== "GET") return;
   if (!event.request.url.startsWith("http")) return;
+  if (!sameOrigin(event.request.url)) return;
 
   const { request } = event;
 
@@ -53,17 +157,15 @@ self.addEventListener("fetch", (event) => {
     event.respondWith(
       (async () => {
         try {
-          const preloadResponse = await event.preloadResponse;
-          if (preloadResponse) return preloadResponse;
-          const response = await fetch(request);
-          if (response.ok && response.type === "basic") {
-            const cache = await caches.open(CACHE_NAME);
-            cache.put(request, response.clone());
+          const networkResponse = await fetch(request);
+          if (networkResponse.ok && networkResponse.type === "basic") {
+            const cache = await caches.open(APP_SHELL_CACHE);
+            cache.put("/", networkResponse.clone());
           }
-          return response;
+          return networkResponse;
         } catch {
-          const cached = await caches.match(request);
-          return cached || new Response("Offline", { status: 503 });
+          const cached = await caches.match(request) || await caches.match("/");
+          return cached || new Response("Offline", { status: 503, headers: { "Content-Type": "text/html; charset=utf-8" } });
         }
       })()
     );
@@ -71,15 +173,31 @@ self.addEventListener("fetch", (event) => {
   }
 
   event.respondWith(
-    fetch(request)
-      .then((response) => {
-        if (response.ok && response.type === "basic") {
-          const clone = response.clone();
-          caches.open(CACHE_NAME).then((cache) => cache.put(request, clone));
-        }
-        return response;
-      })
-      .catch(() => caches.match(request))
+    (async () => {
+      const cache = await caches.open(DYNAMIC_CACHE);
+      const cachedResponse = await cache.match(request, { ignoreSearch: false });
+      const networkPromise = fetch(request)
+        .then((response) => {
+          if (response.ok && response.type === "basic") {
+            cache.put(request, response.clone());
+          }
+          return response;
+        })
+        .catch((err) => {
+          if (cachedResponse) return cachedResponse;
+          if (request.destination === "document") {
+            return caches.match("/");
+          }
+          throw err;
+        });
+
+      if (cachedResponse) {
+        networkPromise.catch(() => {});
+        return cachedResponse;
+      }
+
+      return networkPromise;
+    })()
   );
 });
 
