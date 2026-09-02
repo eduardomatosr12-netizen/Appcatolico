@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { SacredCard } from '@/components/ui/sacred-card';
 import { PillTabBar } from '@/components/ui/pill-tab-bar';
+import { FontSizeControl } from '@/components/ui/font-size-control';
 import { eucharisticPrayers } from '@/data/eucharistic-prayers';
 import { novenas } from '@/data/novenas';
 import { generalPrayers } from '@/data/general-prayers';
@@ -277,6 +278,9 @@ export function PrayersPage() {
         <h1 className="font-serif text-2xl font-bold text-[#C5A059]">
           Orações
         </h1>
+        <div className="flex justify-center pt-1">
+          <FontSizeControl />
+        </div>
       </div>
 
       <PillTabBar

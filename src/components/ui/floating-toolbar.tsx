@@ -1,6 +1,7 @@
 'use client';
 
 import { cn } from '@/lib/utils/cn';
+import { useFontScaleStore } from '@/lib/stores/font-scale-store';
 
 interface FloatingToolbarProps {
   onPlay?: () => void;
@@ -13,8 +14,13 @@ interface FloatingToolbarProps {
 }
 
 export function FloatingToolbar({
-  onPlay, onFontDecrease, onFontIncrease, onShare, fontSize = 100, isSpeaking = false, className,
+  onPlay, onFontDecrease, onFontIncrease, onShare, fontSize, isSpeaking = false, className,
 }: FloatingToolbarProps) {
+  const scale = useFontScaleStore();
+  const percent = fontSize ?? scale.percent;
+  const handleDecrease = onFontDecrease ?? scale.decrease;
+  const handleIncrease = onFontIncrease ?? scale.increase;
+
   return (
     <div className={cn(
       'inline-flex items-center gap-1 rounded-full bg-[#1E1E24]/90 backdrop-blur-lg border border-white/[0.06] p-1.5 shadow-xl',
@@ -32,13 +38,13 @@ export function FloatingToolbar({
 
       <span className="w-px h-5 bg-white/[0.06]" />
 
-      <button onClick={onFontDecrease} className="rounded-full p-2 text-xs text-[#8A8A8E] hover:text-white hover:bg-white/5 transition-all">
+      <button onClick={handleDecrease} className="rounded-full p-2 text-xs text-[#8A8A8E] hover:text-white hover:bg-white/5 transition-all">
         A<sup>−</sup>
       </button>
 
-      <span className="text-[10px] text-[#8A8A8E] w-6 text-center font-medium">{fontSize}%</span>
+      <span className="text-[10px] text-[#8A8A8E] w-6 text-center font-medium">{percent}%</span>
 
-      <button onClick={onFontIncrease} className="rounded-full p-2 text-xs text-[#8A8A8E] hover:text-white hover:bg-white/5 transition-all">
+      <button onClick={handleIncrease} className="rounded-full p-2 text-xs text-[#8A8A8E] hover:text-white hover:bg-white/5 transition-all">
         A<sup>+</sup>
       </button>
 

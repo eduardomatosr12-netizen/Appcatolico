@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { PillTabBar } from '@/components/ui/pill-tab-bar';
 import { SacredCard, SacredCardTitle } from '@/components/ui/sacred-card';
+import { FontSizeControl } from '@/components/ui/font-size-control';
 import { formationModules } from '@/data/formation';
 import { faqCategories } from '@/data/faq';
 import type { FormationModule, FormationLesson, FaqCategory } from '@/types/estudo';
@@ -254,6 +255,9 @@ export function EstudoPage() {
         <h1 className="font-serif text-2xl font-bold text-[#C5A059]">
           Estudo
         </h1>
+        <div className="flex justify-center pt-1">
+          <FontSizeControl />
+        </div>
       </div>
 
       <PillTabBar

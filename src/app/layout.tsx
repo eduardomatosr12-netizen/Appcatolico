@@ -9,6 +9,7 @@ import { NotificationPanel } from "@/components/ui/notification-panel";
 import { PushManager } from "@/components/push-manager";
 import { AlarmScheduler } from "@/components/alarm-scheduler";
 import OfflinePreloader from "@/components/offline/offline-preloader";
+import { FontScaleProvider } from "@/components/layout/font-scale-provider";
 
 export const metadata: Metadata = {
   title: "Forja — Produtividade e Fé",
@@ -77,6 +78,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <PushManager />
         <AlarmScheduler />
         <OfflinePreloader />
+        <FontScaleProvider />
       </body>
     </html>
   );

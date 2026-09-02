@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { useThemeStore } from '@/lib/stores/theme-store';
 import { useNotificationStore } from '@/lib/stores/notification-store';
 import { ProfileSwitcher } from '@/components/auth/profile-switcher';
+import { FontSizeControl } from '@/components/ui/font-size-control';
 
 export function Header() {
   const { toggle } = useThemeStore();
@@ -39,6 +40,8 @@ export function Header() {
           <span className="w-1.5 h-1.5 rounded-full bg-emerald-500/60 animate-pulse" />
           Ao vivo
         </div>
+
+        <FontSizeControl />
 
         <button
           onClick={togglePanel}

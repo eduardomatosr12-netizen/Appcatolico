@@ -369,7 +369,6 @@ export function LiturgyPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [offline, setOffline] = useState(false);
-  const [fontSize, setFontSize] = useState(100);
   const [isSpeaking, setIsSpeaking] = useState(false);
 
   const handlePlay = useCallback(() => {
@@ -471,9 +470,6 @@ export function LiturgyPage() {
               }}
             />
             <FloatingToolbar
-              fontSize={fontSize}
-              onFontIncrease={() => setFontSize((s) => Math.min(150, s + 10))}
-              onFontDecrease={() => setFontSize((s) => Math.max(80, s - 10))}
               onPlay={handlePlay}
               onShare={handleShare}
               isSpeaking={isSpeaking}
@@ -530,7 +526,7 @@ export function LiturgyPage() {
       )}
 
       {view === 'daily' && !loading && !error && liturgy && (
-        <section className="flex flex-col gap-6 w-full" style={{ fontSize: `${fontSize}%` }}>
+        <section className="flex flex-col gap-6 w-full">
           {liturgy.firstReading && (
             <ReadingCard
               title={liturgy.firstReading.title}
@@ -722,9 +718,6 @@ export function LiturgyPage() {
       {view === 'daily' && (
         <div className="flex justify-center pt-3 md:hidden">
           <FloatingToolbar
-            fontSize={fontSize}
-            onFontIncrease={() => setFontSize((s) => Math.min(150, s + 10))}
-            onFontDecrease={() => setFontSize((s) => Math.max(80, s - 10))}
             onPlay={handlePlay}
             onShare={handleShare}
             isSpeaking={isSpeaking}

@@ -3,6 +3,7 @@
 import { useState, useCallback, useEffect, useRef } from 'react';
 import { SacredCard, SacredCardContent, SacredCardTitle } from '@/components/ui/sacred-card';
 import { Button } from '@/components/ui/button';
+import { FontSizeControl } from '@/components/ui/font-size-control';
 import { RosarySelector } from '../components/rosary-selector';
 import { AudioControls } from '../components/audio-controls';
 import { useSpeechSynthesis } from '@/hooks/use-speech-synthesis';
@@ -196,6 +197,9 @@ export function RosaryPage() {
           <span className="h-px w-6 bg-[rgba(197,160,89,0.2)]" />
         </div>
         <h1 className="font-serif text-2xl font-bold text-[#C5A059]">Santo Terço</h1>
+        <div className="flex justify-center pt-1">
+          <FontSizeControl />
+        </div>
       </div>
 
       <RosarySelector

@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { PillTabBar } from '@/components/ui/pill-tab-bar';
+import { FontSizeControl } from '@/components/ui/font-size-control';
 import { BIBLE_VERSIONS, BIBLE_BOOKS } from '@/data/bible-versions';
 import { isBookAvailableForVersion } from '@/services/bibleService';
 import { BibleReader } from '@/features/bible/components/bible-reader';
@@ -80,6 +81,7 @@ export function BiblePage() {
             {viewMode === 'reading' && 'Leitura'}
           </h1>
         </div>
+        <FontSizeControl className="ml-auto" />
       </header>
 
       {viewMode === 'versions' && (
