@@ -12,6 +12,7 @@ const navItems = [
   { href: '/rosario', label: 'Santo Terço', icon: 'circle' },
   { href: '/confissao', label: 'Confissão', icon: 'sparkles' },
   { href: '/produtividade', label: 'Produtividade', icon: 'check' },
+  { href: '/estudo', label: 'Estudo', icon: 'book-open' },
 ];
 
 function NavIcon({ icon, isActive }: { icon: string; isActive: boolean }) {
@@ -61,6 +62,12 @@ function NavIcon({ icon, isActive }: { icon: string; isActive: boolean }) {
       return (
         <svg className={cls} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
           <path d="M9 11l3 3L22 4" /><circle cx="9" cy="20" r="2" /><circle cx="18" cy="20" r="2" /><path d="M21 16H8.7a1 1 0 0 1-1-.9L5.6 5" />
+        </svg>
+      );
+    case 'book-open':
+      return (
+        <svg className={cls} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" /><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
         </svg>
       );
     default:

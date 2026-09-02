@@ -25,11 +25,24 @@ export function MeditationTimer() {
   const computedTotal = hours * 3600 + minutes * 60 + seconds;
 
   useEffect(() => {
-    if (!isRunning || remaining <= 0) return;
+    if (!isRunning) return;
 
     intervalRef.current = setInterval(() => {
       setRemaining((prev) => {
         if (prev <= 1) {
+          queueMicrotask(() => {
+            setIsRunning(false);
+            setIsFinished(true);
+            resumeAudioContext().then(() => {
+              playAlarmSound();
+            });
+            vibrate([200, 100, 200, 100, 200]);
+            addNotification({
+              type: 'timer',
+              title: 'Cronômetro concluído',
+              body: 'Seu tempo de meditação finalizou. Volte em paz!',
+            });
+          });
           return 0;
         }
         return prev - 1;
@@ -42,29 +55,7 @@ export function MeditationTimer() {
         intervalRef.current = null;
       }
     };
-  }, [isRunning]);
-
-  useEffect(() => {
-    if (isRunning && remaining === 0 && totalSeconds > 0) {
-      if (intervalRef.current) {
-        clearInterval(intervalRef.current);
-        intervalRef.current = null;
-      }
-      setIsRunning(false);
-      setIsFinished(true);
-
-      resumeAudioContext().then(() => {
-        playAlarmSound();
-      });
-      vibrate([200, 100, 200, 100, 200]);
-
-      addNotification({
-        type: 'timer',
-        title: 'Cronômetro concluído',
-        body: 'Seu tempo de meditação finalizou. Volte em paz!',
-      });
-    }
-  }, [remaining, isRunning, totalSeconds, addNotification]);
+  }, [isRunning, addNotification]);
 
   const handleStart = useCallback(() => {
     if (computedTotal <= 0) return;

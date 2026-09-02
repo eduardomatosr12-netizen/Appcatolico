@@ -3,7 +3,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { SacredCard, SacredCardContent, SacredCardTitle } from '@/components/ui/sacred-card';
 import { stopAlarmSound, testAlarmSound, ensureAudioReady } from '@/lib/utils/alarm-sound';
-import { useNotificationStore } from '@/lib/stores/notification-store';
 import { useAuthStore } from '@/lib/stores/auth-store';
 import { useSyncedCollection } from '@/lib/services/sync-service';
 import { getDb } from '@/lib/firebase';

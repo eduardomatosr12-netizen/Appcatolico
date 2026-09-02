@@ -441,7 +441,7 @@ export function LiturgyPage() {
   }, []);
 
   // eslint-disable-next-line react-hooks/set-state-in-effect
-  useEffect(() => { loadLiturgy(selectedDate); }, []);
+  useEffect(() => { loadLiturgy(selectedDate); }, [selectedDate, loadLiturgy]);
 
   const suggested = getSuggestedHour();
   const [activeHour, setActiveHour] = useState(getSuggestedHour);
@@ -459,7 +459,6 @@ export function LiturgyPage() {
               onSelect={(d) => {
                 d.setHours(0, 0, 0, 0);
                 setSelectedDate(d);
-                loadLiturgy(d);
               }}
             />
           </div>
@@ -469,7 +468,6 @@ export function LiturgyPage() {
               onSelect={(d) => {
                 d.setHours(0, 0, 0, 0);
                 setSelectedDate(d);
-                loadLiturgy(d);
               }}
             />
             <FloatingToolbar

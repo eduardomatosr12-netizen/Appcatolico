@@ -249,6 +249,7 @@ export async function fetchBibleChapter(
   return fetchMidvashChapter(versionId, book.midvashSlug, chapter);
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export function isBookAvailableForVersion(_versionId: string, _bookId: string): boolean {
   return true;
 }
