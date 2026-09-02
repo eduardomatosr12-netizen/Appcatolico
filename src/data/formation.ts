@@ -1,0 +1,233 @@
+import type { FormationModule } from '@/types/estudo';
+
+export const formationModules: FormationModule[] = [
+  {
+    id: 'iniciacao',
+    title: 'Iniciação à Fé',
+    subtitle: 'Os primeiros passos na vida cristã',
+    level: 'Iniciação',
+    icon: 'sprout',
+    lessons: [
+      {
+        id: 'iniciacao-1',
+        title: 'O que é a fé?',
+        summary:
+          'A fé é a resposta do homem a Deus, que se revela. É um dom de Deus e um ato livre de confiança.',
+        references: ['CIC 26-49', 'Heb 11,1'],
+        content: [
+          'O desejo de Deus está inscrito no coração do homem, porque o homem foi criado por Deus e para Deus (CIC 27).',
+          'A fé é antes de tudo uma adesão pessoal do homem a Deus: "Crê no Senhor Jesus e serás salvo, tu e tua família" (At 16,31).',
+          'Crer tem uma dupla referência: à pessoa de Deus e à verdade que Ele revela. A fé é dom gratuito de Deus, que nos concede o Espírito Santo.',
+          'A fé é um ato humano: não é contrária nem à liberdade nem à inteligência humana. Confia-se e adere-se livremente ao que Deus revelou.',
+        ],
+      },
+      {
+        id: 'iniciacao-2',
+        title: 'Quem é Deus?',
+        summary: 'Deus é amor, três Pessoas em uma só natureza: Pai, Filho e Espírito Santo.',
+        references: ['CIC 198-231', '1Jo 4,8'],
+        content: [
+          'Deus se revelou a Israel como o único Deus vivo e verdadeiro (Cf. Dt 6,4).',
+          '"Deus é amor" (1Jo 4,8) — esta é a revelação central: toda a vida divina é comunhão de amor entre o Pai, o Filho e o Espírito Santo.',
+          'A Santíssima Trindade é o mistério central da fé e da vida cristã. Deus se revelou progressivamente: como Pai, como Filho e como Espírito Santo.',
+          'Deus é infinitamente perfeito e bem-aventurado em si mesmo, e por pura bondade criou o homem para fazê-lo participar de sua bem-aventurança.',
+        ],
+      },
+      {
+        id: 'iniciacao-3',
+        title: 'Jesus Cristo, o Salvador',
+        summary: 'Jesus é o Filho de Deus feito homem, que nos redimiu por sua cruz e ressurreição.',
+        references: ['CIC 422-451', 'Jo 14,6'],
+        content: [
+          '"Deus amou tanto o mundo, que deu o seu Filho único, para que todo o que nele crer não pereça, mas tenha a vida eterna" (Jo 3,16).',
+          'Jesus é verdadeiro Deus e verdadeiro homem: duas naturezas unidas na única Pessoa do Verbo.',
+          'Por sua morte na cruz, Jesus nos reconciliou com Deus; por sua ressurreição, venceu a morte e nos abriu as portas da vida eterna.',
+          'Jesus é o único mediador entre Deus e os homens. "Ninguém vai ao Pai senão por mim" (Jo 14,6).',
+        ],
+      },
+      {
+        id: 'iniciacao-4',
+        title: 'O Espírito Santo e a Igreja',
+        summary: 'O Espírito Santo anima a Igreja, Corpo de Cristo, fundada sobre os Apóstolos.',
+        references: ['CIC 683-747', 'At 2,1-4'],
+        content: [
+          'O Espírito Santo foi enviado no dia de Pentecostes para santificar a Igreja e conduzi-la a toda a verdade (Cf. At 2,1-4).',
+          'A Igreja é o Corpo de Cristo, o Templo do Espírito Santo, e foi fundada sobre o fundamento dos Apóstolos, com Pedro à frente.',
+          'Os quatro sinais da Igreja (notas) são: una, santa, católica e apostólica.',
+          'Na Igreja, o Espírito Santo distribui seus dons e carismas, edificando a comunidade dos fiéis.',
+        ],
+      },
+    ],
+  },
+  {
+    id: 'fundamentos',
+    title: 'Fundamentos da Fé',
+    subtitle: 'O Credo, os sacramentos e os mandamentos',
+    level: 'Fundamentos',
+    icon: 'layers',
+    lessons: [
+      {
+        id: 'fundamentos-1',
+        title: 'O Credo',
+        summary: 'As doze verdades fundamentais da fé cristã proclamadas no Símbolo dos Apóstolos.',
+        references: ['CIC 185-197', 'Símbolo dos Apóstolos'],
+        content: [
+          'O Credo resume a fé da Igreja. Deus o entregou a nós como "símbolo", isto é, sinal de identificação e comunhão entre os cristãos.',
+          'O Símbolo dos Apóstolos é dividido em três partes: Deus Pai e a criação; Jesus Cristo e a Redenção; o Espírito Santo e a santificação.',
+          '"Creio" e "Nós cremos": a fé é um ato pessoal (eu creio) vivido em comunhão (nós cremos) com toda a Igreja.',
+          'Recitar o Credo é professar publicamente a nossa adesão às verdades reveladas por Deus.',
+        ],
+      },
+      {
+        id: 'fundamentos-2',
+        title: 'Os Sacramentos',
+        summary: 'Sete sinais eficazes da graça instituídos por Cristo.',
+        references: ['CIC 1113-1134'],
+        content: [
+          'Os sacramentos são sinais eficazes da graça, instituídos por Cristo e confiados à Igreja, pelos quais nos é concedida a vida divina.',
+          'São sete: Batismo, Confirmação, Eucaristia, Penitência, Unção dos Enfermos, Ordem e Matrimônio.',
+          'Os sacramentos da iniciação cristã: Batismo, Confirmação e Eucaristia, que fundamentam a vida cristã.',
+          'Pela Eucaristia, Cristo se faz presente de modo real e substancial — "o sacramento dos sacramentos".',
+        ],
+      },
+      {
+        id: 'fundamentos-3',
+        title: 'Os Dez Mandamentos',
+        summary: 'A lei de Deus, expressão do amor a Deus e ao próximo.',
+        references: ['CIC 2052-2074', 'Ex 20,1-17'],
+        content: [
+          'Os Dez Mandamentos foram entregues por Deus a Moisés no Monte Sinai e resumem a lei moral.',
+          'Jesus os resumiu no mandamento do amor: "Amarás o Senhor teu Deus de todo o teu coração... e amarás o teu próximo como a ti mesmo" (Mt 22,37-39).',
+          'Os três primeiros mandamentos referem-se ao amor a Deus; os sete seguintes, ao amor ao próximo.',
+          'Os mandamentos não são limitações à liberdade, mas caminho de vida e felicidade, protegendo o bem da pessoa.',
+        ],
+      },
+      {
+        id: 'fundamentos-4',
+        title: 'A Oração',
+        summary: 'O encontro da sede de Deus com a sede do homem.',
+        references: ['CIC 2559-2560'],
+        content: [
+          'A oração é a elevação da alma a Deus e o diálogo de amor entre Deus e o homem.',
+          'As principais formas de oração: bênção e adoração, oração de petição, de intercessão, de ação de graças e de louvor.',
+          'O Pai-Nosso é a oração por excelência, ensinada pessoalmente por Jesus aos seus discípulos.',
+          'A oração é um dom da graça e uma resposta livre do homem; alimenta-se da Palavra de Deus e dos sacramentos.',
+        ],
+      },
+    ],
+  },
+  {
+    id: 'aprofundamento',
+    title: 'Aprofundamento',
+    subtitle: 'Maria, a graça e a vida na Igreja',
+    level: 'Aprofundamento',
+    icon: 'star',
+    lessons: [
+      {
+        id: 'aprofundamento-1',
+        title: 'A Virgem Maria',
+        summary: 'Mãe de Deus e nossa mãe, modelo de fé e obediência.',
+        references: ['CIC 484-511, 963-975', 'Lc 1,26-38'],
+        content: [
+          'Maria é a "Mãe de Deus" (Theotókos) porque gerou o próprio Filho de Deus feito homem.',
+          'Pela Imaculada Conceição, Maria foi preservada, por um privilégio singular, de toda mancha de pecado desde o primeiro instante de sua concepção.',
+          'Maria se manteve virgem antes, durante e depois do parto, consagrando-se totalmente ao seu Filho.',
+          'Maria é nossa mãe na ordem da graça: do alto da cruz, Jesus a entregou a João como mãe de todos os discípulos (Cf. Jo 19,26-27).',
+        ],
+      },
+      {
+        id: 'aprofundamento-2',
+        title: 'A Graça Santificante',
+        summary: 'A vida divina que nos torna filhos de Deus.',
+        references: ['CIC 1996-2005'],
+        content: [
+          'A graça é o favor gratuito de Deus, a participação na vida divina por ele infundida na alma.',
+          'A graça santificante nos torna agradáveis a Deus e nos permite viver como filhos seus.',
+          'As graças atuais são ajudas de Deus em cada circunstância da vida para responder ao chamado de conversão e santidade.',
+          'Pelo Batismo e pela Confissão, a graça é recebida e restaurada; pelos demais sacramentos, é fortalecida.',
+        ],
+      },
+      {
+        id: 'aprofundamento-3',
+        title: 'Os Santos e a Comunhão dos Santos',
+        summary: 'A família espiritual de Deus, unida além da morte.',
+        references: ['CIC 946-962'],
+        content: [
+          'A comunhão dos santos significa que todos os membros da Igreja — peregrinos na terra, purificantes no Purgatório e gloriosos no Céu — estão unidos em Cristo.',
+          'Os santos são modelos de virtude e intercessores: "a caridade não passa nunca" (1Cor 13,8).',
+          'Podemos recorrer à intercessão dos santos e pedir suas orações, pois eles estão unidos a nós em Cristo.',
+          'A devoção aos santos nos conduz sempre a Cristo, que é o único mediador e Salvador.',
+        ],
+      },
+      {
+        id: 'aprofundamento-4',
+        title: 'O Mistério Pascal na Vida Cristã',
+        summary: 'Morrer e ressuscitar com Cristo no dia a dia.',
+        references: ['CIC 618, 654-655', 'Rm 6,3-11'],
+        content: [
+          'No Batismo, fomos mergulhados na morte de Cristo para ressuscitarmos com ele para a vida nova.',
+          'Participar do Mistério Pascal é abraçar a cruz diária no seguimento de Cristo, certos da glória da ressurreição.',
+          'A Eucaristia torna presente e atualiza o sacrifício redentor de Cristo e nos alimenta para a vida eterna.',
+          'Viver o Mistério Pascal é esperar com alegria a segunda vinda do Senhor e a ressurreição da carne.',
+        ],
+      },
+    ],
+  },
+  {
+    id: 'espiritualidade',
+    title: 'Espiritualidade',
+    subtitle: 'Vida interior, discernimento e santidade',
+    level: 'Espiritualidade',
+    icon: 'flame',
+    lessons: [
+      {
+        id: 'espiritualidade-1',
+        title: 'A Vida Interior',
+        summary: 'Cultivar o silêncio e a presença de Deus no coração.',
+        references: ['CIC 2697-2709', 'Mt 6,6'],
+        content: [
+          'A vida interior é o espaço de encontro pessoal com Deus, onde a alma recolhe-se para ouvir sua voz.',
+          '"Tu, porém, quando orares, entra no teu quarto, fecha a porta e ora ao teu Pai em segredo" (Mt 6,6).',
+          'A meditação e a contemplação são formas de oração que alimentam a união com Deus.',
+          'O silêncio é o "mistério do mundo futuro"; sem recolhimento, dificilmente permanecemos na presença de Deus.',
+        ],
+      },
+      {
+        id: 'espiritualidade-2',
+        title: 'O Discernimento Espiritual',
+        summary: 'Reconhecer a voz de Deus nas decisões da vida.',
+        references: ['CIC 1783-1791', '1Rs 19,11-13'],
+        content: [
+          'O discernimento é a capacidade de distinguir o que conduz a Deus daquilo que dele nos afasta.',
+          'Deus fala pela sua Palavra, pela oração, pelos acontecimentos, pelo conselho dos pastores e pelos dons do Espírito.',
+          'Devemos pedir a luz do Espírito Santo e a docilidade para seguir a sua vontade, mesmo quando exige sacrifício.',
+          'A consciência bem formada é o "núcleo santíssimo" do homem, onde ele se encontra a sós com Deus.',
+        ],
+      },
+      {
+        id: 'espiritualidade-3',
+        title: 'A Santidade',
+        summary: 'O chamado universal de todos os cristãos.',
+        references: ['CIC 2012-2016', '1Ts 4,3'],
+        content: [
+          '"Esta é a vontade de Deus: a vossa santificação" (1Ts 4,3). Todos são chamados à santidade, cada um no seu estado de vida.',
+          'A santidade é participação na santidade de Deus e plenitude da vida cristã, renovada pela graça dos sacramentos.',
+          'Os meios de santificação: a Palavra de Deus, os sacramentos, a oração, o serviço ao próximo e o exercício das virtudes.',
+          'A santidade não é privilégio de poucos, mas vocação de todos os batizados.',
+        ],
+      },
+      {
+        id: 'espiritualidade-4',
+        title: 'Virtudes: Teologais e Cardeais',
+        summary: 'Hábitos bons que orientam nossas ações para Deus.',
+        references: ['CIC 1803-1845', '1Cor 13,13'],
+        content: [
+          'As virtudes teologais — fé, esperança e caridade — têm Deus como origem, motivo e objeto.',
+          'As virtudes cardeais — prudência, justiça, fortaleza e temperança — orientam a vida moral no dia a dia.',
+          'A caridade é a maior de todas: "agora permanecem a fé, a esperança e a caridade; porém a maior delas é a caridade" (1Cor 13,13).',
+          'As virtudes se adquirem pela educação, pelos atos deliberados e, principalmente, pela graça de Deus.',
+        ],
+      },
+    ],
+  },
+];
