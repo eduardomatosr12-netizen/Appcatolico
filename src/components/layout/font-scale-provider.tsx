@@ -12,7 +12,7 @@ export function FontScaleProvider() {
   }, [hydrate]);
 
   useEffect(() => {
-    document.documentElement.style.fontSize = `${percent}%`;
+    document.documentElement.style.setProperty('--font-scale', String(percent / 100));
   }, [percent]);
 
   return null;
